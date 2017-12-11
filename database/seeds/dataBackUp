@@ -1,0 +1,18 @@
+protected $data = [
+    'OUTDOOR' => [
+        'BALIHO',
+        'SPANDUK',
+    ],
+    'INDOOR' => [
+        'TRIPOD BANNER',
+        'X-BANNER',
+        'POSTER',
+        'ROLL UP BANNER'
+    ],
+    'OFFSET' => [
+        'CETAK BUKU',
+        'TABLE TENT',
+        'NOTEBOOK',
+        'KALENDER'
+    ]
+];
