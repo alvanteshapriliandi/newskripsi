@@ -62,7 +62,57 @@
 							<td></td>
 						</tr>
 						<tr>
-							<td colspan="1"></td>
+							@foreach($banner as $b)
+							<input type="hidden" name="BN_ID" value="{{$b->id}}">
+							@endforeach
+							
+							@foreach($bantalfoto as $bt)
+							<input type="hidden" name="BT_ID" value="{{$bt->id}}">
+							@endforeach
+							
+							@foreach($brosur as $br)
+							<input type="hidden" name="BR_ID" value="{{$br->id}}">
+							@endforeach
+							
+							@foreach($goodlebag as $gd)
+							<input type="hidden" name="GD_ID" value="{{$gd->id}}">
+							@endforeach
+							
+							@foreach($kalender as $kl)
+							<input type="hidden" name="KL_ID" value="{{$kl->id}}">
+							@endforeach
+							
+							@foreach($kaos as $ks)
+							<input type="hidden" name="KS_ID" value="{{$ks->id}}">
+							@endforeach
+							
+							@foreach($kartu as $kr)
+							<input type="hidden" name="KR_ID" value="{{$kr->id}}">
+							@endforeach
+							
+							@foreach($mug as $mg)
+							<input type="hidden" name="MG_ID" value="{{$mg->id}}">
+							@endforeach
+							
+							@foreach($office as $of)
+							<input type="hidden" name="OF_ID" value="{{$of->id}}">
+							@endforeach
+							
+							@foreach($polo as $pl)
+							<input type="hidden" name="PL_ID" value="{{$pl->id}}">
+							@endforeach
+							
+							@foreach($poster as $pt)
+							<input type="hidden" name="PT_ID" value="{{$pt->id}}">
+							@endforeach
+							
+							@foreach($stempel as $sm)
+							<input type="hidden" name="SM_ID" value="{{$sm->id}}">
+							@endforeach
+							
+							@foreach($stiker as $st)
+							<input type="hidden" name="ST_ID" value="{{$st->id}}">
+							@endforeach
 							<td>
 								<input type="submit" class="btn btn-info" name="">
 							</td>

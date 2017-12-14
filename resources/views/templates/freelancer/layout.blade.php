@@ -63,7 +63,8 @@
                             <h3>General</h3>
                             <ul class="nav side-menu">
                                 <li><a href="{{url('freelance/product')}}"><i class="fa fa-product-hunt"></i> Product </a></li>
-                                <li><a href="{{url('freelance/product')}}"><i class="fa fa-product-hunt"></i> Order </a></li>
+                                <li><a href="{{url('freelance/order-list')}}"><i class="fa fa-product-hunt"></i> Order List</a></li>
+                                <li><a href="{{ url('freelancer/messages')}}"><i class="fa fa-envelope"></i> Cetak </a></li>
                                 <li><a href="{{ url('freelancer/messages')}}"><i class="fa fa-envelope"></i> Pesan </a></li>
                                 <li><a href="#"><i class="fa fa-credit-card"></i> Pembayaran </a></li>
                                 <li><a href=""><i class="fa fa-cog"></i> Pengaturan </a></li>

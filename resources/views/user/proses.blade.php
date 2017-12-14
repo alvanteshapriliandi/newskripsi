@@ -210,9 +210,11 @@
 							<th colspan="2" style="text-align: right;">Status</th>
 							@foreach($pay as $p)
 								@if($p->status == 0)
-									<td style="text-align: right;">dalam proses pengerjaan</td>
+									<td style="text-align: right;">Menunggu Konfirmasi</td>
 									@elseif($p->status == 1)
-										<td style="text-align: right;">dalam proses pengiriman</td>
+										<td style="text-align: right;">Dalam Proses Pengerjaan</td>
+									@else
+										<td style="text-align: right;">Dalam Proses Pengiriman</td>
 								@endif
 						</tr>
 					</table>

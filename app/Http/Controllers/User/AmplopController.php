@@ -21,7 +21,7 @@ class AmplopController extends Controller
     public function index()
     {
         //
-        $data['product']= $product = DB::select("select p.*, s.name, u.username from products p inner join subcategories s on p.subcategory_id = s.id inner join users u on p.freelancer_id = u.id where subcategory_id = 3");
+        $data['product'] = DB::select("select p.*, s.name, u.username from products p inner join subcategories s on p.subcategory_id = s.id inner join users u on p.freelancer_id = u.id where subcategory_id = 3");
         return view('user.amplop.amplop_list',$data);
     }
 
@@ -65,13 +65,9 @@ class AmplopController extends Controller
             'OF_description'    => $request->input('OF_description'),  
             'OF_images'         => $data['OF_images']
         );
-        $order = array(
-            'OF_userid'         => $id, 
-            'OF_productid'      => $request->input('productid'),
-        );
 
-        return $datas;
-        return $order;
+        // return $datas;
+        // return $order;
         Office::create($datas);
         return redirect()->route('checkout.index');
     }
@@ -87,6 +83,9 @@ class AmplopController extends Controller
         //
         
         $data['amplop'] = Product::find($id);
+        $id = $data['amplop']->id;
+        $data['product'] = DB::select("select u.username, f.images from products p inner join users u on p.freelancer_id = u.id inner join freelances f on u.id = f.user_id where p.id = ".$id);
+        // return $data['product'];
         return view('user.amplop.amplop_create',$data);
     }
 

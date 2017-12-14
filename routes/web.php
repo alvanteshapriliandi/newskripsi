@@ -22,6 +22,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::group(['prefix' => 'freelance', 'namespace' => 'Freelancer', 'middleware' => 'auth'], function () {
     Route::resource('product', 'ProductsController');
+    Route::resource('order-list', 'OrderListController');
     Route::post('product/findSubCategoryname/{id}', 'ProductsController@findSubCategoryname');
 });
 Route::group(['namespace' => 'Freelancer', 'middleware' => 'auth'], function () {

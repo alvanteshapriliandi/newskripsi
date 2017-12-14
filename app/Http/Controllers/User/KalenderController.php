@@ -83,6 +83,8 @@ class kalenderController extends Controller
         //
         
         $data['kalender'] = Product::find($id);
+        $id = $data['kalender']->id;
+        $data['product'] = DB::select("select u.username, f.images from products p inner join users u on p.freelancer_id = u.id inner join freelances f on u.id = f.user_id where p.id = ".$id);
         return view('user.kalender.kalender_create',$data);
     }
 

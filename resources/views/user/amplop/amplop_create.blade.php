@@ -19,16 +19,16 @@
         <div class="col-md-4">
           <h3 class="my-3">Deskripsi Produk</h3>
           <p>{{$amplop->description}}</p>
-          <h3 class="my-3">Harga Produk</h3>
-          <ul>
-            <li>Rp. {{$amplop->hrg_awal}},-</li>
-          </ul>
         </div>
 
         <div class="col-md-3" style="border: 2px solid #ccc;">
           <h4 align="center">Ulasan Desainer</h4>
           <div>
-            <img style="margin: 20%;" src="https://cdn.pixabay.com/photo/2016/08/20/05/38/avatar-1606916_640.png" width="100">
+            @foreach($product as $p)
+            <img style="margin: 20%;" src="{{ asset('uploads/'.$p->images)}}" width="100">
+            
+            <p align="center">Freelance Desainer : {{$p->username}} <br>
+            @endforeach
             <p align="center">Ratting <br>
               <input id="rating-input" type="text" title=""/>
             </p>

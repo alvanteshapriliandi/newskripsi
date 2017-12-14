@@ -21,6 +21,7 @@
           <div class="caption">
             <h3>{{$p->name}}</h3>
             <p>{{$p->description}}</p>
+              <p>{{$p->username}}</p>
             <p>
               <a href="{{route('kaos.show',['id'=> $p->id])}}" class="btn btn-primary" role="button"> <span class="fa fa-list-alt"> Detail</span></a>
               <a href="#" class="btn btn-default" role="button"> <span class="fa fa-cart-plus"> Order Now</a>

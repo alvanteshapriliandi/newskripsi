@@ -24,7 +24,8 @@ class ProductsController extends Controller
     {
         //
         if(!Helper::checkFreelancer()){return view('error.403');}
-        $data['product']= $product = DB::select("select p.id, p.jdl_Pdk, p.status, p.created_at, p.updated_at, s.name, u.username from products p inner join subcategories s on p.subcategory_id = s.id inner join users u on p.freelancer_id = u.id");
+        $id = Auth::user()->id;
+        $data['product']= $product = DB::select("select p.id, p.jdl_Pdk, p.status, p.created_at, p.updated_at, s.name, u.username from products p inner join subcategories s on p.subcategory_id = s.id inner join users u on p.freelancer_id = u.id where u.id = ".$id);
 
         return view('freelancer.product.product_list', $data);
 
