@@ -22,7 +22,10 @@
 							<th>Total</th>
 							<td></td>
 						</tr>
-						<?php $total = 0; ?>
+						<?php 
+							$total = 0;
+							$kirim = 10000;
+						 ?>
 						<!-- start checkout Banner -->
 						@foreach($banner as $ban)
 						<tr>
@@ -271,6 +274,14 @@
 						@endforeach
 						<!-- end checkout Stiker -->
 
+						<tr>
+							<td colspan="3"></td>
+							<th>Biaya Pengiriman</th>
+							<td>{{$kirim}}</td>
+						</tr>
+						<?php 
+							$total = $total + $kirim;
+						 ?>
 						<tr>
 							<td colspan="3"></td>
 							<th style="font-size: 20px;">TOTAL</th>

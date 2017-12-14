@@ -65,7 +65,13 @@ class AmplopController extends Controller
             'OF_description'    => $request->input('OF_description'),  
             'OF_images'         => $data['OF_images']
         );
-        // return $datas;
+        $order = array(
+            'OF_userid'         => $id, 
+            'OF_productid'      => $request->input('productid'),
+        );
+
+        return $datas;
+        return $order;
         Office::create($datas);
         return redirect()->route('checkout.index');
     }

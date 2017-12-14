@@ -51,8 +51,7 @@ Route::group(['namespace' => 'User'], function () {
     Route::resource('checkout', 'CheckoutController');
     Route::resource('payment', 'PaymentController');
     Route::resource('payment-upload', 'UploadsController');
-    Route::resource('info-prossess', 'ProssessController');
-
+    Route::resource('proses', 'ProsesController');
     Route::post('user/findSubCategoryname/{id}', 'MenuController@findSubCategoryname');
 });
 
