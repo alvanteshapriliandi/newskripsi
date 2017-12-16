@@ -1,15 +1,11 @@
 <?php
 
-namespace App\Http\Controllers\Freelancer;
+namespace App\Http\Controllers\user;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use DB;
-use Auth;
-use App\User;
-use App\Models\Payment;
 
-class OrderListController extends Controller
+class MessagesController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -19,18 +15,6 @@ class OrderListController extends Controller
     public function index()
     {
         //
-        $id = Auth::user()->id;
-        $data['payment'] = db::select('select of.OF_perusahaan, pay.id, pay.status, pay.created_at, pay.updated_at, u.username, pr.jdl_Pdk from payments pay
-            join offices of on pay.OF_ID = of.id 
-            join products pr on of.OF_productid = pr.id
-            join users u on pay.user_id = u.id
-            where pr.freelancer_id = '.$id);
-        // return $data['amplop'];
-        // return $id;
-        // return $data['payment'];
-        // return $data;
-        return view('freelancer.orderlist.order_list',$data);
-
     }
 
     /**
@@ -63,8 +47,6 @@ class OrderListController extends Controller
     public function show($id)
     {
         //
-        $data['payment'] = Payment::find($id);
-        return view('freelancer.orderlist.order_detail',$data);
     }
 
     /**
@@ -76,10 +58,6 @@ class OrderListController extends Controller
     public function edit($id)
     {
         //
-
-        $data['payment'] = Payment::find($id);
-        // return $data;
-        return view('freelancer.orderlist.order_edit',$data);
     }
 
     /**
@@ -92,13 +70,6 @@ class OrderListController extends Controller
     public function update(Request $request, $id)
     {
         //
-        $data = $request->all();
-        $payment = Payment::find($id);
-        $payment->status=$request->status;
-        $payment->save();
-        // return [$data, $payment];
-        $payment -> update($data);
-        return redirect()->route('order-list.index')->with('success', "The payment <strong>Status Payment</strong> has successfully been updated.");
     }
 
     /**

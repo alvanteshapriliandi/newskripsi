@@ -17,8 +17,7 @@
                         <thead>
                             <tr>
                                 <th>User Name</th>
-                                <th>Name Product</th>
-                                <th>Sub Category</th>
+                                <th>Status</th>
                                 <th>Date</th>
                                 <th>Time</th>
                                 <th>Action</th>
@@ -27,31 +26,31 @@
                         <tfoot>
                             <tr>
                                 <th>User Name</th>
-                                <th>Name Product</th>
-                                <th>Sub Category</th>
+                                <th>Staus</th>
                                 <th>Date</th>
                                 <th>Time</th>
                                 <th>Action</th>
                             </tr>
                         </tfoot>
                         <tbody>
-                            @foreach($amplop as $a)
-                            @if($a->OF_status == 0)
-                                @elseif($a->OF_status == 1)
-                                    <tr>
-                                        <td>{{$a->username}}</td>
-                                        <td>{{$a->jdl_Pdk}}</td>
-                                        <td>{{$a->name}}</td>
-                                        
-                                        <td>{{ date('F d, Y', strtotime($a->created_at))}}</td>
-                                        <td>{{ date('H:m:s', strtotime($a->updated_at))}}</td>
-                                        <td>
-                                            <a href="" class="btn btn-info btn-xs"><i class="fa fa-pencil" title="Edit"></i> </a>
-                                            <a href="" class="btn btn-danger btn-xs"><i class="fa fa-trash-o" title="Delete"></i> </a>
-                                        </td>
-                                    </tr>
-                            @endif
-                            @endforeach
+                                @foreach($payment as $pay)
+                                <tr>
+                                    <td>{{$pay->username}}</td>
+                                        @if($pay->status == 0)
+                                            <td>Menunggu Konfirmasi</td>
+                                            @elseif($pay->status == 1)
+                                                <td>Dalam Proses Pengerjaan</td>
+                                            @else
+                                                <td>Dalam Proses Pengiriman</td>
+                                        @endif
+                                    <td>{{ date('F d, Y', strtotime($pay->created_at))}}</td>
+                                    <td>{{ date('H:m:s', strtotime($pay->updated_at))}}</td>
+                                    <td>
+                                        <a href="{{ route('order-list.edit', ['id' => $pay->id]) }}" class="btn btn-info btn-xs"><i class="fa fa-pencil" title="Edit"></i> </a>
+                                        <a href="{{ route('order-list.show', ['id' => $pay->id]) }}" class="btn btn-danger btn-xs"><i class="fa fa-trash-o" title="Delete"></i> </a>
+                                    </td>
+                                </tr>
+                                @endforeach 
                         </tbody>
                     </table>
                 </div>

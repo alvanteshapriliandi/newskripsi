@@ -17,28 +17,6 @@
                         <input name="_method" type="hidden" value="PATCH">
                             {{ csrf_field() }}
                         <table id="datatable-buttons" class="table table-striped table-bordered">
-                            <!-- <thead>
-                                <tr>
-                                    <th>Name Product</th>
-                                    <th>Sub Category</th>
-                                    <th>Harga Awal</th>
-                                    <th>Status</th>
-                                    <th>Date</th>
-                                    <th>Time</th>
-                                    <th>Action</th>
-                                </tr>
-                            </thead>
-                            <tfoot>
-                                <tr>
-                                    <th>Name Product</th>
-                                    <th>Sub Category</th>
-                                    <th>Harga Awal</th>
-                                    <th>Status</th>
-                                    <th>Date</th>
-                                    <th>Time</th>
-                                    <th>Action</th>
-                                </tr>
-                            </tfoot> -->
                             <tbody>
                                 <tr>
                                     <th>Name freelancer</th>

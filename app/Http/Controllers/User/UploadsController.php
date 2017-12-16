@@ -9,7 +9,19 @@ use App\User;
 Use Auth;
 use DB;
 use App\Models\Payment;
+use App\Models\Banner;
+use App\Models\Bantalfoto;
+use App\Models\Brosur;
+use App\Models\Goodlebag;
+use App\Models\Kalender;
+use App\Models\Kaos;
+use App\Models\Kartu;
+use App\Models\Mug;
 use App\Models\Office;
+use App\Models\Polo;
+use App\Models\Poster;
+use App\Models\Stempel;
+use App\Models\Stiker;
 
 class UploadsController extends Controller
 {
@@ -140,9 +152,96 @@ class UploadsController extends Controller
         );
         // return $datas;
         Payment::create($datas);
+
+        $banner = Banner::find($datas['BN_ID']);
+        if ($banner) {
+            $banner->BN_status=1;
+            $banner->save();
+        }   
+
+        $bantalfoto = Bantalfoto::find($datas['BT_ID']);
+        if ($bantalfoto) {
+            $bantalfoto->BT_status=1;
+            $bantalfoto->save();
+        }
+        
+
+        $brosur = Brosur::find($datas['BR_ID']);
+        if ($brosur) {
+            $brosur->BR_status=1;
+            $brosur->save();
+        }
+        
+
+        $goodlebag = Goodlebag::find($datas['GD_ID']);
+        if ($goodlebag) {
+            $goodlebag->GD_status=1;
+            $goodlebag->save();
+        }
+        
+
+        $kalender = Kalender::find($datas['KL_ID']);
+        if ($kalender) {
+            $kalender->KL_status=1;
+            $kalender->save();
+        }
+        
+
+        $kaos = Kaos::find($datas['KS_ID']);
+        if ($kaos) {
+            $kaos->KS_status=1;
+            $kaos->save();
+        }
+        
+
+        $kartu = Kartu::find($datas['KR_ID']);
+        if ($kartu) {
+            $kartu->KR_status=1;
+            $kartu->save();
+        }
+        
+
+        $mug = Mug::find($datas['MG_ID']);
+        if ($mug) {
+            $mug->MG_status=1;
+            $mug->save();
+        }
+        
+
         $office = Office::find($datas['OF_ID']);
-        $office->OF_status=1;
+        if ($office) {
+            $office->OF_status=1;
         $office->save();
+        }
+        
+
+        $polo = Polo::find($datas['PL_ID']);
+        if ($polo) {
+            $polo->PL_status=1;
+            $polo->save();
+        }
+        
+
+        $poster = Poster::find($datas['PT_ID']);
+        if ($poster) {
+            $poster->PT_status=1;
+            $poster->save();
+        }
+        
+
+        $stempel = Stempel::find($datas['SM_ID']);
+        if ($stempel) {
+            $stempel->SM_status=1;
+            $stempel->save();
+        }
+        
+
+        $stiker = Stiker::find($datas['ST_ID']);
+        if ($stiker) {
+            $stiker->ST_status=1;
+            $stiker->save();
+        }
+        
         return redirect()->route('proses.index');
     }
 
