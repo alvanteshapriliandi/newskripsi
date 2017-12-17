@@ -15,6 +15,8 @@ class CreateCetaksTable extends Migration
     {
         Schema::create('cetaks', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('paymentId')->unsigned();
+            $table->text('images');
             $table->timestamps();
         });
     }

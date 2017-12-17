@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 14 Des 2017 pada 14.48
+-- Generation Time: 17 Des 2017 pada 14.51
 -- Versi Server: 10.1.26-MariaDB
 -- PHP Version: 7.1.9
 
@@ -38,6 +38,7 @@ CREATE TABLE `banners` (
   `BN_jenis` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `BN_pemesanan` int(11) NOT NULL,
   `BN_total` int(11) NOT NULL,
+  `BN_status` int(1) NOT NULL DEFAULT '0',
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -46,10 +47,10 @@ CREATE TABLE `banners` (
 -- Dumping data untuk tabel `banners`
 --
 
-INSERT INTO `banners` (`id`, `BN_userid`, `BN_productid`, `BN_description`, `BN_images`, `BN_ukuran`, `BN_jenis`, `BN_pemesanan`, `BN_total`, `created_at`, `updated_at`) VALUES
-(2, 2, 1, 'sdsdasd', '13712358_1001662456597793_58424149_n.jpg', '100 X 100 CM', 'FF Korea 440 GR', 1, 12312, '2017-12-08 19:03:31', '2017-12-08 19:03:31'),
-(3, 2, 1, 'sdsadasda', 'appicns_iTunes.png', '60 X 160 CM', 'FF Korea 440 GR', 12, 213, '2017-12-08 20:05:20', '2017-12-08 20:05:20'),
-(4, 3, 13, 'hai', 'appicns_iTunes.png', '100 x 200', 'FF Korea 440 GR', 2, 20000, '2017-12-11 03:44:52', '2017-12-11 03:44:52');
+INSERT INTO `banners` (`id`, `BN_userid`, `BN_productid`, `BN_description`, `BN_images`, `BN_ukuran`, `BN_jenis`, `BN_pemesanan`, `BN_total`, `BN_status`, `created_at`, `updated_at`) VALUES
+(2, 2, 1, 'sdsdasd', '13712358_1001662456597793_58424149_n.jpg', '100 X 100 CM', 'FF Korea 440 GR', 1, 12312, 0, '2017-12-08 19:03:31', '2017-12-08 19:03:31'),
+(3, 2, 1, 'sdsadasda', 'appicns_iTunes.png', '60 X 160 CM', 'FF Korea 440 GR', 12, 213, 0, '2017-12-08 20:05:20', '2017-12-08 20:05:20'),
+(4, 3, 13, 'hai', 'appicns_iTunes.png', '100 x 200', 'FF Korea 440 GR', 2, 20000, 1, '2017-12-11 03:44:52', '2017-12-14 07:14:17');
 
 -- --------------------------------------------------------
 
@@ -69,6 +70,7 @@ CREATE TABLE `bantalfotos` (
   `BT_warna` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `BT_pemesanan` int(11) NOT NULL,
   `BT_total` int(11) NOT NULL,
+  `BT_status` int(1) NOT NULL DEFAULT '0',
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -93,6 +95,7 @@ CREATE TABLE `brosurs` (
   `BR_total` int(11) NOT NULL,
   `BR_description` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `BR_images` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `BR_status` int(1) NOT NULL DEFAULT '0',
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -101,8 +104,8 @@ CREATE TABLE `brosurs` (
 -- Dumping data untuk tabel `brosurs`
 --
 
-INSERT INTO `brosurs` (`id`, `BR_userid`, `BR_productid`, `BR_perusahaan`, `BR_alamat`, `BR_tlp`, `BR_email`, `BR_pemesanan`, `BR_ukuran`, `BR_kertas`, `BR_total`, `BR_description`, `BR_images`, `created_at`, `updated_at`) VALUES
-(1, 2, 3, 'asasdasd', 'adsasdas', '1312323343', 'asd@mail.com', 1, 'A3 (29.7 X 42 cm)', 'Standart', 1233434, 'sdasdasda', 'c-4.jpg', '2017-12-08 16:10:38', '2017-12-08 16:10:38');
+INSERT INTO `brosurs` (`id`, `BR_userid`, `BR_productid`, `BR_perusahaan`, `BR_alamat`, `BR_tlp`, `BR_email`, `BR_pemesanan`, `BR_ukuran`, `BR_kertas`, `BR_total`, `BR_description`, `BR_images`, `BR_status`, `created_at`, `updated_at`) VALUES
+(1, 2, 3, 'asasdasd', 'adsasdas', '1312323343', 'asd@mail.com', 1, 'A3 (29.7 X 42 cm)', 'Standart', 1233434, 'sdasdasda', 'c-4.jpg', 0, '2017-12-08 16:10:38', '2017-12-08 16:10:38');
 
 -- --------------------------------------------------------
 
@@ -225,6 +228,7 @@ CREATE TABLE `goodlebags` (
   `GD_total` int(11) NOT NULL,
   `GD_deskripsi` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `GD_images` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `GD_status` int(1) NOT NULL DEFAULT '0',
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -264,6 +268,7 @@ CREATE TABLE `kalenders` (
   `KL_total` int(11) NOT NULL,
   `KL_description` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `KL_images` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `KL_status` int(1) NOT NULL DEFAULT '0',
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -287,6 +292,7 @@ CREATE TABLE `kaos` (
   `KS_belakang` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `KS_pemesanan` int(11) NOT NULL,
   `KS_total` int(11) NOT NULL,
+  `KS_status` int(1) NOT NULL DEFAULT '0',
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -312,6 +318,7 @@ CREATE TABLE `kartus` (
   `KR_total` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `KR_description` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `KR_images` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `KR_status` int(1) NOT NULL DEFAULT '0',
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -320,9 +327,9 @@ CREATE TABLE `kartus` (
 -- Dumping data untuk tabel `kartus`
 --
 
-INSERT INTO `kartus` (`id`, `KR_userid`, `KR_productid`, `KR_nama`, `KR_jabatan`, `KR_perusahaan`, `KR_alamat`, `KR_tlp`, `KR_email`, `KR_pemesanan`, `KR_kertas`, `KR_total`, `KR_description`, `KR_images`, `created_at`, `updated_at`) VALUES
-(1, 2, 1, 'asdasa', 'asdasdas', 'sdasdas', 'asdadsasd', '123123', 'as@mail.com', 50, 'Standart', '12312', 'qweqwe', 'download (1).png', '2017-12-08 17:19:12', '2017-12-08 17:19:12'),
-(2, 2, 1, 'asdasd', 'asdas', 'asdasdas', 'wadasd', '123123', 'sad@mail.com', 100, 'Standart', '2312', 'asdasdadasasd', 'appicns_iTunes.png', '2017-12-08 19:07:29', '2017-12-08 19:07:29');
+INSERT INTO `kartus` (`id`, `KR_userid`, `KR_productid`, `KR_nama`, `KR_jabatan`, `KR_perusahaan`, `KR_alamat`, `KR_tlp`, `KR_email`, `KR_pemesanan`, `KR_kertas`, `KR_total`, `KR_description`, `KR_images`, `KR_status`, `created_at`, `updated_at`) VALUES
+(1, 2, 1, 'asdasa', 'asdasdas', 'sdasdas', 'asdadsasd', '123123', 'as@mail.com', 50, 'Standart', '12312', 'qweqwe', 'download (1).png', 0, '2017-12-08 17:19:12', '2017-12-08 17:19:12'),
+(2, 2, 1, 'asdasd', 'asdas', 'asdasdas', 'wadasd', '123123', 'sad@mail.com', 100, 'Standart', '2312', 'asdasdadasasd', 'appicns_iTunes.png', 0, '2017-12-08 19:07:29', '2017-12-08 19:07:29');
 
 -- --------------------------------------------------------
 
@@ -379,6 +386,7 @@ CREATE TABLE `mugs` (
   `MG_jenis_mug` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `MG_jumlah_mug` int(11) NOT NULL,
   `MG_total` int(11) NOT NULL,
+  `MG_status` int(1) NOT NULL DEFAULT '0',
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -435,7 +443,7 @@ CREATE TABLE `password_resets` (
 --
 
 CREATE TABLE `payments` (
-  `paymentId` int(10) UNSIGNED NOT NULL,
+  `id` int(10) UNSIGNED NOT NULL,
   `user_id` int(10) UNSIGNED NOT NULL,
   `BN_ID` int(11) UNSIGNED DEFAULT NULL,
   `BT_ID` int(11) UNSIGNED DEFAULT NULL,
@@ -466,9 +474,10 @@ CREATE TABLE `payments` (
 -- Dumping data untuk tabel `payments`
 --
 
-INSERT INTO `payments` (`paymentId`, `user_id`, `BN_ID`, `BT_ID`, `BR_ID`, `GD_ID`, `KL_ID`, `KS_ID`, `KR_ID`, `MG_ID`, `OF_ID`, `PL_ID`, `PT_ID`, `SM_ID`, `ST_ID`, `kd_invoice`, `namaBank`, `alamat`, `kelurahan`, `kecamatan`, `kota`, `images`, `status`, `created_at`, `updated_at`) VALUES
-(9, 6, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 5, NULL, NULL, NULL, NULL, 'BNSzv3VL', 'Mandiri', 'Jl. Masjid Lk. V', 'Jati Karya', 'Binjai Utara', 'Binjai', '13712358_1001662456597793_58424149_n.jpg', 0, '2017-12-14 03:09:35', '2017-12-14 03:09:35'),
-(12, 5, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 4, NULL, NULL, NULL, NULL, 'P7YBa7wH', 'BRI', 'Jl. Medan Binjai KM. 19', 'Tunggurono', 'Binjai Timur', 'Binjai', 'basketball-wallpaper-1280x768-1180x768.jpg', 0, '2017-12-14 03:22:11', '2017-12-14 03:22:11');
+INSERT INTO `payments` (`id`, `user_id`, `BN_ID`, `BT_ID`, `BR_ID`, `GD_ID`, `KL_ID`, `KS_ID`, `KR_ID`, `MG_ID`, `OF_ID`, `PL_ID`, `PT_ID`, `SM_ID`, `ST_ID`, `kd_invoice`, `namaBank`, `alamat`, `kelurahan`, `kecamatan`, `kota`, `images`, `status`, `created_at`, `updated_at`) VALUES
+(9, 6, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 5, NULL, NULL, NULL, NULL, 'BNSzv3VL', 'Mandiri', 'Jl. Masjid Lk. V', 'Jati Karya', 'Binjai Utara', 'Binjai', '13712358_1001662456597793_58424149_n.jpg', 1, '2017-12-14 03:09:35', '2017-12-15 07:47:24'),
+(12, 5, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 4, NULL, NULL, NULL, NULL, 'P7YBa7wH', 'BRI', 'Jl. Medan Binjai KM. 19', 'Tunggurono', 'Binjai Timur', 'Binjai', 'basketball-wallpaper-1280x768-1180x768.jpg', 3, '2017-12-14 03:22:11', '2017-12-15 07:29:44'),
+(19, 3, 4, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, NULL, 2, NULL, '44l2NIZ9', 'Mandiri', 'Jln. Medan Binjai KM. 19', 'Tunggurono', 'Binjai Timur', 'Binjai', '13712358_1001662456597793_58424149_n.jpg', 0, '2017-12-14 16:48:50', '2017-12-14 16:48:50');
 
 -- --------------------------------------------------------
 
@@ -491,6 +500,7 @@ CREATE TABLE `polos` (
   `PL_ukuran` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `PL_pemesanan` int(11) NOT NULL,
   `PL_total` int(11) NOT NULL,
+  `PL_status` int(1) NOT NULL DEFAULT '0',
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -499,8 +509,8 @@ CREATE TABLE `polos` (
 -- Dumping data untuk tabel `polos`
 --
 
-INSERT INTO `polos` (`id`, `PL_userid`, `PL_productid`, `PL_description`, `PL_images`, `PL_material`, `PL_metode`, `PL_depan`, `PL_lengan`, `PL_Belakang`, `PL_warna`, `PL_ukuran`, `PL_pemesanan`, `PL_total`, `created_at`, `updated_at`) VALUES
-(1, 3, 17, 'Mantapz', 'math.png', 'GILDAN POLO SHIRT', 'Print', 'RIGHT CHEST', 'NONE', 'BACK 30X10CM', 'Dark Brown', 'XL - Extra Large', 50, 100000, '2017-12-14 00:30:35', '2017-12-14 00:30:35');
+INSERT INTO `polos` (`id`, `PL_userid`, `PL_productid`, `PL_description`, `PL_images`, `PL_material`, `PL_metode`, `PL_depan`, `PL_lengan`, `PL_Belakang`, `PL_warna`, `PL_ukuran`, `PL_pemesanan`, `PL_total`, `PL_status`, `created_at`, `updated_at`) VALUES
+(1, 3, 17, 'Mantapz', 'math.png', 'GILDAN POLO SHIRT', 'Print', 'RIGHT CHEST', 'NONE', 'BACK 30X10CM', 'Dark Brown', 'XL - Extra Large', 50, 100000, 1, '2017-12-14 00:30:35', '2017-12-14 16:48:51');
 
 -- --------------------------------------------------------
 
@@ -518,6 +528,7 @@ CREATE TABLE `posters` (
   `PT_total` int(11) NOT NULL,
   `PT_description` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `PT_images` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `PT_status` int(1) NOT NULL DEFAULT '0',
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -526,8 +537,8 @@ CREATE TABLE `posters` (
 -- Dumping data untuk tabel `posters`
 --
 
-INSERT INTO `posters` (`id`, `PT_userid`, `PT_productid`, `PT_pemesanan`, `PT_ukuran`, `PT_kertas`, `PT_total`, `PT_description`, `PT_images`, `created_at`, `updated_at`) VALUES
-(1, 2, 1, 21312, 'B2 (50 x 70.7 cm)', 'Standart', 1231231, 'sdsdsad', '13712358_1001662456597793_58424149_n.jpg', '2017-12-08 18:38:23', '2017-12-08 18:38:23');
+INSERT INTO `posters` (`id`, `PT_userid`, `PT_productid`, `PT_pemesanan`, `PT_ukuran`, `PT_kertas`, `PT_total`, `PT_description`, `PT_images`, `PT_status`, `created_at`, `updated_at`) VALUES
+(1, 2, 1, 21312, 'B2 (50 x 70.7 cm)', 'Standart', 1231231, 'sdsdsad', '13712358_1001662456597793_58424149_n.jpg', 0, '2017-12-08 18:38:23', '2017-12-08 18:38:23');
 
 -- --------------------------------------------------------
 
@@ -591,6 +602,7 @@ CREATE TABLE `stempels` (
   `SM_total` int(11) NOT NULL,
   `SM_description` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `SM_images` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `SM_status` int(1) NOT NULL DEFAULT '0',
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -599,8 +611,8 @@ CREATE TABLE `stempels` (
 -- Dumping data untuk tabel `stempels`
 --
 
-INSERT INTO `stempels` (`id`, `SM_userid`, `SM_productid`, `SM_perusahaan`, `SM_ukuran`, `SM_pemesanan`, `SM_warna`, `SM_total`, `SM_description`, `SM_images`, `created_at`, `updated_at`) VALUES
-(2, 3, 5, 'Coffe Day', '58 x 22 mm', 3, 'Merah', 30000, 'Jl. medan Binjai hubungi : 081263506016', 'c-8.jpg', '2017-12-11 02:53:37', '2017-12-11 02:53:37');
+INSERT INTO `stempels` (`id`, `SM_userid`, `SM_productid`, `SM_perusahaan`, `SM_ukuran`, `SM_pemesanan`, `SM_warna`, `SM_total`, `SM_description`, `SM_images`, `SM_status`, `created_at`, `updated_at`) VALUES
+(2, 3, 5, 'Coffe Day', '58 x 22 mm', 3, 'Merah', 30000, 'Jl. medan Binjai hubungi : 081263506016', 'c-8.jpg', 1, '2017-12-11 02:53:37', '2017-12-14 16:48:51');
 
 -- --------------------------------------------------------
 
@@ -617,6 +629,7 @@ CREATE TABLE `stikers` (
   `ST_total` int(11) NOT NULL,
   `ST_description` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `ST_images` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `ST_status` int(1) NOT NULL DEFAULT '0',
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -687,9 +700,9 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`id`, `username`, `email`, `password`, `api_token`, `photo`, `address`, `gender`, `phone`, `status`, `role`, `remember_token`, `created_at`, `updated_at`) VALUES
 (1, 'Alvantesha Priliandi', 'admin@admin.com', '$2y$10$P2GfvX9GKM5cetT7VK89IeLxJ31y25tcBQE05Hc7FsO4ly6ZSY.z2', NULL, NULL, NULL, NULL, NULL, NULL, 3, 'Sz1lUr0f3nAljVbA3dAfWxJcYo6N6j1dCd3f8nxVdsDlmGfdZXWX1ukiuRBE', '2017-12-04 03:14:24', '2017-12-04 03:14:24'),
-(2, 'Reza Surya', 'reza@mail.com', '$2y$10$hjWto0qpOAHFyR08Ddnruu4UuZilAxdKV49MabvNn2muBLe48SuMK', 'B0D6iKUa9Gagyek6nmINkMXGH8t7bfHkmN26Lm7Nd8ps25DyXd8wugcNAH9b', NULL, NULL, NULL, NULL, NULL, 2, 'RfNcTTX40P7vQvOiBuulI865QcFfas5tEnnhAWDwDVF2RGs8iTjpG5Q7VPDt', '2017-12-04 16:48:22', '2017-12-04 16:49:28'),
+(2, 'Reza Surya', 'reza@mail.com', '$2y$10$hjWto0qpOAHFyR08Ddnruu4UuZilAxdKV49MabvNn2muBLe48SuMK', 'B0D6iKUa9Gagyek6nmINkMXGH8t7bfHkmN26Lm7Nd8ps25DyXd8wugcNAH9b', NULL, NULL, NULL, NULL, NULL, 2, 'xwfIzMBS005TWxMl3PsjcClUfZv66jVHwxJIOskpA35FvQT0BRtkijsMsfeO', '2017-12-04 16:48:22', '2017-12-04 16:49:28'),
 (3, 'Andi', 'andi@mail.com', '$2y$10$0u.i0C/wcrOl47p91DEYbOfVWODzuPyf6gm1ffwI3ebs8/YwZ1k36', 'NkJeky8avr5OBDKZQTI0WnR58ad581zcRT3azbxEmRDSGIxzgINvtEDpUzOy', NULL, NULL, NULL, NULL, NULL, 1, 'vaWcGvks1UCPYmkjAdDEAeqp0nsw7zT44SNX4Zf5qEYuwixezUFnj3EdhqU6', '2017-12-09 17:43:52', '2017-12-09 17:43:52'),
-(4, 'Agus', 'agus@mail.com', '$2y$10$zqSGNG5vwZikGMU9dub5F.ZdNjrSGGKftOI0i5P0o/wyH6bXGcaeC', '9m6TN9ApCQihcJhGnDDnhoO1LuLtTTuFxy6uUhLgliwnZpjNZpCdKAyxPB6I', NULL, NULL, NULL, NULL, NULL, 2, 'XQgCPGXtKwYt3Hh40c5qsbwY1NZhvkTG8Slw4hNEigp0hEVg5o2CnZByXq5K', '2017-12-13 18:49:40', '2017-12-13 18:50:18'),
+(4, 'Agus', 'agus@mail.com', '$2y$10$zqSGNG5vwZikGMU9dub5F.ZdNjrSGGKftOI0i5P0o/wyH6bXGcaeC', '9m6TN9ApCQihcJhGnDDnhoO1LuLtTTuFxy6uUhLgliwnZpjNZpCdKAyxPB6I', NULL, NULL, NULL, NULL, NULL, 2, 'mTc9Cb4P8Ys6JAahocRN9KBV8VIe6h4Wa1cXIuGZQqkiltTv5ZXdUAmp2woI', '2017-12-13 18:49:40', '2017-12-13 18:50:18'),
 (5, 'Bagus', 'bagus@mail.com', '$2y$10$Ow4gqB4p6o69bZg8Uh4ByO1rZDqmEZKl4E8yARYdVaYsWGE.EmWOW', 'LMxjrWktAXxrzgvWcLYkw32FEbDzAzRKwrT5tDSCT0pRwGrPGoQ6e0XM7vZD', NULL, NULL, NULL, NULL, NULL, 1, 'QdOJlrssuZDTUPuY9RF2oKXkwVrCAkU25QvVJDuXARu0Nlq65EwCymCefvxi', '2017-12-13 20:36:13', '2017-12-13 20:36:13'),
 (6, 'Rani', 'rani@mail.com', '$2y$10$B.XI4nY1l7xg0m6h5miusu5gohyf9Pl42cTPripAD4WEKh43ujp5y', 'cYZw0yB5CFF3ubD4fSmBG6kjzgwpyRkf16CwDwCezvKgeaHNdwQaqevy0qAz', NULL, NULL, NULL, NULL, NULL, 1, 'YyH8enLseclHsxfknn4uRUw4AG97U7rduCPLnPyhXvnWiWyyGjHF0i0DIIaU', '2017-12-14 02:39:26', '2017-12-14 02:39:26');
 
@@ -797,7 +810,7 @@ ALTER TABLE `password_resets`
 -- Indexes for table `payments`
 --
 ALTER TABLE `payments`
-  ADD PRIMARY KEY (`paymentId`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `polos`
@@ -940,7 +953,7 @@ ALTER TABLE `offices`
 -- AUTO_INCREMENT for table `payments`
 --
 ALTER TABLE `payments`
-  MODIFY `paymentId` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `polos`
