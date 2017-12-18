@@ -1,4 +1,4 @@
-@extends('templates.freelancer.layout')
+@extends('templates.user.messages.layout')
 @section('content')
 
   <div class="">
@@ -7,10 +7,6 @@
 
       <div class="col-md-12 col-sm-12 col-xs-12">
         <div class="x_panel">
-          <div class="x_title">
-            <h2>Messages List <a href="{{route('messages.create')}}" class="btn btn-danger btn-xs"> New </a></h2>
-            <div class="clearfix"></div>
-          </div>
           <div class="x_title">
             <table id="datatable-buttons" class="table table-hover table-responsive">
               <thead>
@@ -32,7 +28,7 @@
                   </tr>
               </tfoot>
               <tbody>
-                @foreach($message_out as $m)
+                @foreach($message_in as $m)
                 <tr>
                   <td>{{$m->email}}</td>
                   <td>
@@ -45,7 +41,7 @@
                     10.30 PM
                   </td>
                   <td>
-                    <a href="{{route('messages.show',['id' => 1])}}" class="btn btn-info"><i class="fa fa-eye"></i></a>
+                    <a href="{{route('user-inbox.show',['id' => $m->id])}}" class="btn btn-info"><i class="fa fa-eye"></i></a>
                     <button class="btn btn-danger"><i class="fa fa-trash"></i></button>
                   </td>
                 </tr>

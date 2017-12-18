@@ -139,6 +139,7 @@
                 <li><a href="{{ route('login') }}"><span class="fa fa-lock"></span>&nbsp; Login</a></li>
                 <li><a href="{{ route('register') }}"><span class="fa fa-user-plus"></span>&nbsp; Register</a></li>
             @else
+                <li><a href="{{route('checkout.index')}}"><i class="fa fa-envelope"></i></a></li>
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                         {{ Auth::user()->username }} <span class="caret"></span>

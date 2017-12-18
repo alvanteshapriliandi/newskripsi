@@ -23,7 +23,9 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::group(['prefix' => 'freelance', 'namespace' => 'Freelancer', 'middleware' => 'auth'], function () {
     Route::resource('product', 'ProductsController');
     Route::resource('order-list', 'OrderListController');
-    Route::resource('messages', 'MessagesController');
+    Route::resource('new-messages', 'NewController');
+    Route::resource('inbox', 'MasukController');
+    Route::resource('outbox', 'KeluarController');
     Route::post('product/findSubCategoryname/{id}', 'ProductsController@findSubCategoryname');
 });
 Route::group(['namespace' => 'Freelancer', 'middleware' => 'auth'], function () {
@@ -54,6 +56,9 @@ Route::group(['namespace' => 'User'], function () {
     Route::resource('payment', 'PaymentController');
     Route::resource('payment-upload', 'UploadsController');
     Route::resource('proses', 'ProsesController');
+    Route::resource('user-new-message', 'NewController');
+    Route::resource('user-inbox', 'MasukController');
+    Route::resource('user-outbox', 'KeluarController');
     Route::post('user/findSubCategoryname/{id}', 'MenuController@findSubCategoryname');
 });
 

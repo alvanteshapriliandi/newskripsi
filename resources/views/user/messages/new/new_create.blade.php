@@ -1,4 +1,4 @@
-@extends('templates.freelancer.layout')
+@extends('templates.user.messages.layout')
 @section('content')
 
   <div class="">
@@ -8,11 +8,7 @@
       <div class="col-md-12 col-sm-12 col-xs-12">
         <div class="x_panel">
           <div class="x_title">
-            <h2><a href="{{route('messages.index')}}" class="btn btn-info btn-xs"> Back </a></h2>
-            <div class="clearfix"></div>
-          </div>
-          <div class="x_title">
-            <form class="form-group" method="POST" action="{{route('messages.store')}}" enctype="multipart/form-data">
+            <form class="form-group" method="POST" action="{{route('user-new-message.store')}}" enctype="multipart/form-data">
               {{ csrf_field() }}
               <table class="table">
                 <tr>

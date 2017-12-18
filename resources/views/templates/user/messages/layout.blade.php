@@ -62,24 +62,9 @@
                         <div class="menu_section">
                             <h3>General</h3>
                             <ul class="nav side-menu">
-                                <li><a href="{{url('freelance/product')}}"><i class="fa fa-product-hunt"></i> Product </a></li>
-                                <li><a href="{{url('freelance/order-list')}}"><i class="fa fa-product-hunt"></i> Order List</a></li>
-                                <li>
-                                    <a href="#">
-                                        <i class="fa fa-users"></i> Pesan
-                                        <span class="fa fa-chevron-down"></span>
-                                    </a>
-
-                                    <ul class="nav child_menu">
-                                        <li><a href="{{url('freelance/new-messages/create')}}">Pesan Baru</a></li>
-                                        <li><a href="{{ url('freelance/inbox')}}">Pesan Masuk</a></li>
-                                        <li><a href="{{ url('freelance/outbox')}}">Pesan Keluar</a></li>
-                                    </ul>
-                                </li>
-                                <li><a href="{{ url('freelancer/messages')}}"><i class="fa fa-envelope"></i> Cetak </a></li>
-                                <li><a href="#"><i class="fa fa-credit-card"></i> Pembayaran </a></li>
-                                <li><a href=""><i class="fa fa-cog"></i> Pengaturan </a></li>
-                                <li><a href="{{url('/')}}"><i class="fa fa-paper-plane"></i> Lihat Web </a></li>
+                                <li><a href="{{ url('freelancer/messages')}}"><i class="fa fa-envelope"></i> Pesan Baru </a></li>
+                                <li><a href="#"><i class="fa fa-credit-card"></i> Pesan Masuk </a></li>
+                                <li><a href=""><i class="fa fa-cog"></i> Pesan Keluar </a></li>
                             </ul>
                         </div>
                     </div>
@@ -138,7 +123,7 @@
 
             <!-- page content -->
             <div class="right_col" role="main">
-                @include('templates.freelancer.partials.alerts')
+                @include('templates.user.messages.partials.alerts')
                 @yield('content')
             </div>
             <!-- /page content -->

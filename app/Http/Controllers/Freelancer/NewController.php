@@ -1,15 +1,15 @@
 <?php
 
-namespace App\Http\Controllers\freelancer;
+namespace App\Http\Controllers\Freelancer;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Models\Messages;
-use DB;
-use App\User;
 use Auth;
+use App\User;
+use DB;
+use App\Models\Messages;
 
-class MessagesController extends Controller
+class NewController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -19,11 +19,6 @@ class MessagesController extends Controller
     public function index()
     {
         //
-        $id = Auth::user()->id;
-        $data['message_in'] = db::select('select u.email, m.id,m.subject, m.message from messages m join users u on m.to_user_id = u.id where m.to_user_id = '.$id);
-        $data['message_out'] = db::select('select u.email, m.id,m.subject, m.message from messages m join users u on m.to_user_id = u.id where m.fr_user_id = '.$id);
-        // return $data;
-        return view('freelancer.messages.messages_list',$data);
     }
 
     /**
@@ -34,7 +29,7 @@ class MessagesController extends Controller
     public function create()
     {
         //
-        return view('freelancer.messages.messages_create');
+        return view('freelancer.messages.new.new_create');
     }
 
     /**
@@ -69,13 +64,11 @@ class MessagesController extends Controller
             }
             // return $datas;
             Messages::create($datas);
-            return redirect()->route('messages.index')->with('success', "The Messages <strong>Messages</strong> has successfully been Created.");
+            return redirect()->route('outbox.index')->with('success', "The Messages <strong>Messages</strong> has successfully been Created.");
         }
         else{
             return "user tidak ditemukkan";
         }
-        
-        
     }
 
     /**
@@ -87,7 +80,6 @@ class MessagesController extends Controller
     public function show($id)
     {
         //
-        return view('freelancer.messages.messages_view');
     }
 
     /**
