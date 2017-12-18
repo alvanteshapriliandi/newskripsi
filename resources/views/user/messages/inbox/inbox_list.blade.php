@@ -34,12 +34,8 @@
                   <td>
                     <b>{{$m->subject}}</b> - {{$m->message}}
                   </td>
-                  <td>
-                    Desember, 07 2017
-                  </td>
-                  <td>
-                    10.30 PM
-                  </td>
+                  <td>{{ date('F d, Y', strtotime($m->created_at))}}</td>
+                  <td>{{ date('H:m:s', strtotime($m->updated_at))}}</td>
                   <td>
                     <a href="{{route('user-inbox.show',['id' => $m->id])}}" class="btn btn-info"><i class="fa fa-eye"></i></a>
                     <button class="btn btn-danger"><i class="fa fa-trash"></i></button>

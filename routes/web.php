@@ -64,6 +64,8 @@ Route::group(['namespace' => 'User'], function () {
 
 Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => 'auth'], function () {
     Route::resource('products', 'ProductController');
+    Route::resource('userlist', 'UserListController');
+    Route::resource('freelancelist', 'FreelanceListController');
     Route::get('/', 'AdminController@index');
     Route::get('/login', 'AuthController@login')->name('login_admin');
     // Route::post('/process'.'AuthController@adminLogin')->name('process_login');

@@ -1,15 +1,12 @@
 <?php
 
-namespace App\Http\Controllers\User;
+namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Models\Messages;
-use DB;
 use App\User;
-use Auth;
 
-class NewController extends Controller
+class FreelanceListController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -19,6 +16,8 @@ class NewController extends Controller
     public function index()
     {
         //
+        $data['user'] = User::all();
+        return view('admin.freelancelist.freelance_list',$data);
     }
 
     /**
@@ -29,7 +28,6 @@ class NewController extends Controller
     public function create()
     {
         //
-        return view('user.messages.new.new_create');
     }
 
     /**
@@ -40,35 +38,7 @@ class NewController extends Controller
      */
     public function store(Request $request)
     {
-        //   
-        $data = $request-> all();
-        
-        if ($request->file('images')) {
-            $file=$request->file('images');
-            $filename = $file->getClientOriginalName();
-            $file->move(public_path().'/messages/',$filename);
-            $data['images']= $filename;
-        }
-        $id = Auth::user()->id;
-        $user = db::select('select * from users u where u.email ="'.$request->input('email').'"');
-        if($user){
-            $to_user_id = $user[0]->id;
-            $datas = array(
-              'fr_user_id'     => $id,
-              'to_user_id'     => $to_user_id,
-              'subject'        => $request->input('subject'),
-              'message'        => $request->input('message'),
-            );
-            if ($request->file('images')) {
-                $datas['images'] = $data['images'];
-            }
-            // return $datas;
-            Messages::create($datas);
-            return redirect()->route('user-outbox.index')->with('success', "The Messages <strong>Messages</strong> has successfully been Created.");
-        }
-        else{
-            return "user tidak ditemukkan";
-        }     
+        //
     }
 
     /**
@@ -80,6 +50,8 @@ class NewController extends Controller
     public function show($id)
     {
         //
+        $data['user'] = User::find($id);
+        return view('admin.freelancelist.freelance_delete',$data);
     }
 
     /**
@@ -114,5 +86,17 @@ class NewController extends Controller
     public function destroy($id)
     {
         //
+        try{
+            $product = User::find($id);
+            // return $product;
+            $product->delete();
+
+            return redirect()->route('freelance.index')->with('success', "The product <strong>Product</strong> has successfully been archived.");
+        }
+        catch(ModelNotFoundException $ex){
+            if ($ex instanceof  ModelNotFoundException) {
+                return response()->view('errors.'.'404');
+            }
+        }
     }
 }

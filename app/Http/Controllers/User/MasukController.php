@@ -4,6 +4,10 @@ namespace App\Http\Controllers\User;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\User;
+use Auth;
+use DB;
+use App\Models\Messages;
 
 class MasukController extends Controller
 {
@@ -15,6 +19,10 @@ class MasukController extends Controller
     public function index()
     {
         //
+        $id = Auth::user()->id;
+        $data['message_in'] = db::select('select u.email, m.id, m.fr_user_id, m.subject, m.message, m.created_at, m.updated_at from messages m join users u on m.fr_user_id = u.id where m.to_user_id = '.$id);
+        // return $data;
+        return view('user.messages.inbox.inbox_list',$data);
     }
 
     /**
@@ -36,6 +44,29 @@ class MasukController extends Controller
     public function store(Request $request)
     {
         //
+        $data = $request-> all();
+        
+        if ($request->file('images')) {
+            $file=$request->file('images');
+            $filename = $file->getClientOriginalName();
+            $file->move(public_path().'/messages/',$filename);
+            $data['images']= $filename;
+        }
+        $id = Auth::user()->id;
+        $user = db::select('select * from users u where u.email ="'.$request->input('email').'"');
+        // $to_user_id = $user[0]->id;
+            $datas = array(
+              'fr_user_id'     => $id,
+              'to_user_id'     => $request->input('to_user_id'),
+              'subject'        => $request->input('subject'),
+              'message'        => $request->input('message'),
+            );
+            if ($request->file('images')) {
+                $datas['images'] = $data['images'];
+            }
+            // return $datas;
+            Messages::create($datas);
+            return redirect()->route('user-outbox.index')->with('success', "The Messages <strong>Messages</strong> has successfully been Created.");
     }
 
     /**
@@ -47,6 +78,10 @@ class MasukController extends Controller
     public function show($id)
     {
         //
+        $temp = db::select('select u.email, u.username, m.id, m.fr_user_id, m.subject, m.message, m.images from messages m join users u on m.fr_user_id = u.id where m.id = '.$id);
+        $data['message_in'] = $temp[0];
+        // return $data;
+        return view('user.messages.inbox.inbox_view',$data);
     }
 
     /**

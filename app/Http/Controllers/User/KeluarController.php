@@ -4,6 +4,11 @@ namespace App\Http\Controllers\User;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Auth;
+use App\User;
+use DB;
+use App\Models\Messages;
+
 
 class KeluarController extends Controller
 {
@@ -15,6 +20,9 @@ class KeluarController extends Controller
     public function index()
     {
         //
+        $id = Auth::user()->id;
+        $data['message_out'] = db::select('select u.email, m.id,m.subject, m.message, m.created_at, m.updated_at from messages m join users u on m.to_user_id = u.id where m.fr_user_id = '.$id);
+        return view('user.messages.outbox.outbox_list',$data);
     }
 
     /**
@@ -47,6 +55,10 @@ class KeluarController extends Controller
     public function show($id)
     {
         //
+        $temp = db::select('select u.email, u.username, m.id,m.subject, m.message, m.images from messages m join users u on m.to_user_id = u.id where m.id = '.$id);
+        $data['message_out'] = $temp[0];
+        // return $data;
+        return view('user.messages.outbox.outbox_view',$data);
     }
 
     /**

@@ -70,12 +70,12 @@
                                     </a>
 
                                     <ul class="nav child_menu">
-                                        <li><a href="">User</a></li>
-                                        <li><a href="">Freelance</a></li>
-                                        <li><a href="">Bank</a></li>
+                                        <li><a href="{{url('admin/userlist')}}">User</a></li>
+                                        <li><a href="{{url('admin/freelancelist')}}">Freelance</a></li>
                                     </ul>
                                 </li>
                                 <li><a href=""><i class="fa fa-list-alt"></i> Order </a></li>
+                                <li><a href=""><i class="fa fa-list-alt"></i> Order Detail </a></li>
                                 <li>
                                     <a href="#">
                                         <i class="fa fa-users"></i> Pembayaran
@@ -84,12 +84,22 @@
 
                                     <ul class="nav child_menu">
                                         <li><a href="">Freelance</a></li>
-                                        <li><a href="">Order</a></li>
-                                        <li><a href="">Jasa Kurir</a></li>
                                     </ul>
                                 </li>
                                 <li><a href=""><i class="fa fa-credit-card"></i> Retur </a></li>
-                                <li><a href=""><i class="fa fa-envelope"></i> Pesan </a></li>
+                                <li>
+                                    <a href="#">
+                                        <i class="fa fa-users"></i> Pesan
+                                        <span class="fa fa-chevron-down"></span>
+                                    </a>
+
+                                    <ul class="nav child_menu">
+                                        <li><a href="{{url('freelance/new-messages/create')}}">Pesan Baru</a></li>
+                                        <li><a href="{{ url('freelance/inbox')}}">Pesan Masuk</a></li>
+                                        <li><a href="{{ url('freelance/outbox')}}">Pesan Keluar</a></li>
+                                    </ul>
+                                </li>
+                                <li><a href=""><i class="fa fa-cog"></i> Cetak </a></li>
                                 <li><a href=""><i class="fa fa-cog"></i> Pengaturan </a></li>
                             </ul>
                         </div>

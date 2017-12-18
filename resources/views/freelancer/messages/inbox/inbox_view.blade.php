@@ -13,21 +13,28 @@
           </div>
           <div class="x_title">
             <div class="row">
-              <div class="col-md-12">
-                <p>Agus - agus@mail.com</p>
-                <p>to Bagus</p>
-                <p>
-                  Yth, Bapak Bagus desain anda sudah selasai. Diharapkan untuk dapat memberikan kometarnya di pesan ini.
-                  Terimakasih
-                </p>
-              </div>
+                <div class="col-md-12">
+                  <p>{{$message_in->username}} - {{$message_in->email}}</p>
+                  <p>{{$message_in->subject}}</p>
+                  <p>
+                    {{$message_in->message}}
+                  </p>
+                  @if($message_in->images)
+                  <p>
+                    <img src="{{asset('messages/'.$message_in->images)}}">
+                  </p>
+                  @endif
+                </div>
+                
             </div>
-            <form class="form-group" method="POST" action="{{route('inbox.store')}}">
+            <form class="form-group" method="POST" action="{{route('inbox.store')}}" nctype="multipart/form-data">
               {{ csrf_field() }}
               <table class="table">
                 <tr>
                   <td colspan="2">
-                    <textarea class="form-control" style="height: 150px;"></textarea>
+                    <input type="hidden" name="subject" value="{{$message_in->subject}}">
+                    <input type="hidden" name="to_user_id" value="{{$message_in->fr_user_id}}">
+                    <textarea class="form-control" style="height: 150px;" name="message"></textarea>
                   </td>
                 </tr>
                 <tr>

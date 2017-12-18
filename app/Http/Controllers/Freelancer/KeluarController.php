@@ -54,7 +54,7 @@ class KeluarController extends Controller
     public function show($id)
     {
         //
-        $temp = db::select('select u.email, u.username, m.id,m.subject, m.message, m.images from messages m join users u on m.to_user_id = u.id where m.id = '.$id);
+        $temp = db::select('select u.email, u.username, m.id, m.subject, m.message, m.images from messages m join users u on m.to_user_id = u.id where m.id = '.$id);
         $data['message_out'] = $temp[0];
         // return $data;
         return view('freelancer.messages.outbox.outbox_view',$data);

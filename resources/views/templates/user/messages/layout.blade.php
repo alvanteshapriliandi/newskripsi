@@ -8,7 +8,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>{{$title or "Laravel Freelancer Panel"}}</title>
+    <title>{{$title or "Message Panel"}}</title>
 
     <link rel="shortcut icon" type="image/png" href="{{asset('admin/images/favicon.png')}}"/>
     <!-- Bootstrap -->
@@ -38,7 +38,7 @@
             <div class="col-md-3 left_col">
                 <div class="left_col scroll-view">
                     <div class="navbar nav_title" style="border: 0;">
-                        <a href="{{url('freelance')}}" class="site_title"><i class="fa fa-user"></i> <span>Freelancer Management</span></a>
+                        <a href="{{url('freelance')}}" class="site_title"><i class="fa fa-user"></i> <span>Message Management</span></a>
                     </div>
 
                     <div class="clearfix"></div>
@@ -62,9 +62,10 @@
                         <div class="menu_section">
                             <h3>General</h3>
                             <ul class="nav side-menu">
-                                <li><a href="{{ url('freelancer/messages')}}"><i class="fa fa-envelope"></i> Pesan Baru </a></li>
-                                <li><a href="#"><i class="fa fa-credit-card"></i> Pesan Masuk </a></li>
-                                <li><a href=""><i class="fa fa-cog"></i> Pesan Keluar </a></li>
+                                <li><a href="{{ url('user-new-message/create')}}"><i class="fa fa-envelope"></i> Pesan Baru </a></li>
+                                <li><a href="{{ url('user-inbox')}}"><i class="fa fa-credit-card"></i> Pesan Masuk </a></li>
+                                <li><a href="{{ url('user-outbox')}}"><i class="fa fa-cog"></i> Pesan Keluar </a></li>
+                                <li><a href="{{url('/')}}"><i class="fa fa-paper-plane"></i> Lihat Web </a></li>
                             </ul>
                         </div>
                     </div>
