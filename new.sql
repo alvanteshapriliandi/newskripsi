@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 17 Des 2017 pada 14.51
+-- Generation Time: 18 Des 2017 pada 08.49
 -- Versi Server: 10.1.26-MariaDB
 -- PHP Version: 7.1.9
 
@@ -48,8 +48,6 @@ CREATE TABLE `banners` (
 --
 
 INSERT INTO `banners` (`id`, `BN_userid`, `BN_productid`, `BN_description`, `BN_images`, `BN_ukuran`, `BN_jenis`, `BN_pemesanan`, `BN_total`, `BN_status`, `created_at`, `updated_at`) VALUES
-(2, 2, 1, 'sdsdasd', '13712358_1001662456597793_58424149_n.jpg', '100 X 100 CM', 'FF Korea 440 GR', 1, 12312, 0, '2017-12-08 19:03:31', '2017-12-08 19:03:31'),
-(3, 2, 1, 'sdsadasda', 'appicns_iTunes.png', '60 X 160 CM', 'FF Korea 440 GR', 12, 213, 0, '2017-12-08 20:05:20', '2017-12-08 20:05:20'),
 (4, 3, 13, 'hai', 'appicns_iTunes.png', '100 x 200', 'FF Korea 440 GR', 2, 20000, 1, '2017-12-11 03:44:52', '2017-12-14 07:14:17');
 
 -- --------------------------------------------------------
@@ -100,13 +98,6 @@ CREATE TABLE `brosurs` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
---
--- Dumping data untuk tabel `brosurs`
---
-
-INSERT INTO `brosurs` (`id`, `BR_userid`, `BR_productid`, `BR_perusahaan`, `BR_alamat`, `BR_tlp`, `BR_email`, `BR_pemesanan`, `BR_ukuran`, `BR_kertas`, `BR_total`, `BR_description`, `BR_images`, `BR_status`, `created_at`, `updated_at`) VALUES
-(1, 2, 3, 'asasdasd', 'adsasdas', '1312323343', 'asd@mail.com', 1, 'A3 (29.7 X 42 cm)', 'Standart', 1233434, 'sdasdasda', 'c-4.jpg', 0, '2017-12-08 16:10:38', '2017-12-08 16:10:38');
-
 -- --------------------------------------------------------
 
 --
@@ -145,6 +136,21 @@ INSERT INTO `categories` (`id`, `name`, `created_at`, `updated_at`) VALUES
 (4, 'Promotional Gifts', '2017-12-04 03:14:25', '2017-12-04 03:14:25'),
 (5, 'Banner & Signs', '2017-12-04 03:14:25', '2017-12-04 03:14:25'),
 (6, 'Clothings', '2017-12-04 03:14:25', '2017-12-04 03:14:25');
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `cetaks`
+--
+
+CREATE TABLE `cetaks` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `paymentId` int(10) UNSIGNED NOT NULL,
+  `images` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `statuscetak` int(1) NOT NULL DEFAULT '0',
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -334,6 +340,44 @@ INSERT INTO `kartus` (`id`, `KR_userid`, `KR_productid`, `KR_nama`, `KR_jabatan`
 -- --------------------------------------------------------
 
 --
+-- Struktur dari tabel `messages`
+--
+
+CREATE TABLE `messages` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `fr_user_id` int(10) UNSIGNED NOT NULL,
+  `to_user_id` int(10) UNSIGNED NOT NULL,
+  `subject` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `message` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `images` text COLLATE utf8mb4_unicode_ci,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data untuk tabel `messages`
+--
+
+INSERT INTO `messages` (`id`, `fr_user_id`, `to_user_id`, `subject`, `message`, `images`, `created_at`, `updated_at`) VALUES
+(1, 4, 5, 'konfirmasi desain', 'sdsfdsfds', NULL, '2017-12-17 08:10:27', '2017-12-17 08:10:27'),
+(2, 4, 5, 'coba', 'haii', NULL, '2017-12-17 16:25:21', '2017-12-17 16:25:21'),
+(3, 5, 4, 'coba lagi', 'Hello', NULL, '2017-12-17 18:58:28', '2017-12-17 18:58:28'),
+(4, 4, 5, 'coba lagi', 'hai', NULL, '2017-12-17 19:46:33', '2017-12-17 19:46:33'),
+(5, 4, 5, 'coba lagi', 'ini yang baru loh', NULL, '2017-12-17 19:47:24', '2017-12-17 19:47:24'),
+(6, 5, 4, 'coba lagi', 'udah di terima', NULL, '2017-12-17 19:56:44', '2017-12-17 19:56:44'),
+(7, 4, 5, 'coba lagi', 'ok terimakasih bagus', NULL, '2017-12-17 20:03:43', '2017-12-17 20:03:43'),
+(8, 5, 4, 'coba lagi', 'sama-sama', NULL, '2017-12-17 20:04:09', '2017-12-17 20:04:09'),
+(9, 2, 5, 'Perkenalan', 'Hai', 'c-4.jpg', '2017-12-17 21:30:51', '2017-12-17 21:30:51'),
+(10, 5, 2, 'Perkenalan', 'salam kenal juga', NULL, '2017-12-17 21:32:40', '2017-12-17 21:32:40'),
+(11, 1, 2, 'Selamat Bergabung', 'Yth, Reza Surya\r\nSaya admin E-commerce Techno Graphic mengucapkan selamat bergabung dalam techno graphic sebagai freelance desainer', 'c-7.jpg', '2017-12-18 00:21:52', '2017-12-18 00:21:52'),
+(12, 2, 1, 'Selamat Bergabung', 'Iya sama-sama pak', NULL, '2017-12-18 00:24:20', '2017-12-18 00:24:20'),
+(13, 1, 2, 'Selamat Bergabung', '(^_^).......', NULL, '2017-12-18 00:32:31', '2017-12-18 00:32:31'),
+(14, 1, 5, 'Salam Kenal', 'Selamat Bergabung Bagus', 'c-7.jpg', '2017-12-18 00:35:57', '2017-12-18 00:35:57'),
+(15, 5, 1, 'Salam Kenal', 'salam kenal juga', NULL, '2017-12-18 00:36:46', '2017-12-18 00:36:46');
+
+-- --------------------------------------------------------
+
+--
 -- Struktur dari tabel `migrations`
 --
 
@@ -369,7 +413,9 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (119, '2017_11_30_054430_create_kartus_table', 2),
 (120, '2017_11_30_054509_create_offices_table', 2),
 (121, '2017_11_30_054522_create_banners_table', 2),
-(122, '2017_12_11_235211_create_payments_table', 3);
+(122, '2017_12_11_235211_create_payments_table', 3),
+(123, '2017_12_15_045046_create_cetaks_table', 4),
+(124, '2017_12_15_235102_create_messages_table', 4);
 
 -- --------------------------------------------------------
 
@@ -699,11 +745,11 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `username`, `email`, `password`, `api_token`, `photo`, `address`, `gender`, `phone`, `status`, `role`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'Alvantesha Priliandi', 'admin@admin.com', '$2y$10$P2GfvX9GKM5cetT7VK89IeLxJ31y25tcBQE05Hc7FsO4ly6ZSY.z2', NULL, NULL, NULL, NULL, NULL, NULL, 3, 'Sz1lUr0f3nAljVbA3dAfWxJcYo6N6j1dCd3f8nxVdsDlmGfdZXWX1ukiuRBE', '2017-12-04 03:14:24', '2017-12-04 03:14:24'),
+(1, 'Alvantesha Priliandi', 'admin@admin.com', '$2y$10$P2GfvX9GKM5cetT7VK89IeLxJ31y25tcBQE05Hc7FsO4ly6ZSY.z2', NULL, NULL, NULL, NULL, NULL, NULL, 3, 'cK5wUQga6rfY23cY4hCpb4c5lUwYbjgr27lgWsAlrB4VYRGvXlw53YGTMqfF', '2017-12-04 03:14:24', '2017-12-04 03:14:24'),
 (2, 'Reza Surya', 'reza@mail.com', '$2y$10$hjWto0qpOAHFyR08Ddnruu4UuZilAxdKV49MabvNn2muBLe48SuMK', 'B0D6iKUa9Gagyek6nmINkMXGH8t7bfHkmN26Lm7Nd8ps25DyXd8wugcNAH9b', NULL, NULL, NULL, NULL, NULL, 2, 'xwfIzMBS005TWxMl3PsjcClUfZv66jVHwxJIOskpA35FvQT0BRtkijsMsfeO', '2017-12-04 16:48:22', '2017-12-04 16:49:28'),
 (3, 'Andi', 'andi@mail.com', '$2y$10$0u.i0C/wcrOl47p91DEYbOfVWODzuPyf6gm1ffwI3ebs8/YwZ1k36', 'NkJeky8avr5OBDKZQTI0WnR58ad581zcRT3azbxEmRDSGIxzgINvtEDpUzOy', NULL, NULL, NULL, NULL, NULL, 1, 'vaWcGvks1UCPYmkjAdDEAeqp0nsw7zT44SNX4Zf5qEYuwixezUFnj3EdhqU6', '2017-12-09 17:43:52', '2017-12-09 17:43:52'),
-(4, 'Agus', 'agus@mail.com', '$2y$10$zqSGNG5vwZikGMU9dub5F.ZdNjrSGGKftOI0i5P0o/wyH6bXGcaeC', '9m6TN9ApCQihcJhGnDDnhoO1LuLtTTuFxy6uUhLgliwnZpjNZpCdKAyxPB6I', NULL, NULL, NULL, NULL, NULL, 2, 'mTc9Cb4P8Ys6JAahocRN9KBV8VIe6h4Wa1cXIuGZQqkiltTv5ZXdUAmp2woI', '2017-12-13 18:49:40', '2017-12-13 18:50:18'),
-(5, 'Bagus', 'bagus@mail.com', '$2y$10$Ow4gqB4p6o69bZg8Uh4ByO1rZDqmEZKl4E8yARYdVaYsWGE.EmWOW', 'LMxjrWktAXxrzgvWcLYkw32FEbDzAzRKwrT5tDSCT0pRwGrPGoQ6e0XM7vZD', NULL, NULL, NULL, NULL, NULL, 1, 'QdOJlrssuZDTUPuY9RF2oKXkwVrCAkU25QvVJDuXARu0Nlq65EwCymCefvxi', '2017-12-13 20:36:13', '2017-12-13 20:36:13'),
+(4, 'Agus', 'agus@mail.com', '$2y$10$zqSGNG5vwZikGMU9dub5F.ZdNjrSGGKftOI0i5P0o/wyH6bXGcaeC', '9m6TN9ApCQihcJhGnDDnhoO1LuLtTTuFxy6uUhLgliwnZpjNZpCdKAyxPB6I', NULL, NULL, NULL, NULL, NULL, 2, 'ZQjz1lJKC5KasfabSVUptL0A6fG1IpU8dqlPXE0xbZXscSCv3jFw471h48Xp', '2017-12-13 18:49:40', '2017-12-13 18:50:18'),
+(5, 'Bagus', 'bagus@mail.com', '$2y$10$Ow4gqB4p6o69bZg8Uh4ByO1rZDqmEZKl4E8yARYdVaYsWGE.EmWOW', 'LMxjrWktAXxrzgvWcLYkw32FEbDzAzRKwrT5tDSCT0pRwGrPGoQ6e0XM7vZD', NULL, NULL, NULL, NULL, NULL, 1, '1t1U7HlwlZCt5ju66M97vtCJ5eQUU7BhzDyFHubbYcCCe7YZJMIqC5thqwFy', '2017-12-13 20:36:13', '2017-12-13 20:36:13'),
 (6, 'Rani', 'rani@mail.com', '$2y$10$B.XI4nY1l7xg0m6h5miusu5gohyf9Pl42cTPripAD4WEKh43ujp5y', 'cYZw0yB5CFF3ubD4fSmBG6kjzgwpyRkf16CwDwCezvKgeaHNdwQaqevy0qAz', NULL, NULL, NULL, NULL, NULL, 1, 'YyH8enLseclHsxfknn4uRUw4AG97U7rduCPLnPyhXvnWiWyyGjHF0i0DIIaU', '2017-12-14 02:39:26', '2017-12-14 02:39:26');
 
 --
@@ -738,6 +784,12 @@ ALTER TABLE `cards`
 -- Indexes for table `categories`
 --
 ALTER TABLE `categories`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `cetaks`
+--
+ALTER TABLE `cetaks`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -780,6 +832,12 @@ ALTER TABLE `kaos`
 -- Indexes for table `kartus`
 --
 ALTER TABLE `kartus`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `messages`
+--
+ALTER TABLE `messages`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -890,6 +948,12 @@ ALTER TABLE `categories`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
+-- AUTO_INCREMENT for table `cetaks`
+--
+ALTER TABLE `cetaks`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT for table `freelancers`
 --
 ALTER TABLE `freelancers`
@@ -932,10 +996,16 @@ ALTER TABLE `kartus`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
+-- AUTO_INCREMENT for table `messages`
+--
+ALTER TABLE `messages`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+
+--
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=123;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=125;
 
 --
 -- AUTO_INCREMENT for table `mugs`

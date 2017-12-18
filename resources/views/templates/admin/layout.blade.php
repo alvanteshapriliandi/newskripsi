@@ -74,8 +74,8 @@
                                         <li><a href="{{url('admin/freelancelist')}}">Freelance</a></li>
                                     </ul>
                                 </li>
-                                <li><a href=""><i class="fa fa-list-alt"></i> Order </a></li>
-                                <li><a href=""><i class="fa fa-list-alt"></i> Order Detail </a></li>
+                                <li><a href="{{url('admin/orderlist')}}"><i class="fa fa-list-alt"></i> Order </a></li>
+                                <li><a href="{{url('admin/orderdetail')}}"><i class="fa fa-list-alt"></i> Order Detail </a></li>
                                 <li>
                                     <a href="#">
                                         <i class="fa fa-users"></i> Pembayaran
@@ -94,9 +94,9 @@
                                     </a>
 
                                     <ul class="nav child_menu">
-                                        <li><a href="{{url('freelance/new-messages/create')}}">Pesan Baru</a></li>
-                                        <li><a href="{{ url('freelance/inbox')}}">Pesan Masuk</a></li>
-                                        <li><a href="{{ url('freelance/outbox')}}">Pesan Keluar</a></li>
+                                        <li><a href="{{url('admin/new-message/create')}}">Pesan Baru</a></li>
+                                        <li><a href="{{ url('admin/inbox-message')}}">Pesan Masuk</a></li>
+                                        <li><a href="{{ url('admin/outbox-message')}}">Pesan Keluar</a></li>
                                     </ul>
                                 </li>
                                 <li><a href=""><i class="fa fa-cog"></i> Cetak </a></li>

@@ -4,11 +4,12 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use DB;
 
 class OrderController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * DisSTay a listing ST the resource.
      *
      * @return \Illuminate\Http\Response
      */
@@ -16,71 +17,75 @@ class OrderController extends Controller
     {
         //
         // $id = Auth::user()->id;
-        $data['banner'] = DB::select('select b.*, s.id as subcategory_id, u.username, s.name, p.images from banners b 
-            join products p on b.BN_productid = p.id
-            join subcategories s on p.subcategory_id = s.id
-            join users u on u.id = b.BN_userid
-            left ' );
+        
+        // return $data['banner'];
 
-        $data['bantalfoto'] = DB::select('select ba.*, s.id as subcategory_id, s.name, p.images from bantalfotos ba 
-            join products p on ba.BT_productid = p.id 
-            join subcategories s on p.subcategory_id = s.id
-            join users u on u.id = ba.BT_userid' );
+        $data['banner'] = DB::select('select u.username, bn.BN_status, p.jdl_Pdk, s.name, bn.created_at from banners bn
+            join users u on u.id = bn.BN_userid
+            join products p on p.id = bn.BN_productid
+            join subcategories s on s.id = p.subcategory_id');
 
-        $data['brosur'] = DB::select('select br.*, s.id as subcategory_id, s.name, p.images from brosurs br join products p on br.BR_productid = p.id 
-            join subcategories s on p.subcategory_id = s.id
-            join users u on u.id = br.BR_userid' );
+        $data['bantalfoto'] = DB::select('select u.username, bt.BT_status, p.jdl_Pdk, s.name, bt.created_at from bantalfotos bt
+            join users u on u.id = bt.BT_userid
+            join products p on p.id = bt.BT_productid
+            join subcategories s on s.id = p.subcategory_id');
 
-        $data['goodlebag'] = DB::select('select gd.*, s.id as subcategory_id, s.name, p.images from goodlebags gd 
-            join products p on gd.GD_productid = p.id 
-            join subcategories s on p.subcategory_id = s.id
-            join users u on u.id = gd.GD_userid' );
+        $data['brosur'] = DB::select('select u.username, br.BR_status, p.jdl_Pdk, s.name, br.created_at from brosurs br
+            join users u on u.id = br.BR_userid
+            join products p on p.id = br.BR_productid
+            join subcategories s on s.id = p.subcategory_id');
 
-        $data['kalender'] = DB::select('select kl.*, s.id as subcategory_id, s.name, p.images from kalenders kl join products p on kl.KL_productid = p.id 
-            join subcategories s on p.subcategory_id = s.id
-            join users u on u.id = kl.KL_userid' );
+        $data['goodlebag'] = DB::select('select u.username, GD.GD_status, p.jdl_Pdk, s.name, GD.created_at from goodlebags GD
+            join users u on u.id = GD.GD_userid
+            join products p on p.id = GD.GD_productid
+            join subcategories s on s.id = p.subcategory_id');
 
-        $data['kaos'] = DB::select('select ks.*, s.id as subcategory_id, s.name, p.images from kaos ks 
-            join products p on ks.KS_productid = p.id 
-            join subcategories s on p.subcategory_id = s.id
-            join users u on u.id = ks.KS_userid');
+        $data['kalender'] = DB::select('select u.username, KL.KL_status, p.jdl_Pdk, s.name, KL.created_at from kalenders KL
+            join users u on u.id = KL.KL_userid
+            join products p on p.id = KL.KL_productid
+            join subcategories s on s.id = p.subcategory_id');
 
-        $data['kartu'] = DB::select('select kr.*, s.id as subcategory_id, s.name, p.images from kartus kr 
-            join products p on kr.KR_productid = p.id 
-            join subcategories s on p.subcategory_id = s.id
-            join users u on u.id = kr.KR_userid' );
+        $data['kaos'] = DB::select('select u.username, KS.KS_status, p.jdl_Pdk, s.name, KS.created_at from kaos KS
+            join users u on u.id = KS.KS_userid
+            join products p on p.id = KS.KS_productid
+            join subcategories s on s.id = p.subcategory_id');
 
-        $data['mug'] = DB::select('select m.*, s.id as subcategory_id, s.name, p.images from mugs m 
-            join products p on m.MG_productid = p.id 
-            join subcategories s on p.subcategory_id = s.id
-            join users u on u.id = m.MG_userid' );
+        $data['kartu'] = DB::select('select u.username, KR.KR_status, p.jdl_Pdk, s.name, KR.created_at from kartus KR
+            join users u on u.id = KR.KR_userid
+            join products p on p.id = KR.KR_productid
+            join subcategories s on s.id = p.subcategory_id');
 
-        $data['office'] = DB::select('select o.*, s.id as subcategory_id, s.name, p.images from offices o 
-            join products p on o.OF_productid = p.id 
-            join subcategories s on p.subcategory_id = s.id
-            join users u on u.id = o.OF_userid' );
+        $data['mug'] = DB::select('select u.username, MG.MG_status, p.jdl_Pdk, s.name, MG.created_at from mugs MG
+            join users u on u.id = MG.MG_userid
+            join products p on p.id = MG.MG_productid
+            join subcategories s on s.id = p.subcategory_id');
 
-        $data['polo'] = DB::select('select pl.*, s.id as subcategory_id, s.name, p.images from polos pl 
-            join products p on pl.PL_productid = p.id 
-            join subcategories s on p.subcategory_id = s.id
-            join users u on u.id = pl.PL_userid' );
+        $data['office'] = DB::select('select u.username, OF.OF_status, p.jdl_Pdk, s.name, OF.created_at from offices OF
+            join users u on u.id = OF.OF_userid
+            join products p on p.id = OF.OF_productid
+            join subcategories s on s.id = p.subcategory_id');
 
-        $data['poster'] = DB::select('select pt.*, s.id as subcategory_id, s.name, p.images from posters pt 
-            join products p on pt.PT_productid = p.id 
-            join subcategories s on p.subcategory_id = s.id
-            join users u on u.id = pt.PT_userid' );
+        $data['polo'] = DB::select('select u.username, PL.PL_status, p.jdl_Pdk, s.name, PL.created_at from polos PL
+            join users u on u.id = PL.PL_userid
+            join products p on p.id = PL.PL_productid
+            join subcategories s on s.id = p.subcategory_id');
 
-        $data['stempel'] = DB::select('select sm.*, s.id as subcategory_id, s.name, p.images from stempels sm
-            join products p on sm.SM_productid = p.id 
-            join subcategories s on p.subcategory_id = s.id
-            join users u on u.id = sm.SM_userid' );
+        $data['poster'] = DB::select('select u.username, PT.PT_status, p.jdl_Pdk, s.name, PT.created_at from posters PT
+            join users u on u.id = PT.PT_userid
+            join products p on p.id = PT.PT_productid
+            join subcategories s on s.id = p.subcategory_id');
+        
+        $data['stempel'] = DB::select('select u.username, SM.SM_status, p.jdl_Pdk, s.name, SM.created_at from stempels SM
+            join users u on u.id = SM.SM_userid
+            join products p on p.id = SM.SM_productid
+            join subcategories s on s.id = p.subcategory_id');
 
-        $data['stiker'] = DB::select('select st.*, s.id as subcategory_id, s.name, p.images from stikers st 
-            join products p on st.ST_productid = p.id 
-            join subcategories s on p.subcategory_id = s.id
-            join users u on u.id = st.ST_userid' );
+        $data['stiker'] = DB::select('select u.username, ST.ST_status, p.jdl_Pdk, s.name, ST.created_at from stikers ST
+            join users u on u.id = ST.ST_userid
+            join products p on p.id = ST.ST_productid
+            join subcategories s on s.id = p.subcategory_id');
         // return $data;
-        return view('user.checkout.checkout_list', $data);
+        return view('admin.order.order_list', $data);
     }
 
     /**
@@ -105,7 +110,7 @@ class OrderController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * DisSTay the specified resource.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response

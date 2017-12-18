@@ -38,8 +38,8 @@
 	                                <tr>
 	                                    <td>{{$u->username}}</td>
 	                                    <td>{{$u->email}}</td>
-	                                    <th>{{ date('F d, Y', strtotime($u->created_at))}}</th>
-                                    	<th>{{ date('H:m:s', strtotime($u->created_at))}}</th>
+	                                    <td>{{ date('F d, Y', strtotime($u->created_at))}}</td>
+                                    	<td>{{ date('H:m:s', strtotime($u->created_at))}}</td>
 	                                    <td>
 	                                        <a href="{{ route('userlist.show', ['id' => $u->id]) }}" class="btn btn-danger btn-xs"><i class="fa fa-trash" title="Edit"></i> </a>
 	                                    </td>

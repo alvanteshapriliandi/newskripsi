@@ -1,4 +1,4 @@
-@extends('templates.user.messages.layout')
+@extends('templates.admin.layout')
 @section('content')
 
   <div class="">
@@ -8,25 +8,26 @@
       <div class="col-md-12 col-sm-12 col-xs-12">
         <div class="x_panel">
           <div class="x_title">
-            <h2><a href="{{route('user-inbox.index')}}" class="btn btn-info btn-xs"> Back </a></h2>
+            <h2><a href="{{route('inbox-message.index')}}" class="btn btn-info btn-xs"> Back </a></h2>
             <div class="clearfix"></div>
           </div>
           <div class="x_title">
             <div class="row">
-              <div class="col-md-12">
-                <p>{{$message_in->username}} - {{$message_in->email}}</p>
-                <p>{{$message_in->subject}}</p>
-                <p>
-                  {{$message_in->message}}
-                </p>
-                @if($message_in->images)
-                <p>
-                  <img src="{{asset('messages/'.$message_in->images)}}">
-                </p>
-                @endif
-              </div>
+                <div class="col-md-12">
+                  <p>{{$message_in->username}} - {{$message_in->email}}</p>
+                  <p>{{$message_in->subject}}</p>
+                  <p>
+                    {{$message_in->message}}
+                  </p>
+                  @if($message_in->images)
+                  <p>
+                    <img src="{{asset('messages/'.$message_in->images)}}">
+                  </p>
+                  @endif
+                </div>
+                
             </div>
-            <form class="form-group" method="POST" action="{{route('user-inbox.store')}}">
+            <form class="form-group" method="POST" action="{{route('inbox-message.store')}}" nctype="multipart/form-data">
               {{ csrf_field() }}
               <table class="table">
                 <tr>

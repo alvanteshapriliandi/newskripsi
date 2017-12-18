@@ -66,6 +66,11 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => 'auth
     Route::resource('products', 'ProductController');
     Route::resource('userlist', 'UserListController');
     Route::resource('freelancelist', 'FreelanceListController');
+    Route::resource('orderlist', 'OrderController');
+    Route::resource('orderdetail', 'OrderDetailController');
+    Route::resource('new-message', 'NewController');
+    Route::resource('inbox-message', 'MasukController');
+    Route::resource('outbox-message', 'KeluarController');
     Route::get('/', 'AdminController@index');
     Route::get('/login', 'AuthController@login')->name('login_admin');
     // Route::post('/process'.'AuthController@adminLogin')->name('process_login');
