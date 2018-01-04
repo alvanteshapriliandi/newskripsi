@@ -42,40 +42,24 @@
                             <div class="col col-md-12">
                                 <table id="datatable-buttons" class="table table-striped table-bordered">
                                     <tbody>
-                                        <tr>
-                                            <th colspan="2" style="text-align: center;color: orange;">Order List</th>
-                                        </tr>
-                                        @foreach($banner as $ban)
-                                        <tr>
-                                            <th>Product Name</th>
-                                            <td>{{$ban->jdl_Pdk}}</td>
-                                        </tr>
-                                        <tr>
-                                            <th>Sub-category Name</th>
-                                            <td>{{$ban->name}}</td>
-                                        </tr>
-                                        <tr>
-                                            <th>Images Product</th>
-                                            <td><img src="{{asset('uploads/'.$ban->images)}}"></td>
-                                        </tr>
-                                        <tr>
-                                            <th>Description Product Order</th>
-                                            <td>{{$ban->BN_description}}</td>
-                                        </tr>
-                                        <tr>
-                                            <th>Images Order</th>
-                                            <td><img src="{{asset('orders/'.$ban->BN_images)}}"></td>
-                                        </tr>
-                                        <tr>
-                                            <th>Ukuran Product Order</th>
-                                            <td>{{$ban->BN_ukuran}}</td>
-                                        </tr>
-                                        <tr>
-                                            <th>Jenis Product Order</th>
-                                            <td>{{$ban->BN_jenis}}</td>
-                                        </tr>
-                                        <tr></tr>
-                                        @endforeach
+                                        <!-- start include -->
+
+                                        @include('freelancer.orderlist.include_order.banner')
+                                        @include('freelancer.orderlist.include_order.bantal')
+                                        @include('freelancer.orderlist.include_order.brosur')
+                                        @include('freelancer.orderlist.include_order.goodlebag')
+                                        @include('freelancer.orderlist.include_order.kalender')
+                                        @include('freelancer.orderlist.include_order.kaos')
+                                        @include('freelancer.orderlist.include_order.kartu')
+                                        @include('freelancer.orderlist.include_order.mug')
+                                        @include('freelancer.orderlist.include_order.office')
+                                        @include('freelancer.orderlist.include_order.polo')
+                                        @include('freelancer.orderlist.include_order.poster')
+                                        @include('freelancer.orderlist.include_order.stempel')
+                                        @include('freelancer.orderlist.include_order.stiker')
+
+                                        <!-- end include -->
+                                        
                                     </tbody>
                                 </table>
                             </div>
