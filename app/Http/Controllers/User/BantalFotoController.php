@@ -60,6 +60,7 @@ class bantalfotoController extends Controller
             'BT_kain'           => $request->input('BT_kain'),
             'BT_ukuran'         => $request->input('BT_ukuran'),
             'BT_warna'          => $request->input('BT_warna'),
+            'BT_cetak'          => $request->input('BT_cetak'),
             'BT_pemesanan'      => $request->input('BT_pemesanan'),
             'BT_total'          => $request->input('BT_total'), 
         );

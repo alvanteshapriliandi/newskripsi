@@ -116,6 +116,14 @@
                   </select>
                 </td>
               </tr>
+              
+              <tr>
+                <th>Jenis Cetak</th>
+                <td>
+                  <input type="text" readonly="true" value="Digital Printing dan Offset" name="BT_cetak" class="form-control">
+                </td>
+              </tr>
+              
 
               <tr>
                 <th>Pemsanan Untuk</th>
@@ -127,7 +135,7 @@
                   <input type="text" name="BT_total" class="form-control">
                 </td>
               </tr>
-              
+
               <tr>
                 <th colspan="4">
                   <input type="hidden" name="productid" value="{{$bantalfoto->id}}">

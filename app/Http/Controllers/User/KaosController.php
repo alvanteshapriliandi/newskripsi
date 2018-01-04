@@ -62,6 +62,7 @@ class kaosController extends Controller
             'KS_ukuran'      => $request->input('KS_ukuran'),
             'KS_depan'       => $request->input('KS_depan'),
             'KS_belakang'    => $request->input('KS_belakang'),
+            'KS_cetak'       => $request->input('KS_cetak'),
             'KS_pemesanan'   => $request->input('KS_pemesanan'),
             'KS_total'       => $request->input('KS_total'),
         );

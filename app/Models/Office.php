@@ -19,7 +19,8 @@ class Office extends Model
         'OF_total',	
         'OF_description',	
         'OF_images',
-        'status'
+        'status',
+        'OF_cetak'
     ];
     public $table = "offices";
 }

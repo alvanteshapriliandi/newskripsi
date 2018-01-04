@@ -1,13 +1,14 @@
 <?php
 
-namespace App\Http\Controllers\User;
+namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Models\Pengiriman;
+use App\User;
 use App\Models\Payment;
+use DB;
 
-class StatusController extends Controller
+class CekPembayaranController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,6 +18,8 @@ class StatusController extends Controller
     public function index()
     {
         //
+        $data['pay'] = db::select('select p.id, u.id, u.username, p.status, p.updated_at from payments p join users u on p.user_id = u.id');
+        return view('admin.cekpembayaran.cekpembayaran_list',$data);
     }
 
     /**
@@ -60,9 +63,9 @@ class StatusController extends Controller
     public function edit($id)
     {
         //
-        $data['pay'] = Payment::find($id);
+        $data['pay'] = db::select('select p.*, u.id, u.username from payments p join users u on p.user_id = u.id where p.id ='.$id);
         // return $data;
-        return view('user.statuskirim',$data);
+        return view('admin.cekpembayaran.cekpembayaran_edit',$data);
     }
 
     /**
@@ -75,14 +78,13 @@ class StatusController extends Controller
     public function update(Request $request, $id)
     {
         //
-        
         $data = $request->all();
-        $payment = Payment::find($id);
-        $payment->status=$request->status;
-        $payment->save();
-        return [$data, $payment];
-        $payment -> update($data);
-        return redirect('/');
+        $pay = Payment::find($id);
+        $pay->status=$request->status;
+        $pay->save();
+        // return [$data, $pay];
+        $pay -> update($data);
+        return redirect()->route('cekpembayaran.index')->with('success', "The payment <strong>Status Payment</strong> has successfully been updated.");
     }
 
     /**

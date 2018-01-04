@@ -94,6 +94,9 @@ class ProsesController extends Controller
     public function edit($id)
     {
         //
+        $data['pay'] = Payment::find($id);
+        // return $data;
+        return view('user.statuskirim',$data);
     }
 
     /**
@@ -106,6 +109,14 @@ class ProsesController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $data = $request->all();
+        $payment = Payment::find($id);
+        $payment->status=$request->status;
+        $payment->save();
+        
+        $payment -> update($data);
+        // return [$data, $payment];
+        return redirect('/');
     }
 
     /**

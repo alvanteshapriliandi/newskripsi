@@ -90,12 +90,28 @@
                     </select>
                 </td>
                 </tr>
+                <tr>
                   <th>Jenis Kertas</th>
                   <td>
                      <select class="form-control" name="KR_kertas">
                       <option value="0" disabled="true" selected="true">-Pilih Kertas-</option>
                       <option value="Standart">Standart</option>
                       <option value="Extra Fancy">Extra Fancy</option>
+                    </select>
+                  </td>
+                  <th>Jenis Cetak</th>
+                  <td>
+                     <select class="form-control" name="KR_cetak">
+                      <option value="0" disabled="true" selected="true">-Pilih Cetak-</option>
+                      <option value="Laminating Doff">Laminating Doff</option>
+                      <option value="Glossy">Glossy</option>
+                      <option value="Hot Print">Hot Print</option>
+                      <option value="Emboss">Emboss</option>
+                      <option value="Deboss">Deboss</option>
+                      <option value="UV Spot">UV Spot</option>
+                      <option value="Varnish">Varnish</option>
+                      <option value="Die Cut">Die Cut</option>
+                      <option value="Pond">Pond</option>
                     </select>
                   </td>
                 </tr>

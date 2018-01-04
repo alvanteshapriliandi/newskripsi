@@ -21,7 +21,9 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 
 Route::group(['prefix' => 'freelance', 'namespace' => 'Freelancer', 'middleware' => 'auth'], function () {
+    Route::resource('upload-desain', 'CetakController');
     Route::resource('product', 'ProductsController');
+    Route::resource('pembayaran', 'PembayaranController');
     Route::resource('order-list', 'OrderListController');
     Route::resource('new-messages', 'NewController');
     Route::resource('inbox', 'MasukController');
@@ -59,6 +61,7 @@ Route::group(['namespace' => 'User'], function () {
     Route::resource('user-new-message', 'NewController');
     Route::resource('user-inbox', 'MasukController');
     Route::resource('user-outbox', 'KeluarController');
+    Route::resource('status_kirim', 'StatusController');
     Route::post('user/findSubCategoryname/{id}', 'MenuController@findSubCategoryname');
 });
 
@@ -67,7 +70,7 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => 'auth
     Route::resource('userlist', 'UserListController');
     Route::resource('freelancelist', 'FreelanceListController');
     Route::resource('orderlist', 'OrderController');
-    Route::resource('orderdetail', 'OrderDetailController');
+    Route::resource('cekpembayaran', 'CekPembayaranController');
     Route::resource('new-message', 'NewController');
     Route::resource('inbox-message', 'MasukController');
     Route::resource('outbox-message', 'KeluarController');

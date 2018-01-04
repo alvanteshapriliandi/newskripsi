@@ -23,17 +23,19 @@
                                         <tr>
                                             <th>Data User</th>
                                         </tr>
+                                        @foreach($payment as $pay)
                                         <tr>
                                             <th>Name User</th>
-                                            <td>Alvan</td>
+                                            <td>{{$pay->username}}</td>
                                             <td rowspan="3">
                                                 <img src="{{asset('images/flat-faces-icons-circle-3.png')}}" width="100">
                                             </td>
                                         </tr>
                                         <tr>
                                             <th>Email</th>
-                                            <td>alvan@mail.com</td>
+                                            <td>{{$pay->email}}</td>
                                         </tr>
+                                        @endforeach
                                     </tbody>
                                 </table>
                             </div>
@@ -41,17 +43,39 @@
                                 <table id="datatable-buttons" class="table table-striped table-bordered">
                                     <tbody>
                                         <tr>
-                                            <th>Order List</th>
+                                            <th colspan="2" style="text-align: center;color: orange;">Order List</th>
                                         </tr>
+                                        @foreach($banner as $ban)
                                         <tr>
                                             <th>Product Name</th>
-                                            <td></td>
+                                            <td>{{$ban->jdl_Pdk}}</td>
                                         </tr>
                                         <tr>
                                             <th>Sub-category Name</th>
-                                            <td></td>
+                                            <td>{{$ban->name}}</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Images Product</th>
+                                            <td><img src="{{asset('uploads/'.$ban->images)}}"></td>
+                                        </tr>
+                                        <tr>
+                                            <th>Description Product Order</th>
+                                            <td>{{$ban->BN_description}}</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Images Order</th>
+                                            <td><img src="{{asset('orders/'.$ban->BN_images)}}"></td>
+                                        </tr>
+                                        <tr>
+                                            <th>Ukuran Product Order</th>
+                                            <td>{{$ban->BN_ukuran}}</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Jenis Product Order</th>
+                                            <td>{{$ban->BN_jenis}}</td>
                                         </tr>
                                         <tr></tr>
+                                        @endforeach
                                     </tbody>
                                 </table>
                             </div>

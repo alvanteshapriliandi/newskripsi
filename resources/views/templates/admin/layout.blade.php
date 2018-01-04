@@ -75,7 +75,6 @@
                                     </ul>
                                 </li>
                                 <li><a href="{{url('admin/orderlist')}}"><i class="fa fa-list-alt"></i> Order </a></li>
-                                <li><a href="{{url('admin/orderdetail')}}"><i class="fa fa-list-alt"></i> Order Detail </a></li>
                                 <li>
                                     <a href="#">
                                         <i class="fa fa-users"></i> Pembayaran
@@ -83,6 +82,7 @@
                                     </a>
 
                                     <ul class="nav child_menu">
+                                        <li><a href="{{url('admin/cekpembayaran')}}">Cek Pembayaran</a></li>
                                         <li><a href="">Freelance</a></li>
                                     </ul>
                                 </li>

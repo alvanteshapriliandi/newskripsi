@@ -14,7 +14,8 @@ class Mug extends Model
         'MG_images',
         'MG_jenis_mug',	
         'MG_jumlah_mug',	
-        'MG_total'
+        'MG_total',
+        'MG_cetak'
     ];
     public $table = "mugs";
 }

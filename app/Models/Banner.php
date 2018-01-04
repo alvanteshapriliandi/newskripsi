@@ -16,6 +16,7 @@ class Banner extends Model
         'BN_jenis', 
         'BN_pemesanan', 
         'BN_total',
+        'BN_cetak'
     ];
     public $table = "banners";
 }

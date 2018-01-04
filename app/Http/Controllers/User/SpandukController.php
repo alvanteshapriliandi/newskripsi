@@ -59,6 +59,7 @@ class spandukController extends Controller
             'BN_ukuran'         => $request->input('BN_ukuran'),
             'BN_jenis'          => $request->input('BN_jenis'),
             'BN_pemesanan'      => $request->input('BN_pemesanan'),
+            'BN_cetak'          => $request->input('BN_cetak'),
             'BN_total'          => $request->input('BN_total'),
         );
         // return $datas;

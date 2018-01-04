@@ -57,6 +57,7 @@ class posterController extends Controller
             'PT_pemesanan'      => $request->input('PT_pemesanan'),
             'PT_ukuran'         => $request->input('PT_ukuran'),
             'PT_kertas'         => $request->input('PT_kertas'), 
+            'PT_cetak'         => $request->input('PT_cetak'), 
             'PT_total'          => $request->input('PT_total'),
             'PT_description'    => $request->input('PT_description'),  
             'PT_images'         => $data['PT_images']

@@ -76,8 +76,9 @@
                                         <li><a href="{{ url('freelance/outbox')}}">Pesan Keluar</a></li>
                                     </ul>
                                 </li>
-                                <li><a href="{{ url('freelancer/messages')}}"><i class="fa fa-envelope"></i> Cetak </a></li>
-                                <li><a href="#"><i class="fa fa-credit-card"></i> Pembayaran </a></li>
+                                <li><a href="{{ url('freelance/upload-desain')}}"><i class="fa fa-envelope"></i> Cetak </a></li>
+                                <li><a href="{{ url('freelance/pembayaran')}}"><i class="fa fa-credit-card"></i> Pembayaran </a></li>
+                                <li><a href="{{ url('freelance/pembayaran')}}"><i class="fa fa-credit-card"></i> Ulasan </a></li>
                                 <li><a href=""><i class="fa fa-cog"></i> Pengaturan </a></li>
                                 <li><a href="{{url('/')}}"><i class="fa fa-paper-plane"></i> Lihat Web </a></li>
                             </ul>

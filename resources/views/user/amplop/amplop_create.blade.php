@@ -86,6 +86,17 @@
                     </select>
                   </td>
                 </tr>
+                <tr>
+                  <th>Jenis Cetak</th>
+                  <td>
+                    <select class="form-control" name="OF_cetak">
+                      <option value="0" disabled="true" selected="true">-Pilih Kertas-</option>
+                      <option value="Pond">Pond</option>
+                      <option value="Lem">Lem</option>
+                      <option value="Double Tape Lidah Penutup">Double Tape Lidah Penutup</option>
+                    </select>
+                  </td>
+                </tr>
                 <th>Total (Rp) : </th>
                   <td>
                     <input type="text"  name="OF_total"  class="form-control">

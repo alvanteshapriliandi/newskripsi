@@ -66,7 +66,8 @@ class KartuNamaController extends Controller
             'KR_tlp'         => $request->input('KR_tlp'),  
             'KR_email'       => $request->input('KR_email'), 
             'KR_pemesanan'   => $request->input('KR_pemesanan'), 
-            'KR_kertas'      => $request->input('KR_kertas'),    
+            'KR_kertas'      => $request->input('KR_kertas'), 
+            'KR_cetak'       => $request->input('KR_cetak'),    
             'KR_total'       => $request->input('KR_total'), 
             'KR_description' => $request->input('KR_description'),
             'KR_images'      => $data['KR_images']

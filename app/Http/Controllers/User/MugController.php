@@ -57,7 +57,8 @@ class mugController extends Controller
             'MG_description' => $request->input('MG_description'), 
             'MG_images'      => $data['MG_images'],
             'MG_jenis_mug'   => $request->input('MG_jenis_mug'),
-            'MG_jumlah_mug'  => $request->input('MG_jumlah_mug'),    
+            'MG_jumlah_mug'  => $request->input('MG_jumlah_mug'),  
+            'MG_cetak'       => $request->input('MG_cetak'),
             'MG_total'       => $request->input('MG_total'),
         );
         // return $datas;

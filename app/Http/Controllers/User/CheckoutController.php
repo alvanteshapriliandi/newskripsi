@@ -44,65 +44,65 @@ class CheckoutController extends Controller
         $data['banner'] = DB::select('select b.*, s.id as subcategory_id, s.name, p.images from banners b 
             join products p on b.BN_productid = p.id 
             join subcategories s on p.subcategory_id = s.id 
-            where BN_userid ='.$id);
+            where BN_userid ='.$id.' and b.BN_status = 0');
 
         $data['bantalfoto'] = DB::select('select ba.*, s.id as subcategory_id, s.name, p.images from bantalfotos ba 
             join products p on ba.BT_productid = p.id 
             join subcategories s on p.subcategory_id = s.id 
-            where BT_userid ='.$id);
+            where BT_userid ='.$id.' and ba.BT_status = 0');
 
         $data['brosur'] = DB::select('select br.*, s.id as subcategory_id, s.name, p.images from brosurs br join products p on br.BR_productid = p.id 
             join subcategories s on p.subcategory_id = s.id 
-            where BR_userid ='.$id);
+            where BR_userid ='.$id.' and br.BR_status = 0');
 
         $data['goodlebag'] = DB::select('select gd.*, s.id as subcategory_id, s.name, p.images from goodlebags gd 
             join products p on gd.GD_productid = p.id 
             join subcategories s on p.subcategory_id = s.id 
-            where GD_userid ='.$id);
+            where GD_userid ='.$id.' and gd.GD_status = 0');
 
         $data['kalender'] = DB::select('select kl.*, s.id as subcategory_id, s.name, p.images from kalenders kl join products p on kl.KL_productid = p.id 
             join subcategories s on p.subcategory_id = s.id 
-            where KL_userid ='.$id);
+            where KL_userid ='.$id.' and kl.KL_status = 0');
 
         $data['kaos'] = DB::select('select ks.*, s.id as subcategory_id, s.name, p.images from kaos ks 
             join products p on ks.KS_productid = p.id 
             join subcategories s on p.subcategory_id = s.id 
-            where KS_userid ='.$id);
+            where KS_userid ='.$id.' and ks.KS_status = 0');
 
         $data['kartu'] = DB::select('select kr.*, s.id as subcategory_id, s.name, p.images from kartus kr 
             join products p on kr.KR_productid = p.id 
             join subcategories s on p.subcategory_id = s.id 
-            where KR_userid ='.$id);
+            where KR_userid ='.$id.' and kr.KR_status = 0');
 
         $data['mug'] = DB::select('select m.*, s.id as subcategory_id, s.name, p.images from mugs m 
             join products p on m.MG_productid = p.id 
             join subcategories s on p.subcategory_id = s.id 
-            where MG_userid ='.$id);
+            where MG_userid ='.$id.' and m.MG_status = 0');
 
         $data['office'] = DB::select('select o.*, s.id as subcategory_id, s.name, p.images from offices o 
             join products p on o.OF_productid = p.id 
             join subcategories s on p.subcategory_id = s.id 
-            where OF_userid ='.$id);
+            where OF_userid ='.$id.' and o.OF_status = 0');
 
         $data['polo'] = DB::select('select pl.*, s.id as subcategory_id, s.name, p.images from polos pl 
             join products p on pl.PL_productid = p.id 
             join subcategories s on p.subcategory_id = s.id 
-            where PL_userid ='.$id);
+            where PL_userid ='.$id.' and pl.PL_status = 0');
 
         $data['poster'] = DB::select('select pt.*, s.id as subcategory_id, s.name, p.images from posters pt 
             join products p on pt.PT_productid = p.id 
             join subcategories s on p.subcategory_id = s.id 
-            where PT_userid ='.$id);
+            where PT_userid ='.$id.' and pt.PT_status = 0');
 
         $data['stempel'] = DB::select('select sm.*, s.id as subcategory_id, s.name, p.images from stempels sm
             join products p on sm.SM_productid = p.id 
             join subcategories s on p.subcategory_id = s.id 
-            where SM_userid ='.$id);
+            where SM_userid ='.$id.' and sm.SM_status = 0');
 
         $data['stiker'] = DB::select('select st.*, s.id as subcategory_id, s.name, p.images from stikers st 
             join products p on st.ST_productid = p.id 
             join subcategories s on p.subcategory_id = s.id 
-            where ST_userid ='.$id);
+            where ST_userid ='.$id.' and st.ST_status = 0');
         // return $data;
         return view('user.checkout.checkout_list', $data);
     }

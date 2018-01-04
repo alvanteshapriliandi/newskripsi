@@ -148,7 +148,7 @@ class UploadsController extends Controller
             'kelurahan'  => $request->input('kelurahan'), 
             'kecamatan'  => $request->input('kecamatan'),
             'kota'       => $request->input('kota'),
-            'images'     => $data['images']
+            'images'     => $data['images'],
         );
         // return $datas;
         Payment::create($datas);

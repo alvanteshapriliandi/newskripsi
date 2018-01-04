@@ -16,7 +16,8 @@ class Stempel extends Model
         'SM_warna',	
         'SM_total',	
         'SM_description',	
-        'SM_images'
+        'SM_images',
+        'SM_cetak'
     ];
     public $table = "stempels";
 }
