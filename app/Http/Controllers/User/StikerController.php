@@ -55,7 +55,8 @@ class stikerController extends Controller
             'ST_userid'         => $id, 
             'ST_productid'      => $request->input('productid'),
             'ST_ukuran'         => $request->input('ST_ukuran'),   
-            'ST_material'       => $request->input('ST_material'),
+            'ST_material'       => $request->input('ST_material'), 
+            'ST_cetak'          => $request->input('ST_cetak'),
             'ST_total'          => $request->input('ST_total'),
             'ST_description'    => $request->input('ST_description'),   
             'ST_images'         => $data['ST_images']

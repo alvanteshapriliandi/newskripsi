@@ -38,7 +38,7 @@ Route::group(['namespace' => 'Freelancer', 'middleware' => 'auth'], function () 
 });
 
 Route::group(['namespace' => 'User'], function () {
-  Route::resource('user', 'MenuController');
+  // Route::resource('user', 'MenuController');
   Route::resource('amplop', 'AmplopController');
   Route::resource('bantalfoto', 'BantalFotoController');
   Route::resource('brosur', 'BrosurController');
@@ -67,6 +67,7 @@ Route::group(['namespace' => 'User'], function () {
 });
 
 Route::get('productlist', 'Api\User\ProductController@index');
+Route::get('productlist/{id}', 'Api\User\ProductController@show');
 
 Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => 'auth'], function () {
   Route::resource('products', 'ProductController');

@@ -62,6 +62,7 @@ class brosurController extends Controller
             'BR_pemesanan'      => $request->input('BR_pemesanan'),
             'BR_ukuran'         => $request->input('BR_ukuran'),
             'BR_kertas'         => $request->input('BR_kertas'),
+            'BR_cetak'          => $request->input('BR_cetak'),
             'BR_total'          => $request->input('BR_total'),
             'BR_description'    => $request->input('BR_description'),
             'BR_images'         => $data['BR_images']

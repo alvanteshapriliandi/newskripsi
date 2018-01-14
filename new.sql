@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 18 Des 2017 pada 08.49
+-- Generation Time: 24 Des 2017 pada 12.55
 -- Versi Server: 10.1.26-MariaDB
 -- PHP Version: 7.1.9
 
@@ -36,19 +36,13 @@ CREATE TABLE `banners` (
   `BN_images` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `BN_ukuran` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `BN_jenis` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `BN_cetak` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `BN_pemesanan` int(11) NOT NULL,
   `BN_total` int(11) NOT NULL,
   `BN_status` int(1) NOT NULL DEFAULT '0',
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data untuk tabel `banners`
---
-
-INSERT INTO `banners` (`id`, `BN_userid`, `BN_productid`, `BN_description`, `BN_images`, `BN_ukuran`, `BN_jenis`, `BN_pemesanan`, `BN_total`, `BN_status`, `created_at`, `updated_at`) VALUES
-(4, 3, 13, 'hai', 'appicns_iTunes.png', '100 x 200', 'FF Korea 440 GR', 2, 20000, 1, '2017-12-11 03:44:52', '2017-12-14 07:14:17');
 
 -- --------------------------------------------------------
 
@@ -66,6 +60,7 @@ CREATE TABLE `bantalfotos` (
   `BT_kain` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `BT_ukuran` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `BT_warna` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `BT_cetak` varchar(25) COLLATE utf8mb4_unicode_ci NOT NULL,
   `BT_pemesanan` int(11) NOT NULL,
   `BT_total` int(11) NOT NULL,
   `BT_status` int(1) NOT NULL DEFAULT '0',
@@ -90,6 +85,7 @@ CREATE TABLE `brosurs` (
   `BR_pemesanan` int(11) NOT NULL,
   `BR_ukuran` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `BR_kertas` varchar(15) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `BR_cetak` varchar(25) COLLATE utf8mb4_unicode_ci NOT NULL,
   `BR_total` int(11) NOT NULL,
   `BR_description` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `BR_images` text COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -147,6 +143,7 @@ CREATE TABLE `cetaks` (
   `id` int(10) UNSIGNED NOT NULL,
   `paymentId` int(10) UNSIGNED NOT NULL,
   `images` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `deskripsi_cetak` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `statuscetak` int(1) NOT NULL DEFAULT '0',
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
@@ -231,6 +228,7 @@ CREATE TABLE `goodlebags` (
   `GD_sisi` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `GD_jumlah` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `GD_warna` varchar(10) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `GD_cetak` varchar(25) COLLATE utf8mb4_unicode_ci NOT NULL,
   `GD_total` int(11) NOT NULL,
   `GD_deskripsi` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `GD_images` text COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -271,6 +269,7 @@ CREATE TABLE `kalenders` (
   `KL_jilid` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `KL_kertas` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `KL_lembar` varchar(30) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `KL_cetak` varchar(25) COLLATE utf8mb4_unicode_ci NOT NULL,
   `KL_total` int(11) NOT NULL,
   `KL_description` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `KL_images` text COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -296,6 +295,7 @@ CREATE TABLE `kaos` (
   `KS_ukuran` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `KS_depan` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `KS_belakang` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `KS_cetak` varchar(25) COLLATE utf8mb4_unicode_ci NOT NULL,
   `KS_pemesanan` int(11) NOT NULL,
   `KS_total` int(11) NOT NULL,
   `KS_status` int(1) NOT NULL DEFAULT '0',
@@ -321,6 +321,7 @@ CREATE TABLE `kartus` (
   `KR_email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `KR_pemesanan` int(11) NOT NULL,
   `KR_kertas` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `KR_cetak` varchar(25) COLLATE utf8mb4_unicode_ci NOT NULL,
   `KR_total` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `KR_description` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `KR_images` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -328,14 +329,6 @@ CREATE TABLE `kartus` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data untuk tabel `kartus`
---
-
-INSERT INTO `kartus` (`id`, `KR_userid`, `KR_productid`, `KR_nama`, `KR_jabatan`, `KR_perusahaan`, `KR_alamat`, `KR_tlp`, `KR_email`, `KR_pemesanan`, `KR_kertas`, `KR_total`, `KR_description`, `KR_images`, `KR_status`, `created_at`, `updated_at`) VALUES
-(1, 2, 1, 'asdasa', 'asdasdas', 'sdasdas', 'asdadsasd', '123123', 'as@mail.com', 50, 'Standart', '12312', 'qweqwe', 'download (1).png', 0, '2017-12-08 17:19:12', '2017-12-08 17:19:12'),
-(2, 2, 1, 'asdasd', 'asdas', 'asdasdas', 'wadasd', '123123', 'sad@mail.com', 100, 'Standart', '2312', 'asdasdadasasd', 'appicns_iTunes.png', 0, '2017-12-08 19:07:29', '2017-12-08 19:07:29');
 
 -- --------------------------------------------------------
 
@@ -373,7 +366,10 @@ INSERT INTO `messages` (`id`, `fr_user_id`, `to_user_id`, `subject`, `message`, 
 (12, 2, 1, 'Selamat Bergabung', 'Iya sama-sama pak', NULL, '2017-12-18 00:24:20', '2017-12-18 00:24:20'),
 (13, 1, 2, 'Selamat Bergabung', '(^_^).......', NULL, '2017-12-18 00:32:31', '2017-12-18 00:32:31'),
 (14, 1, 5, 'Salam Kenal', 'Selamat Bergabung Bagus', 'c-7.jpg', '2017-12-18 00:35:57', '2017-12-18 00:35:57'),
-(15, 5, 1, 'Salam Kenal', 'salam kenal juga', NULL, '2017-12-18 00:36:46', '2017-12-18 00:36:46');
+(15, 5, 1, 'Salam Kenal', 'salam kenal juga', NULL, '2017-12-18 00:36:46', '2017-12-18 00:36:46'),
+(16, 1, 5, 'Konfirmasi Pembayaran', 'Harap melakukan pembayran', NULL, '2017-12-18 02:30:14', '2017-12-18 02:30:14'),
+(17, 5, 1, 'Konfirmasi Pembayaran', 'ok min', NULL, '2017-12-18 02:31:00', '2017-12-18 02:31:00'),
+(18, 2, 1, 'konfirmasi desain', 'udah di kirim desainnya', NULL, '2017-12-18 02:31:53', '2017-12-18 02:31:53');
 
 -- --------------------------------------------------------
 
@@ -415,7 +411,9 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (121, '2017_11_30_054522_create_banners_table', 2),
 (122, '2017_12_11_235211_create_payments_table', 3),
 (123, '2017_12_15_045046_create_cetaks_table', 4),
-(124, '2017_12_15_235102_create_messages_table', 4);
+(124, '2017_12_15_235102_create_messages_table', 4),
+(125, '2017_12_23_024724_create_pengirimen_table', 5),
+(126, '2017_12_23_024756_create_ulasans_table', 5);
 
 -- --------------------------------------------------------
 
@@ -431,6 +429,7 @@ CREATE TABLE `mugs` (
   `MG_images` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `MG_jenis_mug` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `MG_jumlah_mug` int(11) NOT NULL,
+  `MG_cetak` varchar(25) COLLATE utf8mb4_unicode_ci NOT NULL,
   `MG_total` int(11) NOT NULL,
   `MG_status` int(1) NOT NULL DEFAULT '0',
   `created_at` timestamp NULL DEFAULT NULL,
@@ -453,6 +452,7 @@ CREATE TABLE `offices` (
   `OF_email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `OF_pemesanan` int(11) NOT NULL,
   `OF_kertas` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `OF_cetak` varchar(25) COLLATE utf8mb4_unicode_ci NOT NULL,
   `OF_total` varchar(11) COLLATE utf8mb4_unicode_ci NOT NULL,
   `OF_description` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `OF_images` text COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -465,10 +465,8 @@ CREATE TABLE `offices` (
 -- Dumping data untuk tabel `offices`
 --
 
-INSERT INTO `offices` (`id`, `OF_userid`, `OF_productid`, `OF_perusahaan`, `OF_alamat`, `OF_tlp`, `OF_email`, `OF_pemesanan`, `OF_kertas`, `OF_total`, `OF_description`, `OF_images`, `OF_status`, `created_at`, `updated_at`) VALUES
-(2, 2, 3, 'sdadasd', 'asdasd', '1243214', 'as@mail.com', 50, 'standart', '12312', 'sdfsfdsfsdf', 'c-8.jpg', 0, '2017-12-08 17:27:52', '2017-12-08 17:27:52'),
-(4, 5, 21, 'Hai', 'Jalan Medan', '0812313423', 'asd@mail.com', 50, 'standart', '30000', 'blom ada', 'download (2).jpg', 1, '2017-12-13 20:37:20', '2017-12-14 03:21:39'),
-(5, 6, 21, 'cilukba', 'Jln. Medan binjai', '0912321', 'cilukba@mail.com', 100, 'medium', '200000', 'pin BB; 7f4gd23', 'appicns_iTunes.png', 1, '2017-12-14 02:40:57', '2017-12-14 03:09:35');
+INSERT INTO `offices` (`id`, `OF_userid`, `OF_productid`, `OF_perusahaan`, `OF_alamat`, `OF_tlp`, `OF_email`, `OF_pemesanan`, `OF_kertas`, `OF_cetak`, `OF_total`, `OF_description`, `OF_images`, `OF_status`, `created_at`, `updated_at`) VALUES
+(6, 5, 21, 'Hai', 'Jl. Medan', '08123124', 'kantor@maIL.com', 50, 'standart', 'Lem', '100000', 'Gak ada', 'appicns_iTunes.png', 1, '2017-12-24 03:16:38', '2017-12-24 04:10:14');
 
 -- --------------------------------------------------------
 
@@ -521,9 +519,21 @@ CREATE TABLE `payments` (
 --
 
 INSERT INTO `payments` (`id`, `user_id`, `BN_ID`, `BT_ID`, `BR_ID`, `GD_ID`, `KL_ID`, `KS_ID`, `KR_ID`, `MG_ID`, `OF_ID`, `PL_ID`, `PT_ID`, `SM_ID`, `ST_ID`, `kd_invoice`, `namaBank`, `alamat`, `kelurahan`, `kecamatan`, `kota`, `images`, `status`, `created_at`, `updated_at`) VALUES
-(9, 6, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 5, NULL, NULL, NULL, NULL, 'BNSzv3VL', 'Mandiri', 'Jl. Masjid Lk. V', 'Jati Karya', 'Binjai Utara', 'Binjai', '13712358_1001662456597793_58424149_n.jpg', 1, '2017-12-14 03:09:35', '2017-12-15 07:47:24'),
-(12, 5, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 4, NULL, NULL, NULL, NULL, 'P7YBa7wH', 'BRI', 'Jl. Medan Binjai KM. 19', 'Tunggurono', 'Binjai Timur', 'Binjai', 'basketball-wallpaper-1280x768-1180x768.jpg', 3, '2017-12-14 03:22:11', '2017-12-15 07:29:44'),
-(19, 3, 4, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, NULL, 2, NULL, '44l2NIZ9', 'Mandiri', 'Jln. Medan Binjai KM. 19', 'Tunggurono', 'Binjai Timur', 'Binjai', '13712358_1001662456597793_58424149_n.jpg', 0, '2017-12-14 16:48:50', '2017-12-14 16:48:50');
+(3, 5, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 6, NULL, NULL, NULL, NULL, 'FGxWLzBL', 'Mandiri', 'Jl. Medan-Binjai KM.19', 'Tunggurono', 'Binjai Timur', 'Binjai', '13712358_1001662456597793_58424149_n.jpg', 3, '2017-12-24 04:11:29', '2017-12-24 04:19:41');
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `pengirimen`
+--
+
+CREATE TABLE `pengirimen` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `paymentId` int(10) UNSIGNED NOT NULL,
+  `status_pengiriman` int(11) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -544,19 +554,13 @@ CREATE TABLE `polos` (
   `PL_Belakang` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `PL_warna` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `PL_ukuran` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `PL_cetak` varchar(25) COLLATE utf8mb4_unicode_ci NOT NULL,
   `PL_pemesanan` int(11) NOT NULL,
   `PL_total` int(11) NOT NULL,
   `PL_status` int(1) NOT NULL DEFAULT '0',
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data untuk tabel `polos`
---
-
-INSERT INTO `polos` (`id`, `PL_userid`, `PL_productid`, `PL_description`, `PL_images`, `PL_material`, `PL_metode`, `PL_depan`, `PL_lengan`, `PL_Belakang`, `PL_warna`, `PL_ukuran`, `PL_pemesanan`, `PL_total`, `PL_status`, `created_at`, `updated_at`) VALUES
-(1, 3, 17, 'Mantapz', 'math.png', 'GILDAN POLO SHIRT', 'Print', 'RIGHT CHEST', 'NONE', 'BACK 30X10CM', 'Dark Brown', 'XL - Extra Large', 50, 100000, 1, '2017-12-14 00:30:35', '2017-12-14 16:48:51');
 
 -- --------------------------------------------------------
 
@@ -571,6 +575,7 @@ CREATE TABLE `posters` (
   `PT_pemesanan` int(11) NOT NULL,
   `PT_ukuran` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `PT_kertas` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `PT_cetak` varchar(25) COLLATE utf8mb4_unicode_ci NOT NULL,
   `PT_total` int(11) NOT NULL,
   `PT_description` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `PT_images` text COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -578,13 +583,6 @@ CREATE TABLE `posters` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data untuk tabel `posters`
---
-
-INSERT INTO `posters` (`id`, `PT_userid`, `PT_productid`, `PT_pemesanan`, `PT_ukuran`, `PT_kertas`, `PT_total`, `PT_description`, `PT_images`, `PT_status`, `created_at`, `updated_at`) VALUES
-(1, 2, 1, 21312, 'B2 (50 x 70.7 cm)', 'Standart', 1231231, 'sdsdsad', '13712358_1001662456597793_58424149_n.jpg', 0, '2017-12-08 18:38:23', '2017-12-08 18:38:23');
 
 -- --------------------------------------------------------
 
@@ -645,6 +643,7 @@ CREATE TABLE `stempels` (
   `SM_ukuran` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `SM_pemesanan` int(11) NOT NULL,
   `SM_warna` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `SM_cetak` varchar(25) COLLATE utf8mb4_unicode_ci NOT NULL,
   `SM_total` int(11) NOT NULL,
   `SM_description` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `SM_images` text COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -652,13 +651,6 @@ CREATE TABLE `stempels` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data untuk tabel `stempels`
---
-
-INSERT INTO `stempels` (`id`, `SM_userid`, `SM_productid`, `SM_perusahaan`, `SM_ukuran`, `SM_pemesanan`, `SM_warna`, `SM_total`, `SM_description`, `SM_images`, `SM_status`, `created_at`, `updated_at`) VALUES
-(2, 3, 5, 'Coffe Day', '58 x 22 mm', 3, 'Merah', 30000, 'Jl. medan Binjai hubungi : 081263506016', 'c-8.jpg', 1, '2017-12-11 02:53:37', '2017-12-14 16:48:51');
 
 -- --------------------------------------------------------
 
@@ -672,6 +664,7 @@ CREATE TABLE `stikers` (
   `ST_productid` int(10) UNSIGNED NOT NULL,
   `ST_ukuran` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `ST_material` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `ST_cetak` varchar(25) COLLATE utf8mb4_unicode_ci NOT NULL,
   `ST_total` int(11) NOT NULL,
   `ST_description` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `ST_images` text COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -720,6 +713,21 @@ INSERT INTO `subcategories` (`id`, `category_id`, `name`, `created_at`, `updated
 -- --------------------------------------------------------
 
 --
+-- Struktur dari tabel `ulasans`
+--
+
+CREATE TABLE `ulasans` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `user_id` int(10) UNSIGNED NOT NULL,
+  `freelance_id` int(10) UNSIGNED NOT NULL,
+  `rate` int(11) NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Struktur dari tabel `users`
 --
 
@@ -745,7 +753,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `username`, `email`, `password`, `api_token`, `photo`, `address`, `gender`, `phone`, `status`, `role`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'Alvantesha Priliandi', 'admin@admin.com', '$2y$10$P2GfvX9GKM5cetT7VK89IeLxJ31y25tcBQE05Hc7FsO4ly6ZSY.z2', NULL, NULL, NULL, NULL, NULL, NULL, 3, 'cK5wUQga6rfY23cY4hCpb4c5lUwYbjgr27lgWsAlrB4VYRGvXlw53YGTMqfF', '2017-12-04 03:14:24', '2017-12-04 03:14:24'),
+(1, 'Alvantesha Priliandi', 'admin@admin.com', '$2y$10$P2GfvX9GKM5cetT7VK89IeLxJ31y25tcBQE05Hc7FsO4ly6ZSY.z2', NULL, NULL, NULL, NULL, NULL, NULL, 3, 'pGrxoe2yxA5PWjsVKmafhQ0hQon3mVwvM97qDWe5609ENvshm9oewKUBPZUO', '2017-12-04 03:14:24', '2017-12-04 03:14:24'),
 (2, 'Reza Surya', 'reza@mail.com', '$2y$10$hjWto0qpOAHFyR08Ddnruu4UuZilAxdKV49MabvNn2muBLe48SuMK', 'B0D6iKUa9Gagyek6nmINkMXGH8t7bfHkmN26Lm7Nd8ps25DyXd8wugcNAH9b', NULL, NULL, NULL, NULL, NULL, 2, 'xwfIzMBS005TWxMl3PsjcClUfZv66jVHwxJIOskpA35FvQT0BRtkijsMsfeO', '2017-12-04 16:48:22', '2017-12-04 16:49:28'),
 (3, 'Andi', 'andi@mail.com', '$2y$10$0u.i0C/wcrOl47p91DEYbOfVWODzuPyf6gm1ffwI3ebs8/YwZ1k36', 'NkJeky8avr5OBDKZQTI0WnR58ad581zcRT3azbxEmRDSGIxzgINvtEDpUzOy', NULL, NULL, NULL, NULL, NULL, 1, 'vaWcGvks1UCPYmkjAdDEAeqp0nsw7zT44SNX4Zf5qEYuwixezUFnj3EdhqU6', '2017-12-09 17:43:52', '2017-12-09 17:43:52'),
 (4, 'Agus', 'agus@mail.com', '$2y$10$zqSGNG5vwZikGMU9dub5F.ZdNjrSGGKftOI0i5P0o/wyH6bXGcaeC', '9m6TN9ApCQihcJhGnDDnhoO1LuLtTTuFxy6uUhLgliwnZpjNZpCdKAyxPB6I', NULL, NULL, NULL, NULL, NULL, 2, 'ZQjz1lJKC5KasfabSVUptL0A6fG1IpU8dqlPXE0xbZXscSCv3jFw471h48Xp', '2017-12-13 18:49:40', '2017-12-13 18:50:18'),
@@ -871,6 +879,12 @@ ALTER TABLE `payments`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `pengirimen`
+--
+ALTER TABLE `pengirimen`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `polos`
 --
 ALTER TABLE `polos`
@@ -907,6 +921,12 @@ ALTER TABLE `subcategories`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `ulasans`
+--
+ALTER TABLE `ulasans`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `users`
 --
 ALTER TABLE `users`
@@ -933,7 +953,7 @@ ALTER TABLE `bantalfotos`
 -- AUTO_INCREMENT for table `brosurs`
 --
 ALTER TABLE `brosurs`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `cards`
@@ -999,13 +1019,13 @@ ALTER TABLE `kartus`
 -- AUTO_INCREMENT for table `messages`
 --
 ALTER TABLE `messages`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=125;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=127;
 
 --
 -- AUTO_INCREMENT for table `mugs`
@@ -1017,12 +1037,18 @@ ALTER TABLE `mugs`
 -- AUTO_INCREMENT for table `offices`
 --
 ALTER TABLE `offices`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `payments`
 --
 ALTER TABLE `payments`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT for table `pengirimen`
+--
+ALTER TABLE `pengirimen`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
@@ -1060,6 +1086,12 @@ ALTER TABLE `stikers`
 --
 ALTER TABLE `subcategories`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+
+--
+-- AUTO_INCREMENT for table `ulasans`
+--
+ALTER TABLE `ulasans`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `users`

@@ -19,6 +19,7 @@ class Kaos extends Model
         'KS_belakang',
         'KS_pemesanan',
         'KS_total',
+        'KS_cetak'
     ];
     public $table = "kaos";
 }

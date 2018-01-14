@@ -33,7 +33,7 @@ class CheckoutController extends Controller
 
     public function __construct()
      {
-         $this->middleware('auth');
+         $this->middleware('auth:api');
      }
     
     public function index()
@@ -104,7 +104,7 @@ class CheckoutController extends Controller
             join subcategories s on p.subcategory_id = s.id 
             where ST_userid ='.$id);
         // return $data;
-        return view('user.checkout.checkout_list', $data);
+        return response()->json($data);
     }
 
     /**

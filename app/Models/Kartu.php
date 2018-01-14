@@ -20,7 +20,8 @@ class Kartu extends Model
         'KR_kertas',	
         'KR_total',	
         'KR_description',
-        'KR_images'
+        'KR_images',
+        'KR_cetak'
     ];
     public $table = "kartus";
 }

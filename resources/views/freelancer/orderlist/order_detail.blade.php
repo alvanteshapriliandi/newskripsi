@@ -23,35 +23,43 @@
                                         <tr>
                                             <th>Data User</th>
                                         </tr>
+                                        @foreach($payment as $pay)
                                         <tr>
                                             <th>Name User</th>
-                                            <td>Alvan</td>
+                                            <td>{{$pay->username}}</td>
                                             <td rowspan="3">
                                                 <img src="{{asset('images/flat-faces-icons-circle-3.png')}}" width="100">
                                             </td>
                                         </tr>
                                         <tr>
                                             <th>Email</th>
-                                            <td>alvan@mail.com</td>
+                                            <td>{{$pay->email}}</td>
                                         </tr>
+                                        @endforeach
                                     </tbody>
                                 </table>
                             </div>
                             <div class="col col-md-12">
                                 <table id="datatable-buttons" class="table table-striped table-bordered">
                                     <tbody>
-                                        <tr>
-                                            <th>Order List</th>
-                                        </tr>
-                                        <tr>
-                                            <th>Product Name</th>
-                                            <td></td>
-                                        </tr>
-                                        <tr>
-                                            <th>Sub-category Name</th>
-                                            <td></td>
-                                        </tr>
-                                        <tr></tr>
+                                        <!-- start include -->
+
+                                        @include('freelancer.orderlist.include_order.banner')
+                                        @include('freelancer.orderlist.include_order.bantal')
+                                        @include('freelancer.orderlist.include_order.brosur')
+                                        @include('freelancer.orderlist.include_order.goodlebag')
+                                        @include('freelancer.orderlist.include_order.kalender')
+                                        @include('freelancer.orderlist.include_order.kaos')
+                                        @include('freelancer.orderlist.include_order.kartu')
+                                        @include('freelancer.orderlist.include_order.mug')
+                                        @include('freelancer.orderlist.include_order.office')
+                                        @include('freelancer.orderlist.include_order.polo')
+                                        @include('freelancer.orderlist.include_order.poster')
+                                        @include('freelancer.orderlist.include_order.stempel')
+                                        @include('freelancer.orderlist.include_order.stiker')
+
+                                        <!-- end include -->
+                                        
                                     </tbody>
                                 </table>
                             </div>

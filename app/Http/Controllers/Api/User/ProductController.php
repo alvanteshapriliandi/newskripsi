@@ -48,7 +48,13 @@ class ProductController extends Controller
      */
     public function show($id)
     {
-        //
+      $product = DB::table('products')
+                    ->join('freelances', 'freelancer_id', '=', 'freelances.id')
+                    ->join('users', 'freelances.user_id', '=', 'users.id')
+                    ->select('products.*', 'freelances.images as avatar', 'freelances.created_at', 'users.username')  
+                    ->where('products.id', '=', $id)
+                    ->get();
+      return response()->json($product);
     }
 
     /**

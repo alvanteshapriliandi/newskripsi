@@ -20,7 +20,8 @@ class Polo extends Model
         'PL_warna',	
         'PL_ukuran',	
         'PL_pemesanan',	
-        'PL_total'
+        'PL_total',
+        'PL_cetak'
     ];
     public $table = "polos";
 }

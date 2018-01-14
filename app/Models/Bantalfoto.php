@@ -17,7 +17,8 @@ class Bantalfoto extends Model
         'BT_ukuran',
         'BT_warna',
         'BT_pemesanan',
-        'BT_total'
+        'BT_total',
+        'BT_cetak'
     ];
     public $table = "bantalfotos";
 }

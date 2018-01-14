@@ -210,8 +210,10 @@
 							<th colspan="2" style="text-align: right;">Status</th>
 							@foreach($pay as $p)
 								@if($p->status == 0)
-									<td style="text-align: right;">Menunggu Konfirmasi</td>
+									<td style="text-align: right;">Menunggu Konfirmasi Pembayaran</td>
 									@elseif($p->status == 1)
+										<td style="text-align: right;">Menunggu Konfirmasi</td>
+									@elseif($p->status == 2)
 										<td style="text-align: right;">Dalam Proses Pengerjaan</td>
 									@else
 										<td style="text-align: right;">Dalam Proses Pengiriman</td>
@@ -219,9 +221,11 @@
 						</tr>
 					</table>
 						@if($p->status == 0)
-							<a href="" class="btn btn-info" style="pointer-events: none;">Lanjut</a>
+							<input type="submit" disabled="true" class="btn btn-info" value="Lanjut" style="float: right;">
+							@elseif($p->status == 1)
+								<input type="submit" disabled="true" class="btn btn-info" value="Lanjut" style="float: right;">
 							@else
-								<a href="" class="btn btn-info">Lanjut</a>
+								<a href="{{route('proses.edit',['id' => $p->id ])}}" class="btn btn-info" style="float: right;">Lanjut</a>
 						@endif
 					@endforeach
 				</form>

@@ -18,7 +18,8 @@ class Goodlebag extends Model
         'GD_warna',
         'GD_total',
         'GD_deskripsi',
-        'GD_images'
+        'GD_images',
+        'GD_cetak'
     ];
     public $table = "goodlebags";
 }

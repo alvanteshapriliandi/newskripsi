@@ -19,7 +19,8 @@ class Brosur extends Model
         'BR_kertas',
         'BR_total',
         'BR_description',
-        'BR_images'
+        'BR_images',
+        'BR_cetak'
     ];
     public $table = "brosurs";
 }

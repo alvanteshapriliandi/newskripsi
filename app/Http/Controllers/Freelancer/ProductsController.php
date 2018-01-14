@@ -72,6 +72,12 @@ class ProductsController extends Controller
         $data = $request-> all();
         $data['images']= $filename;
         //return $data;
+        $this->validate($request,[
+            'jdl_Pdk'           => 'required',
+            'category'          => 'required',
+            'description'       => 'required',
+            'images'            => 'required'
+        ]);
         $datas = array(
           'freelancer_id'  => $id,
           'jdl_Pdk'        => $request->input('jdl_Pdk'),

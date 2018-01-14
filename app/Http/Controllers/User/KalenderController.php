@@ -63,6 +63,7 @@ class kalenderController extends Controller
             'KL_jilid'        => $request->input('KL_jilid'),
             'KL_kertas'       => $request->input('KL_kertas'),
             'KL_lembar'       => $request->input('KL_lembar'),
+            'KL_cetak'        => $request->input('KL_cetak'),
             'KL_total'        => $request->input('KL_total'),
             'KL_description'  => $request->input('KL_description'),
             'KL_images'       => $data['KL_images']

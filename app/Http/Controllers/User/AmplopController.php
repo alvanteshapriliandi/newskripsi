@@ -60,7 +60,8 @@ class AmplopController extends Controller
             'OF_tlp'            => $request->input('OF_tlp') , 
             'OF_email'          => $request->input('OF_email'),
             'OF_pemesanan'      => $request->input('OF_pemesanan'),
-            'OF_kertas'         => $request->input('OF_kertas'),   
+            'OF_kertas'         => $request->input('OF_kertas'),
+            'OF_cetak'          => $request->input('OF_cetak'),   
             'OF_total'          => $request->input('OF_total'),
             'OF_description'    => $request->input('OF_description'),  
             'OF_images'         => $data['OF_images']

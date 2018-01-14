@@ -59,7 +59,8 @@ class GoodleBagController extends Controller
             'GD_bahan'      => $request->input('GD_bahan'),
             'GD_sisi'       => $request->input('GD_sisi'),
             'GD_jumlah'     => $request->input('GD_jumlah'),
-            'GD_warna'      => $request->input('GD_warna'), 
+            'GD_warna'      => $request->input('GD_warna'),
+            'GD_cetak'      => $request->input('GD_cetak'), 
             'GD_total'      => $request->input('GD_total'),
             'GD_deskripsi'  => $request->input('GD_deskripsi'),
             'GD_images'     => $data['GD_images']

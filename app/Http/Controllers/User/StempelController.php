@@ -58,6 +58,7 @@ class stempelController extends Controller
             'SM_ukuran'         => $request->input('SM_ukuran'),   
             'SM_pemesanan'      => $request->input('SM_pemesanan'),
             'SM_warna'          => $request->input('SM_warna'),
+            'SM_cetak'          => $request->input('SM_cetak'),
             'SM_total'          => $request->input('SM_total'),
             'SM_description'    => $request->input('SM_description'),   
             'SM_images'         => $data['SM_images']

@@ -62,7 +62,8 @@ class poloshirtController extends Controller
             'PL_lengan'      => $request->input('PL_lengan'),    
             'PL_Belakang'    => $request->input('PL_Belakang'),  
             'PL_warna'       => $request->input('PL_warna'), 
-            'PL_ukuran'      => $request->input('PL_ukuran'),    
+            'PL_ukuran'      => $request->input('PL_ukuran'),
+            'PL_cetak'       => $request->input('PL_cetak'),    
             'PL_pemesanan'   => $request->input('PL_pemesanan'),  
             'PL_total'       => $request->input('PL_total'), 
         );

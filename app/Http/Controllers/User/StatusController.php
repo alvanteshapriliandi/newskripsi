@@ -4,6 +4,8 @@ namespace App\Http\Controllers\User;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Pengiriman;
+use App\Models\Payment;
 
 class StatusController extends Controller
 {
@@ -58,6 +60,9 @@ class StatusController extends Controller
     public function edit($id)
     {
         //
+        $data['pay'] = Payment::find($id);
+        // return $data;
+        return view('user.statuskirim',$data);
     }
 
     /**
@@ -70,6 +75,14 @@ class StatusController extends Controller
     public function update(Request $request, $id)
     {
         //
+        
+        $data = $request->all();
+        $payment = Payment::find($id);
+        $payment->status=$request->status;
+        $payment->save();
+        return [$data, $payment];
+        $payment -> update($data);
+        return redirect('/');
     }
 
     /**

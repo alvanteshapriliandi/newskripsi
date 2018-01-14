@@ -20,7 +20,8 @@ class Kalender extends Model
         'KL_lembar',
         'KL_total',
         'KL_description',
-        'KL_images'
+        'KL_images',
+        'KL_cetak'
     ];
     public $table = "kalenders";
 }

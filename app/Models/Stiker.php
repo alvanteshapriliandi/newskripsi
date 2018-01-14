@@ -14,7 +14,8 @@ class Stiker extends Model
         'ST_material',	
         'ST_total',	
         'ST_description',	
-        'ST_images'
+        'ST_images',
+        'ST_cetak'
     ];
     public $table = "stikers";
 }

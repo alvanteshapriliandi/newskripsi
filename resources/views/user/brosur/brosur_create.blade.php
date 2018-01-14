@@ -84,16 +84,25 @@
                     </select>
                   </td>
               </tr>
-                <tr>
-                  <th>Jenis Kertas</th>
-                  <td>
-                    <select class="form-control" name="BR_kertas">
-                      <option value="0" disabled="true" selected="true">-Pilih Kertas-</option>
-                      <option value="Standart">Standart</option>
-                      <option value="Medium">Medium</option>
-                    </select>
-                  </td>
-                </tr>
+              <tr>
+                <th>Jenis Kertas</th>
+                <td>
+                  <select class="form-control" name="BR_kertas">
+                    <option value="0" disabled="true" selected="true">-Pilih Kertas-</option>
+                    <option value="Standart">Standart</option>
+                    <option value="Medium">Medium</option>
+                  </select>
+                </td>
+                <th>Jenis Cetak</th>
+                <td>
+                  <select class="form-control" name="BR_cetak">
+                    <option value="0" disabled="true" selected="true">-Pilih Cetak-</option>
+                    <option value="Lipat 1">Lipat 1</option>
+                    <option value="Lipat 2">Lipat 2</option>
+                    <option value="UV Vernish">UV Vernish</option>
+                  </select>
+                </td>
+              </tr>
               <tr>
                 <th>Total (Rp) : </th>
                 <td>

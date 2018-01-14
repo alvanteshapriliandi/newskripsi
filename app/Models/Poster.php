@@ -15,7 +15,8 @@ class Poster extends Model
         'PT_kertas',	
         'PT_total',	
         'PT_description',	
-        'PT_images'
+        'PT_images',
+        'PT_cetak'
     ];
     public $table = "posters";
 }

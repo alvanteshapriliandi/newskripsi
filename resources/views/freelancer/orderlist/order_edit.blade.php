@@ -1,4 +1,4 @@
-@extends('templates.admin.layout')
+@extends('templates.freelancer.layout')
 
 @section('content')
 
@@ -26,8 +26,8 @@
                                     <th>Status</th>
                                     <td>
                                         <select name="status">
-                                            <option value="0">Menunggu Konfirmasi</option>
-                                            <option value="1">Dalam Proses Pengerjaan</option>
+                                            <option value="1">Menunggu Konfirmasi</option>
+                                            <option value="2">Dalam Proses Pengerjaan</option>
                                             <option value="3">Dalam Proses Pengiriman</option>
                                         </select>
                                     </td>
