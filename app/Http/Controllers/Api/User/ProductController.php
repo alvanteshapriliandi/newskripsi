@@ -18,9 +18,7 @@ class ProductController extends Controller
      */
     public function index()
     {
-      $product = DB::select('select p.*, u.username, s.name from products p
-                join users u on u.id = p.freelancer_id
-                join subcategories s on s.id = p.subcategory_id');
+      $product = DB::table('products')->paginate(12);
                 
       return response()->json($product);
     }
