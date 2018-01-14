@@ -20,6 +20,11 @@ class AuthController extends Controller
         'api_token'=> str_random(60),
         'role' => 1
       ]);
+
+      return response()->json([
+        'registered' => true,
+        'message' => "Registrasi telah berhasil... silahkan konfirmasi email anda...."
+      ]);
         return response()->json([
           'registered' => true,
           'message' => "Registrasi telah berhasil... silahkan konfirmasi email anda...."

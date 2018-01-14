@@ -66,8 +66,9 @@ Route::group(['namespace' => 'User'], function () {
   Route::post('user/findSubCategoryname/{id}', 'MenuController@findSubCategoryname');
 });
 
-Route::get('productlist', 'Api\User\ProductController@index');
-Route::get('productlist/{id}', 'Api\User\ProductController@show');
+Route::resource('productlist', 'Api\User\ProductController');
+Route::resource('orders', 'Api\User\OrdersController');
+// Route::get('productlist/{id}', 'Api\User\ProductController@show');
 
 Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => 'auth'], function () {
   Route::resource('products', 'ProductController');

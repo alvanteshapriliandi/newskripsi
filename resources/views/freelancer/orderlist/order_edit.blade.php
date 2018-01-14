@@ -12,24 +12,25 @@
                     <h2>Status Product <a href="{{route('order-list.index')}}" class="btn btn-info btn-xs"><i class="fa fa-chevron-left"></i> Back </a></h2>
                     <div class="clearfix"></div>
                 </div>
+                @foreach($transaction as $t)
                 <div class="x_content">
-                    <form method="post" action="{{ route('order-list.update', ['id' => $payment->id]) }}" data-parsley-validate class="form-horizontal form-label-left" enctype="multipart/form-data">
+                    <form method="post" action="{{ route('order-list.update', ['id' => $t->id]) }}" data-parsley-validate class="form-horizontal form-label-left" enctype="multipart/form-data">
                         <input name="_method" type="hidden" value="PATCH">
                             {{ csrf_field() }}
                         <table id="datatable-buttons" class="table table-striped table-bordered">
                             <tbody>
                                 <tr>
-                                    <th>User Name</th>
-                                    <td>{{$payment->username}}</td>
+                                    <td colspan="2"> Ubah setatus order</td>
                                 </tr>
+                                <tr>
+                                    <th>User Name</th>
+                                    <td>{{$t->username}}</td>
+                                </tr>
+                                
                                 <tr>
                                     <th>Status</th>
                                     <td>
-                                        <select name="status">
-                                            <option value="1">Menunggu Konfirmasi</option>
-                                            <option value="2">Dalam Proses Pengerjaan</option>
-                                            <option value="3">Dalam Proses Pengiriman</option>
-                                        </select>
+                                        <input type="checkbox" name="status" value="2"> Dalam Proses Pengerjaan
                                     </td>
                                 </tr>
                                 <tr>
@@ -39,6 +40,7 @@
                         </table>
                     </form>
                 </div>
+                @endforeach
             </div>
         </div>
     </div>

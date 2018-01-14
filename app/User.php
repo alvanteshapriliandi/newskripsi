@@ -43,6 +43,10 @@ class User extends Authenticatable
         'api_token', 
     ];
 
+    public function freelance(){
+        return $this->belongsTo(Freelancer::class);
+    }
+
     public static function initialize(){
       return [
         'photo'   => '',

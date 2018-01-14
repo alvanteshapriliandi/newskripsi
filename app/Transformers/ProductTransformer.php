@@ -4,7 +4,7 @@ namespace App\Transformers;
 
 use League\Fractal\TransformerAbstract;
 use App\Product;
-use App\Transformers\ImageTransformer;
+// use App\Transformers\ImageTransformer;
 
 class ProductTransformer extends TransformerAbstract
 {
@@ -13,33 +13,21 @@ class ProductTransformer extends TransformerAbstract
      *
      * @return array
      */
-    protected $defaultIncludes = [
-            'images',
-            'freelancer'
-    ];
 
     public function transform(Product $product)
     {        
 
         return [
-            'id' => $product->id,
-            'freelancer' => $product->freelancer,
-            'jdl_Pdk' => $product->jdl_Pdk,
-            'hrg_awal' => $product->hrg_awal,   
-            'hrg_promo' => $product->hrg_promo,
-            'kategori' => $product->kategori,
-            'description' => $product->description,
-            'posted' => $product->created_at
+            'id'            => $product->id,
+            'freelancer_id' => $product->freelancer,
+            'jdl_Pdk'       => $product->jdl_Pdk,
+            'harga_awal'    => $product->harga_awal,
+            'harga_promo'   => $product->harga_promo,
+            'kategori'      => $product->kategori,
+            'description'   => $product->description,
+            'images'        => $product->images,
+            'status'        => $product->status,
+            'posted'        => $product->created_at
         ];
-    }
-
-    public function includeImages(Product $product){
-        $images = $product->images;  
-        return $this->collection($images, new ImageTransformer);
-    }
-
-    public function includeFreelancer(Product $product){
-        $freelancer = $product->freelancer;
-        return $this->item($freelancer, new FreelancerTransformer);
     }
 }

@@ -21,7 +21,9 @@
                   </p>
                   @if($message_in->images)
                   <p>
-                    <img src="{{asset('messages/'.$message_in->images)}}">
+                    <img src="{{asset('messages/'.$message_in->images)}}"><br>
+                    <input type="submit" name="" value="perubahan">
+                    <input type="submit" name="" value="setuju">
                   </p>
                   @endif
                 </div>

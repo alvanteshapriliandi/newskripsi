@@ -20,8 +20,12 @@ class MessagesController extends Controller
     {
         //
         $id = Auth::user()->id;
-        $data['message_in'] = db::select('select u.email, m.id,m.subject, m.message from messages m join users u on m.to_user_id = u.id where m.to_user_id = '.$id);
-        $data['message_out'] = db::select('select u.email, m.id,m.subject, m.message from messages m join users u on m.to_user_id = u.id where m.fr_user_id = '.$id);
+        $data['order_message'] = db::select('select o.id, o.created_at, p.images, u.username, p.jdl_Pdk from orders o
+            join products p on p.id = o.product_id
+            join users u on u.id = o.user_id
+            where p.freelancer_id = '.$id);
+        // $data['message_in'] = db::select('select u.email, m.id,m.subject, m.message from messages m join users u on m.to_user_id = u.id where m.to_user_id = '.$id);
+        // $data['message_out'] = db::select('select u.email, m.id,m.subject, m.message from messages m join users u on m.to_user_id = u.id where m.fr_user_id = '.$id);
         // return $data;
         return view('freelancer.messages.messages_list',$data);
     }
@@ -56,24 +60,20 @@ class MessagesController extends Controller
         }
         $id = Auth::user()->id;
         $user = db::select('select * from users u where u.email ="'.$request->input('email').'"');
-        if($user){
-            $to_user_id = $user[0]->id;
+        // $to_user_id = $user[0]->id;
             $datas = array(
-              'fr_user_id'     => $id,
-              'to_user_id'     => $to_user_id,
-              'subject'        => $request->input('subject'),
-              'message'        => $request->input('message'),
+                'fr_user_id'     => $id,
+                'to_user_id'     => $request->input('user_id'),
+                'order_id'       => $request->input('order_id'),
+                'message'        => $request->input('message'),
+                'images'         => $data['images']
             );
             if ($request->file('images')) {
                 $datas['images'] = $data['images'];
             }
-            // return $datas;
+            return $datas;
             Messages::create($datas);
-            return redirect()->route('messages.index')->with('success', "The Messages <strong>Messages</strong> has successfully been Created.");
-        }
-        else{
-            return "user tidak ditemukkan";
-        }
+            return redirect()->route('message.show',['id'=>$data['order_id']])->with('success', "The Messages <strong>Messages</strong> has successfully been Created.");
         
         
     }
@@ -87,7 +87,22 @@ class MessagesController extends Controller
     public function show($id)
     {
         //
-        return view('freelancer.messages.messages_view');
+        $messages_id = Auth::user()->id;
+        $data['message_in'] = db::select('select u.email, u.username, m.id, m.fr_user_id, m.images, m.message, m.created_at from messages m 
+            join users u on m.fr_user_id = u.id 
+            where m.to_user_id = '.$messages_id.'
+            order by m.created_at desc');
+        // return $data;
+        $data['message_out'] = db::select('select u.*, m.id, m.images, m.message, m.created_at, m.updated_at from messages m 
+            join users u on m.to_user_id = u.id
+            join orders o on o.id = m.order_id 
+            where m.fr_user_id = '.$messages_id.'
+            and o.id = '.$id);
+        $data['orders'] = db::select('select o.id, o.ket, o.user_id, u.username from orders o
+            join users u on u.id = o.user_id
+            where o.id = '.$id);
+        // return $data['orders'];
+        return view('freelancer.messages.messages_view',$data);
     }
 
     /**

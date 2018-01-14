@@ -72,6 +72,7 @@
                                     <ul class="nav child_menu">
                                         <li><a href="{{url('admin/userlist')}}">User</a></li>
                                         <li><a href="{{url('admin/freelancelist')}}">Freelance</a></li>
+                                        <li><a href="{{url('admin/bank')}}">Bank</a></li>
                                     </ul>
                                 </li>
                                 <li><a href="{{url('admin/orderlist')}}"><i class="fa fa-list-alt"></i> Order </a></li>
@@ -83,10 +84,11 @@
 
                                     <ul class="nav child_menu">
                                         <li><a href="{{url('admin/cekpembayaran')}}">Cek Pembayaran</a></li>
-                                        <li><a href="">Freelance</a></li>
+                                        <li><a href="{{url('admin/freelance-payment')}}">Freelance</a></li>
                                     </ul>
                                 </li>
                                 <li><a href=""><i class="fa fa-credit-card"></i> Retur </a></li>
+                                <li><a href="{{url("")}}"><i class="fa fa-credit-card"></i> Retur </a></li>
                                 <li>
                                     <a href="#">
                                         <i class="fa fa-users"></i> Pesan
@@ -99,7 +101,17 @@
                                         <li><a href="{{ url('admin/outbox-message')}}">Pesan Keluar</a></li>
                                     </ul>
                                 </li>
-                                <li><a href=""><i class="fa fa-cog"></i> Cetak </a></li>
+                                <li>
+                                    <a href="#">
+                                        <i class="fa fa-users"></i> Cetak
+                                        <span class="fa fa-chevron-down"></span>
+                                    </a>
+
+                                    <ul class="nav child_menu">
+                                        <li><a href="{{url('admin/cetak-mandiri')}}">Mandiri</a></li>
+                                        <li><a href="{{url('admin/cetak-freelance')}}">Freelance</a></li>
+                                    </ul>
+                                </li>
                                 <li><a href=""><i class="fa fa-cog"></i> Pengaturan </a></li>
                             </ul>
                         </div>

@@ -26,40 +26,32 @@
                         <tfoot>
                             <tr>
                                 <th>User Name</th>
-                                <th>Staus</th>
+                                <th>Status</th>
                                 <th>Date</th>
                                 <th>Time</th>
                                 <th>Action</th>
                             </tr>
                         </tfoot>
                         <tbody>
-                            @foreach($payment as $pay)
-                                @if($pay->status == 0)
-                                @else
-                                <tr>
-                                    <td>{{$pay->username}}</td>
-                                    @if($pay->status == 1)
-                                        <td>Menunggu Konfirmasi</td>
-                                        @elseif($pay->status == 2)
-                                            <td>Dalam Proses Pngerjaan</td>
-                                        @elseif($pay->status == 3)
-                                            <td>Dalam Proses Pengeriman</td>
-                                        @else
-                                            <td>Barang Sudah Diterima</td>
-                                    @endif
-                                    <td>{{ date('F d, Y', strtotime($pay->updated_at))}}</td>
-                                    <td>{{ date('H:m:s', strtotime($pay->updated_at))}}</td>
-                                    <td>
-                                    @if($pay->status == 4)  
-                                        <button disabled="true" class="btn btn-info"><i class="fa fa-pencil"></i></button>
-                                        <button disabled="true" class="btn btn-primary"><i class="fa fa-eye"></i></button>
-                                        @else
-                                        <a href="{{route('order-list.edit',['id'=>$pay->id])}}" class="btn btn-info"><i class="fa fa-pencil"></i></a>
-                                        <a href="{{route('order-list.show',['id'=>$pay->id])}}" class="btn btn-primary"><i class="fa fa-eye"></i></a>
-                                    @endif
-                                    </td>
-                                </tr>
+                            @foreach($transaction as $t)
+                            <tr>
+                               <th>{{$t->username}}</th>
+                                @if($t->status == 1)
+                                    <td>Menunggu Konfirmasi</td>
+                                    @elseif($t->status == 2)
+                                        <td>Dalam Proses Pengerjaan</td>
+                                    @elseif($t->status == 3)
+                                        <td>Dalam Proses Pengeriman</td>
+                                    @else
+                                        <td>Barang Sudah Diterima</td>
                                 @endif
+                                <td>{{ date('F d, Y', strtotime($t->updated_at))}}</td>
+                                <td>{{ date('H:m:s', strtotime($t->updated_at))}}</td>
+                                <td>
+                                    <a href="{{route('order-list.edit', ['id' => $t->id])}}" class="btn btn-success"><i class="fa fa-pencil"></i></a>
+                                    <a href="{{route('order-list.show', ['id' => $t->id])}}" class="btn btn-info"><i class="fa fa-eye"></i></a>
+                                </td>
+                            </tr>
                             @endforeach
                         </tbody>
                     </table>

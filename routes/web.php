@@ -12,7 +12,7 @@
 */
 
 Route::get('/', function () {
-    return view('user.home');
+    return view('auth.login');
 });
 
 Auth::routes();
@@ -28,6 +28,8 @@ Route::group(['prefix' => 'freelance', 'namespace' => 'Freelancer', 'middleware'
     Route::resource('new-messages', 'NewController');
     Route::resource('inbox', 'MasukController');
     Route::resource('outbox', 'KeluarController');
+    Route::resource('cetak-pesanan', 'CetakController');
+    Route::resource('message', 'MessagesController');
     Route::post('product/findSubCategoryname/{id}', 'ProductsController@findSubCategoryname');
 });
 Route::group(['namespace' => 'Freelancer', 'middleware' => 'auth'], function () {
@@ -69,7 +71,10 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => 'auth
     Route::resource('products', 'ProductController');
     Route::resource('userlist', 'UserListController');
     Route::resource('freelancelist', 'FreelanceListController');
+    Route::resource('bank', 'BankController');
+    Route::resource('cetak-freelance', 'CetakController');
     Route::resource('orderlist', 'OrderController');
+    Route::resource('freelance-payment', 'FreelancePaymentController');
     Route::resource('cekpembayaran', 'CekPembayaranController');
     Route::resource('new-message', 'NewController');
     Route::resource('inbox-message', 'MasukController');

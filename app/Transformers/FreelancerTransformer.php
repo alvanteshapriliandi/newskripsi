@@ -4,6 +4,7 @@ namespace App\Transformers;
 
 use League\Fractal\TransformerAbstract;
 use App\Freelancer;
+use App\Transformers\UserTransformer;
 
 class FreelancerTransformer extends TransformerAbstract
 {
@@ -15,8 +16,8 @@ class FreelancerTransformer extends TransformerAbstract
     public function transform(Freelancer $freelancer)
     {
         return [
-            'user_id' => $freelancer->id,
-            'name' => $freelancer->username
+            'id'            => $freelancer->id,
+            'user_id'       => $freelancer->user,
         ];
     }
 }

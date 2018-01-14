@@ -81,7 +81,7 @@ class MasukController extends Controller
         // return $temp;
         $data['message_in'] = $tempin[0];
         // return $data;
-        return view('freelancer.messages.inbox.inbox_view',$data);
+        return view('admin.messages.inbox.inbox_view',$data);
         
     }
 

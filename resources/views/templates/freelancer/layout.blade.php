@@ -31,6 +31,10 @@
     <link href="{{asset('freelancer/css/fixedHeader.bootstrap.min.css')}}" rel="stylesheet">
     <link href="{{asset('freelancer/css/responsive.bootstrap.min.css')}}" rel="stylesheet">
     <link href="{{asset('freelancer/css/scroller.bootstrap.min.css')}}" rel="stylesheet">
+    <link href="{{asset('freelancer/chat_css/metisMenu.min.css')}}" rel="stylesheet">
+    <link href="{{asset('freelancer/chat_css/morris.css')}}" rel="stylesheet">
+    <link href="{{asset('freelancer/chat_css/sb-admin-2.css')}}" rel="stylesheet">
+    
 </head>
 <body class="nav-md">
     <div class="container body">
@@ -64,7 +68,8 @@
                             <ul class="nav side-menu">
                                 <li><a href="{{url('freelance/product')}}"><i class="fa fa-product-hunt"></i> Product </a></li>
                                 <li><a href="{{url('freelance/order-list')}}"><i class="fa fa-product-hunt"></i> Order List</a></li>
-                                <li>
+                                <li><a href="{{url('freelance/message')}}"><i class="fa fa-product-hunt"></i> Messages</a></li>
+                                <!-- <li>
                                     <a href="#">
                                         <i class="fa fa-users"></i> Pesan
                                         <span class="fa fa-chevron-down"></span>
@@ -75,8 +80,8 @@
                                         <li><a href="{{ url('freelance/inbox')}}">Pesan Masuk</a></li>
                                         <li><a href="{{ url('freelance/outbox')}}">Pesan Keluar</a></li>
                                     </ul>
-                                </li>
-                                <li><a href="{{ url('freelance/upload-desain')}}"><i class="fa fa-envelope"></i> Cetak </a></li>
+                                </li> -->
+                                <li><a href="{{ url('freelance/cetak-pesanan')}}"><i class="fa fa-envelope"></i> Cetak </a></li>
                                 <li><a href="{{ url('freelance/pembayaran')}}"><i class="fa fa-credit-card"></i> Pembayaran </a></li>
                                 <li><a href="{{ url('freelance/pembayaran')}}"><i class="fa fa-credit-card"></i> Ulasan </a></li>
                                 <li><a href=""><i class="fa fa-cog"></i> Pengaturan </a></li>
@@ -143,15 +148,6 @@
                 @yield('content')
             </div>
             <!-- /page content -->
-
-            <!-- footer content -->
-            <footer>
-                <div class="pull-right">
-                    Gentelella - Bootstrap Admin Template by <a href="https://colorlib.com">Colorlib</a>
-                </div>
-                <div class="clearfix"></div>
-            </footer>
-            <!-- /footer content -->
         </div>
     </div>
 
@@ -181,6 +177,12 @@
 <script src="{{asset('freelancer/js/jszip.min.js')}}"></script>
 <script src="{{asset('freelancer/js/pdfmake.min.js')}}"></script>
 <script src="{{asset('freelancer/js/vfs_fonts.js')}}"></script>
+<!-- <script src="{{asset('freelancer/chat_js/jquery.min.js')}}"></script>
+<script src="{{asset('freelancer/chat_js/metisMenu.min.js')}}"></script>
+<script src="{{asset('freelancer/chat_js/morris.min.js')}}"></script>
+<script src="{{asset('freelancer/chat_js/morris-data.js')}}"></script>
+<script src="{{asset('freelancer/chat_js/raphael.min.js')}}"></script>
+<script src="{{asset('freelancer/chat_js/sb-admin-2.js')}}"></script> -->
 
 <!-- Custom Theme Scripts -->
 <script src="{{asset('freelancer/js/custom.min.js')}}"></script>
