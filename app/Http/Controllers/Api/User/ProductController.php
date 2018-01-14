@@ -4,7 +4,9 @@ namespace App\Http\Controllers\Api\User;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Auth;
 use DB;
+use App\User;
 use App\Models\Orders;
 
 class ProductController extends Controller
@@ -49,7 +51,7 @@ class ProductController extends Controller
         $data = $request-> all();
         $data['images']= $filename;
         $datas = array(
-            'user_id'           => $id,
+            'user_id'           => $request->input('user_id'),
             'product_id'        => $request->input('productid'),
             'Transaction_id'    => $request->input('Transaction_id'),
             'nama'              => $request->input('nama'),
