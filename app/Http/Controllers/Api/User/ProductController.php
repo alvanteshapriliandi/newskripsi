@@ -1,14 +1,11 @@
 <?php
-
 namespace App\Http\Controllers\Api\User;
-
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Auth;
 use DB;
 use App\User;
 use App\Models\Orders;
-
 class ProductController extends Controller
 {
     /**
@@ -18,13 +15,10 @@ class ProductController extends Controller
      */
     public function index()
     {
-      $product = DB::select('select p.*, u.username, s.name from products p
-                join users u on u.id = p.freelancer_id
-                join subcategories s on s.id = p.subcategory_id');
-      
+      $product = DB::table('products')->paginate(12);
+                
       return response()->json($product);
     }
-
     /**
      * Show the form for creating a new resource.
      *
@@ -34,7 +28,6 @@ class ProductController extends Controller
     {
         //
     }
-
     /**
      * Store a newly created resource in storage.
      *
@@ -80,13 +73,11 @@ class ProductController extends Controller
             'description'       => $request->input('description'),
             'total'             => $request->input('total'),
         );  
-
         // return $datas;
         // return $order;
         Orders::create($datas);
         return response()->json($datas);
     }
-
     /**
      * Display the specified resource.
      *
@@ -103,7 +94,6 @@ class ProductController extends Controller
                     ->get();
       return response()->json($product);
     }
-
     /**
      * Show the form for editing the specified resource.
      *
@@ -114,7 +104,6 @@ class ProductController extends Controller
     {
         //
     }
-
     /**
      * Update the specified resource in storage.
      *
@@ -126,7 +115,6 @@ class ProductController extends Controller
     {
         //
     }
-
     /**
      * Remove the specified resource from storage.
      *
