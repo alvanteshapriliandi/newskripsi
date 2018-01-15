@@ -7,6 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 class Freelance extends Model
 {
     //
-    protected  $fillable = ['user_id', 'alamat', 'no_tlp', 'no_rekening', 'images'];
+    protected  $fillable = ['no_rekening',];
     public $table = "freelances";
 }

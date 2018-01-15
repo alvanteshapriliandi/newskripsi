@@ -9,7 +9,7 @@ use Auth;
 use App\User;
 use App\Models\Transaction;
 
-class OrderListController extends Controller
+class OrderController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -19,6 +19,7 @@ class OrderListController extends Controller
     public function index()
     {
         //
+        // return 'hai';
         $id = Auth::user()->id;
         $list = db::select('select distinct t.id, u.username, t.status, t.updated_at from orders o
             join products p on p.id = o.product_id
@@ -68,14 +69,16 @@ class OrderListController extends Controller
     public function show($id)
     {
         $freelancer_id = Auth::user()->id;
-        $data['transaction'] = db::select('select u.username, u.email, t.status from transaction t
+        $data['order_user'] = db::select('select u.username, u.email, t.status from transaction t
             join users u on u.id = t.user_id
             where t.id = '.$id);
-        $data['order_detail'] = db::select('select p.jdl_Pdk, s.name, o.* from orders o
+        $data['transaction'] = db::select('select u.username, u.email, t.status, p.jdl_Pdk, s.name, o.* from transaction t
+            join orders o on o.transaction_id = t.id
+            join users u on u.id = t.user_id
             join products p on p.id = o.product_id
             join subcategories s on s.id = p.subcategory_id
-            where p.freelancer_id = '.$freelancer_id);
-        // return $data;
+            where t.id = '.$id.'
+            and p.freelancer_id ='.$freelancer_id);
         return view('freelancer.orderlist.order_detail',$data);
     }
 
@@ -108,7 +111,6 @@ class OrderListController extends Controller
         $transaction = Transaction::find($id);
         $transaction->status=$request->status;
         $transaction->save();
-        // return [$data, $payment];
         $transaction -> update($data);
         return redirect()->route('order-list.index')->with('success', "The order <strong>Status Order</strong> has successfully been updated.");
     }

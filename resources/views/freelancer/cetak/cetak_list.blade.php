@@ -22,7 +22,6 @@
                                 <th>Status</th>
                                 <th>Date</th>
                                 <th>Time</th>
-                                <th>Action</th>
                             </tr>
                         </thead>
                         <tfoot>
@@ -33,7 +32,6 @@
                                 <th>Status</th>
                                 <th>Date</th>
                                 <th>Time</th>
-                                <th>Action</th>
                             </tr>
                         </tfoot>
                         <tbody>
@@ -43,19 +41,13 @@
                                 <td>{{$c->username}}</td>
                                 <td>{{$c->jdl_Pdk}}</td>
                                 <td>{{$c->name}}</td>
-                                @if($c->status_cetak == 0)
-                                    <td>Pesanan Belum Dicetak</td>
-                                    @elseif($c->status_cetak == 1)
-                                        <td>Menunggu Konfimasi Cetak</td>
+                                @if($c->status == 0)
+                                    <td>Menunggu Konfimasi Cetak</td>
+                                    @elseif($c->status == 1)
+                                        <td>Diterima</td>
                                 @endif
-                                <td>{{ date('F d, Y', strtotime($c->updated_at))}}</td>
-                                <td>{{ date('H:m:s', strtotime($c->updated_at))}}</td>
-                                <td>
-                                    <a href="{{route('cetak-pesanan.show', ['id' => $c->id])}}" class="btn btn-info">
-                                        <i class="fa fa-print"></i>
-                                    </a>
-                                </td>
-                                
+                                <td>{{ date('F d, Y', strtotime($c->created_at))}}</td>
+                                <td>{{ date('H:m:s', strtotime($c->created_at))}}</td>
                             </tr>
                             @endforeach
                         </tbody>

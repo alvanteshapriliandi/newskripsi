@@ -24,48 +24,6 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 
-Route::group(['prefix' => 'freelance', 'namespace' => 'Freelancer', 'middleware' => 'auth'], function () {
-  Route::resource('product', 'ProductsController');
-  Route::resource('order-list', 'OrderListController');
-  Route::resource('new-messages', 'NewController');
-  Route::resource('inbox', 'MasukController');
-  Route::resource('outbox', 'KeluarController');
-  Route::post('product/findSubCategoryname/{id}', 'ProductsController@findSubCategoryname');
-});
-Route::group(['namespace' => 'Freelancer', 'middleware' => 'auth'], function () {
-
-  Route::resource('freelance', 'FreelanceRegisterController');
-});
-
-Route::group(['namespace' => 'User'], function () {
-  // Route::resource('user', 'MenuController');
-  Route::resource('amplop', 'AmplopController');
-  Route::resource('bantalfoto', 'BantalFotoController');
-  Route::resource('brosur', 'BrosurController');
-  Route::resource('goodlebag', 'GoodleBagController');
-  Route::resource('kalender', 'KalenderController');
-  Route::resource('kaos', 'KaosController');
-  Route::resource('kartunama', 'KartuNamaController');
-  Route::resource('kopsurat', 'KopSuratController');
-  Route::resource('mug', 'MugController');
-  Route::resource('poloshirt', 'PoloShirtController');
-  Route::resource('poster', 'PosterController');
-  Route::resource('rollup', 'RollUpController');
-  Route::resource('spanduk', 'SpandukController');
-  Route::resource('squarecard', 'SquareCardController');
-  Route::resource('stempel', 'StempelController');
-  Route::resource('stiker', 'StikerController');
-  Route::resource('xbanner', 'XbannerController');
-  Route::resource('checkout', 'CheckoutController');
-  Route::resource('payment', 'PaymentController');
-  Route::resource('payment-upload', 'UploadsController');
-  Route::resource('proses', 'ProsesController');
-  Route::resource('user-new-message', 'NewController');
-  Route::resource('user-inbox', 'MasukController');
-  Route::resource('user-outbox', 'KeluarController');
-  Route::post('user/findSubCategoryname/{id}', 'MenuController@findSubCategoryname');
-});
-
 Route::resource('productlist', 'Api\User\ProductController');
 Route::resource('orders', 'Api\User\OrdersController');
 // Route::get('productlist/{id}', 'Api\User\ProductController@show');

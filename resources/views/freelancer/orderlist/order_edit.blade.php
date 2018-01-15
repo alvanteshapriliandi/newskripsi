@@ -9,12 +9,12 @@
         <div class="col-md-12 col-sm-12 col-xs-12">
             <div class="x_panel">
                 <div class="x_title">
-                    <h2>Status Product <a href="{{route('order-list.index')}}" class="btn btn-info btn-xs"><i class="fa fa-chevron-left"></i> Back </a></h2>
+                    <h2>Status Product <a href="{{route('order.index')}}" class="btn btn-info btn-xs"><i class="fa fa-chevron-left"></i> Back </a></h2>
                     <div class="clearfix"></div>
                 </div>
                 @foreach($transaction as $t)
                 <div class="x_content">
-                    <form method="post" action="{{ route('order-list.update', ['id' => $t->id]) }}" data-parsley-validate class="form-horizontal form-label-left" enctype="multipart/form-data">
+                    <form method="post" action="{{ route('order.update', ['id' => $t->id]) }}" data-parsley-validate class="form-horizontal form-label-left" enctype="multipart/form-data">
                         <input name="_method" type="hidden" value="PATCH">
                             {{ csrf_field() }}
                         <table id="datatable-buttons" class="table table-striped table-bordered">

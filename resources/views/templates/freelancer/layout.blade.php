@@ -50,7 +50,7 @@
                     <!-- menu profile quick info -->
                     <div class="profile">
                         <div class="profile_pic">
-                            <img src="{{asset('images/flat-faces-icons-circle-3.png')}}" alt="..." class="img-circle profile_img">
+                            <img src="{{asset('member/'.Auth::user()->photo)}}" alt="..." class="img-circle profile_img">
                         </div>
                         <div class="profile_info">
                             <span>Welcome,</span>
@@ -67,8 +67,8 @@
                             <h3>General</h3>
                             <ul class="nav side-menu">
                                 <li><a href="{{url('freelance/product')}}"><i class="fa fa-product-hunt"></i> Product </a></li>
-                                <li><a href="{{url('freelance/order-list')}}"><i class="fa fa-product-hunt"></i> Order List</a></li>
-                                <li><a href="{{url('freelance/message')}}"><i class="fa fa-product-hunt"></i> Messages</a></li>
+                                <li><a href="{{url('freelance/order')}}"><i class="fa fa-shopping-cart"></i> Order List</a></li>
+                                <li><a href="{{url('freelance/message')}}"><i class="fa fa-envelope"></i> Messages</a></li>
                                 <!-- <li>
                                     <a href="#">
                                         <i class="fa fa-users"></i> Pesan
@@ -81,11 +81,11 @@
                                         <li><a href="{{ url('freelance/outbox')}}">Pesan Keluar</a></li>
                                     </ul>
                                 </li> -->
-                                <li><a href="{{ url('freelance/cetak-pesanan')}}"><i class="fa fa-envelope"></i> Cetak </a></li>
+                                <li><a href="{{ url('freelance/cetak')}}"><i class="fa fa-print"></i> Cetak </a></li>
                                 <li><a href="{{ url('freelance/pembayaran')}}"><i class="fa fa-credit-card"></i> Pembayaran </a></li>
-                                <li><a href="{{ url('freelance/pembayaran')}}"><i class="fa fa-credit-card"></i> Ulasan </a></li>
-                                <li><a href=""><i class="fa fa-cog"></i> Pengaturan </a></li>
-                                <li><a href="{{url('/')}}"><i class="fa fa-paper-plane"></i> Lihat Web </a></li>
+                                <li><a href="{{ url('freelance/pembayaran')}}"><i class="fa fa-star"></i> Ulasan </a></li>
+                                <li><a href="{{ url('freelance/pengaturan')}}"><i class="fa fa-cog"></i> Pengaturan </a></li>
+                                <li><a href="{{url('/')}}"><i class="fa fa-paper-plane"></i> Lihat Web ya </a></li>
                             </ul>
                         </div>
                     </div>
@@ -121,7 +121,7 @@
                         <ul class="nav navbar-nav navbar-right">
                             <li class="">
                                 <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                                    <img src="{{asset('images/flat-faces-icons-circle-3.png')}}" alt="">{{Auth::user()->username}}
+                                    <img src="{{asset('member/'.Auth::user()->photo)}}" alt="">{{Auth::user()->username}}
                                     <span class=" fa fa-angle-down"></span>
                                 </a>
                                 <ul class="dropdown-menu dropdown-usermenu pull-right">

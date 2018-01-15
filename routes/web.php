@@ -24,11 +24,12 @@ Route::group(['prefix' => 'freelance', 'namespace' => 'Freelancer', 'middleware'
     Route::resource('upload-desain', 'CetakController');
     Route::resource('product', 'ProductsController');
     Route::resource('pembayaran', 'PembayaranController');
-    Route::resource('order-list', 'OrderListController');
+    Route::resource('order', 'OrderController');
     Route::resource('new-messages', 'NewController');
     Route::resource('inbox', 'MasukController');
     Route::resource('outbox', 'KeluarController');
-    Route::resource('cetak-pesanan', 'CetakController');
+    Route::resource('cetak', 'CetakPesananController');
+    Route::resource('pengaturan', 'PengaturanController');
     Route::resource('message', 'MessagesController');
     Route::post('product/findSubCategoryname/{id}', 'ProductsController@findSubCategoryname');
 });

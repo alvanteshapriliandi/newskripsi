@@ -48,8 +48,8 @@
                                 <td>{{ date('F d, Y', strtotime($t->updated_at))}}</td>
                                 <td>{{ date('H:m:s', strtotime($t->updated_at))}}</td>
                                 <td>
-                                    <a href="{{route('order-list.edit', ['id' => $t->id])}}" class="btn btn-success"><i class="fa fa-pencil"></i></a>
-                                    <a href="{{route('order-list.show', ['id' => $t->id])}}" class="btn btn-info"><i class="fa fa-eye"></i></a>
+                                    <a href="{{route('order.edit', ['id' => $t->id])}}" class="btn btn-success"><i class="fa fa-pencil"></i></a>
+                                    <a href="{{route('order.show', ['id' => $t->id])}}" class="btn btn-info"><i class="fa fa-eye"></i></a>
                                 </td>
                             </tr>
                             @endforeach

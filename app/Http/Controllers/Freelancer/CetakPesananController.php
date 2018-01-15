@@ -10,7 +10,7 @@ use Auth;
 use App\Models\Transaction;
 use App\Models\Cetak;
 
-class CetakController extends Controller
+class CetakPesananController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -20,12 +20,13 @@ class CetakController extends Controller
     public function index()
     {
         //
+        // return 'hai';
         $id = Auth::user()->id;
-        $data['cetak'] = db::select('select t.id, t.updated_at, t.status_cetak, u.username, p.jdl_Pdk, s.name from transaction t
-            join orders o on o.id = t.order_id
+        $data['cetak'] = db::select('select u.username, p.jdl_Pdk, s.name, c.status, c.created_at from cetaks c
+            join orders o on  o.id = c.order_id
+            join users u on u.id = o.user_id
             join products p on p.id = o.product_id
-            join subcategories s on p.subcategory_id = s.id
-            join users u on u.id = t.user_id
+            join subcategories s on s.id = p.subcategory_id
             where p.freelancer_id = '.$id);
         // return $data;
         return view('freelancer.cetak.cetak_list',$data);
@@ -50,28 +51,6 @@ class CetakController extends Controller
     public function store(Request $request)
     {
         //
-        $id = Auth::user()->id;
-        $file=$request->file('images');
-        $filename = $file->getClientOriginalName();
-       // return $filename;
-
-        $file->move(public_path().'/cetak/',$filename);
-        $data = $request-> all();
-        $data['images']= $filename;
-        //return $data;
-        $datas = array(
-          'freelancer_id'   => $id,
-          'transaction_id'  => $request->input('trasaction_id'),
-          'deskripsi_cetak' => $request->input('deskripsi_cetak'),
-          'images'          => $data['images'],
-        );
-        $status = Transaction::find($datas['transaction_id']);
-        $status->status_cetak=0;
-        $status->save();
-        // return $datas;
-        
-        Cetak::create($datas);
-        return redirect()->route('cetak-pesanan.index')->with('success', "Pesanan Berhasil di kirim, Silahkan tunggu konfimasi selanjutnya oleh admin.");
     }
 
     /**
@@ -83,9 +62,6 @@ class CetakController extends Controller
     public function show($id)
     {
         //
-        $data['cetak'] = db::select('select u.username, t.* from transaction t
-            join users u on u.id = t.user_id');
-        return view('freelancer.cetak.cetak_show',$data);
     }
 
     /**
