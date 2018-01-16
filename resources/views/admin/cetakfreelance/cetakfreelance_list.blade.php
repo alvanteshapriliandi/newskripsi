@@ -16,7 +16,7 @@
                     <table id="datatable-buttons" class="table table-hover table-responsive">
                         <thead>
                             <tr>
-                                <th>Freelance Name</th>
+                                <th>username</th>
                                 <th>Product Name</th>
                                 <th>Sub Category</th>
                                 <th>Status</th>
@@ -27,7 +27,7 @@
                         </thead>
                         <tfoot>
                             <tr>
-                                <th>Freelance Name</th>
+                                <th>username</th>
                                 <th>Product Name</th>
                                 <th>Sub Category</th>
                                 <th>Status</th>
@@ -37,7 +37,23 @@
                             </tr>
                         </tfoot>
                         <tbody>
-                            
+                            @foreach($print as $c)
+                            <tr>
+                                <td>{{$c->username}}</td>
+                                <td>{{$c->jdl_Pdk}}</td>
+                                <td>{{$c->name}}</td>
+                                @if($c->status == 0)
+                                    <td>Menunggu Konfimasi</td>
+                                    @else
+                                        <td>Dalam Proses Pencetakan</td>
+                                @endif
+                                <td>{{ date('F d, Y', strtotime($c->created_at))}}</td>
+                                <td>{{ date('H:m:s', strtotime($c->created_at))}}</td>
+                                <td>
+                                    <a href="{{route('cetakpesanan.edit', ['id'=>$c->id])}}" class="btn btn-success"><i class="fa fa-pencil"></i></a>
+                                </td>
+                            </tr>
+                            @endforeach
                         </tbody>
                     </table>
                 </div>

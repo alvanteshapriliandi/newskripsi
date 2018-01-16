@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 16 Jan 2018 pada 09.06
+-- Generation Time: 16 Jan 2018 pada 11.01
 -- Versi Server: 10.1.26-MariaDB
 -- PHP Version: 7.1.9
 
@@ -44,6 +44,20 @@ CREATE TABLE `banks` (
 
 INSERT INTO `banks` (`id`, `atas_nama`, `name_bank`, `images_bank`, `no_rekening`, `created_at`, `updated_at`) VALUES
 (1, 'Techno Grhapic', 'Mandiri', 'Bank-Mandiri-Logo-Vector-Image.png', '1234567', '2018-01-04 17:00:00', NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `carts`
+--
+
+CREATE TABLE `carts` (
+  `id` int(11) NOT NULL,
+  `user_id` int(11) UNSIGNED NOT NULL,
+  `item_id` int(11) UNSIGNED NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -179,6 +193,48 @@ CREATE TABLE `images` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `items`
+--
+
+CREATE TABLE `items` (
+  `id` int(11) UNSIGNED NOT NULL,
+  `user_id` int(11) UNSIGNED NOT NULL,
+  `product_id` int(11) UNSIGNED NOT NULL,
+  `Transaction_id` int(11) UNSIGNED NOT NULL,
+  `nama` varchar(50) DEFAULT NULL,
+  `jabatan` varchar(25) DEFAULT NULL,
+  `nama_perushaan` varchar(50) DEFAULT NULL,
+  `alamat` text,
+  `no_telepon` varchar(25) DEFAULT NULL,
+  `email` varchar(100) DEFAULT NULL,
+  `jenis_kertas` varchar(100) DEFAULT NULL,
+  `kuantitas` int(10) DEFAULT NULL,
+  `model` varchar(100) DEFAULT NULL,
+  `kain` varchar(100) DEFAULT NULL,
+  `ukuran` varchar(100) DEFAULT NULL,
+  `warna` varchar(20) DEFAULT NULL,
+  `jenis_cetak` varchar(50) DEFAULT NULL,
+  `bahan` varchar(100) DEFAULT NULL,
+  `sisi` varchar(50) DEFAULT NULL,
+  `jilid` varchar(25) DEFAULT NULL,
+  `lembar` varchar(25) DEFAULT NULL,
+  `cetak_depan` varchar(25) DEFAULT NULL,
+  `cetak_belakang` varchar(25) DEFAULT NULL,
+  `cetak_lengan_kanan` varchar(25) DEFAULT NULL,
+  `cetak_lengan_kiri` varchar(25) DEFAULT NULL,
+  `kaos_metode` varchar(50) DEFAULT NULL,
+  `images` text,
+  `description` text,
+  `total` int(11) NOT NULL,
+  `status` int(1) NOT NULL DEFAULT '0',
+  `ket` int(1) NOT NULL DEFAULT '3',
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -484,6 +540,12 @@ ALTER TABLE `banks`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `carts`
+--
+ALTER TABLE `carts`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `categories`
 --
 ALTER TABLE `categories`
@@ -583,6 +645,12 @@ ALTER TABLE `users`
 --
 ALTER TABLE `banks`
   MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `carts`
+--
+ALTER TABLE `carts`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `categories`

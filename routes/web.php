@@ -73,7 +73,7 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => 'auth
     Route::resource('userlist', 'UserListController');
     Route::resource('freelancelist', 'FreelanceListController');
     Route::resource('bank', 'BankController');
-    Route::resource('cetak-pensanan', 'CetakController');
+    Route::resource('cetakpesanan', 'CetakController');
     Route::resource('orderlist', 'OrderController');
     Route::resource('freelance-payment', 'FreelancePaymentController');
     Route::resource('cekpembayaran', 'CekPembayaranController');

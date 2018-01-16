@@ -66,7 +66,7 @@
                                 <li><a href="{{route('products.index')}}"><i class="fa fa-product-hunt"></i> Product </a></li>
                                 <li><a href="{{url('admin/orderlist')}}"><i class="fa fa-shopping-basket"></i> Order List </a></li>
                                 <li><a href="{{url('admin/orderlist')}}"><i class="fa fa-envelope"></i> Pesan </a></li>
-                                <li><a href="{{url('admin/cetak-pensanan')}}"><i class="fa fa-print"></i> Cetak </a></li>
+                                <li><a href="{{url('admin/cetakpesanan')}}"><i class="fa fa-print"></i> Cetak </a></li>
                                 <li><a href="{{url('admin/orderlist')}}"><i class="fa fa-credit-card-alt"></i> Pembayaran </a></li>
                                 <li>
                                     <a href="#">

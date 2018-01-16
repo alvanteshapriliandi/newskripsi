@@ -16,14 +16,14 @@ class CetakController extends Controller
     public function index()
     {
         //
-        $data['cetak'] = db::select('select u.username, p.jdl_Pdk, s.name, c.status from cetaks c
+        $data['print'] = db::select('select u.username, p.jdl_Pdk, s.name, c.status, c.created_at, c.id from cetaks c
             join  messages m on m.id = c.message_id
             join orders o on o.id = m.order_id
             join users u on u.id = m.to_user_id
             join products p on p.id = o.product_id
             join subcategories s on s.id = p.subcategory_id');
-        return $data;
-        return view('admin.cetakfreelance.cetakfreelance_list');
+        // return $data;
+        return view('admin.cetakfreelance.cetakfreelance_list',$data);
     }
 
     /**
