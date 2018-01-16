@@ -17,36 +17,37 @@
                             <thead>
                                 <tr>
                                     <th>Username</th>
-                                    <th>Name Product</th>
-                                    <th>Subcategory</th>
                                     <th>Status</th>
                                     <th>Date</th>
                                     <th>Time</th>
+                                    <th>Action</th>
                                 </tr>
                             </thead>
                             <tfoot>
                                 <tr>
                                     <th>Username</th>
-                                    <th>Name Product</th>
-                                    <th>Subcategory</th>
                                     <th>Status</th>
                                     <th>Date</th>
                                     <th>Time</th>
+                                    <th>Action</th>
                                 </tr>
                             </tfoot>
                             <tbody>
-                                @foreach($order as $o)
+                                @foreach($transaction as $t)
                                 <tr>
-                                    <td>{{$o->username}}</td>
-                                    <td>{{$o->jdl_Pdk}}</td>
-                                    <td>{{$o->name}}</td>
-                                    @if($o->status == 0)
-                                        <td>Belum ada Transaksi</td>
-                                        @else
-                                        <td>Sudah ada Transaksi</td>
+                                    <td>{{$t->username}}</td>
+                                    @if($t->status == 0)
+                                        <td>Order Pending</td>
+                                        @elseif($t->status == 1)
+                                        <td>Menunggu Konfirmasi</td>
+                                        @elseif($t->status == 2)
+                                        <td>Dalam Proses Pengerjaan</td>
                                     @endif
-                                    <td>{{ date('F d, Y', strtotime($o->created_at))}}</td>
-                                    <td>{{ date('H:m:s', strtotime($o->created_at))}}</td>
+                                    <td>{{ date('F d, Y', strtotime($t->created_at))}}</td>
+                                    <td>{{ date('H:m:s', strtotime($t->created_at))}}</td>
+                                    <td>
+                                        <a href="{{route('orderlist.show', ['id' => $t->id])}}" class="btn btn-info"><i class="fa fa-eye"></i></a>
+                                    </td>
                                 </tr>
                                 @endforeach
                             </tbody>

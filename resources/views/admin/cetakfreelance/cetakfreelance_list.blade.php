@@ -37,28 +37,7 @@
                             </tr>
                         </tfoot>
                         <tbody>
-                            @foreach($cetak as $c)
-                            <tr>
-                                <th>{{$c->username}}</th>
-                                <td>{{$c->jdl_Pdk}}</td>
-                                <td>{{$c->name}}</td>
-                                @if($c->status_cetak == 0)
-                                    <td>Pesanan Belum Dicetak</td>
-                                    @elseif($c->status_cetak == 1)
-                                        <td>Menunggu Konfimasi Cetak</td>
-                                    @elseif($c->status_cetak == 2)
-                                        <td>Diterima</td>
-                                @endif
-                                <td>{{ date('F d, Y', strtotime($c->updated_at))}}</td>
-                                <td>{{ date('H:m:s', strtotime($c->updated_at))}}</td>
-                                <td>
-                                    <a href="{{route('cetak-freelance.show', ['id' => $c->id])}}" class="btn btn-info">
-                                        <i class="fa fa-print"></i>
-                                    </a>
-                                </td>
-                                
-                            </tr>
-                            @endforeach
+                            
                         </tbody>
                     </table>
                 </div>

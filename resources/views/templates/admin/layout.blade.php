@@ -62,10 +62,15 @@
                             <h3>General</h3>
                             <ul class="nav side-menu">
                                 <li><a href="{{url('admin')}}"><i class="fa fa-dashboard"></i> Dashboard </a></li>
+                                <li><a href="{{route('products.index')}}"><i class="fa fa-folder-open"></i> Material </a></li>
                                 <li><a href="{{route('products.index')}}"><i class="fa fa-product-hunt"></i> Product </a></li>
+                                <li><a href="{{url('admin/orderlist')}}"><i class="fa fa-shopping-basket"></i> Order List </a></li>
+                                <li><a href="{{url('admin/orderlist')}}"><i class="fa fa-envelope"></i> Pesan </a></li>
+                                <li><a href="{{url('admin/cetak-pensanan')}}"><i class="fa fa-print"></i> Cetak </a></li>
+                                <li><a href="{{url('admin/orderlist')}}"><i class="fa fa-credit-card-alt"></i> Pembayaran </a></li>
                                 <li>
                                     <a href="#">
-                                        <i class="fa fa-users"></i> Data
+                                        <i class="fa fa-users"></i> Data Pengguna
                                         <span class="fa fa-chevron-down"></span>
                                     </a>
 
@@ -73,43 +78,6 @@
                                         <li><a href="{{url('admin/userlist')}}">User</a></li>
                                         <li><a href="{{url('admin/freelancelist')}}">Freelance</a></li>
                                         <li><a href="{{url('admin/bank')}}">Bank</a></li>
-                                    </ul>
-                                </li>
-                                <li><a href="{{url('admin/orderlist')}}"><i class="fa fa-list-alt"></i> Order </a></li>
-                                <li>
-                                    <a href="#">
-                                        <i class="fa fa-users"></i> Pembayaran
-                                        <span class="fa fa-chevron-down"></span>
-                                    </a>
-
-                                    <ul class="nav child_menu">
-                                        <li><a href="{{url('admin/cekpembayaran')}}">Cek Pembayaran</a></li>
-                                        <li><a href="{{url('admin/freelance-payment')}}">Freelance</a></li>
-                                    </ul>
-                                </li>
-                                <li><a href=""><i class="fa fa-credit-card"></i> Retur </a></li>
-                                <li><a href="{{url("")}}"><i class="fa fa-credit-card"></i> Retur </a></li>
-                                <li>
-                                    <a href="#">
-                                        <i class="fa fa-users"></i> Pesan
-                                        <span class="fa fa-chevron-down"></span>
-                                    </a>
-
-                                    <ul class="nav child_menu">
-                                        <li><a href="{{url('admin/new-message/create')}}">Pesan Baru</a></li>
-                                        <li><a href="{{ url('admin/inbox-message')}}">Pesan Masuk</a></li>
-                                        <li><a href="{{ url('admin/outbox-message')}}">Pesan Keluar</a></li>
-                                    </ul>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <i class="fa fa-users"></i> Cetak
-                                        <span class="fa fa-chevron-down"></span>
-                                    </a>
-
-                                    <ul class="nav child_menu">
-                                        <li><a href="{{url('admin/cetak-mandiri')}}">Mandiri</a></li>
-                                        <li><a href="{{url('admin/cetak-freelance')}}">Freelance</a></li>
                                     </ul>
                                 </li>
                                 <li><a href=""><i class="fa fa-cog"></i> Pengaturan </a></li>
