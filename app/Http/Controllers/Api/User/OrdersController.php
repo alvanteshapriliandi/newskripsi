@@ -8,6 +8,7 @@ use App\Models\Orders;
 use Auth;
 use DB;
 use App\User;
+use App\Order;
 
 class OrdersController extends Controller
 {
@@ -41,7 +42,47 @@ class OrdersController extends Controller
      */
     public function store(Request $request)
     {
-        //
+      $checkout = $request->get('checkout');
+      try {
+        $user_id = Auth::user()->id;
+        $data = array(
+          'user_id' => $user_id
+        );
+        if(DB::table('transaction')->where('user_id', '=', $user_id)->exists()) {    
+          
+          $transaction = DB::table('transaction')->where('user_id', '=', Auth::user()->id)->first();                 
+          return response()->json($transaction);
+        } else {
+          Cart::create($data);
+          $transaction = DB::table('transaction')->where('user_id', '=', Auth::user()->id)->first();  
+          for($i = 0; $i < count($checkout); $i++){
+            Order::create([
+              'product_id' => $checkout[$i]->product_id,
+              'transaction_id' => $transaction->id,
+              'jenis_kertas' => $checkout[$i]->jenis_kertas,
+              'kuantitas' => $checkout[$i]->kuantitas,
+              'model' => $checkout[$i]->model,
+              'kain' => $checkout[$i]->kain,
+              'ukuran' => $checkout[$i]->ukuran,
+              'warna' => $checkout[$i]->warna,
+              'jenis_cetak' => $checkout[$i]->jenis_cetak,
+              'bahan' => $checkout[$i]->bahan,
+              'sisi' => $checkout[$i]->sisi,
+              'jilid' => $checkout[$i]->jilid,
+              'lembar' => $checkout[$i]->lembar,
+              'cetak_depan' => $checkout[$i]->cetak_depan,
+              'cetak_belakang' => $checkout[$i]->cetak_belakang,
+              'cetak_lengan_kanan' => $checkout[$i]->cetak_lengan_kanan,
+              'cetak_lengan_kiri' => $checkout[$i]->cetak_lengan_kiri,
+              'kaos_metode' => $checkout[$i]->kaos_metode
+            ]);
+          }
+          return response()->json($transaction);
+        }
+       
+      } catch (Exception $e ) {
+        return response()->json($e);
+      }
     }
 
     /**

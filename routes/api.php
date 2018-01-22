@@ -27,6 +27,8 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::resource('productlist', 'Api\User\ProductController');
 Route::resource('orders', 'Api\User\OrdersController');
 // Route::get('productlist/{id}', 'Api\User\ProductController@show');
+Route::resource('cart', 'Api\User\CartController');
+Route::resource('item', 'Api\User\ItemController');
 
 Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => 'auth'], function () {
   Route::resource('products', 'ProductController');
