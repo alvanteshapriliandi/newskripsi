@@ -91,7 +91,7 @@ class ProductController extends Controller
                     ->join('subcategories','subcategories.id', '=', 'products.subcategory_id')
                     ->select('products.*', 'users.username', 'subcategories.name')  
                     ->where('products.id', '=', $id)
-                    ->get();
+                    ->first();
       return response()->json($product);
     }
     /**
@@ -123,6 +123,7 @@ class ProductController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $product = DB::table('products')->where('id', '=', $id)->delete();
+        return response()->json('code =', 200);
     }
 }
