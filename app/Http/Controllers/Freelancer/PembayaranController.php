@@ -19,14 +19,13 @@ class PembayaranController extends Controller
     {
         //
         $id = Auth::user()->id;
-        $data['pembayaran'] = db::select('select p.jdl_Pdk, s.name, o.total, pem.pendapatan from freelancer_payments pem
-            join cetaks c on c.id = pem.cetak_id
-            join orders o on o.id = c.order_id
+        $data['pembayaran'] = db::select('select p.jdl_Pdk, s.name, o.total, pem.updated_at, pem.pendapatan from freelancer_payments pem
+            join orders o on o.id = pem.order_id
             join products p on p.id = o.product_id
             join subcategories s on s.id = p.subcategory_id
             where p.freelancer_id = '.$id);
         
-        //  return $data;
+         // return $data;
         return view('Freelancer.pembayaran.pembayaran_list',$data);
     }
 

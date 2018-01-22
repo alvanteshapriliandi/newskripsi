@@ -30,6 +30,9 @@
     <link href="{{asset('freelancer/css/fixedHeader.bootstrap.min.css')}}" rel="stylesheet">
     <link href="{{asset('freelancer/css/responsive.bootstrap.min.css')}}" rel="stylesheet">
     <link href="{{asset('freelancer/css/scroller.bootstrap.min.css')}}" rel="stylesheet">
+   
+
+
 </head>
 <body class="nav-md">
     <div class="container body">
@@ -62,12 +65,12 @@
                             <h3>General</h3>
                             <ul class="nav side-menu">
                                 <li><a href="{{url('admin')}}"><i class="fa fa-dashboard"></i> Dashboard </a></li>
-                                <li><a href="{{route('products.index')}}"><i class="fa fa-folder-open"></i> Material </a></li>
+                                <li><a href="{{route('material.index')}}"><i class="fa fa-folder-open"></i> Material </a></li>
                                 <li><a href="{{route('products.index')}}"><i class="fa fa-product-hunt"></i> Product </a></li>
                                 <li><a href="{{url('admin/orderlist')}}"><i class="fa fa-shopping-basket"></i> Order List </a></li>
                                 <li><a href="{{url('admin/orderlist')}}"><i class="fa fa-envelope"></i> Pesan </a></li>
                                 <li><a href="{{url('admin/cetakpesanan')}}"><i class="fa fa-print"></i> Cetak </a></li>
-                                <li><a href="{{url('admin/orderlist')}}"><i class="fa fa-credit-card-alt"></i> Pembayaran </a></li>
+                                <li><a href="{{url('admin/freelance-payment')}}"><i class="fa fa-credit-card-alt"></i> Pembayaran </a></li>
                                 <li>
                                     <a href="#">
                                         <i class="fa fa-users"></i> Data Pengguna
@@ -164,6 +167,15 @@
 <script src="{{asset('freelancer/js/jszip.min.js')}}"></script>
 <script src="{{asset('freelancer/js/pdfmake.min.js')}}"></script>
 <script src="{{asset('freelancer/js/vfs_fonts.js')}}"></script>
+<script src="{{asset('freelancer/js/jquery.multifield.min.js')}}"></script>
+
+<script>
+        $('.form-content').multifield({
+            section: '.group',
+            btnAdd:'#btnAdd',
+            btnRemove:'.btnRemove',
+        });
+    </script>
 
 <!-- Custom Theme Scripts -->
 <script src="{{asset('freelancer/js/custom.min.js')}}"></script>
@@ -247,6 +259,77 @@
 
         TableManageButtons.init();
     });
+</script>
+<script language="javascript">
+   function tambahHobi() {
+     var idf = document.getElementById("idf").value;
+     console.log(idf)
+     var stre;
+     stre="<p id='srow" + idf + "'><div class='form-group{{ $errors->has('harga_awal') ? ' has-error' : '' }} col-md-6'><label class='col-xs-12' for='harga_awal'>Bahan <span class='required'>*</span></label><div class='col-xs-12'><input type='text' value='{{ Request::old('harga_awal') ?: '' }}'' id='harga_awal' name='harga_awal[]' class='form-control col-md-7 col-xs-12'>@if ($errors->has('harga_awal'))<span class='help-block'>{{ $errors->first('harga_awal') }}</span>@endif</div></div><div class='form-group{{ $errors->has('harga_awal') ? ' has-error' : '' }} col-md-6'><label class='col-xs-12' for='harga_awal'>Harga <span class='required'>*</span></label><div class='col-xs-12'><input type='text' value='{{ Request::old('harga_awal') ?: '' }}'' id='harga_awal' name='harga_awal[]' class='form-control col-md-7 col-xs-12'>@if ($errors->has('harga_awal'))<span class='help-block'>{{ $errors->first('harga_awal') }}</span>@endif</div></div><a href='#' style='color:#3399FD;' onclick='hapusElemen(\"#srow" + idf + "\"); return false;'>Hapus</a></p>";
+     $("#divHobi").append(stre);
+     idf = (idf-1) + 3;
+     document.getElementById("idf").value = idf;
+   }
+   // function tambahHobi() {
+   //   var idf = document.getElementById("idf").value;
+   //   var stre;
+   //   stre="<p id='srow" + idf + "'><input type='text' size='40' name='rincian_hobi[]' placeholder='Masukkan Hobi' /> <input type='text' size='40' name='rincian_hobi[]' placeholder='Masukkan Hobi' /> <a href='#' style='color:#3399FD;' onclick='hapusElemen(\"#srow" + idf + "\"); return false;'>Hapus</a></p>";
+   //   $("#divHobi").append(stre);
+   //   idf = (idf-1) + 3;
+   //   document.getElementById("idf").value = idf;f
+   // }
+   function hapusElemen(idf) {
+     $(idf).remove();
+   }
+</script>
+<script>
+
+    $(document).ready(function() {
+        $(document).on('change','.category',function(){
+            //console.log("hmm its change");
+            var cat_id=$(this).val();
+            console.log(cat_id);
+            var div=$(this).parent();
+            var op=" ";
+            var token = $(this).data("token");
+
+            $.ajax({
+
+                type:'post',
+                url: '/admin/material/findSubCategoryname/'+cat_id,
+                data:{
+                    "id":cat_id,
+                    "_method":"post",
+                    "_token": token
+                },
+                // '{!!URL::to('freelancer/product/findSubCategoryname')!!}',
+
+                success:function(datas){
+                    console.log('success');
+
+                    console.log(datas);
+
+                    // console.log(datas.length);
+                    // op+='<option value="0" selected disabled>chose product</option>';
+
+
+                   $('#subcategory').html(" ");
+                    for(var i=0;i<datas.length;i++){
+
+
+                    console.log(datas[i]);
+                     $('#subcategory').append('<option value="'+datas[i].id+'">'+datas[i].name+'</option>');
+                   }
+                },
+                error:function(err){
+                    console.log(err);
+                }
+
+
+            });
+        });
+    });
+
 </script>
 </body>
 </html>

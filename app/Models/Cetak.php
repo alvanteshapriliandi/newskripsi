@@ -8,10 +8,7 @@ class Cetak extends Model
 {
     //
     protected $fillable = [
-        'freelancer_id',
-        'transaction_id',
-        'images',
-        'deskripsi_cetak'
+        'status'
     ];
     public $table = "cetaks";
 }

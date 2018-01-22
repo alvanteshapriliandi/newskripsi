@@ -79,7 +79,11 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => 'auth
     Route::resource('cekpembayaran', 'CekPembayaranController');
     Route::resource('new-message', 'NewController');
     Route::resource('inbox-message', 'MasukController');
+    Route::resource('material', 'MaterialController');
     Route::resource('outbox-message', 'KeluarController');
+    Route::post('material/findSubCategoryname/{id}', 'MaterialController@findSubCategoryname');
+    Route::get('material/createbyid/{id}', 'MaterialController@createbyid');
+    // Route::get('download', 'CetakController@getDownload');
     Route::get('/', 'AdminController@index');
     Route::get('/login', 'AuthController@login')->name('login_admin');
     // Route::post('/process'.'AuthController@adminLogin')->name('process_login');

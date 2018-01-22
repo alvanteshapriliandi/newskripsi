@@ -8,6 +8,7 @@ use DB;
 use Auth;
 use App\User;
 use App\Models\Transaction;
+use App\Models\Orders;
 
 class OrderController extends Controller
 {
@@ -66,19 +67,7 @@ class OrderController extends Controller
     {
         //
         // return $id;
-        $data['data_order'] = db::select('select u.username,t.id, t.kode_invoice, t.images, b.name_bank from transaction t
-            join banks b on b.id = t.bank_id
-            join users u on u.id = t.user_id
-            where t.id = '.$id);
-        // return $data;
-        $data['order_list'] = db::select('select u.username, p.jdl_Pdk, s.name, o.kuantitas, o.total from orders o
-            join products p on p.id = o.product_id
-            join users u on u.id = p.freelancer_id
-            join subcategories s on s.id = p.subcategory_id
-            join transaction t on t.id = o.Transaction_id
-            where o.Transaction_id = '.$id);
-        // return $data['order_list'];
-        return view('admin.order.order_show',$data);
+        
     }
 
     /**
@@ -90,6 +79,20 @@ class OrderController extends Controller
     public function edit($id)
     {
         //
+        $data['data_order'] = db::select('select distinct t.status,u.username, t.id, t.kode_invoice, t.images, b.name_bank from transaction t
+            join banks b on b.id = t.bank_id
+            join orders o on o.transaction_id = t.id
+            join users u on u.id = t.user_id
+            where t.id = '.$id);
+        // return $data;
+        $data['order_list'] = db::select('select u.username, p.jdl_Pdk, s.name, o.kuantitas, o.total from orders o
+            join products p on p.id = o.product_id
+            join users u on u.id = p.freelancer_id
+            join subcategories s on s.id = p.subcategory_id
+            join transaction t on t.id = o.Transaction_id
+            where o.Transaction_id = '.$id);
+        // return $data['order_list'];
+        return view('admin.order.order_show',$data);
     }
 
     /**
@@ -105,8 +108,9 @@ class OrderController extends Controller
         // return 'hai';
         $data = $request->all();
         $transaction = Transaction::find($id);
-        $transaction->status=$request->status;
         // return $transaction;
+        $transaction->status=$request->status;
+        // return $orderlist;
         $transaction->save();
         $transaction -> update($data);
         return redirect()->route('orderlist.index')->with('success', "The order <strong>Status Order</strong> has successfully been updated.");
