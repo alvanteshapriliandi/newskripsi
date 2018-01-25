@@ -31,9 +31,10 @@ Route::resource('cart', 'Api\User\CartController');
 Route::resource('item', 'Api\User\ItemController');
 Route::get('provinsi', 'Api\User\OngkirController@provinsi');
 Route::get('city/{province}', 'Api\User\OngkirController@city');
-Route::get('cost', 'Api\User\OngkirController@cost');
+Route::get('cost/{kurir}', 'Api\User\OngkirController@cost');
 Route::post('user/alamat', 'Api\User\AlamatController@store');
 Route::get('user/alamat', 'Api\User\AlamatController@index');
+Route::get('categories', 'Api\CategoryController@index');
 
 
 Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => 'auth'], function () {
