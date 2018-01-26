@@ -49,34 +49,69 @@ class ItemController extends Controller
      */
     public function store(Request $request)
     {
+      $user_id = Auth::user()->id; 
       $cart = DB::table('carts')->where('user_id', '=', Auth::user()->id)->first();
       $items = DB::table('items')->where('product_id', '!=', $request->product_id);
-      if(DB::table('items')->where('id', '=', $request->id)->exists()){
-        $data = DB::table('items')->where('id', '=', $request->id)
-                                  ->update([
-                                    'jenis_kertas' => $request->jenis_kertas,
-                                    'kuantitas' => $request->kuantitas,
-                                    'model' => $request->model,
-                                    'kain' => $request->kain,
-                                    'ukuran' => $request->ukuran,
-                                    'warna' => $request->warna,
-                                    'jenis_cetak' => $request->jenis_cetak,
-                                    'bahan' => $request->bahan,
-                                    'sisi' => $request->sisi,
-                                    'jilid' => $request->jilid,
-                                    'lembar' => $request->lembar,
-                                    'cetak_depan' => $request->cetak_depan,
-                                    'cetak_belakang' => $request->cetak_belakang,
-                                    'cetak_lengan_kanan' => $request->cetak_lengan_kanan,
-                                    'cetak_lengan_kiri' => $request->cetak_lengan_kiri,
-                                    'kaos_metode' => $request->kaos_metode
-                                  ]);
-        $detail = DB::table('items')->join('products', 'items.product_id', '=', 'products.id')
-                                    ->select('items.*', 'products.freelancer_id', 'products.subcategory_id', 'products.jdl_Pdk', 'products.harga_awal', 'products.images')
-                                    ->where('items.id', '=', $request->id)
-                                    ->first();    
-        return response()->json($detail);    
+
+      if(DB::table('carts')->where('user_id', '=', $user_id)->exists()){
+        if(DB::table('items')->where('id', '=', $request->id)->exists()){
+          $data = DB::table('items')->where('id', '=', $request->id)
+                                    ->update([
+                                      'jenis_kertas' => $request->jenis_kertas,
+                                      'kuantitas' => $request->kuantitas,
+                                      'model' => $request->model,
+                                      'kain' => $request->kain,
+                                      'ukuran' => $request->ukuran,
+                                      'warna' => $request->warna,
+                                      'jenis_cetak' => $request->jenis_cetak,
+                                      'bahan' => $request->bahan,
+                                      'sisi' => $request->sisi,
+                                      'jilid' => $request->jilid,
+                                      'lembar' => $request->lembar,
+                                      'cetak_depan' => $request->cetak_depan,
+                                      'cetak_belakang' => $request->cetak_belakang,
+                                      'cetak_lengan_kanan' => $request->cetak_lengan_kanan,
+                                      'cetak_lengan_kiri' => $request->cetak_lengan_kiri,
+                                      'kaos_metode' => $request->kaos_metode
+                                    ]);
+          $detail = DB::table('items')->join('products', 'items.product_id', '=', 'products.id')
+                                      ->select('items.*', 'products.freelancer_id', 'products.subcategory_id', 'products.jdl_Pdk', 'products.harga_awal', 'products.images')
+                                      ->where('items.id', '=', $request->id)
+                                      ->first();    
+          return response()->json($detail);    
+        } else {
+          $data = array(
+            'product_id' => $request->product_id,
+            'cart_id' => $cart->id,
+            'jenis_kertas' => $request->jenis_kertas,
+            'kuantitas' => $request->kuantitas,
+            'model' => $request->model,
+            'kain' => $request->kain,
+            'ukuran' => $request->ukuran,
+            'warna' => $request->warna,
+            'jenis_cetak' => $request->jenis_cetak,
+            'bahan' => $request->bahan,
+            'sisi' => $request->sisi,
+            'jilid' => $request->jilid,
+            'lembar' => $request->lembar,
+            'cetak_depan' => $request->cetak_depan,
+            'cetak_belakang' => $request->cetak_belakang,
+            'cetak_lengan_kanan' => $request->cetak_lengan_kanan,
+            'cetak_lengan_kiri' => $request->cetak_lengan_kiri,
+            'kaos_metode' => $request->kaos_metode
+          );
+          $item = Item::create($data); 
+          $detail = DB::table('items')->join('products', 'items.product_id', '=', 'products.id')
+                                      ->select('items.*', 'products.freelancer_id', 'products.subcategory_id', 'products.jdl_Pdk', 'products.harga_awal', 'products.images')
+                                      ->where('items.id', '=', $item->id)
+                                      ->first();
+          return response()->json($detail);
+        }       
       } else {
+        Cart::create([
+          'user_id' => $user_id
+        ]);
+        $cart = DB::table('carts')->where('user_id', '=', Auth::user()->id)->first();
         $data = array(
           'product_id' => $request->product_id,
           'cart_id' => $cart->id,
@@ -103,7 +138,9 @@ class ItemController extends Controller
                                     ->where('items.id', '=', $item->id)
                                     ->first();
         return response()->json($detail);
-      }       
+      }
+      
+      
     }
 
     /**
