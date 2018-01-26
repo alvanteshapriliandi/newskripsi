@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use DB;
 
 class SubCategoryController extends Controller
 {
@@ -46,7 +47,9 @@ class SubCategoryController extends Controller
      */
     public function show($id)
     {
-        //
+        $products = DB::table('products')->where('subcategory_id', '=', $id)->get();
+
+        return response()->json($products);
     }
 
     /**

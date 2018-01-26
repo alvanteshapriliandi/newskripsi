@@ -4,14 +4,18 @@ namespace App\Http\Controllers\Api\User;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Models\Orders;
 use Auth;
 use DB;
 use App\User;
 use App\Order;
+use App\Transaction;
 
 class OrdersController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth:api');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -42,43 +46,46 @@ class OrdersController extends Controller
      */
     public function store(Request $request)
     {
-      $checkout = $request->get('checkout');
       try {
         $user_id = Auth::user()->id;
-        $data = array(
-          'user_id' => $user_id
-        );
-        if(DB::table('transaction')->where('user_id', '=', $user_id)->exists()) {    
-          
-          $transaction = DB::table('transaction')->where('user_id', '=', Auth::user()->id)->first();                 
-          return response()->json($transaction);
-        } else {
-          Cart::create($data);
-          $transaction = DB::table('transaction')->where('user_id', '=', Auth::user()->id)->first();  
-          for($i = 0; $i < count($checkout); $i++){
-            Order::create([
-              'product_id' => $checkout[$i]->product_id,
-              'transaction_id' => $transaction->id,
-              'jenis_kertas' => $checkout[$i]->jenis_kertas,
-              'kuantitas' => $checkout[$i]->kuantitas,
-              'model' => $checkout[$i]->model,
-              'kain' => $checkout[$i]->kain,
-              'ukuran' => $checkout[$i]->ukuran,
-              'warna' => $checkout[$i]->warna,
-              'jenis_cetak' => $checkout[$i]->jenis_cetak,
-              'bahan' => $checkout[$i]->bahan,
-              'sisi' => $checkout[$i]->sisi,
-              'jilid' => $checkout[$i]->jilid,
-              'lembar' => $checkout[$i]->lembar,
-              'cetak_depan' => $checkout[$i]->cetak_depan,
-              'cetak_belakang' => $checkout[$i]->cetak_belakang,
-              'cetak_lengan_kanan' => $checkout[$i]->cetak_lengan_kanan,
-              'cetak_lengan_kiri' => $checkout[$i]->cetak_lengan_kiri,
-              'kaos_metode' => $checkout[$i]->kaos_metode
-            ]);
-          }
-          return response()->json($transaction);
+     
+        $transaction = Transaction::create([
+          'user_id' => $user_id,
+          'bank_id' => $request->bank_id,
+          'kode_invoice' => $this->generateRandomString(),
+          'address' => $request->address,
+          'city_id' => $request->city_id,
+          'city_name' => $request->city_name,
+          'province' => $request->province,
+          'postal_code' => $request->postal_code,
+          'kurir' => $request->kurir,
+          'service' => $request->service,
+          'biaya_kurir' => $request->biaya_kurir
+        ]);
+        for($i = 0; $i < count($request->items); $i++){
+          Order::create([
+            'product_id' => $request->items[$i]['product_id'],
+            'transaction_id' => $transaction->id,
+            'jenis_kertas' => $request->items[$i]['jenis_kertas'],
+            'kuantitas' => $request->items[$i]['kuantitas'],
+            'model' => $request->items[$i]['model'],
+            'kain' => $request->items[$i]['kain'],
+            'ukuran' => $request->items[$i]['ukuran'],
+            'warna' => $request->items[$i]['warna'],
+            'jenis_cetak' => $request->items[$i]['jenis_cetak'],
+            'bahan' => $request->items[$i]['bahan'],
+            'sisi' => $request->items[$i]['sisi'],
+            'jilid' => $request->items[$i]['jilid'],
+            'lembar' => $request->items[$i]['lembar'],
+            'cetak_depan' => $request->items[$i]['cetak_depan'],
+            'cetak_belakang' => $request->items[$i]['cetak_belakang'],
+            'cetak_lengan_kanan' => $request->items[$i]['cetak_lengan_kanan'],
+            'cetak_lengan_kiri' => $request->items[$i]['cetak_lengan_kiri'],
+            'kaos_metode' => $request->items[$i]['kaos_metode']
+          ]);
         }
+        return response()->json($transaction->with('orders')->where('id', '=', $transaction->id)->first());
+       
        
       } catch (Exception $e ) {
         return response()->json($e);
@@ -129,4 +136,14 @@ class OrdersController extends Controller
     {
         //
     }
+
+    public static function generateRandomString($length = 10) {
+      $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+      $charactersLength = strlen($characters);
+      $randomString = '';
+      for ($i = 0; $i < $length; $i++) {
+          $randomString .= $characters[rand(0, $charactersLength - 1)];
+      }
+      return $randomString;
+  }
 }

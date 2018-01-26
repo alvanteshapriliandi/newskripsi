@@ -9,7 +9,7 @@ class Order extends Model
   protected $fillable = [
     
     'product_id',
-    'cart_id',
+    'transaction_id',
     'jenis_kertas',
     'kuantitas',
     'model',
@@ -28,5 +28,10 @@ class Order extends Model
     'kaos_metode'
   ];
 
-  public $table = "items";
+  public $table = "orders";
+
+  public function transaction () {
+    return $this->belonsTo(Transaction::class);
+  }
+  
 }

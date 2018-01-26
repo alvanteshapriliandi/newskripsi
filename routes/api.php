@@ -35,6 +35,8 @@ Route::get('cost/{kurir}', 'Api\User\OngkirController@cost');
 Route::post('user/alamat', 'Api\User\AlamatController@store');
 Route::get('user/alamat', 'Api\User\AlamatController@index');
 Route::get('categories', 'Api\CategoryController@index');
+Route::get('subcategory/{id}', 'Api\SubCategoryController@show');
+Route::post('order', 'Api\User\OrdersController@store');
 
 
 Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => 'auth'], function () {
