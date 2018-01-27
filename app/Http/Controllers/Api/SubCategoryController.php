@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use DB;
+use App\Subcategory;
 
 class SubCategoryController extends Controller
 {
@@ -15,7 +16,8 @@ class SubCategoryController extends Controller
      */
     public function index()
     {
-        //
+        $datas = DB::table('subcategories')->get();
+        return response()->json($datas);
     }
 
     /**
@@ -47,7 +49,7 @@ class SubCategoryController extends Controller
      */
     public function show($id)
     {
-        $products = DB::table('products')->where('subcategory_id', '=', $id)->get();
+        $products = Subcategory::with('products')->where('id', '=', $id)->first();
 
         return response()->json($products);
     }
