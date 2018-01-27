@@ -23,7 +23,7 @@ class OrderController extends Controller
         $list = db::select('select distinct t.id, u.username, t.status, t.created_at from orders o
             join products p on p.id = o.product_id
             join transaction t on t.id = o.transaction_id
-            join users u on u.id = o.user_id');
+            join users u on u.id = t.user_id');
 
         // $arr = array();
         // foreach ($list as $item) {

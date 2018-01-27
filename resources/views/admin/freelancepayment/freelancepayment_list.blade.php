@@ -20,7 +20,6 @@
                                 <th>Nama Produk</th>
                                 <th>Sub Category</th>
                                 <th>Harga Produk</th>
-                                <th>Pendapatan</th>
                                 <th>Date</th>
                                 <th>Time</th>
                             </tr>
@@ -31,7 +30,6 @@
                                 <th>Nama Produk</th>
                                 <th>Sub Category</th>
                                 <th>Harga Produk</th>
-                                <th>Pendapatan</th>
                                 <th>Date</th>
                                 <th>Time</th>
                             </tr>
@@ -46,9 +44,7 @@
                                     <td>{{$p->username}}</td>
                                     <td>{{$p->jdl_Pdk}}</td>
                                     <td>{{$p->name}}</td>
-                                    <td>{{$p->total}}</td>
-                                    <?php $total = $p->total * 30 /100;?>
-                                    <td>{{$total}}</td>
+                                    <td>{{$p->harga_awal}}</td>
                                     <td>{{ date('F d, Y', strtotime($p->updated_at))}}</td>
                                     <td>{{ date('H:m:s', strtotime($p->updated_at))}}</td>
                                     <td>

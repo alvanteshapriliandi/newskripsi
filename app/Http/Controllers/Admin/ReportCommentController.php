@@ -5,10 +5,8 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use DB;
-use App\Models\FreelancePayment;
-use App\Models\Orders;
 
-class FreelancePaymentController extends Controller
+class ReportCommentController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,14 +16,12 @@ class FreelancePaymentController extends Controller
     public function index()
     {
         //
-        $data['pay'] = db::select('select u.username, p.jdl_Pdk, s.name, t.status, o.updated_at, o.id, p.harga_awal, o.status_frpay from orders o
+        $data['comment'] = db::select('select p.jdl_Pdk, u.username, c.comment, c.created_at from report_comments c
+            join orders o on o.id = c.order_id
             join products p on p.id = o.product_id
-            join transaction t on t.id = o.transaction_id
-            join subcategories s on s.id = p.subcategory_id
-            join users u on u.id = p.freelancer_id
-            where t.status = 4');
+            join users u on u.id = c.freelancer_id');
         // return $data;
-        return view('admin.freelancepayment.freelancepayment_list',$data);
+        return view('admin.report_comment.comment_list',$data);
     }
 
     /**
@@ -47,16 +43,6 @@ class FreelancePaymentController extends Controller
     public function store(Request $request)
     {
         //
-        $datas = array(
-          'order_id'    => $request->input('order_id'),
-          'pendapatan'  => $request->input('total'),
-        );
-        // return $datas;
-        FreelancePayment::create($datas);
-        $trans = Orders::find($datas['order_id']);
-        $trans->status_frpay=1;
-        $trans->save();
-        return redirect()->route('freelance-payment.index')->with('success', "<strong>The Freelance Payment</strong> has successfully been created.");
     }
 
     /**

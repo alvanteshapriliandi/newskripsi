@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 16 Jan 2018 pada 11.01
+-- Generation Time: 27 Jan 2018 pada 14.35
 -- Versi Server: 10.1.26-MariaDB
 -- PHP Version: 7.1.9
 
@@ -54,10 +54,19 @@ INSERT INTO `banks` (`id`, `atas_nama`, `name_bank`, `images_bank`, `no_rekening
 CREATE TABLE `carts` (
   `id` int(11) NOT NULL,
   `user_id` int(11) UNSIGNED NOT NULL,
-  `item_id` int(11) UNSIGNED NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data untuk tabel `carts`
+--
+
+INSERT INTO `carts` (`id`, `user_id`, `created_at`, `updated_at`) VALUES
+(2, 6, '2018-01-22 16:25:16', '2018-01-22 16:25:16'),
+(3, 7, '2018-01-22 16:35:00', '2018-01-22 16:35:00'),
+(4, 10, '2018-01-26 23:11:35', '2018-01-26 23:11:35'),
+(5, 8, '2018-01-26 23:15:57', '2018-01-26 23:15:57');
 
 -- --------------------------------------------------------
 
@@ -67,7 +76,7 @@ CREATE TABLE `carts` (
 
 CREATE TABLE `categories` (
   `id` int(10) UNSIGNED NOT NULL,
-  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `cat_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -76,7 +85,7 @@ CREATE TABLE `categories` (
 -- Dumping data untuk tabel `categories`
 --
 
-INSERT INTO `categories` (`id`, `name`, `created_at`, `updated_at`) VALUES
+INSERT INTO `categories` (`id`, `cat_name`, `created_at`, `updated_at`) VALUES
 (1, 'Kartu Nama', '2017-12-04 03:14:24', '2017-12-04 03:14:24'),
 (2, 'Office Stationery', '2017-12-04 03:14:24', '2017-12-04 03:14:24'),
 (3, 'Marketing Material', '2017-12-04 03:14:25', '2017-12-04 03:14:25'),
@@ -104,7 +113,7 @@ CREATE TABLE `cetaks` (
 --
 
 INSERT INTO `cetaks` (`id`, `order_id`, `message_id`, `status`, `created_at`, `updated_at`) VALUES
-(2, 2, 30, 0, '2018-01-14 17:00:00', '2018-01-14 17:00:00');
+(3, 2, 30, 1, '2018-01-18 17:00:00', '2018-01-18 20:03:08');
 
 -- --------------------------------------------------------
 
@@ -152,11 +161,19 @@ INSERT INTO `freelancers` (`id`, `username`, `email`, `password`, `api_token`, `
 
 CREATE TABLE `freelancer_payments` (
   `id` int(11) NOT NULL,
-  `cetak_id` int(11) UNSIGNED NOT NULL,
+  `order_id` int(11) UNSIGNED NOT NULL,
   `pendapatan` int(11) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data untuk tabel `freelancer_payments`
+--
+
+INSERT INTO `freelancer_payments` (`id`, `order_id`, `pendapatan`, `created_at`, `updated_at`) VALUES
+(9, 2, 30000, '2018-01-18 20:17:58', '2018-01-18 20:17:58'),
+(10, 3, 45000, '2018-01-18 20:18:31', '2018-01-18 20:18:31');
 
 -- --------------------------------------------------------
 
@@ -188,8 +205,8 @@ INSERT INTO `freelances` (`id`, `user_id`, `no_rekening`, `created_at`, `updated
 
 CREATE TABLE `images` (
   `id` int(10) UNSIGNED NOT NULL,
-  `product_id` int(10) UNSIGNED NOT NULL,
-  `file` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `freelancer_id` int(10) UNSIGNED NOT NULL,
+  `images` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -202,15 +219,8 @@ CREATE TABLE `images` (
 
 CREATE TABLE `items` (
   `id` int(11) UNSIGNED NOT NULL,
-  `user_id` int(11) UNSIGNED NOT NULL,
   `product_id` int(11) UNSIGNED NOT NULL,
-  `Transaction_id` int(11) UNSIGNED NOT NULL,
-  `nama` varchar(50) DEFAULT NULL,
-  `jabatan` varchar(25) DEFAULT NULL,
-  `nama_perushaan` varchar(50) DEFAULT NULL,
-  `alamat` text,
-  `no_telepon` varchar(25) DEFAULT NULL,
-  `email` varchar(100) DEFAULT NULL,
+  `cart_id` int(11) UNSIGNED NOT NULL,
   `jenis_kertas` varchar(100) DEFAULT NULL,
   `kuantitas` int(10) DEFAULT NULL,
   `model` varchar(100) DEFAULT NULL,
@@ -227,14 +237,87 @@ CREATE TABLE `items` (
   `cetak_lengan_kanan` varchar(25) DEFAULT NULL,
   `cetak_lengan_kiri` varchar(25) DEFAULT NULL,
   `kaos_metode` varchar(50) DEFAULT NULL,
-  `images` text,
-  `description` text,
-  `total` int(11) NOT NULL,
-  `status` int(1) NOT NULL DEFAULT '0',
-  `ket` int(1) NOT NULL DEFAULT '3',
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data untuk tabel `items`
+--
+
+INSERT INTO `items` (`id`, `product_id`, `cart_id`, `jenis_kertas`, `kuantitas`, `model`, `kain`, `ukuran`, `warna`, `jenis_cetak`, `bahan`, `sisi`, `jilid`, `lembar`, `cetak_depan`, `cetak_belakang`, `cetak_lengan_kanan`, `cetak_lengan_kiri`, `kaos_metode`, `created_at`, `updated_at`) VALUES
+(6, 4, 2, 'Extra Fancy', 50, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2018-01-22 16:25:42', '2018-01-22 16:25:42'),
+(7, 7, 2, 'Standart', 50, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2018-01-22 16:28:26', '2018-01-22 16:28:26'),
+(8, 3, 4, 'Extra Fancy', 100, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2018-01-26 23:11:35', '2018-01-26 23:11:35'),
+(9, 7, 5, 'Standart', 50, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2018-01-26 23:15:57', '2018-01-26 23:15:57');
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `materials`
+--
+
+CREATE TABLE `materials` (
+  `id` int(11) NOT NULL,
+  `subcategory_id` int(11) UNSIGNED NOT NULL,
+  `kuantiti` varchar(25) NOT NULL,
+  `jlh_pesanan` varchar(20) DEFAULT NULL,
+  `jns_finishing` varchar(30) DEFAULT NULL,
+  `harga` int(12) NOT NULL,
+  `jns_kertas` varchar(50) DEFAULT NULL,
+  `bentuk` varchar(50) DEFAULT NULL,
+  `ukuran` varchar(50) DEFAULT NULL,
+  `tipe_jilid` varchar(50) DEFAULT NULL,
+  `jlh_lembar` varchar(50) DEFAULT NULL,
+  `jns_material` varchar(50) DEFAULT NULL,
+  `model_cetak` varchar(50) DEFAULT NULL,
+  `bahan` varchar(50) DEFAULT NULL,
+  `sisi` varchar(50) DEFAULT NULL,
+  `jns_mug` varchar(50) DEFAULT NULL,
+  `model_bantal` varchar(50) DEFAULT NULL,
+  `jenis_kain` varchar(50) DEFAULT NULL,
+  `cetak_belakang` varchar(50) DEFAULT NULL,
+  `cetak_depan` varchar(50) DEFAULT NULL,
+  `cetak_kanan` varchar(50) DEFAULT NULL,
+  `cetak_kiri` varchar(50) DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data untuk tabel `materials`
+--
+
+INSERT INTO `materials` (`id`, `subcategory_id`, `kuantiti`, `jlh_pesanan`, `jns_finishing`, `harga`, `jns_kertas`, `bentuk`, `ukuran`, `tipe_jilid`, `jlh_lembar`, `jns_material`, `model_cetak`, `bahan`, `sisi`, `jns_mug`, `model_bantal`, `jenis_kain`, `cetak_belakang`, `cetak_depan`, `cetak_kanan`, `cetak_kiri`, `created_at`, `updated_at`) VALUES
+(77, 3, 'kotak', '2', 'Double Tape Lidah Penutup', 2332423, 'Samson Liner 80 Gsm', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(78, 1, 'kotak', '3', 'Emboss', 1231231, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(79, 3, 'kotak', '2', 'Pond', 12312312, 'Matt Paper 100 Gsm - Matt Paper 150 Gsm', NULL, 'Kabinet (11 cm x 23 cm)', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(80, 4, 'rim', '1', '2 warna', 123123, 'HVS 80 Gram', NULL, 'Ukuran kertas A4 ( 21 Ã— 29,7 cm )', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(81, 5, 'pics', '12', 'Stempel Flash', 2147483647, NULL, 'Oval (55 x 35 mm)', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(82, 6, 'buah', '10', 'Laminating Glossy / Doff', 1, 'HVS 80 Gsm - HVS 100 Gsm', NULL, '37 cm x 54 cm', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(83, 6, 'buah', '13', 'UV Vernish', 2, 'Matt Paper 100 Gsm - Matt Paper 150 Gsm', NULL, '37 cm x 54 cm', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(84, 7, 'rim', '2', 'Lipat Zig Zag', 123344, 'Art Paper 100 Gsm - Art Paper 150 Gsm', NULL, 'A4 (29.7 cm x 21 cm)', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `mats`
+--
+
+CREATE TABLE `mats` (
+  `id` int(11) NOT NULL,
+  `subcategory_id` int(11) UNSIGNED NOT NULL,
+  `jlh_pesanan` varchar(20) DEFAULT NULL,
+  `jns_finishing` varchar(20) DEFAULT NULL,
+  `harga` int(12) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data untuk tabel `mats`
+--
+
+INSERT INTO `mats` (`id`, `subcategory_id`, `jlh_pesanan`, `jns_finishing`, `harga`) VALUES
+(1, 0, '50', '50', 112123);
 
 -- --------------------------------------------------------
 
@@ -313,15 +396,8 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 
 CREATE TABLE `orders` (
   `id` int(11) UNSIGNED NOT NULL,
-  `user_id` int(11) UNSIGNED NOT NULL,
   `product_id` int(11) UNSIGNED NOT NULL,
-  `Transaction_id` int(11) UNSIGNED NOT NULL,
-  `nama` varchar(50) DEFAULT NULL,
-  `jabatan` varchar(25) DEFAULT NULL,
-  `nama_perushaan` varchar(50) DEFAULT NULL,
-  `alamat` text,
-  `no_telepon` varchar(25) DEFAULT NULL,
-  `email` varchar(100) DEFAULT NULL,
+  `transaction_id` int(11) UNSIGNED NOT NULL,
   `jenis_kertas` varchar(100) DEFAULT NULL,
   `kuantitas` int(10) DEFAULT NULL,
   `model` varchar(100) DEFAULT NULL,
@@ -338,11 +414,7 @@ CREATE TABLE `orders` (
   `cetak_lengan_kanan` varchar(25) DEFAULT NULL,
   `cetak_lengan_kiri` varchar(25) DEFAULT NULL,
   `kaos_metode` varchar(50) DEFAULT NULL,
-  `images` text,
-  `description` text,
-  `total` int(11) NOT NULL,
-  `status` int(1) NOT NULL DEFAULT '0',
-  `ket` int(1) NOT NULL DEFAULT '3',
+  `status_frpay` int(1) NOT NULL DEFAULT '0',
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -351,10 +423,13 @@ CREATE TABLE `orders` (
 -- Dumping data untuk tabel `orders`
 --
 
-INSERT INTO `orders` (`id`, `user_id`, `product_id`, `Transaction_id`, `nama`, `jabatan`, `nama_perushaan`, `alamat`, `no_telepon`, `email`, `jenis_kertas`, `kuantitas`, `model`, `kain`, `ukuran`, `warna`, `jenis_cetak`, `bahan`, `sisi`, `jilid`, `lembar`, `cetak_depan`, `cetak_belakang`, `cetak_lengan_kanan`, `cetak_lengan_kiri`, `kaos_metode`, `images`, `description`, `total`, `status`, `ket`, `created_at`, `updated_at`) VALUES
-(2, 5, 21, 1, NULL, NULL, 'PT. Sukses Bersama', 'jl. Medan Binjai', '081263506016', 'alvan@mail.com', 'standart', 100, NULL, NULL, NULL, NULL, 'Pond', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'appicns_iTunes.png', 'Instagram : @alvan', 100000, 1, 3, '2018-01-04 17:00:00', NULL),
-(3, 5, 22, 1, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 2, NULL, NULL, '100 x 100 cm', NULL, 'Dgital Printing', 'FF CHina 340GR', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'c-6.jpg', 'Selamat Datang', 150000, 0, 3, '2018-01-06 17:00:00', '2018-01-06 17:00:00'),
-(4, 6, 22, 2, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 100000, 0, 3, '2018-01-14 02:05:04', '2018-01-14 02:05:04');
+INSERT INTO `orders` (`id`, `product_id`, `transaction_id`, `jenis_kertas`, `kuantitas`, `model`, `kain`, `ukuran`, `warna`, `jenis_cetak`, `bahan`, `sisi`, `jilid`, `lembar`, `cetak_depan`, `cetak_belakang`, `cetak_lengan_kanan`, `cetak_lengan_kiri`, `kaos_metode`, `status_frpay`, `created_at`, `updated_at`) VALUES
+(2, 21, 1, 'standart', 100, NULL, NULL, NULL, NULL, 'Pond', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, '2018-01-04 17:00:00', NULL),
+(3, 22, 1, NULL, 2, NULL, NULL, '100 x 100 cm', NULL, 'Dgital Printing', 'FF CHina 340GR', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, '2018-01-06 17:00:00', '2018-01-06 17:00:00'),
+(4, 22, 2, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, '2018-01-14 02:05:04', '2018-01-14 02:05:04'),
+(32, 7, 31, 'Standart', 50, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, '2018-01-26 00:15:10', '2018-01-26 00:15:10'),
+(33, 2, 31, 'Standart', 50, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, '2018-01-26 00:15:10', '2018-01-26 00:15:10'),
+(34, 5, 31, 'Standart', 50, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, '2018-01-26 00:15:10', '2018-01-26 00:15:10');
 
 -- --------------------------------------------------------
 
@@ -393,12 +468,12 @@ CREATE TABLE `products` (
 --
 
 INSERT INTO `products` (`id`, `freelancer_id`, `subcategory_id`, `jdl_Pdk`, `harga_awal`, `harga_promo`, `description`, `images`, `status`, `created_at`, `updated_at`) VALUES
-(1, 2, 1, 'Elegant Kartu Nama', 0, 0, 'Keren', 'kartu nama 22.jpg', 1, '2017-12-04 16:57:22', '2017-12-11 03:48:32'),
-(2, 2, 2, 'Elegant Square Card', 0, 0, 'Keren', 'CRB-2052-Luxe-RC-SQBC-Page-Content-1-460x329.jpg', 1, '2017-12-04 16:59:09', '2017-12-04 17:09:34'),
-(3, 2, 3, 'Elegant Amplop', 0, 0, 'Keren', 'contoh-cetak-amplop-standar.jpg', 1, '2017-12-04 16:59:32', '2017-12-04 17:09:42'),
-(4, 2, 4, 'Elegant Kop Surat', 0, 0, 'Keren', 'download.jpg', 1, '2017-12-04 17:00:08', '2017-12-04 17:09:53'),
-(5, 2, 5, 'Elegant Stempel', 0, 0, 'Keren', '26.jpg', 1, '2017-12-04 17:00:37', '2017-12-04 17:10:24'),
-(6, 2, 6, 'Elegant Kalender', 0, 0, 'Keren', 'download (1).jpg', 1, '2017-12-04 17:01:08', '2017-12-04 17:10:32'),
+(1, 2, 1, 'Elegant Kartu Nama', 20000, 0, 'Keren', 'kartu nama 22.jpg', 1, '2017-12-04 16:57:22', '2017-12-11 03:48:32'),
+(2, 2, 2, 'Elegant Square Card', 20000, 0, 'Keren', 'CRB-2052-Luxe-RC-SQBC-Page-Content-1-460x329.jpg', 1, '2017-12-04 16:59:09', '2017-12-04 17:09:34'),
+(3, 2, 3, 'Elegant Amplop', 20000, 0, 'Keren', 'contoh-cetak-amplop-standar.jpg', 1, '2017-12-04 16:59:32', '2017-12-04 17:09:42'),
+(4, 2, 4, 'Elegant Kop Surat', 20000, 0, 'Keren', 'download.jpg', 1, '2017-12-04 17:00:08', '2017-12-04 17:09:53'),
+(5, 2, 5, 'Elegant Stempel', 20000, 0, 'Keren', '26.jpg', 1, '2017-12-04 17:00:37', '2017-12-04 17:10:24'),
+(6, 2, 6, 'Elegant Kalender', 20000, 0, 'Keren', 'download (1).jpg', 1, '2017-12-04 17:01:08', '2017-12-04 17:10:32'),
 (7, 2, 7, 'Elegant Brosur', 0, 0, 'Keren', 'template.jpg', 1, '2017-12-04 17:01:55', '2017-12-04 17:10:41'),
 (8, 2, 8, 'Elegant Stiker', 0, 0, 'Keren', 'Stiker_Label_Produk__ukuran_bulat_7_cm_.png', 1, '2017-12-04 17:02:26', '2017-12-04 17:10:59'),
 (9, 2, 9, 'Elegant Poster', 0, 0, 'Keren', 'poster seminar 2.jpg', 1, '2017-12-04 17:03:01', '2017-12-04 17:10:49'),
@@ -413,8 +488,23 @@ INSERT INTO `products` (`id`, `freelancer_id`, `subcategory_id`, `jdl_Pdk`, `har
 (18, 2, 3, 'Master Amplop', 0, 0, 'tampil percaya diri', 'Contoh-Desain-Amplop-Em-Cartaz-Branding-557x332.jpg', 1, '2017-12-08 15:33:19', '2017-12-08 15:34:26'),
 (19, 2, 3, 'Collect Amplop', 0, 0, 'tampil percaya diri', 'Contoh-Desain-Amplop-Em-Cartaz-Branding-557x332.jpg', 1, '2017-12-08 15:36:38', '2017-12-08 15:37:04'),
 (20, 2, 1, 'Collect Kartu Nama', 0, 0, 'tampil percaya diri', 'maxresdefault.jpg', 1, '2017-12-08 15:47:55', '2017-12-08 15:48:53'),
-(21, 4, 3, 'Mantap Amplop', 0, 0, 'Keren dan Moderen', 'Contoh-Desain-Amplop-Em-Cartaz-Branding-557x332.jpg', 1, '2017-12-13 18:52:59', '2017-12-24 17:17:58'),
-(22, 4, 13, 'Spanduk Promosi', 0, 0, 'Cocok untuk unsaha yang akan mengadakna promosi', 'spanduk-promosi.jpg', 1, '2017-12-24 18:14:01', '2017-12-24 18:14:20');
+(21, 4, 3, 'Mantap Amplop', 30000, 0, 'Keren dan Moderen', 'Contoh-Desain-Amplop-Em-Cartaz-Branding-557x332.jpg', 1, '2017-12-13 18:52:59', '2017-12-24 17:17:58'),
+(22, 4, 13, 'Spanduk Promosi', 30000, 0, 'Cocok untuk unsaha yang akan mengadakna promosi', 'spanduk-promosi.jpg', 1, '2017-12-24 18:14:01', '2017-12-24 18:14:20');
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `report_comments`
+--
+
+CREATE TABLE `report_comments` (
+  `id` int(11) NOT NULL,
+  `freelancer_id` int(11) UNSIGNED NOT NULL,
+  `order_id` int(11) UNSIGNED NOT NULL,
+  `comment` text NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -464,7 +554,15 @@ CREATE TABLE `transaction` (
   `user_id` int(11) UNSIGNED NOT NULL,
   `bank_id` int(11) UNSIGNED NOT NULL,
   `kode_invoice` varchar(10) NOT NULL,
-  `images` text NOT NULL,
+  `images` text,
+  `address` varchar(200) DEFAULT NULL,
+  `city_id` int(11) DEFAULT NULL,
+  `city_name` varchar(200) DEFAULT NULL,
+  `province` varchar(200) DEFAULT NULL,
+  `postal_code` varchar(200) DEFAULT NULL,
+  `kurir` varchar(200) DEFAULT NULL,
+  `service` varchar(200) DEFAULT NULL,
+  `biaya_kurir` int(11) DEFAULT NULL,
   `status` int(1) NOT NULL DEFAULT '0',
   `status_cetak` int(1) NOT NULL DEFAULT '0',
   `created_at` timestamp NULL DEFAULT NULL,
@@ -475,9 +573,10 @@ CREATE TABLE `transaction` (
 -- Dumping data untuk tabel `transaction`
 --
 
-INSERT INTO `transaction` (`id`, `user_id`, `bank_id`, `kode_invoice`, `images`, `status`, `status_cetak`, `created_at`, `updated_at`) VALUES
-(1, 5, 1, '1234567890', '1.jpg', 1, 1, '2018-01-04 17:00:00', '2018-01-15 16:57:27'),
-(2, 6, 1, '12312434', 'hai.jpg', 2, 1, '2018-01-13 17:00:00', '2018-01-13 17:00:00');
+INSERT INTO `transaction` (`id`, `user_id`, `bank_id`, `kode_invoice`, `images`, `address`, `city_id`, `city_name`, `province`, `postal_code`, `kurir`, `service`, `biaya_kurir`, `status`, `status_cetak`, `created_at`, `updated_at`) VALUES
+(1, 5, 1, '1234567890', '1.jpg', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, 1, '2018-01-04 17:00:00', '2018-01-15 16:57:27'),
+(2, 6, 1, '12312434', 'hai.jpg', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 2, 1, '2018-01-13 17:00:00', '2018-01-13 17:00:00'),
+(31, 8, 1, '63gTfjPFZP', NULL, 'Jl. perwira No. 90 Gunung Krakatau Ujung', 278, 'Medan', 'Sumatera Utara', '20228', 'jne', 'REG', 24000, 0, 0, '2018-01-26 00:15:10', '2018-01-26 00:15:10');
 
 -- --------------------------------------------------------
 
@@ -508,6 +607,11 @@ CREATE TABLE `users` (
   `api_token` varchar(60) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `photo` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `address` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `city_id` int(11) DEFAULT NULL,
+  `city_name` varchar(200) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `postal_code` int(11) DEFAULT NULL,
+  `province` varchar(200) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `type` varchar(200) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `gender` tinyint(1) DEFAULT NULL,
   `phone` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `status` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
@@ -521,13 +625,16 @@ CREATE TABLE `users` (
 -- Dumping data untuk tabel `users`
 --
 
-INSERT INTO `users` (`id`, `username`, `email`, `password`, `api_token`, `photo`, `address`, `gender`, `phone`, `status`, `role`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'Chairil Azmi', 'admin@admin.com', '$2y$10$P2GfvX9GKM5cetT7VK89IeLxJ31y25tcBQE05Hc7FsO4ly6ZSY.z2', NULL, NULL, NULL, NULL, NULL, NULL, 3, 'XWj6COb6IO0NQKui49jkf9K8mwmlYGCfhlorBoQG7VjRlyI3rKtemz7AK6KV', '2017-12-04 03:14:24', '2017-12-04 03:14:24'),
-(2, 'Reza Surya', 'reza@mail.com', '$2y$10$hjWto0qpOAHFyR08Ddnruu4UuZilAxdKV49MabvNn2muBLe48SuMK', 'B0D6iKUa9Gagyek6nmINkMXGH8t7bfHkmN26Lm7Nd8ps25DyXd8wugcNAH9b', NULL, NULL, NULL, NULL, NULL, 2, 'rwDCxetWuR3TTRgyDvfjgcOaFji75RogXthDvga7SJD9g4DRMXa4knfg4dkt', '2017-12-04 16:48:22', '2017-12-04 16:49:28'),
-(3, 'Andi', 'andi@mail.com', '$2y$10$0u.i0C/wcrOl47p91DEYbOfVWODzuPyf6gm1ffwI3ebs8/YwZ1k36', 'NkJeky8avr5OBDKZQTI0WnR58ad581zcRT3azbxEmRDSGIxzgINvtEDpUzOy', NULL, NULL, NULL, NULL, NULL, 1, 'vaWcGvks1UCPYmkjAdDEAeqp0nsw7zT44SNX4Zf5qEYuwixezUFnj3EdhqU6', '2017-12-09 17:43:52', '2017-12-09 17:43:52'),
-(4, 'Alvantesha Priliandi', 'alvan@mail.com', '$2y$10$zqSGNG5vwZikGMU9dub5F.ZdNjrSGGKftOI0i5P0o/wyH6bXGcaeC', '9m6TN9ApCQihcJhGnDDnhoO1LuLtTTuFxy6uUhLgliwnZpjNZpCdKAyxPB6I', 'DSC_0599.JPG', 'Jl. Medan - Binjai Km. 19 Kel. Tunggurono Kec. Binjai TImur Kota Binjai', 1, '081263506016', NULL, 2, 'YO7z2FxNtJOGYRwI6C86pyuxOTpeyM76E3hCVEhnWvqsueeCNU69BW6Ld2eZ', '2017-12-13 18:49:40', '2018-01-15 08:26:11'),
-(5, 'Bagus', 'bagus@mail.com', '$2y$10$Ow4gqB4p6o69bZg8Uh4ByO1rZDqmEZKl4E8yARYdVaYsWGE.EmWOW', 'LMxjrWktAXxrzgvWcLYkw32FEbDzAzRKwrT5tDSCT0pRwGrPGoQ6e0XM7vZD', NULL, NULL, NULL, NULL, NULL, 1, 'RAELKGZPEb6oDe58jZNdRvGSwgdXYcUAWyC3OkusgwZIDXpejaBBEWi2ijUz', '2017-12-13 20:36:13', '2017-12-13 20:36:13'),
-(6, 'Rani', 'rani@mail.com', '$2y$10$B.XI4nY1l7xg0m6h5miusu5gohyf9Pl42cTPripAD4WEKh43ujp5y', 'cYZw0yB5CFF3ubD4fSmBG6kjzgwpyRkf16CwDwCezvKgeaHNdwQaqevy0qAz', NULL, NULL, NULL, NULL, NULL, 1, 'O7HhSh58PkHERYS7EEGFz7vP8ZmJQSbvanjGtZetjSkFapeRKdHOPGz5mE4s', '2017-12-14 02:39:26', '2017-12-14 02:39:26');
+INSERT INTO `users` (`id`, `username`, `email`, `password`, `api_token`, `photo`, `address`, `city_id`, `city_name`, `postal_code`, `province`, `type`, `gender`, `phone`, `status`, `role`, `remember_token`, `created_at`, `updated_at`) VALUES
+(1, 'Chairil Azmi', 'admin@admin.com', '$2y$10$P2GfvX9GKM5cetT7VK89IeLxJ31y25tcBQE05Hc7FsO4ly6ZSY.z2', NULL, NULL, NULL, 0, '', 0, NULL, NULL, NULL, NULL, NULL, 3, 'XWj6COb6IO0NQKui49jkf9K8mwmlYGCfhlorBoQG7VjRlyI3rKtemz7AK6KV', '2017-12-04 03:14:24', '2017-12-04 03:14:24'),
+(2, 'Reza Surya', 'reza@mail.com', '$2y$10$hjWto0qpOAHFyR08Ddnruu4UuZilAxdKV49MabvNn2muBLe48SuMK', 'B0D6iKUa9Gagyek6nmINkMXGH8t7bfHkmN26Lm7Nd8ps25DyXd8wugcNAH9b', NULL, NULL, 0, '', 0, NULL, NULL, NULL, NULL, NULL, 2, 'rwDCxetWuR3TTRgyDvfjgcOaFji75RogXthDvga7SJD9g4DRMXa4knfg4dkt', '2017-12-04 16:48:22', '2017-12-04 16:49:28'),
+(3, 'Andi', 'andi@mail.com', '$2y$10$0u.i0C/wcrOl47p91DEYbOfVWODzuPyf6gm1ffwI3ebs8/YwZ1k36', 'NkJeky8avr5OBDKZQTI0WnR58ad581zcRT3azbxEmRDSGIxzgINvtEDpUzOy', NULL, NULL, 0, '', 0, NULL, NULL, NULL, NULL, NULL, 1, 'vaWcGvks1UCPYmkjAdDEAeqp0nsw7zT44SNX4Zf5qEYuwixezUFnj3EdhqU6', '2017-12-09 17:43:52', '2017-12-09 17:43:52'),
+(4, 'Alvantesha Priliandi', 'alvan@mail.com', '$2y$10$zqSGNG5vwZikGMU9dub5F.ZdNjrSGGKftOI0i5P0o/wyH6bXGcaeC', '9m6TN9ApCQihcJhGnDDnhoO1LuLtTTuFxy6uUhLgliwnZpjNZpCdKAyxPB6I', 'DSC_0599.JPG', 'Jl. Medan - Binjai Km. 19 Kel. Tunggurono Kec. Binjai TImur Kota Binjai', 0, '', 0, NULL, NULL, 1, '081263506016', NULL, 2, 'YO7z2FxNtJOGYRwI6C86pyuxOTpeyM76E3hCVEhnWvqsueeCNU69BW6Ld2eZ', '2017-12-13 18:49:40', '2018-01-15 08:26:11'),
+(5, 'Bagus', 'bagus@mail.com', '$2y$10$Ow4gqB4p6o69bZg8Uh4ByO1rZDqmEZKl4E8yARYdVaYsWGE.EmWOW', 'LMxjrWktAXxrzgvWcLYkw32FEbDzAzRKwrT5tDSCT0pRwGrPGoQ6e0XM7vZD', NULL, NULL, 0, '', 0, NULL, NULL, NULL, NULL, NULL, 1, 'RAELKGZPEb6oDe58jZNdRvGSwgdXYcUAWyC3OkusgwZIDXpejaBBEWi2ijUz', '2017-12-13 20:36:13', '2017-12-13 20:36:13'),
+(6, 'Rani', 'rani@mail.com', '$2y$10$B.XI4nY1l7xg0m6h5miusu5gohyf9Pl42cTPripAD4WEKh43ujp5y', 'cYZw0yB5CFF3ubD4fSmBG6kjzgwpyRkf16CwDwCezvKgeaHNdwQaqevy0qAz', NULL, NULL, 0, '', 0, NULL, NULL, NULL, NULL, NULL, 1, 'O7HhSh58PkHERYS7EEGFz7vP8ZmJQSbvanjGtZetjSkFapeRKdHOPGz5mE4s', '2017-12-14 02:39:26', '2017-12-14 02:39:26'),
+(8, 'Chairil azmi', 'chairil@gmail.com', '$2y$10$yail/CEXs18xqFumbvD7..Hn6waVu3mvfMVr439Gb/KP43ADkNykK', 'ek1BeuOsZh3eifSuptgEq9Dsf1cZQIUMa0noB0St8372oancbDmHWR4258O3', NULL, 'Jl. perwira No. 90 Gunung Krakatau Ujung', 278, 'Medan', 20228, 'Sumatera Utara', 'Kota', NULL, NULL, NULL, 1, NULL, '2018-01-18 07:14:01', '2018-01-18 07:14:01'),
+(9, 'Chairil wew', 'azmi@gmail.com', '$2y$10$fBQRk96YJVrxHmvNscZLLeGZmfB1gbfdPqQsL6VAZGvH39zcl71BC', 'R3LpbEcOJm5fxvtqxhzJKgSf2PHPmzM3IX6XxJf0DHzZwRepY5zWCv57u7Ux', NULL, NULL, 0, '', 0, NULL, NULL, NULL, NULL, NULL, 1, NULL, '2018-01-18 08:21:22', '2018-01-18 08:21:22'),
+(10, 'nisa', 'nisa@mail.com', '$2y$10$9UBw2BlHRHCRS5qVrmAWqel1rQi3M.o8mDhLX2Fy8hYB5yDJvXGoy', 'kVg0pyhxsWZv99sV82933M9EbzYs3fGHSdug0vV2lk0WxSUpsUk4fTIkNSaY', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 1, NULL, '2018-01-26 01:13:26', '2018-01-26 01:13:26');
 
 --
 -- Indexes for dumped tables
@@ -582,6 +689,24 @@ ALTER TABLE `images`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `items`
+--
+ALTER TABLE `items`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `materials`
+--
+ALTER TABLE `materials`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `mats`
+--
+ALTER TABLE `mats`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `messages`
 --
 ALTER TABLE `messages`
@@ -609,6 +734,12 @@ ALTER TABLE `password_resets`
 -- Indexes for table `products`
 --
 ALTER TABLE `products`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `report_comments`
+--
+ALTER TABLE `report_comments`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -650,7 +781,7 @@ ALTER TABLE `banks`
 -- AUTO_INCREMENT for table `carts`
 --
 ALTER TABLE `carts`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `categories`
@@ -662,7 +793,7 @@ ALTER TABLE `categories`
 -- AUTO_INCREMENT for table `cetaks`
 --
 ALTER TABLE `cetaks`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `freelancers`
@@ -674,7 +805,7 @@ ALTER TABLE `freelancers`
 -- AUTO_INCREMENT for table `freelancer_payments`
 --
 ALTER TABLE `freelancer_payments`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `freelances`
@@ -687,6 +818,24 @@ ALTER TABLE `freelances`
 --
 ALTER TABLE `images`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `items`
+--
+ALTER TABLE `items`
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+
+--
+-- AUTO_INCREMENT for table `materials`
+--
+ALTER TABLE `materials`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=85;
+
+--
+-- AUTO_INCREMENT for table `mats`
+--
+ALTER TABLE `mats`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `messages`
@@ -704,13 +853,19 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
 
 --
 -- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+
+--
+-- AUTO_INCREMENT for table `report_comments`
+--
+ALTER TABLE `report_comments`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `subcategories`
@@ -722,7 +877,7 @@ ALTER TABLE `subcategories`
 -- AUTO_INCREMENT for table `transaction`
 --
 ALTER TABLE `transaction`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
 
 --
 -- AUTO_INCREMENT for table `ulasans`
@@ -734,7 +889,7 @@ ALTER TABLE `ulasans`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
