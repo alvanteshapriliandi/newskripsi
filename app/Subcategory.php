@@ -6,11 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Subcategory extends Model
 {
-    public function category(){
-        return $this->belonsTo(Category::class);
-    }
+  public $table = "subcategories";
 
-    public function products(){
-        return $this->hasMany(Product::class);
-    }
+  public function category(){
+      return $this->belonsTo(Category::class);
+  }
 }

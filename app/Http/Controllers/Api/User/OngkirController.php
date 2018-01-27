@@ -68,7 +68,7 @@ class OngkirController extends Controller
     }
   }
 
-  public function cost () {
+  public function cost ($kurir) {
     $curl = curl_init();  
     curl_setopt_array($curl, array(
       CURLOPT_URL => "https://api.rajaongkir.com/starter/cost",
@@ -78,7 +78,7 @@ class OngkirController extends Controller
       CURLOPT_TIMEOUT => 30,
       CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
       CURLOPT_CUSTOMREQUEST => "POST",
-      CURLOPT_POSTFIELDS => "origin=501&destination=114&weight=1700&courier=jne",
+      CURLOPT_POSTFIELDS => "origin=501&destination=114&weight=1000&courier=" . $kurir,
       CURLOPT_HTTPHEADER => array(
         "content-type: application/x-www-form-urlencoded",
         "key: 47b8e1561187fa917d9b2c8c18217d03"
