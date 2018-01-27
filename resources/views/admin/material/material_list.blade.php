@@ -36,8 +36,7 @@
                                     <td>{{ date('H:m:s', strtotime($sub->created_at))}}</td>
                                     <td align="center">
                                         <a href="{{route('material.show', ['id' => $sub->id])}}" class="btn btn-primary"><i class="fa fa-plus"></i></a>
-                                        <a href="{{route('material.edit', ['id' => 1])}}" class="btn btn-success"><i class="fa fa-pencil"></i></a>
-                                        <a href="{{route('material.show', ['id' => 1])}}" class="btn btn-info"><i class="fa fa-eye"></i></a>
+                                        <a href="{{route('material.edit', ['id' => $sub->id])}}" class="btn btn-info"><i class="fa fa-eye"></i></a>
                                     </td>
                                 </tr>
                                 @endforeach
