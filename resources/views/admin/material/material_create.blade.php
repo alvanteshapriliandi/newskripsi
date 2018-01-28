@@ -12,7 +12,7 @@
 	                    <div class="clearfix"></div>
 	                </div>
 	                <div class="x_content">
-	                    <form method="post" action="{{ route('material.store') }}" data-parsley-validate class="form-horizontal form-label-left" enctype="multipart/form-data">
+	                    <form method="POST" action="{{ route('material.store') }}" data-parsley-validate class="form-horizontal form-label-left" enctype="multipart/form-data">
 	                        {{ csrf_field() }}
 
 	                        <div class="x_content col-md-5 form-row">

@@ -28,7 +28,7 @@
                                 <tr>
                                     <th>Subcategory</th>
                                     <th>Jumlah Pesanan</th>
-                                    <th>Kuantiti</th>
+                                    <th>Satuan</th>
                                     <th>Jenis Finishing</th>
                                     <th>Harga</th>
                                     <th>Action</th>
@@ -39,7 +39,7 @@
                                 <tr>
                                     <td>{{$m->name}}</td>
                                     <td>{{$m->jlh_pesanan}}</td>
-                                    <td>{{$m->kuantiti}}</td>
+                                    <td>{{$m->satuan}}</td>
                                     <td>{{$m->jns_finishing}}</td>
                                      <?php $m->harga = number_format($m->harga, 1, ",","."); ?>
                                     <td>{{$m->harga}}</td>
