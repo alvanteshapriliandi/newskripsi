@@ -26,7 +26,15 @@ class Item extends Model
     'cetak_belakang',
     'cetak_lengan_kanan',
     'cetak_lengan_kiri',
-    'kaos_metode'
+    'kaos_metode',
+    'nama',
+    'nama_perusahaan',
+    'no_telpon', 
+    'alamat',
+    'email',
+    'jabatan',
+    'logo',
+    'material'
   ];
 
   public $table = "items";
