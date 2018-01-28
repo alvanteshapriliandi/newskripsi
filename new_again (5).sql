@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 27 Jan 2018 pada 14.35
+-- Generation Time: 28 Jan 2018 pada 11.42
 -- Versi Server: 10.1.26-MariaDB
 -- PHP Version: 7.1.9
 
@@ -44,6 +44,26 @@ CREATE TABLE `banks` (
 
 INSERT INTO `banks` (`id`, `atas_nama`, `name_bank`, `images_bank`, `no_rekening`, `created_at`, `updated_at`) VALUES
 (1, 'Techno Grhapic', 'Mandiri', 'Bank-Mandiri-Logo-Vector-Image.png', '1234567', '2018-01-04 17:00:00', NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `bentuk`
+--
+
+CREATE TABLE `bentuk` (
+  `id` int(11) NOT NULL,
+  `nama_bentuk` varchar(25) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data untuk tabel `bentuk`
+--
+
+INSERT INTO `bentuk` (`id`, `nama_bentuk`) VALUES
+(1, 'Persegi'),
+(3, 'Guling'),
+(4, 'Persegi Panjang');
 
 -- --------------------------------------------------------
 
@@ -260,7 +280,7 @@ INSERT INTO `items` (`id`, `product_id`, `cart_id`, `jenis_kertas`, `kuantitas`,
 CREATE TABLE `materials` (
   `id` int(11) NOT NULL,
   `subcategory_id` int(11) UNSIGNED NOT NULL,
-  `kuantiti` varchar(25) NOT NULL,
+  `satuan` varchar(25) NOT NULL,
   `jlh_pesanan` varchar(20) DEFAULT NULL,
   `jns_finishing` varchar(30) DEFAULT NULL,
   `harga` int(12) NOT NULL,
@@ -270,7 +290,7 @@ CREATE TABLE `materials` (
   `tipe_jilid` varchar(50) DEFAULT NULL,
   `jlh_lembar` varchar(50) DEFAULT NULL,
   `jns_material` varchar(50) DEFAULT NULL,
-  `model_cetak` varchar(50) DEFAULT NULL,
+  `model_pegangan` varchar(50) DEFAULT NULL,
   `bahan` varchar(50) DEFAULT NULL,
   `sisi` varchar(50) DEFAULT NULL,
   `jns_mug` varchar(50) DEFAULT NULL,
@@ -278,7 +298,7 @@ CREATE TABLE `materials` (
   `jenis_kain` varchar(50) DEFAULT NULL,
   `cetak_belakang` varchar(50) DEFAULT NULL,
   `cetak_depan` varchar(50) DEFAULT NULL,
-  `cetak_kanan` varchar(50) DEFAULT NULL,
+  `cetak_lengan` varchar(50) DEFAULT NULL,
   `cetak_kiri` varchar(50) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
@@ -288,15 +308,11 @@ CREATE TABLE `materials` (
 -- Dumping data untuk tabel `materials`
 --
 
-INSERT INTO `materials` (`id`, `subcategory_id`, `kuantiti`, `jlh_pesanan`, `jns_finishing`, `harga`, `jns_kertas`, `bentuk`, `ukuran`, `tipe_jilid`, `jlh_lembar`, `jns_material`, `model_cetak`, `bahan`, `sisi`, `jns_mug`, `model_bantal`, `jenis_kain`, `cetak_belakang`, `cetak_depan`, `cetak_kanan`, `cetak_kiri`, `created_at`, `updated_at`) VALUES
-(77, 3, 'kotak', '2', 'Double Tape Lidah Penutup', 2332423, 'Samson Liner 80 Gsm', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(78, 1, 'kotak', '3', 'Emboss', 1231231, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(79, 3, 'kotak', '2', 'Pond', 12312312, 'Matt Paper 100 Gsm - Matt Paper 150 Gsm', NULL, 'Kabinet (11 cm x 23 cm)', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(80, 4, 'rim', '1', '2 warna', 123123, 'HVS 80 Gram', NULL, 'Ukuran kertas A4 ( 21 Ã— 29,7 cm )', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(81, 5, 'pics', '12', 'Stempel Flash', 2147483647, NULL, 'Oval (55 x 35 mm)', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(82, 6, 'buah', '10', 'Laminating Glossy / Doff', 1, 'HVS 80 Gsm - HVS 100 Gsm', NULL, '37 cm x 54 cm', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(83, 6, 'buah', '13', 'UV Vernish', 2, 'Matt Paper 100 Gsm - Matt Paper 150 Gsm', NULL, '37 cm x 54 cm', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(84, 7, 'rim', '2', 'Lipat Zig Zag', 123344, 'Art Paper 100 Gsm - Art Paper 150 Gsm', NULL, 'A4 (29.7 cm x 21 cm)', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `materials` (`id`, `subcategory_id`, `satuan`, `jlh_pesanan`, `jns_finishing`, `harga`, `jns_kertas`, `bentuk`, `ukuran`, `tipe_jilid`, `jlh_lembar`, `jns_material`, `model_pegangan`, `bahan`, `sisi`, `jns_mug`, `model_bantal`, `jenis_kain`, `cetak_belakang`, `cetak_depan`, `cetak_lengan`, `cetak_kiri`, `created_at`, `updated_at`) VALUES
+(89, 1, 'Kotak', '1', 'Laminating Doff', 30000, 'Art Carton 260gr', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(90, 2, 'Kotak', '1', 'Laminating Doff', 25000, 'Art Carton 260gr', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(91, 1, 'Kotak', '2', 'Laminating Doff', 30000, 'BW 250gr', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(92, 17, 'Lusin ', '1', 'Print', 100000, NULL, NULL, 'XS - Extra Small', NULL, NULL, NULL, NULL, 'GILDAN POLO SHIRT', NULL, NULL, NULL, NULL, 'BACK 30X10CM', 'RIGHT CHEST', NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -581,6 +597,32 @@ INSERT INTO `transaction` (`id`, `user_id`, `bank_id`, `kode_invoice`, `images`,
 -- --------------------------------------------------------
 
 --
+-- Struktur dari tabel `ukuran_bantal`
+--
+
+CREATE TABLE `ukuran_bantal` (
+  `id` int(11) NOT NULL,
+  `bentuk_id` int(11) UNSIGNED NOT NULL,
+  `ukuran_bantal` varchar(25) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data untuk tabel `ukuran_bantal`
+--
+
+INSERT INTO `ukuran_bantal` (`id`, `bentuk_id`, `ukuran_bantal`) VALUES
+(1, 1, '25 X 25 CM'),
+(2, 1, '40 X 40 CM'),
+(3, 1, '40 X 80 cm'),
+(5, 4, '20 X 25 cm'),
+(6, 4, '40 X 60 cm'),
+(7, 4, '40 X 80 cm'),
+(8, 3, 'Panjang 40 CM'),
+(9, 3, 'Panjang 65 CM');
+
+-- --------------------------------------------------------
+
+--
 -- Struktur dari tabel `ulasans`
 --
 
@@ -626,10 +668,10 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `username`, `email`, `password`, `api_token`, `photo`, `address`, `city_id`, `city_name`, `postal_code`, `province`, `type`, `gender`, `phone`, `status`, `role`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'Chairil Azmi', 'admin@admin.com', '$2y$10$P2GfvX9GKM5cetT7VK89IeLxJ31y25tcBQE05Hc7FsO4ly6ZSY.z2', NULL, NULL, NULL, 0, '', 0, NULL, NULL, NULL, NULL, NULL, 3, 'XWj6COb6IO0NQKui49jkf9K8mwmlYGCfhlorBoQG7VjRlyI3rKtemz7AK6KV', '2017-12-04 03:14:24', '2017-12-04 03:14:24'),
+(1, 'Chairil Azmi', 'admin@admin.com', '$2y$10$P2GfvX9GKM5cetT7VK89IeLxJ31y25tcBQE05Hc7FsO4ly6ZSY.z2', NULL, NULL, NULL, 0, '', 0, NULL, NULL, NULL, NULL, NULL, 3, 'FihvAxblDN8SrFArbfhsI6loRL6JY1VZXT1hNfHvofiaAckS3IIQhpqIOx3c', '2017-12-04 03:14:24', '2017-12-04 03:14:24'),
 (2, 'Reza Surya', 'reza@mail.com', '$2y$10$hjWto0qpOAHFyR08Ddnruu4UuZilAxdKV49MabvNn2muBLe48SuMK', 'B0D6iKUa9Gagyek6nmINkMXGH8t7bfHkmN26Lm7Nd8ps25DyXd8wugcNAH9b', NULL, NULL, 0, '', 0, NULL, NULL, NULL, NULL, NULL, 2, 'rwDCxetWuR3TTRgyDvfjgcOaFji75RogXthDvga7SJD9g4DRMXa4knfg4dkt', '2017-12-04 16:48:22', '2017-12-04 16:49:28'),
 (3, 'Andi', 'andi@mail.com', '$2y$10$0u.i0C/wcrOl47p91DEYbOfVWODzuPyf6gm1ffwI3ebs8/YwZ1k36', 'NkJeky8avr5OBDKZQTI0WnR58ad581zcRT3azbxEmRDSGIxzgINvtEDpUzOy', NULL, NULL, 0, '', 0, NULL, NULL, NULL, NULL, NULL, 1, 'vaWcGvks1UCPYmkjAdDEAeqp0nsw7zT44SNX4Zf5qEYuwixezUFnj3EdhqU6', '2017-12-09 17:43:52', '2017-12-09 17:43:52'),
-(4, 'Alvantesha Priliandi', 'alvan@mail.com', '$2y$10$zqSGNG5vwZikGMU9dub5F.ZdNjrSGGKftOI0i5P0o/wyH6bXGcaeC', '9m6TN9ApCQihcJhGnDDnhoO1LuLtTTuFxy6uUhLgliwnZpjNZpCdKAyxPB6I', 'DSC_0599.JPG', 'Jl. Medan - Binjai Km. 19 Kel. Tunggurono Kec. Binjai TImur Kota Binjai', 0, '', 0, NULL, NULL, 1, '081263506016', NULL, 2, 'YO7z2FxNtJOGYRwI6C86pyuxOTpeyM76E3hCVEhnWvqsueeCNU69BW6Ld2eZ', '2017-12-13 18:49:40', '2018-01-15 08:26:11'),
+(4, 'Alvantesha Priliandi', 'alvan@mail.com', '$2y$10$zqSGNG5vwZikGMU9dub5F.ZdNjrSGGKftOI0i5P0o/wyH6bXGcaeC', '9m6TN9ApCQihcJhGnDDnhoO1LuLtTTuFxy6uUhLgliwnZpjNZpCdKAyxPB6I', 'DSC_0599.JPG', 'Jl. Medan - Binjai Km. 19 Kel. Tunggurono Kec. Binjai TImur Kota Binjai', 0, '', 0, NULL, NULL, 1, '081263506016', NULL, 2, '103P70S8hBfdPC67IuN0PttVKDyqU0RmVhoY1D2UMv4nAY0uOEYaKZorpZ48', '2017-12-13 18:49:40', '2018-01-15 08:26:11'),
 (5, 'Bagus', 'bagus@mail.com', '$2y$10$Ow4gqB4p6o69bZg8Uh4ByO1rZDqmEZKl4E8yARYdVaYsWGE.EmWOW', 'LMxjrWktAXxrzgvWcLYkw32FEbDzAzRKwrT5tDSCT0pRwGrPGoQ6e0XM7vZD', NULL, NULL, 0, '', 0, NULL, NULL, NULL, NULL, NULL, 1, 'RAELKGZPEb6oDe58jZNdRvGSwgdXYcUAWyC3OkusgwZIDXpejaBBEWi2ijUz', '2017-12-13 20:36:13', '2017-12-13 20:36:13'),
 (6, 'Rani', 'rani@mail.com', '$2y$10$B.XI4nY1l7xg0m6h5miusu5gohyf9Pl42cTPripAD4WEKh43ujp5y', 'cYZw0yB5CFF3ubD4fSmBG6kjzgwpyRkf16CwDwCezvKgeaHNdwQaqevy0qAz', NULL, NULL, 0, '', 0, NULL, NULL, NULL, NULL, NULL, 1, 'O7HhSh58PkHERYS7EEGFz7vP8ZmJQSbvanjGtZetjSkFapeRKdHOPGz5mE4s', '2017-12-14 02:39:26', '2017-12-14 02:39:26'),
 (8, 'Chairil azmi', 'chairil@gmail.com', '$2y$10$yail/CEXs18xqFumbvD7..Hn6waVu3mvfMVr439Gb/KP43ADkNykK', 'ek1BeuOsZh3eifSuptgEq9Dsf1cZQIUMa0noB0St8372oancbDmHWR4258O3', NULL, 'Jl. perwira No. 90 Gunung Krakatau Ujung', 278, 'Medan', 20228, 'Sumatera Utara', 'Kota', NULL, NULL, NULL, 1, NULL, '2018-01-18 07:14:01', '2018-01-18 07:14:01'),
@@ -644,6 +686,12 @@ INSERT INTO `users` (`id`, `username`, `email`, `password`, `api_token`, `photo`
 -- Indexes for table `banks`
 --
 ALTER TABLE `banks`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `bentuk`
+--
+ALTER TABLE `bentuk`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -755,6 +803,12 @@ ALTER TABLE `transaction`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `ukuran_bantal`
+--
+ALTER TABLE `ukuran_bantal`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `ulasans`
 --
 ALTER TABLE `ulasans`
@@ -776,6 +830,12 @@ ALTER TABLE `users`
 --
 ALTER TABLE `banks`
   MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `bentuk`
+--
+ALTER TABLE `bentuk`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `carts`
@@ -829,7 +889,7 @@ ALTER TABLE `items`
 -- AUTO_INCREMENT for table `materials`
 --
 ALTER TABLE `materials`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=85;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=93;
 
 --
 -- AUTO_INCREMENT for table `mats`
@@ -878,6 +938,12 @@ ALTER TABLE `subcategories`
 --
 ALTER TABLE `transaction`
   MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
+
+--
+-- AUTO_INCREMENT for table `ukuran_bantal`
+--
+ALTER TABLE `ukuran_bantal`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `ulasans`
