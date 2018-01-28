@@ -72,7 +72,15 @@ class ItemController extends Controller
                                       'cetak_belakang' => $request->cetak_belakang,
                                       'cetak_lengan_kanan' => $request->cetak_lengan_kanan,
                                       'cetak_lengan_kiri' => $request->cetak_lengan_kiri,
-                                      'kaos_metode' => $request->kaos_metode
+                                      'kaos_metode' => $request->kaos_metode,
+                                      'nama' => $request->nama,
+                                      'nama_perusahaan' => $request->nama_perusahaan,
+                                      'no_telpon' => $request->no_telpon, 
+                                      'alamat'  => $request->alamat,
+                                      'email' => $request->email,
+                                      'jabatan' => $request->jabatan,
+                                      'logo' => $request->logo,
+                                      'material' => $request->material
                                     ]);
           $detail = DB::table('items')->join('products', 'items.product_id', '=', 'products.id')
                                       ->select('items.*', 'products.freelancer_id', 'products.subcategory_id', 'products.jdl_Pdk', 'products.harga_awal', 'products.images')
@@ -98,7 +106,15 @@ class ItemController extends Controller
             'cetak_belakang' => $request->cetak_belakang,
             'cetak_lengan_kanan' => $request->cetak_lengan_kanan,
             'cetak_lengan_kiri' => $request->cetak_lengan_kiri,
-            'kaos_metode' => $request->kaos_metode
+            'kaos_metode' => $request->kaos_metode,
+            'nama' => $request->nama,
+            'nama_perusahaan' => $request->nama_perusahaan,
+            'no_telpon' => $request->no_telpon, 
+            'alamat'  => $request->alamat,
+            'email' => $request->email,
+            'jabatan' => $request->jabatan,
+            'logo' => $request->logo,
+            'material' => $request->material
           );
           $item = Item::create($data); 
           $detail = DB::table('items')->join('products', 'items.product_id', '=', 'products.id')
@@ -130,7 +146,15 @@ class ItemController extends Controller
           'cetak_belakang' => $request->cetak_belakang,
           'cetak_lengan_kanan' => $request->cetak_lengan_kanan,
           'cetak_lengan_kiri' => $request->cetak_lengan_kiri,
-          'kaos_metode' => $request->kaos_metode
+          'kaos_metode' => $request->kaos_metode,
+          'nama' => $request->nama,
+          'nama_perusahaan' => $request->nama_perusahaan,
+          'no_telpon' => $request->no_telpon, 
+          'alamat'  => $request->alamat,
+          'email' => $request->email,
+          'jabatan' => $request->jabatan,
+          'logo' => $request->logo,
+          'material' => $request->material
         );
         $item = Item::create($data); 
         $detail = DB::table('items')->join('products', 'items.product_id', '=', 'products.id')
