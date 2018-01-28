@@ -1,13 +1,16 @@
 <?php
 
-namespace App\Http\Controllers\Api;
+namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use DB;
-use App\Subcategory;
+use Auth;
+use App\User;
+use App\Models\Orders;
+use App\Models\Report;
 
-class SubCategoryController extends Controller
+class ReportController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,8 +19,15 @@ class SubCategoryController extends Controller
      */
     public function index()
     {
-        $datas = DB::table('subcategories')->get();
-        return response()->json($datas);
+        //
+        $id = Auth::user()->id;
+        $data['report'] = db::select('select o.id, u.username, p.jdl_Pdk, s.name, p.harga_awal, o.total, o.status_frpay, t.status, o.created_at from orders o
+            join products p on p.id = o.product_id
+            join subcategories s on s.id = p.subcategory_id
+            join transaction t on t.id = o.transaction_id
+            join users u on u.id = o.user_id');
+        // return $data;
+        return view('admin.report.report_list',$data);
     }
 
     /**
@@ -49,9 +59,7 @@ class SubCategoryController extends Controller
      */
     public function show($id)
     {
-        $products = Subcategory::with('products')->where('id', '=', $id)->first();
-
-        return response()->json($products);
+        //
     }
 
     /**

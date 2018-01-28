@@ -20,7 +20,6 @@
                                 <th>Nama Produk</th>
                                 <th>Sub Category</th>
                                 <th>Harga Produk</th>
-                                <th>Pendapatan</th>
                                 <th>Date</th>
                                 <th>Time</th>
                             </tr>
@@ -31,7 +30,6 @@
                                 <th>Nama Produk</th>
                                 <th>Sub Category</th>
                                 <th>Harga Produk</th>
-                                <th>Pendapatan</th>
                                 <th>Date</th>
                                 <th>Time</th>
                             </tr>
@@ -39,15 +37,24 @@
                         <tbody>
                             @foreach($pay as $p)
                               @if($p->status == 4)
-                              <tr>
-                                <td>{{$p->username}}</td>
-                                <td>{{$p->jdl_Pdk}}</td>
-                                <td>{{$p->name}}</td>
-                                <td>{{$p->total}}</td>
-                                <td>{{$p->total * 30 /100}}</td>
-                                <td>{{ date('F d, Y', strtotime($p->updated_at))}}</td>
-                                <td>{{ date('H:m:s', strtotime($p->updated_at))}}</td>
-                              </tr>
+                                @if($p->status_frpay == 0)
+                                  <tr>
+                                    <form method="post" action="{{ route('freelance-payment.store') }}" data-parsley-validate class="form-horizontal form-label-left" enctype="multipart/form-data">
+                                    {{ csrf_field() }}
+                                    <td>{{$p->username}}</td>
+                                    <td>{{$p->jdl_Pdk}}</td>
+                                    <td>{{$p->name}}</td>
+                                    <td>{{$p->harga_awal}}</td>
+                                    <td>{{ date('F d, Y', strtotime($p->updated_at))}}</td>
+                                    <td>{{ date('H:m:s', strtotime($p->updated_at))}}</td>
+                                    <td>
+                                        <input type="hidden" name="order_id" value="{{$p->id}}">
+                                        <input type="hidden" name="total" value="{{$total}}">
+                                        <input type="submit" name="btnpay" value="bayar" class="btn btn-info">
+                                    </td>
+                                    </form>
+                                  </tr>
+                                @endif
                               @endif
                             @endforeach
                         </tbody>

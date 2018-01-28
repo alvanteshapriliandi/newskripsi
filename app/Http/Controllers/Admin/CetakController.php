@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use DB;
+use App\Models\Cetak;
 
 class CetakController extends Controller
 {
@@ -67,6 +68,19 @@ class CetakController extends Controller
     public function edit($id)
     {
         //
+        // return $id;
+        $data['user'] = db::select('select u.username, c.created_at, c.id from cetaks c
+            join messages m on m.id = c.message_id
+            join users u on u.id = m.to_user_id
+            where c.id = '.$id);
+        $data['print'] = db::select('select u.username, m.images, p.jdl_Pdk, s.name, o.jenis_kertas, o.kuantitas, o.model, o.kain, o.ukuran, o.warna, o.jenis_cetak, o.bahan, o.sisi, o.jilid, o.lembar, o.cetak_depan, o.cetak_belakang, o.cetak_lengan_kanan, o.cetak_lengan_kiri, o.kaos_metode from cetaks c
+            join orders o on o.id = c.order_id
+            join messages m on m.id = c.message_id
+            join users u on u.id = m.fr_user_id
+            join products p on p.id = o.product_id
+            join subcategories s on s.id = p.subcategory_id');
+        // return $data['print'];
+        return view('admin.cetakfreelance.cetakfreelance_show',$data);
     }
 
     /**
@@ -79,6 +93,13 @@ class CetakController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $data = $request->all();
+        $cetak = Cetak::find($id);
+        $cetak->status=$request->status;
+        // return $cetak;
+        $cetak->save();
+        $cetak -> update($data);
+        return redirect()->route('cetakpesanan.index')->with('success', "<strong>Print Product</strong> has successfully been updated.");
     }
 
     /**
@@ -91,4 +112,9 @@ class CetakController extends Controller
     {
         //
     }
+    // public function getDownload()
+    // {
+    //     $data['download'] = db::table('orders')->get();
+    //     return view('admin.cetakfreelance.cetakfreelance_show',$data);
+    // }
 }

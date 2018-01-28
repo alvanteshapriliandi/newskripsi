@@ -112,7 +112,7 @@ class OrderController extends Controller
         $transaction->status=$request->status;
         $transaction->save();
         $transaction -> update($data);
-        return redirect()->route('order-list.index')->with('success', "The order <strong>Status Order</strong> has successfully been updated.");
+        return redirect()->route('order.index')->with('success', "The order <strong>Status Order</strong> has successfully been updated.");
     }
 
     /**

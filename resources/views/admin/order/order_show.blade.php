@@ -9,7 +9,7 @@
         <div class="col-md-12 col-sm-12 col-xs-12">
             <div class="x_panel">
                 <div class="x_title">
-                    <h2>Status Prtuct <a href="{{route('order.index')}}" class="btn btn-info btn-xs"><i class="fa fa-chevron-left"></i> Back </a></h2>
+                    <h2>Status Prtuct <a href="{{route('orderlist.index')}}" class="btn btn-info btn-xs"><i class="fa fa-chevron-left"></i> Back </a></h2>
                     <div class="clearfix"></div>
                 </div>
                 <div class="x_content">
@@ -21,7 +21,7 @@
                                         <th>Data User</th>
                                     </tr>
                                     @foreach($data_order as $do)
-                                    <form method="post" action="{{ route('orderlist.update', ['id' => 1]) }}" data-parsley-validate class="form-horizontal form-label-left" enctype="multipart/form-data">
+                                    <form method="post" action="{{ route('orderlist.update', ['id' => $do->id]) }}" data-parsley-validate class="form-horizontal form-label-left" enctype="multipart/form-data">
                                         <input name="_method" type="hidden" value="PATCH">
                                         {{ csrf_field() }}
                                     <tr>
@@ -40,12 +40,39 @@
                                         <td>{{$do->name_bank}}</td>
                                     </tr>
                                     <tr>
+
                                         <th>Ubah Status</th>
-                                        <td><input type="checkbox" name="status" value="1"> Sudah dikonfimasi</td>
+                                        <td>
+                                            @if($do->status == 0)
+                                                <input type="checkbox" name="status" value="1"> Sudah dikonfimasi
+                                                @elseif($do->status == 1)
+                                                    Menunggu Konfirmasi
+                                                @elseif($do->status == 2)
+                                                    Dalam Proses Pengerjaan
+                                                @elseif($do->status == 3)
+                                                    Dalam Proses Pengiriman
+                                                @elseif($do->status == 4)
+                                                    Barang Sudah Diterima
+                                                @else
+                                                    Barang Sudah Diterima
+                                            @endif
+                                        </td>
                                     </tr>
                                     <tr>
                                         <td colspan="3" style="text-align: center;">
-                                            <input type="submit" name="btnupdate" value="Update Status" class="btn btn-success">
+                                            @if($do->status == 3)
+                                                <input type="submit" disabled="true" name="btnupdate" value="Update Status" class="btn btn-success">
+                                                @elseif($do->status == 1)
+                                                <input type="submit" disabled="true" name="btnupdate" value="Update Status" class="btn btn-success">
+                                                @elseif($do->status == 2)
+                                                <input type="submit" disabled="true" name="btnupdate" value="Update Status" class="btn btn-success">
+                                                @elseif($do->status == 4)
+                                                <input type="submit" disabled="true" name="btnupdate" value="Update Status" class="btn btn-success">
+                                                @elseif($do->status == 5)
+                                                <input type="submit" disabled="true" name="btnupdate" value="Update Status" class="btn btn-success">
+                                                @else
+                                                <input type="submit" name="btnupdate" value="Update Status" class="btn btn-success">
+                                            @endif
                                         </td>
                                     </tr>
                                     </form>

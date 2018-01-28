@@ -4,11 +4,13 @@ namespace App\Http\Controllers\Freelancer;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use DB;
 use Auth;
 use App\User;
-use DB;
+use App\Models\Orders;
+use App\Models\Report;
 
-class PembayaranController extends Controller
+class ReportController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -19,14 +21,14 @@ class PembayaranController extends Controller
     {
         //
         $id = Auth::user()->id;
-        $data['pembayaran'] = db::select('select p.jdl_Pdk, s.name, o.total, pem.updated_at, pem.pendapatan from freelancer_payments pem
-            join orders o on o.id = pem.order_id
+        $data['report'] = db::select('select o.id, u.username, p.jdl_Pdk, s.name, p.harga_awal, o.total, o.status_frpay, t.status, o.created_at from orders o
             join products p on p.id = o.product_id
             join subcategories s on s.id = p.subcategory_id
+            join transaction t on t.id = o.transaction_id
+            join users u on u.id = o.user_id
             where p.freelancer_id = '.$id);
-        
-         // return $data;
-        return view('Freelancer.pembayaran.pembayaran_list',$data);
+        // return $data;
+        return view('freelancer.report.report_list',$data);
     }
 
     /**
@@ -48,6 +50,15 @@ class PembayaranController extends Controller
     public function store(Request $request)
     {
         //
+        $id = Auth::user()->id;
+        $datas = array(
+            'freelancer_id' => $id,
+            'order_id' => $request->input('order_id'),
+            'comment' => $request->input('comment')
+        );
+        // return $datas;
+        Report::create($datas);
+        return redirect()->route('report.index')->with('success', "<strong>Report Commnt</strong> has successfully been created.");
     }
 
     /**
@@ -59,6 +70,9 @@ class PembayaranController extends Controller
     public function show($id)
     {
         //
+        $data['report'] = db::select('select o.id, p.jdl_Pdk from orders o join products p on p.id = o.product_id where o.id = '.$id);
+        return view('freelancer.report.report_show',$data);
+
     }
 
     /**

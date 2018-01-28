@@ -20,8 +20,9 @@ class MessagesController extends Controller
     {
         //
         $id = Auth::user()->id;
-        $data['order_message'] = db::select('select o.id, o.created_at, p.images, u.username, p.jdl_Pdk from orders o
+        $data['order_message'] = db::select('select o.id, t.status, o.created_at, p.images, u.username, p.jdl_Pdk from orders o
             join products p on p.id = o.product_id
+            join transaction t on t.id = o.transaction_id
             join users u on u.id = o.user_id
             where p.freelancer_id = '.$id);
         // $data['message_in'] = db::select('select u.email, m.id,m.subject, m.message from messages m join users u on m.to_user_id = u.id where m.to_user_id = '.$id);

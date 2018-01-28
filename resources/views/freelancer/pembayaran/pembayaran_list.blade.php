@@ -36,16 +36,14 @@
                         </tfoot>
                         <tbody>
                             @foreach($pembayaran as $bayar)
-                              @if($bayar->status == 4)
                               <tr>
                                 <td>{{$bayar->jdl_Pdk}}</td>
                                 <td>{{$bayar->name}}</td>
                                 <td>{{$bayar->total}}</td>
-                                <td>{{$bayar->total * 30 /100}}</td>
+                                <td>{{$bayar->pendapatan}}</td>
                                 <td>{{ date('F d, Y', strtotime($bayar->updated_at))}}</td>
                                 <td>{{ date('H:m:s', strtotime($bayar->updated_at))}}</td>
                               </tr>
-                              @endif
                             @endforeach
                         </tbody>
                     </table>

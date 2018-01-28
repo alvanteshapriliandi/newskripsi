@@ -42,11 +42,17 @@
                                         <td>Menunggu Konfirmasi</td>
                                         @elseif($t->status == 2)
                                         <td>Dalam Proses Pengerjaan</td>
+                                        @elseif($t->status == 3)
+                                        <td>Dalam Proses Pengiriman</td>
+                                        @elseif($t->status == 4)
+                                        <td>Barang sudah Diterima</td>
+                                        @else
+                                        <td>Barang sudah Diterima</td>
                                     @endif
                                     <td>{{ date('F d, Y', strtotime($t->created_at))}}</td>
                                     <td>{{ date('H:m:s', strtotime($t->created_at))}}</td>
                                     <td>
-                                        <a href="{{route('orderlist.show', ['id' => $t->id])}}" class="btn btn-info"><i class="fa fa-eye"></i></a>
+                                        <a href="{{route('orderlist.edit', ['id' => $t->id])}}" class="btn btn-info"><i class="fa fa-eye"></i></a>
                                     </td>
                                 </tr>
                                 @endforeach

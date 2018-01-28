@@ -35,18 +35,22 @@
               </tfoot>
               <tbody>
                 @foreach($order_message as $om)
-                <tr>
-                  <td>
-                    <img src="{{asset('uploads/'.$om->images)}}" width="150">
-                  </td>
-                  <td>{{$om->username}}</td>
-                  <td>{{$om->jdl_Pdk}}</td>
-                  <td>{{ date('F d, Y', strtotime($om->created_at))}}</td>
-                  <td>{{ date('H:m:s', strtotime($om->created_at))}}</td>
-                  <td>
-                    <a href="{{route('message.show',['id'=>$om->id])}}" class="btn btn-success">Komunikasi</a>
-                  </td>
-                </tr>
+                @if($om->status == 0)
+                  @elseif($om->status == 1)
+                  @else
+                  <tr>
+                    <td>
+                      <img src="{{asset('uploads/'.$om->images)}}" width="150">
+                    </td>
+                    <td>{{$om->username}}</td>
+                    <td>{{$om->jdl_Pdk}}</td>
+                    <td>{{ date('F d, Y', strtotime($om->created_at))}}</td>
+                    <td>{{ date('H:m:s', strtotime($om->created_at))}}</td>
+                    <td>
+                      <a href="{{route('message.show',['id'=>$om->id])}}" class="btn btn-success">Komunikasi</a>
+                    </td>
+                  </tr>
+                @endif
                 @endforeach
               </tbody>
             </table>
