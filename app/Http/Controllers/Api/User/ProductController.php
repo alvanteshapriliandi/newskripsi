@@ -126,4 +126,11 @@ class ProductController extends Controller
         $product = DB::table('products')->where('id', '=', $id)->delete();
         return response()->json('code =', 200);
     }
+
+    public function products() 
+    {
+      $product = DB::table('products')->get();
+
+      return response()->json($product);
+    }
 }
