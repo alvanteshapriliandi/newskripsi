@@ -45,6 +45,9 @@
 			<div class="col-xs-12">
 				<select name="ukuran[]" id="ukuran" class="category form-control col-md-7 col-xs-12">
 					<option value="0" disabled="true" selected="true">-Pilih Ukuran-</option>
+					<option value="190 X 90 X 320 MM">190 X 90 X 320 MM</option>
+					<option value="300 x 130 x 415 MM">300 x 130 x 415 MM</option>
+					<option value="435 X 130 X 540 MM">435 X 130 X 540 MM</option>
 					<option value="110 X 50 X 190 MM">110 X 50 X 190 MM</option>
 					<option value="190 X 90 X 320 MM">190 X 90 X 320 MM</option>
 					<option value="300 x 130 x 415 MM">300 x 130 x 415 MM</option>
@@ -122,6 +125,18 @@
 				@endif
 			</div>
 		</div>
+
+		<div class="form-group{{ $errors->has('berat') ? ' has-error' : '' }} col-md-3">
+			<label class="col-xs-12" for="berat">Berat <span class="required">*</span>
+			</label>
+			<div class="col-xs-12">
+				<input type="number" value="{{ Request::old('berat') ?: '' }}" id="berat" name="berat[]" class="form-control col-md-7 col-xs-12">
+				@if ($errors->has('berat'))
+				<span class="help-block">{{ $errors->first('berat') }}</span>
+				@endif
+			</div>
+		</div>
+
 
 		<div class="form-group{{ $errors->has('harga') ? ' has-error' : '' }} col-md-3">
 			<label class="col-xs-12" for="harga">Harga <span class="required">*</span>

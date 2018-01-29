@@ -225,17 +225,17 @@
                 ukuran(guling);
                 break;
                 default:
-                $("#ukuran").empty();
-                $("#ukuran").append("<option>--Select--</option>");
+                $("#ukurans").empty();
+                $("#ukurans").append("<option>--Select--</option>");
                 break;
             }
         });
         // Function To List out Cities in Second Select tags
         function ukuran(arr) {
-            $("#ukuran").empty(); //To reset cities
-            $("#ukuran").append("<option>--Select--</option>");
+            $("#ukurans").empty(); //To reset cities
+            $("#ukurans").append("<option>--Select--</option>");
             $(arr).each(function(i) { //to list cities
-                $("#ukuran").append("<option value=\"" + arr[i].value + "\">" + arr[i].display + "</option>")
+                $("#ukurans").append("<option value=\"" + arr[i].value + "\">" + arr[i].display + "</option>")
             });
         }
     });

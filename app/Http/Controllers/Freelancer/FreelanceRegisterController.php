@@ -24,7 +24,9 @@ class FreelanceRegisterController extends Controller
     public function index()
     {
         if(!Helper::checkFreelancer()){return view('error.403');}
-        return view('freelancer.home');
+        $id = Auth::user()->id;
+        $product = DB::select('SELECT COUNT(p.id) total FROM products p where p.id = '.$id);
+        return view('freelancer.product.product_list');
     }
 
     /**

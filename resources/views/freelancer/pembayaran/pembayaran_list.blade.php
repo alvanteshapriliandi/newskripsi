@@ -39,7 +39,7 @@
                               <tr>
                                 <td>{{$bayar->jdl_Pdk}}</td>
                                 <td>{{$bayar->name}}</td>
-                                <td>{{$bayar->total}}</td>
+                                <td>{{$bayar->harga_awal}}</td>
                                 <td>{{$bayar->pendapatan}}</td>
                                 <td>{{ date('F d, Y', strtotime($bayar->updated_at))}}</td>
                                 <td>{{ date('H:m:s', strtotime($bayar->updated_at))}}</td>

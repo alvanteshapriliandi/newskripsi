@@ -46,17 +46,17 @@
 								@if($r->status == 4)
 								<tr>
 									<?php 
-										$pendapatan = $r->total - $r->harga_awal;
-										$pendapatan = $r->total - $pendapatan;
+										// $pendapatan = $r->total - $r->harga_awal;
+										// $pendapatan = $r->total - $pendapatan;
 									?>
 									<td>{{$r->username}}</td>
 									<td>{{$r->jdl_Pdk}}</td>
 									<td>{{$r->name}}</td>
 									<?php 
-										$r->total = number_format($r->total, 1, ",",".");
-										$pendapatan = number_format($pendapatan, 1, ",",".");
+										// $r->total = number_format($r->total, 1, ",",".");
+										// $pendapatan = number_format($pendapatan, 1, ",",".");
 									?>
-									<td>{{$r->total}}</td>
+									<td>{{$r->harga_awal}}</td>
 									<td>{{$pendapatan}}</td>
 									@if($r->status_frpay == 1)
 										<td>Terkirim</td>

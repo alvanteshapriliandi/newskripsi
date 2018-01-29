@@ -87,8 +87,9 @@
                                     <tr>
                                         <th colspan="2" style="text-align: center;">Data Order List</th>
                                     </tr>
-                                    <?php $total = 0;?>
+                                    <?php $total = 0; ?>
                                     @foreach($order_list as $dl)
+                                    <?php $total = ($dl->harga * $dl->kuantitas) + $dl->harga_awal;?>
                                     <tr>
                                         <th>Freelance Name</th>
                                         <td>{{$dl->username}}</td>
@@ -106,10 +107,13 @@
                                         <td>{{$dl->kuantitas}}</td>
                                     </tr>
                                     <tr>
-                                        <th>Sub Total</th>
-                                        <td>{{$dl->total}}</td>
+                                        <th>Harga Desain</th>
+                                        <td>{{$dl->harga_awal}}</td>
                                     </tr>
-                                    <?php $total += $dl->total; ?>
+                                    <tr>
+                                        <th>Sub Total Material</th>
+                                        <td>{{$dl->harga * $dl->kuantitas}}</td>
+                                    </tr>                                    
                                     @endforeach
                                     <tr>
                                         <td colspan="2" style="text-align: center; font-size: 20px;">Total = {{$total}}</td>

@@ -13,7 +13,7 @@
                         <div class="clearfix"></div>
                     </div>
                     <div class="x_content">
-                        <table id="datatable-buttons" class="table table-striped table-bordered">
+                        <table id="datatable-buttons" class="table table-striped table-bordered table-hover">
                             <thead>
                                 <tr>
                                     <th>Subcategory</th>
@@ -42,7 +42,8 @@
                                 @endforeach
                             </tbody>
                         </table>
-                    </div>
+                        {!! $subcategory->render() !!}             
+                     </div>
                 </div>
             </div>
         </div>

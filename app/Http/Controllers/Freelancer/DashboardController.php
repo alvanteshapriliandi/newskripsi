@@ -4,13 +4,8 @@ namespace App\Http\Controllers\Freelancer;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use DB;
-use Auth;
-use App\User;
-use App\Models\Orders;
-use App\Models\Report;
 
-class ReportController extends Controller
+class DashboardController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -20,15 +15,6 @@ class ReportController extends Controller
     public function index()
     {
         //
-        $id = Auth::user()->id;
-        $data['report'] = db::select('select o.id, u.username, p.jdl_Pdk, s.name, p.harga_awal, o.status_frpay, t.status, o.created_at from orders o
-            join products p on p.id = o.product_id
-            join subcategories s on s.id = p.subcategory_id
-            join transaction t on t.id = o.transaction_id
-            join users u on u.id = t.user_id
-            where p.freelancer_id = '.$id);
-        // return $data;
-        return view('freelancer.report.report_list',$data);
     }
 
     /**
@@ -50,15 +36,6 @@ class ReportController extends Controller
     public function store(Request $request)
     {
         //
-        $id = Auth::user()->id;
-        $datas = array(
-            'freelancer_id' => $id,
-            'order_id' => $request->input('order_id'),
-            'comment' => $request->input('comment')
-        );
-        // return $datas;
-        Report::create($datas);
-        return redirect()->route('report.index')->with('success', "<strong>Report Commnt</strong> has successfully been created.");
     }
 
     /**
@@ -70,9 +47,6 @@ class ReportController extends Controller
     public function show($id)
     {
         //
-        $data['report'] = db::select('select o.id, p.jdl_Pdk from orders o join products p on p.id = o.product_id where o.id = '.$id);
-        return view('freelancer.report.report_show',$data);
-
     }
 
     /**

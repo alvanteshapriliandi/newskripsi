@@ -23,7 +23,7 @@ class MaterialController extends Controller
         $data['category'] = Category::all();
         $id = Category::find(1);
         // return $id;
-        $data['subcategory'] = Subcategory::all();
+        $data['subcategory'] = db::table('subcategories')->paginate(9);
         return view('admin.material.material_list',$data);
     }
 
@@ -61,8 +61,8 @@ class MaterialController extends Controller
             die();
         }
         $stmt = $dbh->prepare("
-            INSERT INTO materials (subcategory_id, satuan, jlh_pesanan, jns_finishing, harga, jns_kertas, bentuk, ukuran, tipe_jilid, jlh_lembar, jns_material, model_pegangan, bahan, sisi, jns_mug, model_bantal, jenis_kain, cetak_belakang, cetak_depan, cetak_lengan, cetak_kiri ) 
-            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ? )
+            INSERT INTO materials (subcategory_id, satuan, jlh_pesanan, jns_finishing, harga, jns_kertas, bentuk, ukuran, tipe_jilid, jlh_lembar, jns_material, model_pegangan, bahan, sisi, jns_mug, model_bantal, jenis_kain, cetak_belakang, cetak_depan, cetak_lengan, cetak_kiri, berat ) 
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ? )
         ");
         $stmt->bindParam(1, $subcategory_id);
         $stmt->bindParam(2, $satuan);
@@ -85,6 +85,7 @@ class MaterialController extends Controller
         $stmt->bindParam(19, $cetak_depan);
         $stmt->bindParam(20, $cetak_lengan);
         $stmt->bindParam(21, $cetak_kiri);
+        $stmt->bindParam(22, $berat);
 
 
         // $stmt->bindParam(4, $jns_kertas);
@@ -167,6 +168,7 @@ class MaterialController extends Controller
             if (isset($arr['cetak_kiri'][$i])) {
                 $cetak_kiri = $arr['cetak_kiri'][$i];
             }
+            $berat = $arr['berat'][$i];
             // return $arr;
             $stmt->execute();
         }
@@ -192,7 +194,7 @@ class MaterialController extends Controller
         //     Material::create([$arr]);
         // }
         
-        return redirect()->route('material.edit',['id'=>$subcategory_id])->with('success', "The Messages <strong>Messages</strong> has successfully been Created.");
+        return redirect()->route('material.edit',['id'=>$subcategory_id])->with('success', "The Material <strong>Material</strong> has successfully been Created.");
     }
 
     /**

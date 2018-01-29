@@ -37,6 +37,7 @@ Route::get('user/alamat', 'Api\User\AlamatController@index');
 Route::get('categories', 'Api\CategoryController@index');
 Route::resource('subcategory', 'Api\SubCategoryController');
 Route::post('order', 'Api\User\OrdersController@store');
+Route::resource('usermessage', 'Api\User\MessageController');
 
 
 Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => 'auth'], function () {

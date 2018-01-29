@@ -57,18 +57,6 @@
 			</div>
 		</div>
 
-		<div class="form-group{{ $errors->has('harga') ? ' has-error' : '' }} col-md-3">
-			<label class="col-xs-12" for="harga">Harga <span class="required">*</span>
-			</label>
-			<div class="col-xs-12">
-				<input type="text" value="{{ Request::old('harga') ?: '' }}" id="harga" name="harga" class="form-control col-md-7 col-xs-12">
-				@if ($errors->has('harga'))
-				<span class="help-block">{{ $errors->first('harga') }}</span>
-				@endif
-			</div>
-		</div>
-
-
 		<div class="form-group{{ $errors->has('jns_finishing') ? ' has-error' : '' }} col-md-3">
 			<label class="col-xs-12" for="jns_finishing">Jenis Finishing <span class="required">*</span>
 			</label>
@@ -85,6 +73,18 @@
 				@endif
 			</div>
 		</div>
+
+		<div class="form-group{{ $errors->has('berat') ? ' has-error' : '' }} col-md-3">
+			<label class="col-xs-12" for="berat">Berat <span class="required">*</span>
+			</label>
+			<div class="col-xs-12">
+				<input type="number" value="{{ Request::old('berat') ?: '' }}" id="berat" name="berat[]" class="form-control col-md-7 col-xs-12">
+				@if ($errors->has('berat'))
+				<span class="help-block">{{ $errors->first('berat') }}</span>
+				@endif
+			</div>
+		</div>
+
 
 		<div class="form-group{{ $errors->has('harga_awal') ? ' has-error' : '' }} col-md-3">
 			<label class="col-xs-12" for="harga_awal">Harga <span class="required">*</span>

@@ -1,15 +1,14 @@
 <?php
 
-namespace App\Http\Controllers\freelancer;
+namespace App\Http\Controllers\Api\User;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Models\Messages;
-use DB;
-use App\User;
 use Auth;
+use App\User;
+use DB;
 
-class MessagesController extends Controller
+class MessageController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -25,10 +24,7 @@ class MessagesController extends Controller
             join transaction t on t.id = o.transaction_id
             join users u on u.id = t.user_id
             where p.freelancer_id = '.$id);
-        // $data['message_in'] = db::select('select u.email, m.id,m.subject, m.message from messages m join users u on m.to_user_id = u.id where m.to_user_id = '.$id);
-        // $data['message_out'] = db::select('select u.email, m.id,m.subject, m.message from messages m join users u on m.to_user_id = u.id where m.fr_user_id = '.$id);
-        // return $data;
-        return view('freelancer.messages.messages_list',$data);
+        return response()->json($data);
     }
 
     /**
@@ -39,7 +35,6 @@ class MessagesController extends Controller
     public function create()
     {
         //
-        return view('freelancer.messages.messages_create');
     }
 
     /**
@@ -72,11 +67,9 @@ class MessagesController extends Controller
         if ($request->file('images')) {
             $datas['images'] = $data['images'];
         }
-        // return $datas;
+            // return $datas;
         Messages::create($datas);
-            return redirect()->route('message.show',['id'=>$data['order_id']]);
-        
-        
+        return response()->json($datas);
     }
 
     /**
@@ -103,8 +96,7 @@ class MessagesController extends Controller
             join transaction t on t.id = o.transaction_id
             join users u on u.id = t.user_id
             where o.id = '.$id);
-        // return $data['orders'];
-        return view('freelancer.messages.messages_view',$data);
+        return response()->json($data);
     }
 
     /**

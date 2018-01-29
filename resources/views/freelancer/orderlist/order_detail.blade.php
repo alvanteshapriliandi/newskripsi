@@ -63,7 +63,7 @@
                                         <tr>
                                             @if($t->nama)
                                                 <td>Nama</td>
-                                                <td>{{$t->nama}}</td>
+                                                <td>{{$t->name}}</td>
                                             @endif
                                         </tr>
                                         <tr>
@@ -73,9 +73,9 @@
                                             @endif
                                         </tr>
                                         <tr>
-                                            @if($t->nama_perushaan)
+                                            @if($t->nama_perusahaan)
                                                 <td>Nama Prusahaan</td>
-                                                <td>{{$t->nama_perushaan}}</td>
+                                                <td>{{$t->nama_perusahaan}}</td>
                                             @endif
                                         </tr>
                                         <tr>
@@ -85,9 +85,9 @@
                                             @endif
                                         </tr>
                                         <tr>
-                                            @if($t->no_telepon)
+                                            @if($t->no_telpon)
                                                 <td>Nomor Telepon</td>
-                                                <td>{{$t->no_telepon}}</td>
+                                                <td>{{$t->no_telpon}}</td>
                                             @endif
                                         </tr>
                                         <tr>
@@ -128,7 +128,7 @@
                                         </tr>
                                         <tr>
                                             @if($t->jenis_cetak)
-                                                <td>Jenis Cetak</td>
+                                                <td>Jenis Finishing</td>
                                                 <td>{{$t->jenis_cetak}}</td>
                                             @endif
                                         </tr>

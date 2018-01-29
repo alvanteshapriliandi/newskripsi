@@ -9,6 +9,7 @@ use Auth;
 use App\User;
 use App\Models\Transaction;
 use App\Models\Orders;
+use App\Subcategory;
 
 class OrderController extends Controller
 {
@@ -85,12 +86,14 @@ class OrderController extends Controller
             join users u on u.id = t.user_id
             where t.id = '.$id);
         // return $data;
-        $data['order_list'] = db::select('select u.username, p.jdl_Pdk, s.name, o.kuantitas, o.total from orders o
+        $data['order_list'] = db::select('select u.username,s.id, p.jdl_Pdk, p.harga_awal, m.harga, s.name, o.kuantitas from orders o
             join products p on p.id = o.product_id
             join users u on u.id = p.freelancer_id
             join subcategories s on s.id = p.subcategory_id
+            left join materials m on m.subcategory_id = s.id
             join transaction t on t.id = o.Transaction_id
             where o.Transaction_id = '.$id);
+
         // return $data['order_list'];
         return view('admin.order.order_show',$data);
     }

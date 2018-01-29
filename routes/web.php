@@ -31,6 +31,7 @@ Route::group(['prefix' => 'freelance', 'namespace' => 'Freelancer', 'middleware'
     Route::resource('cetak', 'CetakPesananController');
     Route::resource('pengaturan', 'PengaturanController');
     Route::resource('message', 'MessagesController');
+    Route::resource('report', 'ReportController');
     Route::post('product/findSubCategoryname/{id}', 'ProductsController@findSubCategoryname');
 });
 Route::group(['namespace' => 'Freelancer', 'middleware' => 'auth'], function () {
@@ -80,6 +81,7 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => 'auth
     Route::resource('new-message', 'NewController');
     Route::resource('inbox-message', 'MasukController');
     Route::resource('material', 'MaterialController');
+    Route::resource('submaterial', 'SubmaterialController');
     Route::resource('outbox-message', 'KeluarController');
     Route::post('material/findSubCategoryname/{id}', 'MaterialController@findSubCategoryname');
     Route::get('material/createbyid/{id}', 'MaterialController@createbyid');
