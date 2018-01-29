@@ -5,9 +5,8 @@ namespace App\Http\Controllers\Api;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use DB;
-use App\Subcategory;
 
-class SubCategoryController extends Controller
+class MaterialController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,8 +15,7 @@ class SubCategoryController extends Controller
      */
     public function index()
     {
-      $products = Subcategory::with('products')->get();
-      return response()->json($products);
+        //
     }
 
     /**
@@ -49,9 +47,8 @@ class SubCategoryController extends Controller
      */
     public function show($id)
     {
-        // $products = DB::table('products')->where('subcategory_id', '=', $id)->get();
-        $products = Subcategory::with('products')->where('id', '=', $id)->first();
-        return response()->json($products);
+        $materials = DB::table('materials')->where('subcategory_id', '=', $id)->get();
+        return response()->json($materials);
     }
 
     /**
@@ -87,12 +84,4 @@ class SubCategoryController extends Controller
     {
         //
     }
-
-    public function subcategory($id)
-    {
-      $products = Subcategory::with('products')->where('id', '=', $id)->first();
-
-        return response()->json($products);
-    }
-    
 }
