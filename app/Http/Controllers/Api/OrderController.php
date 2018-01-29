@@ -4,18 +4,32 @@ namespace App\Http\Controllers\Api;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Transaction;
+use App\Order;
+Use Auth;
 use DB;
 
-class MaterialController extends Controller
+class OrderController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
+    public function __construct()
+    {
+        $this->middleware('auth:api');
+    }
+
     public function index()
     {
-        //
+      $transaction = Transaction::with('orders.product')
+                                  // ->join('products as item', 'orders.product_id', '=', 'products.id')
+                                  ->where('user_id', '=', Auth::user()->id)->get();
+      // $orders = Order::with('product')
+      //                                 ->crossJoin('transaction', 'orders.transaction_id', '=', 'transaction.id')
+      //                                 ->where('transaction.user_id', '=', Auth::user()->id);
+      return response()->json($transaction);
     }
 
     /**
@@ -47,8 +61,10 @@ class MaterialController extends Controller
      */
     public function show($id)
     {
-        $materials = DB::table('materials')->where('subcategory_id', '=', $id)->get();
-        return response()->json($materials);
+        // $orders = DB::table('orders')->join('products', 'orders.product_id', '=', 'products.id')
+        //                               ->join('transaction', 'orders.transaction_id', '=', 'transaction.id')
+        //                               ->where('user_id')
+        
     }
 
     /**
@@ -84,3 +100,4 @@ class MaterialController extends Controller
     {
         //
     }
+}

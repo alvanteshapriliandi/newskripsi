@@ -34,4 +34,7 @@ class Order extends Model
     return $this->belonsTo(Transaction::class);
   }
   
+  public function product () {
+    return $this->belongsTo(Product::class);
+  }
 }

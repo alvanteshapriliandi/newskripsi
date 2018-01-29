@@ -40,6 +40,9 @@ Route::post('order', 'Api\User\OrdersController@store');
 Route::get('products', 'Api\User\ProductController@products');
 Route::get('sub/{id}', 'Api\SubCategoryController@subcategory');
 Route::resource('materials', 'Api\MaterialController');
+Route::resource('user', 'Api\UserController');
+Route::resource('transaction', 'Api\OrderController');
+Route::post('changephone', 'Api\ProfileController@changePhone');
 
 
 Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => 'auth'], function () {

@@ -5,17 +5,25 @@ namespace App\Http\Controllers\Api;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use DB;
+use Auth;
 
-class MaterialController extends Controller
+class UserController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
+
+    public function __construct()
+    {
+        $this->middleware('auth:api');
+    }
+
     public function index()
     {
-        //
+      $user = DB::table('users')->where('id', '=', Auth::user()->id)->first();
+      return response()->json($user);
     }
 
     /**
@@ -47,8 +55,7 @@ class MaterialController extends Controller
      */
     public function show($id)
     {
-        $materials = DB::table('materials')->where('subcategory_id', '=', $id)->get();
-        return response()->json($materials);
+        
     }
 
     /**
@@ -84,3 +91,4 @@ class MaterialController extends Controller
     {
         //
     }
+}

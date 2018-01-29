@@ -4,9 +4,8 @@ namespace App\Http\Controllers\Api;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use DB;
 
-class MaterialController extends Controller
+class RegFreelancer extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -47,8 +46,7 @@ class MaterialController extends Controller
      */
     public function show($id)
     {
-        $materials = DB::table('materials')->where('subcategory_id', '=', $id)->get();
-        return response()->json($materials);
+        //
     }
 
     /**
@@ -84,3 +82,4 @@ class MaterialController extends Controller
     {
         //
     }
+}
