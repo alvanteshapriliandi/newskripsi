@@ -104,8 +104,8 @@
                                         </tr>
                                         <tr>
                                             @if($t->model)
-                                                <td>Mtel</td>
-                                                <td>{{$t->mtel}}</td>
+                                                <td>Mpdel</td>
+                                                <td>{{$t->model}}</td>
                                             @endif
                                         </tr>
                                         <tr>
