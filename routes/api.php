@@ -37,7 +37,16 @@ Route::get('user/alamat', 'Api\User\AlamatController@index');
 Route::get('categories', 'Api\CategoryController@index');
 Route::resource('subcategory', 'Api\SubCategoryController');
 Route::post('order', 'Api\User\OrdersController@store');
+<<<<<<< HEAD
 Route::resource('usermessage', 'Api\User\MessageController');
+=======
+Route::get('products', 'Api\User\ProductController@products');
+Route::get('sub/{id}', 'Api\SubCategoryController@subcategory');
+Route::resource('materials', 'Api\MaterialController');
+Route::resource('user', 'Api\UserController');
+Route::resource('transaction', 'Api\OrderController');
+Route::post('changephone', 'Api\ProfileController@changePhone');
+>>>>>>> 8cf7432d7b104c51bfa482488236c143c6f9dc43
 
 
 Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => 'auth'], function () {
