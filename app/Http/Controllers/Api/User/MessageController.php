@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use Auth;
 use App\User;
 use DB;
+use App\Message;
 
 class MessageController extends Controller
 {
@@ -15,6 +16,12 @@ class MessageController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    public function __construct()
+    {
+        $this->middleware('auth:api');
+    }
+    
     public function index()
     {
         //
@@ -68,7 +75,7 @@ class MessageController extends Controller
             $datas['images'] = $data['images'];
         }
             // return $datas;
-        Messages::create($datas);
+        Message::create($datas);
         return response()->json($datas);
     }
 
@@ -83,7 +90,7 @@ class MessageController extends Controller
         //
         $messages_id = Auth::user()->id;
         $data['message_in'] = db::select('select u.email, u.username, m.id, m.fr_user_id, m.images, m.message, m.created_at from messages m 
-            join users u on m.fr_user_id = u.id 
+            join users u on m.fr_user_id = u.id   
             where m.to_user_id = '.$messages_id.'
             order by m.created_at desc');
         // return $data;

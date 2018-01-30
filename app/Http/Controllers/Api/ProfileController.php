@@ -16,12 +16,19 @@ class ProfileController extends Controller
 
   public function changePhone(Request $request) 
   {
-    $user = DB::table('users')->where('id', '=', Auth::user()->id);
 
-    DB::table('users')->update([
+    $user = DB::table('users')->where('id', '=', Auth::user()->id);
+    $user->update([
       'phone' => $request->phone
     ]);
+    return response()->json(200);
+  }
 
+  public function changeKelamin (Request $request) {
+    $user = DB::table('users')->where('id', '=', Auth::user()->id);
+    $user->update([
+      'gender' => $request->kelamin
+    ]);
     return response()->json(200);
   }
 
