@@ -4,6 +4,9 @@ namespace App\Http\Controllers\Api;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use DB;
+use Auth;
+use App\Models\Freelance;
 
 class RegFreelancer extends Controller
 {
@@ -12,6 +15,11 @@ class RegFreelancer extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function __construct()
+    {
+        $this->middleware('auth:api');
+    }
+
     public function index()
     {
         //
@@ -35,7 +43,16 @@ class RegFreelancer extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $user = DB::table('users')->where('id', '=', Auth::user()->id)->update([
+          'role' => 2
+        ]);
+
+        $bank = Freelance::create([
+          'user_id' => Auth::user()->id,
+          'no_rekening' => $request->no_rekening
+        ]);
+
+        return response()->json($user);
     }
 
     /**
