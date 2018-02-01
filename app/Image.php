@@ -12,4 +12,8 @@ class Image extends Model
     ];
 
     public $table = "images";
+
+    public function product () {
+    return $this->belongsTo(Product::class);
+  }
 }

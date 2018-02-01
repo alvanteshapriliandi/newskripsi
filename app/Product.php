@@ -18,6 +18,10 @@ class Product extends Model
     ];
     public $table = "products";
 
+    public function images(){
+      return $this->hasMany(Image::class);
+    } 
+
     // public function freelancer(){
     //     return $this->belongsTo(Freelancer::class);
     // }

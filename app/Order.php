@@ -31,7 +31,7 @@ class Order extends Model
   public $table = "orders";
 
   public function transaction () {
-    return $this->belonsTo(Transaction::class);
+    return $this->belongsTo(Transaction::class);
   }
   
   public function product () {

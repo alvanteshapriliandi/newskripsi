@@ -6,6 +6,7 @@ use Auth;
 use DB;
 use App\User;
 use App\Models\Orders;
+use App\Product;
 class ProductController extends Controller
 {
     /**
@@ -15,7 +16,7 @@ class ProductController extends Controller
      */
     public function index()
     {
-      $product = DB::table('products')->paginate(12);
+      $product = Product::with('images')->paginate(12);
                 
       return response()->json($product);
     }
@@ -86,7 +87,7 @@ class ProductController extends Controller
      */
     public function show($id)
     {
-      $product = DB::table('products')
+      $product = Product::with('images')
                     ->join('users', 'products.freelancer_id', '=', 'users.id')
                     ->join('subcategories','subcategories.id', '=', 'products.subcategory_id')
                     ->select('products.*', 'users.username', 'subcategories.name')  
