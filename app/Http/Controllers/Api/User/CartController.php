@@ -115,7 +115,9 @@ class CartController extends Controller
         $user_id = Auth::user()->id;
         $cart = DB::table('carts')->where('user_id', '=', $user_id)->first();
 
-        $items = DB::table('items')->where('cart_id', '=', $cart->id)->delete();
+        $items = DB::table('items')->where('cart_id', '=', $cart->id);
+
+        $items->where('id', '=', $id)->delete();
         
         
 

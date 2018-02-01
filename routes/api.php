@@ -47,6 +47,7 @@ Route::post('changephone', 'Api\ProfileController@changePhone');
 Route::post('kelamin', 'Api\ProfileController@changeKelamin');
 Route::resource('messages', 'Api\User\MessageController');
 Route::post('freelance', 'Api\RegFreelancer@store');
+Route::post('upload', 'Api\User\TranscationController@upload');
 
 Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => 'auth'], function () {
   Route::resource('products', 'ProductController');
