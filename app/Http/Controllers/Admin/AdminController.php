@@ -22,7 +22,7 @@ class AdminController extends Controller
 		if(!Helper::checkAdmin()){return view('error.403');}
 		$user = DB::select('SELECT COUNT(u.id) total FROM users u where u.role=1'); 
 		$freelance = DB::select('SELECT COUNT(u.id) total FROM users u where u.role=2');
-		$product = DB::select('SELECT COUNT(p.id) total FROM products p');
+		$product = DB::select('SELECT COUNT(p.id) total FROM products p where p.status = 0');
 		return view('admin.home')->with(['user'=>$user,'freelance'=>$freelance, 'product'=>$product]);
     }
 }

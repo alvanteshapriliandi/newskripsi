@@ -86,13 +86,14 @@ class OrderController extends Controller
             join users u on u.id = t.user_id
             where t.id = '.$id);
         // return $data;
-        $data['order_list'] = db::select('select u.username,s.id, p.jdl_Pdk, p.harga_awal, m.harga, s.name, o.kuantitas from orders o
+        $data['order_list'] = db::select('SELECT u.username,s.id, p.jdl_Pdk, p.harga_awal, m.harga, m.satuan, s.name, o.kuantitas from orders o
             join products p on p.id = o.product_id
             join users u on u.id = p.freelancer_id
             join subcategories s on s.id = p.subcategory_id
             left join materials m on m.subcategory_id = s.id
             join transaction t on t.id = o.Transaction_id
-            where o.Transaction_id = '.$id);
+            where o.Transaction_id = '.$id.'
+            and m.id = 102 ');
 
         // return $data['order_list'];
         return view('admin.order.order_show',$data);
@@ -112,8 +113,20 @@ class OrderController extends Controller
         $data = $request->all();
         $transaction = Transaction::find($id);
         // return $transaction;
+        $order = db::select('select * from orders o where o.transaction_id = '.$transaction->id);
+        
+        
+        // return $transaction;
         $transaction->status=$request->status;
-        // return $orderlist;
+        // return $transaction;
+        if ($transaction->status == 1) {
+           foreach ($order as $o) {
+                $o->status == 1;
+                $o->save();
+                $o->update($data);
+                return $o;
+           }
+        }
         $transaction->save();
         $transaction -> update($data);
         return redirect()->route('orderlist.index')->with('success', "The order <strong>Status Order</strong> has successfully been updated.");

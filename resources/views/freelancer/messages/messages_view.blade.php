@@ -108,7 +108,7 @@
                             <table class="table-responsive">
                             <tr>
                               <td style="width: 100%;">
-                                <input id="btn-input" name="message" type="text" class="form-control" placeholder="Type your message here..." />
+                                <input id="btn-input" name="message" type="text" class="form-control" placeholder="Type your message here..." autocomplete="off"/>
                               </td>
                               <td>
                                 <span class="input-group-btn">

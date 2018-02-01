@@ -33,7 +33,7 @@
                             </tr>
                         </tfoot>
                         <tbody>
-                            @foreach($transaction as $t)
+                            @foreach($orderlist as $t)
                             @if($t->status == 0)
                                 @else
                                 <tr>

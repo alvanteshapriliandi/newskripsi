@@ -14,7 +14,6 @@ class Product extends Model
         'harga_awal',
         'subcategory_id',
         'description',
-        'images',
         'status'
     ];
     public $table = "products";

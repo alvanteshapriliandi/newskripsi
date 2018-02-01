@@ -12,7 +12,7 @@ use Input;
 use App\Helper;
 use App\User;
 use Auth;
-
+use App\Image;
 class ProductsController extends Controller
 {
     /**
@@ -64,24 +64,49 @@ class ProductsController extends Controller
         //
         if(!Helper::checkFreelancer()){return view('error.403');}
         $id = Auth::user()->id;
-        $file=$request->file('images');
-        $filename = $file->getClientOriginalName();
-       // return $filename;
+       //  $file=$request->file('images');
+       //  // return 'hai';
+       //  $filename = $file->getClientOriginalName();
+       // // return $filename;
 
-        $file->move(public_path().'/uploads/',$filename);
-        $data = $request-> all();
-        $data['images']= $filename;
-        //return $data;
-        $datas = array(
+       //  $file->move(public_path().'/uploads/',$filename);
+       //  $data = $request-> all();
+       //  $data['images']= $filename;
+       //  //return $data;
+        $datas = Product::create([
           'freelancer_id'  => $id,
           'jdl_Pdk'        => $request->input('jdl_Pdk'),
           'harga_awal'     => $request->input('harga_awal'),
           'subcategory_id' => $request->input('subcategory_id'),
-          'description'    => $request->input('description'),
-          'images'         => $data['images']
-        );
-        // return $datas;
-        Product::create($datas);
+          'description'    => $request->input('description')
+        ]);
+        // foreach ($request->images as $photo) {
+        //     $filename = $photo->store('images');
+        //     // return $datas->id;
+        //     Image::create([
+        //         'product_id' => $datas->id,
+        //         'images' => $filename
+        //     ]);
+
+        // }
+        $images=array();
+        if($files=$request->file('images')){
+            foreach($files as $file){
+                $name=$file->getClientOriginalName();
+                $file->move(public_path().'/uploads/',$name);
+                $images[]=$name;
+                // return $images;
+                Image::insert( [
+                    'images'=>  $images[]=$name,
+                    'product_id' =>$datas->id,
+                    //you can put other insertion here
+                ]);
+            }
+        }
+        /*Insert your data*/
+
+        
+
         return redirect()->route('product.index')->with('success', "The product <strong>Product</strong> has successfully been created.");
         
         

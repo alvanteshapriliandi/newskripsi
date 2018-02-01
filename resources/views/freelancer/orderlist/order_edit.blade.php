@@ -12,7 +12,7 @@
                     <h2>Status Product <a href="{{route('order.index')}}" class="btn btn-info btn-xs"><i class="fa fa-chevron-left"></i> Back </a></h2>
                     <div class="clearfix"></div>
                 </div>
-                @foreach($transaction as $t)
+                @foreach($orderlist as $t)
                 <div class="x_content">
                     <form method="post" action="{{ route('order.update', ['id' => $t->id]) }}" data-parsley-validate class="form-horizontal form-label-left" enctype="multipart/form-data">
                         <input name="_method" type="hidden" value="PATCH">

@@ -28,7 +28,7 @@
 			<label class="col-xs-12" for="jns_kertas">Jenis Kertas <span class="required">*</span>
 			</label>
 			<div class="col-xs-12">
-				<select name="category" id="category" class="category form-control col-md-7 col-xs-12">
+				<select name="jns_kertas[]" id="jns_kertas" class="category form-control col-md-7 col-xs-12">
 					<option value="0" disabled="true" selected="true">-Pilih Jenis Kertas-</option>
 					<option value="HVS 80 Gsm - HVS 100 Gsm">HVS 80 Gsm - HVS 100 Gsm</option>
 					<option value="Concorde 90 Gsm Putih / Warna">Concorde 90 Gsm Putih / Warna</option>
@@ -46,7 +46,7 @@
 			<label class="col-xs-12" for="ukuran">Ukuran<span class="required">*</span>
 			</label>
 			<div class="col-xs-12">
-				<select name="category" id="category" class="category form-control col-md-7 col-xs-12" data-token="{{ csrf_token()}}">
+				<select name="ukuran[]" id="ukuran" class="category form-control col-md-7 col-xs-12" data-token="{{ csrf_token()}}">
 					<option value="0" disabled="true" selected="true">-Ukuran-</option>
 					<option value="Folio (21.5 cm x 33 cm)">Folio (21.5 cm x 33 cm)</option>
 					<option value="A4 (21 cm x 29.7 cm)">A4 (21 cm x 29.7 cm)</option>
@@ -61,7 +61,7 @@
 			<label class="col-xs-12" for="jns_finishing">Jenis Finishing <span class="required">*</span>
 			</label>
 			<div class="col-xs-12">
-				<select name="category" id="category" class="category form-control col-md-7 col-xs-12">
+				<select name="jns_finishing[]" id="jns_finishing" class="category form-control col-md-7 col-xs-12">
 					<option value="0" disabled="true" selected="true">-Pilih Jenis Finishing-</option>
 					<option value="1 warna">1 warna</option>
 					<option value="2 warna">2 warna</option>
@@ -75,7 +75,7 @@
 		</div>
 
 		<div class="form-group{{ $errors->has('berat') ? ' has-error' : '' }} col-md-3">
-			<label class="col-xs-12" for="berat">Berat <span class="required">*</span>
+			<label class="col-xs-12" for="berat">Berat (Gram) <span class="required">*</span>
 			</label>
 			<div class="col-xs-12">
 				<input type="number" value="{{ Request::old('berat') ?: '' }}" id="berat" name="berat[]" class="form-control col-md-7 col-xs-12">
@@ -86,13 +86,13 @@
 		</div>
 
 
-		<div class="form-group{{ $errors->has('harga_awal') ? ' has-error' : '' }} col-md-3">
-			<label class="col-xs-12" for="harga_awal">Harga <span class="required">*</span>
+		<div class="form-group{{ $errors->has('harga') ? ' has-error' : '' }} col-md-3">
+			<label class="col-xs-12" for="harga">Harga <span class="required">*</span>
 			</label>
 			<div class="col-xs-12">
-				<input type="text" value="{{ Request::old('harga_awal') ?: '' }}" id="harga_awal" name="harga_awal" class="form-control col-md-7 col-xs-12">
-				@if ($errors->has('harga_awal'))
-				<span class="help-block">{{ $errors->first('harga_awal') }}</span>
+				<input type="text" value="{{ Request::old('harga') ?: '' }}" id="harga" name="harga[]" class="form-control col-md-7 col-xs-12">
+				@if ($errors->has('harga'))
+				<span class="help-block">{{ $errors->first('harga') }}</span>
 				@endif
 			</div>
 		</div>

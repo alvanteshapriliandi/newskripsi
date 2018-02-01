@@ -41,7 +41,7 @@
                                     <td>{{$m->jlh_pesanan}}</td>
                                     <td>{{$m->satuan}}</td>
                                     <td>{{$m->jns_finishing}}</td>
-                                     <?php $m->harga = number_format($m->harga, 1, ",","."); ?>
+                                    <?php $m->harga = number_format($m->harga, 1, ",","."); ?>
                                     <td>{{$m->harga}}</td>
                                     <td align="center">
                                         <a href="{{route('submaterial.edit', ['id' => $m->id])}}" class="btn btn-success"><i class="fa fa-pencil"></i></a>

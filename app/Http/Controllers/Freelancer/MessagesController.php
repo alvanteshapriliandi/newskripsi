@@ -20,8 +20,9 @@ class MessagesController extends Controller
     {
         //
         $id = Auth::user()->id;
-        $data['order_message'] = db::select('select o.id, t.status, o.created_at, p.images, u.username, p.jdl_Pdk from orders o
+        $data['order_message'] = db::select('select u.username, o.id, o.status, i.images, p.jdl_Pdk, o.created_at from orders o
             join products p on p.id = o.product_id
+            join images i on i.product_id = p.id
             join transaction t on t.id = o.transaction_id
             join users u on u.id = t.user_id
             where p.freelancer_id = '.$id);
@@ -51,16 +52,14 @@ class MessagesController extends Controller
     public function store(Request $request)
     {
         //
+        $file=$request->file('images');
+        $filename = $file->getClientOriginalName();
+       // return $filename;
+
+        $file->move(public_path().'/messages/',$filename);
         $data = $request-> all();
-        
-        if ($request->file('images')) {
-            $file=$request->file('images');
-            $filename = $file->getClientOriginalName();
-            $file->move(public_path().'/messages/',$filename);
-            $data['images']= $filename;
-        }
-        $id = Auth::user()->id;
-        $user = db::select('select * from users u where u.email ="'.$request->input('email').'"');
+        $data['images']= $filename;
+        // $user = db::select('select * from users u where u.email ="'.$request->input('email').'"');
         // $to_user_id = $user[0]->id;
         $datas = array(
             'fr_user_id'     => $id,
@@ -69,9 +68,9 @@ class MessagesController extends Controller
             'message'        => $request->input('message'),
             'images'         => $data['images']
         );
-        if ($request->file('images')) {
-            $datas['images'] = $data['images'];
-        }
+        // if ($request->file('images')) {
+        //     $datas['images'] = $data['images'];
+        // }
         // return $datas;
         Messages::create($datas);
             return redirect()->route('message.show',['id'=>$data['order_id']]);

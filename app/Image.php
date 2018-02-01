@@ -11,14 +11,5 @@ class Image extends Model
       'images'
     ];
 
-    public $timestamp = false;
-
-    public function form(){
-      return [
-        'file'=>'',
-      ];
-    }
-    public function product(){
-      return $this->belongsTo(Product::class);
-    }
+    public $table = "images";
 }

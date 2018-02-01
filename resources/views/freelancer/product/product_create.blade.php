@@ -39,7 +39,7 @@
 
                         <div class="col-md-5 form-row" style="border: 1px solid #ccc; padding: 10px;">
                             <div class="form-group{{ $errors->has('harga_awal') ? ' has-error' : '' }} col-md-12">
-                                <label class="col-xs-12" for="harga_awal">Harag Desain <span class="required">*</span>
+                                <label class="col-xs-12" for="harga_awal">Harga Desain <span class="required">*</span>
                                 </label>
                                 <div class="col-xs-12">
                                     <input type="text" value="{{ Request::old('harga_awal') ?: '' }}" id="harga_awal" name="harga_awal" class="form-control col-md-7 col-xs-12">

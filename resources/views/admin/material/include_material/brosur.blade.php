@@ -24,6 +24,21 @@
 			</div>
 		</div>
 
+		<div class="form-group{{ $errors->has('sisi') ? ' has-error' : '' }} col-md-2">
+			<label class="col-xs-12" for="sisi">Jumlah Sisi <span class="required">*</span>
+			</label>
+			<div class="col-xs-12">
+				<select name="sisi[]" id="sisi" class="category form-control col-md-7 col-xs-12">
+					<option value="0" disabled="true" selected="true">-Pilih Jumlah Sisi-</option>
+					<option value="1 sisi">1 sisi</option>
+					<option value="2 sisi">2 sisi</option>
+				</select>
+				@if ($errors->has('sisi'))
+				<span class="help-block">{{ $errors->first('sisi') }}</span>
+				@endif
+			</div>
+		</div>
+
 		<div class="form-group{{ $errors->has('ukuran') ? ' has-error' : '' }} col-md-2">
 			<label class="col-xs-12" for="ukuran">Ukuran <span class="required">*</span>
 			</label>
@@ -75,7 +90,7 @@
 		</div>
 
 		<div class="form-group{{ $errors->has('berat') ? ' has-error' : '' }} col-md-3">
-			<label class="col-xs-12" for="berat">Berat <span class="required">*</span>
+			<label class="col-xs-12" for="berat">Berat (Gram) <span class="required">*</span>
 			</label>
 			<div class="col-xs-12">
 				<input type="number" value="{{ Request::old('berat') ?: '' }}" id="berat" name="berat[]" class="form-control col-md-7 col-xs-12">
@@ -85,13 +100,11 @@
 			</div>
 		</div>
 
-
-
-		<div class="form-group{{ $errors->has('harga') ? ' has-error' : '' }} col-md-2">
+		<div class="form-group{{ $errors->has('harga') ? ' has-error' : '' }} col-md-3">
 			<label class="col-xs-12" for="harga">Harga <span class="required">*</span>
 			</label>
 			<div class="col-xs-12">
-				<input type="text" value="{{ Request::old('harga') ?: '' }}" id="harga" name="harga" class="form-control col-md-7 col-xs-12">
+				<input type="text" value="{{ Request::old('harga') ?: '' }}" id="harga" name="harga[]" class="form-control col-md-7 col-xs-12">
 				@if ($errors->has('harga'))
 				<span class="help-block">{{ $errors->first('harga') }}</span>
 				@endif

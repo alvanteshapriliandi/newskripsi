@@ -107,16 +107,24 @@
                                         <td>{{$dl->kuantitas}}</td>
                                     </tr>
                                     <tr>
-                                        <th>Harga Desain</th>
+                                        <th>Satuan</th>
+                                        <td>{{$dl->satuan}}</td>
+                                    </tr>
+                                    <?php 
+                                        $dl->harga_awal = number_format($dl->harga_awal, 1, ",",".");
+                                        $total = number_format($total, 1, ",","."); 
+                                    ?>
+                                    <tr>
+                                        <th>Harga Desain <i>(Rp)</i> </th>
                                         <td>{{$dl->harga_awal}}</td>
                                     </tr>
                                     <tr>
-                                        <th>Sub Total Material</th>
-                                        <td>{{$dl->harga * $dl->kuantitas}}</td>
+                                        <th>Sub Total Material <i>(Rp)</i> </th>
+                                        <td>{{$total}}</td>
                                     </tr>                                    
                                     @endforeach
                                     <tr>
-                                        <td colspan="2" style="text-align: center; font-size: 20px;">Total = {{$total}}</td>
+                                        <td colspan="2" style="text-align: center; font-size: 20px;">Total <i>(Rp)</i> = {{$total}}</td>
                                     </tr>
                                 </tbody>
                             </table>

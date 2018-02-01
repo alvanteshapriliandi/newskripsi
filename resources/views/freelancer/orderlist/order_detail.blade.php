@@ -51,7 +51,7 @@
                             </div>
                             <div class="col col-md-12">
                                 <table id="datatable-buttons" class="table table-striped table-bordered">
-                                    @foreach($transaction as $t)
+                                    @foreach($orderlist as $t)
                                     <tbody>
                                         <tr>
                                             <td colspan="2" align="center" style="background: #ccc; color: white;">Order List {{$t->name}}</td>

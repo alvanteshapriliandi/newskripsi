@@ -88,7 +88,7 @@ class SubmaterialController extends Controller
         // return $material->subcategory_id;
         $material -> update($data);
         // return $material;
-        return redirect()->route('material.edit', [$id => $material->subcategory_id])->with('success', "<strong>$The material</strong> has successfully been updated.");
+        return redirect()->route('material.edit', [$id => $material->subcategory_id])->with('success', "<strong>The material</strong> has successfully been updated.");
     }
 
     /**

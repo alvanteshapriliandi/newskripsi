@@ -86,7 +86,7 @@
                                 <li><a href="{{ url('freelance/report')}}"><i class="fa fa-navicon"></i> Report </a></li>
                                 <li><a href="{{ url('freelance/pembayaran')}}"><i class="fa fa-star"></i> Ulasan </a></li>
                                 <li><a href="{{ url('freelance/pengaturan')}}"><i class="fa fa-cog"></i> Pengaturan </a></li>
-                                <li><a href="{{url('/')}}"><i class="fa fa-paper-plane"></i> Lihat Web ya </a></li>
+                                <li><a href="{{url('http://localhost:8080/#/')}}"><i class="fa fa-paper-plane"></i> Lihat Web ya </a></li>
                             </ul>
                         </div>
                     </div>

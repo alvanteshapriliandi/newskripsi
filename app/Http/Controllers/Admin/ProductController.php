@@ -72,11 +72,12 @@ class ProductController extends Controller
     {
         //
         if(!Helper::checkAdmin()){return view('error.403');}
-        $data['products'] = DB::select("select p.id, p.jdl_Pdk, p.status, p.created_at, p.updated_at, s.name, u.username
-                              from products p inner join subcategories s on p.subcategory_id = s.id
-                              inner join users u on p.freelancer_id = u.id");
-        $data['product'] = Product::find($id);
-         // return $data['product'];
+        $data['products'] = DB::select("select p.id, u.username, s.name, p.jdl_Pdk, p.status, p.description, p.created_at, p.updated_at from products p 
+            join subcategories s on p.subcategory_id = s.id
+            join users u on p.freelancer_id = u.id
+            where p.id = ".$id);
+        $data['images'] = db::select('select * from images i where i.product_id = '.$id);
+        // return $data;
         return view('admin.product.product_edit', $data);
     }
 
