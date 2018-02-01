@@ -17,7 +17,8 @@ class Transaction extends Model
     'postal_code',
     'kurir',
     'service',
-    'biaya_kurir'
+    'biaya_kurir',
+    'images'
   ];
   public $table = "transaction";
 
