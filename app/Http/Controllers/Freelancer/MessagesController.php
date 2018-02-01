@@ -52,13 +52,15 @@ class MessagesController extends Controller
     public function store(Request $request)
     {
         //
-        $file=$request->file('images');
-        $filename = $file->getClientOriginalName();
-       // return $filename;
-
-        $file->move(public_path().'/messages/',$filename);
         $data = $request-> all();
-        $data['images']= $filename;
+        
+        if ($request->file('images')) {
+            $file=$request->file('images');
+            $filename = $file->getClientOriginalName();
+            $file->move(public_path().'/messages/',$filename);
+            $data['images']= $filename;
+        }
+        $id = Auth::user()->id;
         // $user = db::select('select * from users u where u.email ="'.$request->input('email').'"');
         // $to_user_id = $user[0]->id;
         $datas = array(
@@ -68,9 +70,9 @@ class MessagesController extends Controller
             'message'        => $request->input('message'),
             'images'         => $data['images']
         );
-        // if ($request->file('images')) {
-        //     $datas['images'] = $data['images'];
-        // }
+        if ($request->file('images')) {
+            $datas['images'] = $data['images'];
+        }
         // return $datas;
         Messages::create($datas);
             return redirect()->route('message.show',['id'=>$data['order_id']]);

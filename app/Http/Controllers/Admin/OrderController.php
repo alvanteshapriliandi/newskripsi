@@ -111,6 +111,7 @@ class OrderController extends Controller
         //
         // return 'hai';
         $data = $request->all();
+        return $data;
         $transaction = Transaction::find($id);
         // return $transaction;
         $order = db::select('select * from orders o where o.transaction_id = '.$transaction->id);
