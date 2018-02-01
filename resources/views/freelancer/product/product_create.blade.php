@@ -7,7 +7,7 @@
         <div class="col-md-12 col-sm-12 col-xs-12">
             <div class="x_panel">
                 <div class="x_title">
-                    <h2>Form Entry Product <a href="{{route('product.index')}}" class="btn btn-info btn-xs"><i class="fa fa-chevron-left"></i> Back </a></h2>
+                    <h2>Form Entry Product <a href="{{route('products.index')}}" class="btn btn-info btn-xs"><i class="fa fa-chevron-left"></i> Back </a></h2>
                     <div class="clearfix"></div>
                 </div>
                 <div class="x_content col-md-12">
@@ -38,9 +38,8 @@
                         </div>
 
                         <div class="col-md-5 form-row" style="border: 1px solid #ccc; padding: 10px;">
-
-                            <div class="form-group{{ $errors->has('harga_awal') ? ' has-error' : '' }} col-md-6">
-                                <label class="col-xs-12" for="harga_awal">Harga Awal <span class="required">*</span>
+                            <div class="form-group{{ $errors->has('harga_awal') ? ' has-error' : '' }} col-md-12">
+                                <label class="col-xs-12" for="harga_awal">Harag Desain <span class="required">*</span>
                                 </label>
                                 <div class="col-xs-12">
                                     <input type="text" value="{{ Request::old('harga_awal') ?: '' }}" id="harga_awal" name="harga_awal" class="form-control col-md-7 col-xs-12">
@@ -49,17 +48,7 @@
                                     @endif
                                 </div>
                             </div>
-
-                            <div class="form-group{{ $errors->has('harga_promo') ? ' has-error' : '' }} col-md-6">
-                                <label class="col-xs-12" for="harga_promo">Harga Promo <span class="required">*</span>
-                                </label>
-                                <div class="col-xs-12">
-                                    <input type="text" value="{{ Request::old('harga_promo') ?: '' }}" id="harga_promo" name="harga_promo" class="form-control col-md-7 col-xs-12">
-                                    @if ($errors->has('harga_promo'))
-                                    <span class="help-block">{{ $errors->first('harga_promo') }}</span>
-                                    @endif
-                                </div>
-                            </div>
+                            
 
                             <div class="form-group{{ $errors->has('product') ? ' has-error' : '' }} col-md-6">
                                 <label class="col-xs-12" for="product">Category <span class="required">*</span>
@@ -89,18 +78,31 @@
                                     @endif
                                 </div>
                             </div>
-
-                            <div class="form-group{{ $errors->has('images') ? ' has-error' : '' }} col-md-12">
-                                <label class="col-xs-12" for="images">Image <span class="required">*</span>
-                                </label>
-                                <div class="col-xs-12">
-                                    <input type="file" value="{{ Request::old('images') ?: '' }}" id="images" name="images" class="form-control col-md-7 col-xs-12">
-                                    @if ($errors->has('images'))
-                                    <span class="help-block">{{ $errors->first('images') }}</span>
-                                    @endif
+                            <div class="form-content">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <p><button type="button" id="btnAdd" class="btn btn-outline-success"><i class="fa fa-plus"></i> Tambah Field</button></p>
+                                    </div>
+                                </div>
+                                <div class="row group">
+                                    <div class="form-group{{ $errors->has('images') ? ' has-error' : '' }} col-md-12">
+                                        <label class="col-xs-12" for="images">Image <span class="required">*</span>
+                                        </label>
+                                        <div class="col-xs-12">
+                                            <input type="file" value="{{ Request::old('images') ?: '' }}" id="images" name="images[]" class="form-control col-md-7 col-xs-12">
+                                            @if ($errors->has('images'))
+                                            <span class="help-block">{{ $errors->first('images') }}</span>
+                                            @endif
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <div class="form-group">
+                                            <button type="button" class="btn btn-danger btnRemove"><i class="fa fa-trash"></i></button>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
+
                         
                         <div class="col-md-5 form-row" style="padding: 10px;">
                             <div style="float: right; padding: 10px;">

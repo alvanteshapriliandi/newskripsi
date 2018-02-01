@@ -37,6 +37,7 @@ Route::get('user/alamat', 'Api\User\AlamatController@index');
 Route::get('categories', 'Api\CategoryController@index');
 Route::resource('subcategory', 'Api\SubCategoryController');
 Route::post('order', 'Api\User\OrdersController@store');
+Route::resource('usermessage', 'Api\User\MessageController');
 Route::get('products', 'Api\User\ProductController@products');
 Route::get('sub/{id}', 'Api\SubCategoryController@subcategory');
 Route::resource('materials', 'Api\MaterialController');

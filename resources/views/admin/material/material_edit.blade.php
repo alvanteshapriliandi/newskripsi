@@ -18,7 +18,7 @@
                                 <tr>
                                     <th>Subcategory</th>
                                     <th>Jumlah Pesanan</th>
-                                    <th>Kuantiti</th>
+                                    <th>Satuan</th>
                                     <th>Jenis Finishing</th>
                                     <th>Harga</th>
                                     <th>Action</th>
@@ -28,7 +28,7 @@
                                 <tr>
                                     <th>Subcategory</th>
                                     <th>Jumlah Pesanan</th>
-                                    <th>Kuantiti</th>
+                                    <th>Satuan</th>
                                     <th>Jenis Finishing</th>
                                     <th>Harga</th>
                                     <th>Action</th>
@@ -39,13 +39,13 @@
                                 <tr>
                                     <td>{{$m->name}}</td>
                                     <td>{{$m->jlh_pesanan}}</td>
-                                    <td>{{$m->kuantiti}}</td>
+                                    <td>{{$m->satuan}}</td>
                                     <td>{{$m->jns_finishing}}</td>
                                      <?php $m->harga = number_format($m->harga, 1, ",","."); ?>
                                     <td>{{$m->harga}}</td>
                                     <td align="center">
-                                        <a href="{{route('material.show', ['id' => $m->id])}}" class="btn btn-primary"><i class="fa fa-plus"></i></a>
-                                        <a href="{{route('material.edit', ['id' => $m->id])}}" class="btn btn-info"><i class="fa fa-eye"></i></a>
+                                        <a href="{{route('submaterial.edit', ['id' => $m->id])}}" class="btn btn-success"><i class="fa fa-pencil"></i></a>
+                                        <a href="{{route('submaterial.show', ['id' => $m->id])}}" class="btn btn-danger"><i class="fa fa-trash"></i></a>
                                     </td>
                                 </tr>
                                 @endforeach

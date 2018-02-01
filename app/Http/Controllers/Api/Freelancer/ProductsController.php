@@ -75,13 +75,16 @@ class ProductsController extends Controller
         $datas = array(
           'freelancer_id'  => $id,
           'jdl_Pdk'        => $request->input('jdl_Pdk'),
+          'harga_awal'     => $request->input('harga_awal'),
           'subcategory_id' => $request->input('subcategory_id'),
           'description'    => $request->input('description'),
           'images'         => $data['images']
         );
-        //return $datas;
+        // return $datas;
         Product::create($datas);
         return redirect()->route('product.index')->with('success', "The product <strong>Product</strong> has successfully been created.");
+        
+        
     }
 
     /**

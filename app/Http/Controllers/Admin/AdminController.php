@@ -19,7 +19,10 @@ class AdminController extends Controller
     }
 
     public function index(){
-			if(!Helper::checkAdmin()){return view('error.403');}
-			return view('admin.home');
+		if(!Helper::checkAdmin()){return view('error.403');}
+		$user = DB::select('SELECT COUNT(u.id) total FROM users u where u.role=1'); 
+		$freelance = DB::select('SELECT COUNT(u.id) total FROM users u where u.role=2');
+		$product = DB::select('SELECT COUNT(p.id) total FROM products p');
+		return view('admin.home')->with(['user'=>$user,'freelance'=>$freelance, 'product'=>$product]);
     }
 }

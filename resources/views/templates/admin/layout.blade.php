@@ -70,7 +70,19 @@
                                 <li><a href="{{url('admin/orderlist')}}"><i class="fa fa-shopping-basket"></i> Order List </a></li>
                                 <li><a href="{{url('admin/orderlist')}}"><i class="fa fa-envelope"></i> Pesan </a></li>
                                 <li><a href="{{url('admin/cetakpesanan')}}"><i class="fa fa-print"></i> Cetak </a></li>
-                                <li><a href="{{url('admin/freelance-payment')}}"><i class="fa fa-credit-card-alt"></i> Pembayaran </a></li>
+                                <!-- <li><a href="{{url('admin/freelance-payment')}}"><i class="fa fa-credit-card-alt"></i> Pembayaran </a></li> -->
+                                <li>
+                                    <a href="#">
+                                        <i class="fa fa-credit-card-alt"></i> Pembayaran
+                                        <span class="fa fa-chevron-down"></span>
+                                    </a>
+
+                                    <ul class="nav child_menu">
+                                        <li><a href="{{url('admin/freelance-payment')}}">Freelancer</a></li>
+                                        <li><a href="{{url('admin/freelance-payment')}}">Report</a></li>
+                                        <li><a href="{{url('admin/freelancelist')}}">Report-comment</a></li>
+                                    </ul>
+                                </li>
                                 <li>
                                     <a href="#">
                                         <i class="fa fa-users"></i> Data Pengguna
@@ -181,6 +193,53 @@
 <script src="{{asset('freelancer/js/custom.min.js')}}"></script>
 
 <!-- Datatables -->
+
+<script type="text/javascript">
+    $(document).ready(function() {
+// Initializing arrays with city names.
+        var persegi = [
+            {display: "25 X 25 CM",value: "25 X 25 CM"},
+            {display: "40 X 40 CM",value: "40 X 40 CM"},
+            {display: "80 X 80 CM",value: "80 X 80 CM"},
+        ];
+        var persegi_panjang = [
+            {display: "20 X 25 cm",value: "20 X 25 cm"},
+            {display: "40 X 60 cm",value: "40 X 60 cm"},
+            {display: "40 X 80 cm",value: "40 X 80 cm"},
+        ];
+        var guling = [
+            {display: "Panjang 40 CM",value: "Panjang 40 CM"},
+            {display: "Panjang 65 CM",value: "Panjang 65 CM"}
+        ];
+        // Function executes on change of first select option field.
+        $("#model").change(function() {
+            var select = $("#model option:selected").val();
+            switch (select) {
+                case "Persegi":
+                ukuran(persegi);
+                break;
+                case "Persegi Panjang":
+                ukuran(persegi_panjang);
+                break;
+                case "Guling":
+                ukuran(guling);
+                break;
+                default:
+                $("#ukurans").empty();
+                $("#ukurans").append("<option>--Select--</option>");
+                break;
+            }
+        });
+        // Function To List out Cities in Second Select tags
+        function ukuran(arr) {
+            $("#ukurans").empty(); //To reset cities
+            $("#ukurans").append("<option>--Select--</option>");
+            $(arr).each(function(i) { //to list cities
+                $("#ukurans").append("<option value=\"" + arr[i].value + "\">" + arr[i].display + "</option>")
+            });
+        }
+    });
+</script>
 <script>
     $(document).ready(function() {
         var handleDataTableButtons = function() {
@@ -285,8 +344,8 @@
 <script>
 
     $(document).ready(function() {
-        $(document).on('change','.category',function(){
-            //console.log("hmm its change");
+        $(document).on('change','.model',function(){
+            console.log("hmm its change");
             var cat_id=$(this).val();
             console.log(cat_id);
             var div=$(this).parent();
@@ -296,7 +355,7 @@
             $.ajax({
 
                 type:'post',
-                url: '/admin/material/findSubCategoryname/'+cat_id,
+                url: '/admin/material/12/find/'+cat_id,
                 data:{
                     "id":cat_id,
                     "_method":"post",
@@ -313,12 +372,12 @@
                     // op+='<option value="0" selected disabled>chose product</option>';
 
 
-                   $('#subcategory').html(" ");
+                   $('#ukurans').html(" ");
                     for(var i=0;i<datas.length;i++){
 
 
                     console.log(datas[i]);
-                     $('#subcategory').append('<option value="'+datas[i].id+'">'+datas[i].name+'</option>');
+                     $('#ukurans').append('<option value="'+datas[i].id+'">'+datas[i].name+'</option>');
                    }
                 },
                 error:function(err){

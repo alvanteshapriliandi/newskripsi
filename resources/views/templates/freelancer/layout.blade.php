@@ -83,6 +83,7 @@
                                 </li> -->
                                 <li><a href="{{ url('freelance/cetak')}}"><i class="fa fa-print"></i> Cetak </a></li>
                                 <li><a href="{{ url('freelance/pembayaran')}}"><i class="fa fa-credit-card"></i> Pembayaran </a></li>
+                                <li><a href="{{ url('freelance/report')}}"><i class="fa fa-navicon"></i> Report </a></li>
                                 <li><a href="{{ url('freelance/pembayaran')}}"><i class="fa fa-star"></i> Ulasan </a></li>
                                 <li><a href="{{ url('freelance/pengaturan')}}"><i class="fa fa-cog"></i> Pengaturan </a></li>
                                 <li><a href="{{url('/')}}"><i class="fa fa-paper-plane"></i> Lihat Web ya </a></li>
@@ -177,6 +178,7 @@
 <script src="{{asset('freelancer/js/jszip.min.js')}}"></script>
 <script src="{{asset('freelancer/js/pdfmake.min.js')}}"></script>
 <script src="{{asset('freelancer/js/vfs_fonts.js')}}"></script>
+<script src="{{asset('freelancer/js/jquery.multifield.min.js')}}"></script>
 <!-- <script src="{{asset('freelancer/chat_js/jquery.min.js')}}"></script>
 <script src="{{asset('freelancer/chat_js/metisMenu.min.js')}}"></script>
 <script src="{{asset('freelancer/chat_js/morris.min.js')}}"></script>
@@ -187,6 +189,13 @@
 <!-- Custom Theme Scripts -->
 <script src="{{asset('freelancer/js/custom.min.js')}}"></script>
 
+<script>
+    $('.form-content').multifield({
+        section: '.group',
+        btnAdd:'#btnAdd',
+        btnRemove:'.btnRemove',
+    });
+</script>
 <!-- Datatables -->
 <script>
     $(document).ready(function() {

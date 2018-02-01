@@ -76,7 +76,6 @@ class ProductsController extends Controller
           'freelancer_id'  => $id,
           'jdl_Pdk'        => $request->input('jdl_Pdk'),
           'harga_awal'     => $request->input('harga_awal'),
-          'harga_promo'    => $request->input('harga_promo'),
           'subcategory_id' => $request->input('subcategory_id'),
           'description'    => $request->input('description'),
           'images'         => $data['images']
@@ -84,6 +83,8 @@ class ProductsController extends Controller
         // return $datas;
         Product::create($datas);
         return redirect()->route('product.index')->with('success', "The product <strong>Product</strong> has successfully been created.");
+        
+        
     }
 
     /**

@@ -24,7 +24,8 @@ class CetakPesananController extends Controller
         $id = Auth::user()->id;
         $data['cetak'] = db::select('select u.username, p.jdl_Pdk, s.name, c.status, c.created_at from cetaks c
             join orders o on  o.id = c.order_id
-            join users u on u.id = o.user_id
+            join transaction t on o.transaction_id = t.id
+            join users u on u.id = t.user_id
             join products p on p.id = o.product_id
             join subcategories s on s.id = p.subcategory_id
             where p.freelancer_id = '.$id);

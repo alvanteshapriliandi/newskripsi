@@ -7,29 +7,40 @@ use Illuminate\Database\Eloquent\Model;
 class Product extends Model
 {
     //
-    protected  $fillable = ['id','freelancer_id','jdl_Pdk','harga_awal','harga_promo','subcategory_id','description','images','status'];
+    protected  $fillable = [
+        'id',
+        'freelancer_id',
+        'jdl_Pdk',
+        'harga_awal',
+        'subcategory_id',
+        'description',
+        'images',
+        'status'
+    ];
+    public $table = "products";
 
-    public function freelancer(){
-        return $this->belongsTo(Freelancer::class);
-    }
+    // public function freelancer(){
+    //     return $this->belongsTo(Freelancer::class);
+    // }
 
-    public function images(){
-        return $this->hasMany(Image::class);
-    }
+    // public function images(){
+    //     return $this->hasMany(Image::class);
+    // }
 
-    public function subCategory(){
-        return $this->belongsTo(SubCategory::class);
-    }
+    // public function subCategory(){
+    //     return $this->belongsTo(SubCategory::class);
+    // }
 
-    public function form(){
-        return [
-            'jdl_Pdk' => ' ',
-            'kategori' => ' ',
-            'description' => ' ',
-            'images' => [
-                Image::form(),
-            ]
+    // public function form(){
+    //     return [
+    //         'jdl_Pdk' => ' ',
+    //         'harga_awal' => ' ',
+    //         'kategori' => ' ',
+    //         'description' => ' ',
+    //         'images' => [
+    //             Image::form(),
+    //         ]
 
-        ];
-    }
+    //     ];
+    // }
 }

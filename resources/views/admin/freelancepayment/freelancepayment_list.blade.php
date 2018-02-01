@@ -49,7 +49,7 @@
                                     <td>{{ date('H:m:s', strtotime($p->updated_at))}}</td>
                                     <td>
                                         <input type="hidden" name="order_id" value="{{$p->id}}">
-                                        <input type="hidden" name="total" value="{{$total}}">
+                                        <input type="hidden" name="total" value="{{$p->harga_awal}}">
                                         <input type="submit" name="btnpay" value="bayar" class="btn btn-info">
                                     </td>
                                     </form>

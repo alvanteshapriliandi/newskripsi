@@ -63,6 +63,18 @@
 			</div>
 		</div>
 
+		<div class="form-group{{ $errors->has('berat') ? ' has-error' : '' }} col-md-3">
+			<label class="col-xs-12" for="berat">Berat <span class="required">*</span>
+			</label>
+			<div class="col-xs-12">
+				<input type="number" value="{{ Request::old('berat') ?: '' }}" id="berat" name="berat[]" class="form-control col-md-7 col-xs-12">
+				@if ($errors->has('berat'))
+				<span class="help-block">{{ $errors->first('berat') }}</span>
+				@endif
+			</div>
+		</div>
+
+
 		<div class="form-group{{ $errors->has('harga') ? ' has-error' : '' }} col-md-2">
 			<label class="col-xs-12" for="harga">Harga <span class="required">*</span>
 			</label>

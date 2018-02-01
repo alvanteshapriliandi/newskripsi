@@ -9,6 +9,7 @@ class Material extends Model
     //
      protected $fillable = [
      	'subcategory_id',
+     	'stauan',
         'jlh_pesanan',
         'jns_finishing',
         'harga',
@@ -26,8 +27,9 @@ class Material extends Model
 		'jenis_kain',	
 		'cetak_belakang',	
 		'cetak_depan',	
-		'cetak_kanan',	
+		'cetak_lengan',	
 		'cetak_kiri',
+		'berat'
 
     ];
     public $table = "materials";
