@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 01 Feb 2018 pada 03.32
+-- Generation Time: 03 Feb 2018 pada 04.15
 -- Versi Server: 10.1.26-MariaDB
 -- PHP Version: 7.1.9
 
@@ -131,6 +131,14 @@ CREATE TABLE `cetaks` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Dumping data untuk tabel `cetaks`
+--
+
+INSERT INTO `cetaks` (`id`, `order_id`, `message_id`, `status`, `created_at`, `updated_at`) VALUES
+(4, 41, 40, 1, '2018-01-31 17:00:00', '2018-01-31 20:14:28'),
+(5, 44, 41, 1, '2018-02-01 17:00:00', '2018-02-01 18:13:42');
+
 -- --------------------------------------------------------
 
 --
@@ -178,10 +186,18 @@ INSERT INTO `freelancers` (`id`, `username`, `email`, `password`, `api_token`, `
 CREATE TABLE `freelancer_payments` (
   `id` int(11) NOT NULL,
   `order_id` int(11) UNSIGNED NOT NULL,
-  `pendapatan` int(11) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data untuk tabel `freelancer_payments`
+--
+
+INSERT INTO `freelancer_payments` (`id`, `order_id`, `created_at`, `updated_at`) VALUES
+(1, 41, '2018-02-01 19:18:04', '2018-02-01 19:18:04'),
+(2, 44, '2018-02-01 19:19:43', '2018-02-01 19:19:43'),
+(3, 43, '2018-02-02 04:20:44', '2018-02-02 04:20:44');
 
 -- --------------------------------------------------------
 
@@ -225,8 +241,30 @@ CREATE TABLE `images` (
 --
 
 INSERT INTO `images` (`id`, `product_id`, `images`, `created_at`, `updated_at`) VALUES
-(20, 53, 'contoh-cetak-amplop-standar.jpg', NULL, NULL),
-(21, 54, 'maxresdefault.jpg', NULL, NULL);
+(1, 1, 'kartunama22.jpg', NULL, NULL),
+(2, 2, 'CRB-2052-Luxe-RC-SQBC-Page-Content-1-460x329.jpg', NULL, NULL),
+(22, 3, 'contoh-cetak-amplop-standar.jpg', NULL, NULL),
+(23, 4, 'download.jpg', NULL, NULL),
+(24, 5, 'stempel1.jpg', NULL, NULL),
+(25, 6, 'kalender.jpg', NULL, NULL),
+(26, 7, 'template.jpg', NULL, NULL),
+(27, 8, 'Stiker_Label_Produk__ukuran_bulat_7_cm_.png', NULL, NULL),
+(28, 9, 'posterseminar2.jpg', NULL, NULL),
+(29, 10, 'Spooktacular_goodiebag_LatishaYoast.jpg', NULL, NULL),
+(30, 11, 'img_20131113_120031.jpg', NULL, NULL),
+(31, 12, 'bantal.jpg', NULL, NULL),
+(32, 13, 'spanduk.jpg', NULL, NULL),
+(33, 14, 'contoh-x-banner-design-designhub.jpg', NULL, NULL),
+(34, 15, 'roll-up-banner1.jpg', NULL, NULL),
+(35, 16, 'blogger-image--1642318615.jpg', NULL, NULL),
+(36, 17, 'RASED2polo3.jpg', NULL, NULL),
+(37, 18, 'Contoh-Desain-Amplop-Em-Cartaz-Branding-557x332.jpg', NULL, NULL),
+(38, 19, 'Contoh-Desain-Amplop-Em-Cartaz-Branding-557x332.jpg', NULL, NULL),
+(39, 20, 'maxresdefault.jpg', NULL, NULL),
+(40, 21, 'Contoh-Desain-Amplop-Em-Cartaz-Branding-557x332.jpg', NULL, NULL),
+(41, 22, 'spanduk-promosi.jpg', NULL, NULL),
+(42, 1, '9776142_9a8f700a-3d1e-4107-b2c5-fa55272f9018.jpg', NULL, NULL),
+(43, 1, 'desain-kartu-nama-di-medan.jpg', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -281,7 +319,15 @@ INSERT INTO `items` (`id`, `product_id`, `cart_id`, `jenis_kertas`, `material`, 
 (8, 53, 8, 'Standart', NULL, 50, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'pt anging', '0912324', 'Jl. Medan', 'andi@mail.com', NULL, NULL, '2018-01-31 07:26:43', '2018-01-31 07:26:43'),
 (9, 53, 8, 'Standart', NULL, 50, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'pt anging', '0912324', 'Jl. Medan', 'andi@mail.com', NULL, NULL, '2018-01-31 07:26:44', '2018-01-31 07:26:44'),
 (10, 53, 8, 'Standart', NULL, 50, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'pt anging', '0912324', 'Jl. Medan', 'andi@mail.com', NULL, NULL, '2018-01-31 07:26:45', '2018-01-31 07:26:45'),
-(11, 53, 8, 'Standart', NULL, 50, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'pt anging', '0912324', 'Jl. Medan', 'andi@mail.com', NULL, NULL, '2018-01-31 07:27:13', '2018-01-31 07:27:13');
+(11, 53, 8, 'Standart', NULL, 50, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'pt anging', '0912324', 'Jl. Medan', 'andi@mail.com', NULL, NULL, '2018-01-31 07:27:13', '2018-01-31 07:27:13'),
+(12, 54, 2, 'Standart', NULL, 50, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'rani', 'Pt. Angin', '081263506016', 'Jl. Binjai', 'rani@mail.com', 'Owner', NULL, '2018-02-01 03:36:02', '2018-02-01 03:36:02'),
+(13, 54, 2, 'Standart', NULL, 50, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'rani', 'Pt. Angin', '081263506016', 'Jl. Binjai', 'rani@mail.com', 'Owner', NULL, '2018-02-01 03:36:14', '2018-02-01 03:36:14'),
+(14, 54, 2, 'Standart', NULL, 50, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'rani', 'Pt. Angin', '081263506016', 'Jl. Binjai', 'rani@mail.com', 'Owner', NULL, '2018-02-01 03:36:27', '2018-02-01 03:36:27'),
+(15, 54, 2, 'Standart', NULL, 50, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'rani', 'Pt. Angin', '081263506016', 'Jl. Binjai', 'rani@mail.com', 'Owner', NULL, '2018-02-01 03:41:10', '2018-02-01 03:41:10'),
+(16, 54, 2, 'Standart', NULL, 100, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'dsfsdf', 'sdfsdf', '345345', 'sdfsdf', 'sdfsdf', 'sdfsd', NULL, '2018-02-01 03:41:45', '2018-02-01 03:41:45'),
+(17, 54, 2, 'Standart', NULL, 100, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'awdasda', 'asdasd', '2132', 'sfsdfsd', 'asd@mail.com', 'asdasd', NULL, '2018-02-01 03:43:41', '2018-02-01 03:43:41'),
+(18, 54, 2, 'Standart', NULL, 50, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'dsf', 'sdfsd', '345345', 'asdfads', 'asdfads', 'sdfs', NULL, '2018-02-01 03:47:54', '2018-02-01 03:47:54'),
+(19, 1, 2, 'Standart', NULL, 50, NULL, NULL, NULL, NULL, 'Embosse', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'sfdsf', 'asdas', '232`', 'sdsdf', 'sdfsdfs', 'sdsf', NULL, '2018-02-01 04:19:23', '2018-02-01 04:19:23');
 
 -- --------------------------------------------------------
 
@@ -545,7 +591,8 @@ CREATE TABLE `messages` (
 --
 
 INSERT INTO `messages` (`id`, `fr_user_id`, `to_user_id`, `order_id`, `message`, `images`, `created_at`, `updated_at`) VALUES
-(40, 10, 12, 41, 'mohon konfirmasi', 'CRB-2052-Luxe-RC-SQBC-Page-Content-1-460x329.jpg', '2018-01-31 19:11:08', '2018-01-31 19:11:08');
+(40, 10, 12, 41, 'mohon konfirmasi', 'CRB-2052-Luxe-RC-SQBC-Page-Content-1-460x329.jpg', '2018-01-31 19:11:08', '2018-01-31 19:11:08'),
+(41, 2, 6, 44, 'mohon di konfirmasi desain ini', 'maxresdefault.jpg', '2018-02-01 18:05:40', '2018-02-01 18:05:40');
 
 -- --------------------------------------------------------
 
@@ -638,7 +685,11 @@ CREATE TABLE `orders` (
 --
 
 INSERT INTO `orders` (`id`, `product_id`, `transaction_id`, `jenis_kertas`, `material`, `kuantitas`, `model`, `kain`, `ukuran`, `warna`, `jenis_cetak`, `bahan`, `sisi`, `jilid`, `lembar`, `cetak_depan`, `cetak_belakang`, `cetak_lengan_kanan`, `cetak_lengan_kiri`, `kaos_metode`, `nama`, `nama_perusahaan`, `no_telpon`, `alamat`, `email`, `jabatan`, `images`, `description`, `status`, `status_frpay`, `ket`, `created_at`, `updated_at`) VALUES
-(41, 54, 37, 'Art Carton 260gr', NULL, 1, NULL, NULL, 'Kabinet (11 cm x 23 cm)', NULL, ' 	Laminating Doff', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Andre Taulani', 'PT. Alam Semesta', '081263506016', 'Jl. Medan-Binjai', 'andre@mail.com', 'Kepala Bagian Keuangan', NULL, NULL, 2, 0, 3, '2018-01-31 17:00:00', '2018-01-31 18:09:32');
+(41, 22, 37, 'Art Carton 260gr', NULL, 1, NULL, NULL, 'Kabinet (11 cm x 23 cm)', NULL, ' 	Laminating Doff', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Andre Taulani', 'PT. Alam Semesta', '081263506016', 'Jl. Medan-Binjai', 'andre@mail.com', 'Kepala Bagian Keuangan', NULL, NULL, 4, 1, 3, '2018-01-31 17:00:00', '2018-02-01 19:18:04'),
+(42, 1, 38, 'Standart', NULL, 50, NULL, NULL, NULL, NULL, 'Embosse', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 0, 0, 3, '2018-02-01 04:22:35', '2018-02-01 04:22:35'),
+(43, 1, 39, 'Standart', NULL, 50, NULL, NULL, NULL, NULL, 'Embosse', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 4, 1, 3, '2018-02-01 04:25:09', '2018-02-02 04:20:45'),
+(44, 1, 40, 'Art Carton 260gr', NULL, 50, NULL, NULL, 'Kabinet (11 cm x 23 cm)', NULL, 'Embosse', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Andre Taulani', 'The Coffe Bean', '081263506016', 'Jl. Medan-Binjai', 'andre@mail.com\r\n', 'Kepala Bagian Keuanga', '26.jpg', 'Instragram : @andre', 4, 1, 3, '2018-02-01 04:27:13', '2018-02-01 19:19:43'),
+(45, 2, 41, 'Standart', NULL, 100, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 4, 0, 3, '2018-02-01 08:10:19', '2018-02-01 08:10:19');
 
 -- --------------------------------------------------------
 
@@ -663,9 +714,10 @@ CREATE TABLE `products` (
   `freelancer_id` int(10) UNSIGNED NOT NULL,
   `subcategory_id` int(10) UNSIGNED NOT NULL,
   `jdl_Pdk` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `harga_awal` int(10) NOT NULL,
-  `harga_promo` int(11) DEFAULT NULL,
+  `harga_awal` int(11) NOT NULL,
+  `harga_promo` int(11) NOT NULL,
   `description` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `images` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `status` int(1) DEFAULT '0',
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
@@ -675,8 +727,29 @@ CREATE TABLE `products` (
 -- Dumping data untuk tabel `products`
 --
 
-INSERT INTO `products` (`id`, `freelancer_id`, `subcategory_id`, `jdl_Pdk`, `harga_awal`, `harga_promo`, `description`, `status`, `created_at`, `updated_at`) VALUES
-(54, 10, 1, 'Modern Kartunama', 20000, NULL, 'Selalu Tampil Percaya Diri Untuk Hasil Yang Maksimal', 1, '2018-01-31 16:53:08', '2018-01-31 16:56:03');
+INSERT INTO `products` (`id`, `freelancer_id`, `subcategory_id`, `jdl_Pdk`, `harga_awal`, `harga_promo`, `description`, `images`, `status`, `created_at`, `updated_at`) VALUES
+(1, 2, 1, 'Elegant Kartu Nama', 20000, 0, 'Keren', 'kartunama22.jpg', 1, '2017-12-04 16:57:22', '2017-12-11 03:48:32'),
+(2, 2, 2, 'Elegant Square Card', 20000, 0, 'Keren', 'CRB-2052-Luxe-RC-SQBC-Page-Content-1-460x329.jpg', 1, '2017-12-04 16:59:09', '2017-12-04 17:09:34'),
+(3, 2, 3, 'Elegant Amplop', 20000, 0, 'Keren', 'contoh-cetak-amplop-standar.jpg', 1, '2017-12-04 16:59:32', '2017-12-04 17:09:42'),
+(4, 2, 4, 'Elegant Kop Surat', 20000, 0, 'Keren', 'download.jpg', 1, '2017-12-04 17:00:08', '2017-12-04 17:09:53'),
+(5, 2, 5, 'Elegant Stempel', 20000, 0, 'Keren', '26.jpg', 1, '2017-12-04 17:00:37', '2017-12-04 17:10:24'),
+(6, 2, 6, 'Elegant Kalender', 20000, 0, 'Keren', 'download(1).jpg', 1, '2017-12-04 17:01:08', '2017-12-04 17:10:32'),
+(7, 2, 7, 'Elegant Brosur', 3300, 0, 'Keren', 'template.jpg', 1, '2017-12-04 17:01:55', '2017-12-04 17:10:41'),
+(8, 2, 8, 'Elegant Stiker', 30000, 0, 'Keren', 'Stiker_Label_Produk__ukuran_bulat_7_cm_.png', 1, '2017-12-04 17:02:26', '2017-12-04 17:10:59'),
+(9, 2, 9, 'Elegant Poster', 6000, 0, 'Keren', 'poster seminar 2.jpg', 1, '2017-12-04 17:03:01', '2017-12-04 17:10:49'),
+(10, 2, 10, 'Elegant Goodle Bag', 10000, 0, 'Keren', 'Spooktacular_goodiebag_LatishaYoast.jpg', 1, '2017-12-04 17:03:41', '2017-12-04 17:11:09'),
+(11, 2, 11, 'Elegant Mug', 23000, 0, 'Keren', 'img_20131113_120031.jpg', 1, '2017-12-04 17:04:10', '2017-12-04 17:11:16'),
+(12, 2, 12, 'Elegant Bantal Foto', 20000, 0, 'Keren', 'e15f606d04ba8e21ebcdd2c0673e2f8416c8f5d1a635efb504c9add154938d6a.jpg', 1, '2017-12-04 17:04:44', '2017-12-04 17:11:43'),
+(13, 2, 13, 'Elegant Spanduk', 30000, 0, 'Keren', 'spanduk.jpg', 1, '2017-12-04 17:05:21', '2017-12-04 17:11:52'),
+(14, 2, 14, 'Elegant X-Banner', 45000, 0, 'Keren', 'contoh-x-banner-design-designhub.jpg', 1, '2017-12-04 17:05:57', '2017-12-04 17:12:01'),
+(15, 2, 15, 'Elegant Roll Up Banner', 23000, 0, 'Keren', 'roll-up-banner1.jpg', 1, '2017-12-04 17:06:29', '2017-12-04 17:12:12'),
+(16, 2, 16, 'Elegant Kaos', 22000, 0, 'Keren', 'blogger-image--1642318615.jpg', 1, '2017-12-04 17:07:28', '2017-12-04 17:12:22'),
+(17, 2, 17, 'Elegant Polo T-Shirt', 9000, 0, 'Keren', 'RASED2polo3.jpg', 1, '2017-12-04 17:08:05', '2017-12-04 17:12:32'),
+(18, 2, 3, 'Master Amplop', 23990, 0, 'tampil percaya diri', 'Contoh-Desain-Amplop-Em-Cartaz-Branding-557x332.jpg', 1, '2017-12-08 15:33:19', '2017-12-08 15:34:26'),
+(19, 2, 3, 'Collect Amplop', 20000, 0, 'tampil percaya diri', 'Contoh-Desain-Amplop-Em-Cartaz-Branding-557x332.jpg', 1, '2017-12-08 15:36:38', '2017-12-08 15:37:04'),
+(20, 2, 1, 'Collect Kartu Nama', 45000, 0, 'tampil percaya diri', 'maxresdefault.jpg', 1, '2017-12-08 15:47:55', '2017-12-08 15:48:53'),
+(21, 4, 3, 'Mantap Amplop', 34000, 0, 'Keren dan Moderen', 'Contoh-Desain-Amplop-Em-Cartaz-Branding-557x332.jpg', 1, '2017-12-13 18:52:59', '2017-12-24 17:17:58'),
+(22, 4, 13, 'Spanduk Promosi', 34000, 0, 'Cocok untuk unsaha yang akan mengadakna promosi', 'spanduk-promosi.jpg', 1, '2017-12-24 18:14:01', '2017-12-24 18:14:20');
 
 -- --------------------------------------------------------
 
@@ -692,6 +765,13 @@ CREATE TABLE `report_comments` (
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data untuk tabel `report_comments`
+--
+
+INSERT INTO `report_comments` (`id`, `freelancer_id`, `order_id`, `comment`, `created_at`, `updated_at`) VALUES
+(1, 10, 41, 'Kepada admin, saya mau tannya.\r\nkenapa product atas nama Modern Kartu Nama sampai sekarang belum ada pembayaran?', '2018-01-31 21:16:56', '2018-01-31 21:16:56');
 
 -- --------------------------------------------------------
 
@@ -750,7 +830,7 @@ CREATE TABLE `transaction` (
   `kurir` varchar(200) DEFAULT NULL,
   `service` varchar(200) DEFAULT NULL,
   `biaya_kurir` int(11) DEFAULT NULL,
-  `status` int(1) NOT NULL DEFAULT '0',
+  `status_transaksi` int(1) NOT NULL DEFAULT '0',
   `status_cetak` int(1) NOT NULL DEFAULT '0',
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
@@ -760,8 +840,10 @@ CREATE TABLE `transaction` (
 -- Dumping data untuk tabel `transaction`
 --
 
-INSERT INTO `transaction` (`id`, `user_id`, `bank_id`, `kode_invoice`, `images`, `address`, `city_id`, `city_name`, `province`, `postal_code`, `kurir`, `service`, `biaya_kurir`, `status`, `status_cetak`, `created_at`, `updated_at`) VALUES
-(37, 12, 1, '1234567890', '1.jpg', 'Jl. Medan - Binjai', 273, 'Medan', 'Sumatera Utara', '27707', 'JNE', 'REG', 20000, 0, 0, '2018-01-31 17:00:00', '2018-01-31 17:00:00');
+INSERT INTO `transaction` (`id`, `user_id`, `bank_id`, `kode_invoice`, `images`, `address`, `city_id`, `city_name`, `province`, `postal_code`, `kurir`, `service`, `biaya_kurir`, `status_transaksi`, `status_cetak`, `created_at`, `updated_at`) VALUES
+(37, 12, 1, '1234567890', '1.jpg', 'Jl. Medan - Binjai', 273, 'Medan', 'Sumatera Utara', '27707', 'JNE', 'REG', 20000, 0, 0, '2018-01-31 17:00:00', '2018-02-01 02:51:14'),
+(40, 6, 1, 'docBXtWmQg', '1.jpg', 'Jl. Binjai', 273, 'Medan', 'Sumatera Utara', '27707', 'JNE', 'OKE', 21000, 1, 0, '2018-02-01 04:27:13', '2018-02-01 04:27:19'),
+(41, 5, 1, 'nymwF2CmJW', NULL, NULL, 0, NULL, NULL, '0', 'jne', 'OKE', 21000, 0, 0, '2018-02-01 08:10:19', '2018-02-01 08:10:19');
 
 -- --------------------------------------------------------
 
@@ -838,7 +920,7 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`id`, `username`, `email`, `password`, `api_token`, `photo`, `address`, `city_id`, `city_name`, `postal_code`, `province`, `type`, `gender`, `phone`, `status`, `role`, `remember_token`, `created_at`, `updated_at`) VALUES
 (1, 'Chairil Azmi', 'admin@admin.com', '$2y$10$P2GfvX9GKM5cetT7VK89IeLxJ31y25tcBQE05Hc7FsO4ly6ZSY.z2', NULL, NULL, NULL, 0, '', 0, NULL, NULL, NULL, NULL, NULL, 3, 'FihvAxblDN8SrFArbfhsI6loRL6JY1VZXT1hNfHvofiaAckS3IIQhpqIOx3c', '2017-12-04 03:14:24', '2017-12-04 03:14:24'),
-(2, 'Reza Surya', 'reza@mail.com', '$2y$10$hjWto0qpOAHFyR08Ddnruu4UuZilAxdKV49MabvNn2muBLe48SuMK', 'B0D6iKUa9Gagyek6nmINkMXGH8t7bfHkmN26Lm7Nd8ps25DyXd8wugcNAH9b', 'harry_potter_icon_6825007.jpg', 'Jl. Medan tembung', 0, '', 0, NULL, NULL, 1, NULL, NULL, 2, '93mWqtihGzlOst6HSabBdWk7sEm1SnT3syndZkCkBZo3NXqL55lBeOv0nqMj', '2017-12-04 16:48:22', '2018-01-29 18:53:44'),
+(2, 'Reza Surya', 'reza@mail.com', '$2y$10$hjWto0qpOAHFyR08Ddnruu4UuZilAxdKV49MabvNn2muBLe48SuMK', 'B0D6iKUa9Gagyek6nmINkMXGH8t7bfHkmN26Lm7Nd8ps25DyXd8wugcNAH9b', 'harry_potter_icon_6825007.jpg', 'Jl. Medan tembung', 0, '', 0, NULL, NULL, 1, NULL, NULL, 2, 'viMIKsJgYTYqdr2Wk2RoHwWTFSfn22C2lZhhHIxxp2AiV5NU6rXHGCHVHHC0', '2017-12-04 16:48:22', '2018-01-29 18:53:44'),
 (3, 'Andi', 'andi@mail.com', '$2y$10$0u.i0C/wcrOl47p91DEYbOfVWODzuPyf6gm1ffwI3ebs8/YwZ1k36', 'NkJeky8avr5OBDKZQTI0WnR58ad581zcRT3azbxEmRDSGIxzgINvtEDpUzOy', NULL, NULL, 0, '', 0, NULL, NULL, NULL, NULL, NULL, 1, 'vaWcGvks1UCPYmkjAdDEAeqp0nsw7zT44SNX4Zf5qEYuwixezUFnj3EdhqU6', '2017-12-09 17:43:52', '2017-12-09 17:43:52'),
 (4, 'Alvantesha Priliandi', 'alvan@mail.com', '$2y$10$zqSGNG5vwZikGMU9dub5F.ZdNjrSGGKftOI0i5P0o/wyH6bXGcaeC', '9m6TN9ApCQihcJhGnDDnhoO1LuLtTTuFxy6uUhLgliwnZpjNZpCdKAyxPB6I', 'DSC_0599.JPG', 'Jl. Medan - Binjai Km. 19 Kel. Tunggurono Kec. Binjai TImur Kota Binjai', 0, '', 0, NULL, NULL, 1, '081263506016', NULL, 2, 'OcQ8JCDACe9kZNmSoHlhXSDwJKKvqurOIJsJbE6oygeM1LAHGtnx6clYn511', '2017-12-13 18:49:40', '2018-01-15 08:26:11'),
 (5, 'Bagus', 'bagus@mail.com', '$2y$10$Ow4gqB4p6o69bZg8Uh4ByO1rZDqmEZKl4E8yARYdVaYsWGE.EmWOW', 'LMxjrWktAXxrzgvWcLYkw32FEbDzAzRKwrT5tDSCT0pRwGrPGoQ6e0XM7vZD', NULL, NULL, 0, '', 0, NULL, NULL, NULL, NULL, NULL, 1, 'RAELKGZPEb6oDe58jZNdRvGSwgdXYcUAWyC3OkusgwZIDXpejaBBEWi2ijUz', '2017-12-13 20:36:13', '2017-12-13 20:36:13'),
@@ -1024,7 +1106,7 @@ ALTER TABLE `categories`
 -- AUTO_INCREMENT for table `cetaks`
 --
 ALTER TABLE `cetaks`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `freelancers`
@@ -1036,7 +1118,7 @@ ALTER TABLE `freelancers`
 -- AUTO_INCREMENT for table `freelancer_payments`
 --
 ALTER TABLE `freelancer_payments`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `freelances`
@@ -1048,13 +1130,13 @@ ALTER TABLE `freelances`
 -- AUTO_INCREMENT for table `images`
 --
 ALTER TABLE `images`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
 
 --
 -- AUTO_INCREMENT for table `items`
 --
 ALTER TABLE `items`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT for table `materials`
@@ -1072,7 +1154,7 @@ ALTER TABLE `mats`
 -- AUTO_INCREMENT for table `messages`
 --
 ALTER TABLE `messages`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
 
 --
 -- AUTO_INCREMENT for table `migrations`
@@ -1084,19 +1166,19 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
 
 --
 -- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=55;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- AUTO_INCREMENT for table `report_comments`
 --
 ALTER TABLE `report_comments`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `subcategories`
@@ -1108,7 +1190,7 @@ ALTER TABLE `subcategories`
 -- AUTO_INCREMENT for table `transaction`
 --
 ALTER TABLE `transaction`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
 
 --
 -- AUTO_INCREMENT for table `ukuran_bantal`
