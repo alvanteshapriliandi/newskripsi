@@ -21,11 +21,11 @@ class ReportController extends Controller
     {
         //
         $id = Auth::user()->id;
-        $data['report'] = db::select('select o.id, u.username, p.jdl_Pdk, s.name, p.harga_awal, o.total, o.status_frpay, t.status, o.created_at from orders o
+        $data['report'] = db::select('select o.id, u.username, p.jdl_Pdk, s.name, t.kode_invoice, p.harga_awal, o.status_frpay, o.status, o.created_at from orders o
             join products p on p.id = o.product_id
             join subcategories s on s.id = p.subcategory_id
             join transaction t on t.id = o.transaction_id
-            join users u on u.id = o.user_id');
+            join users u on u.id = p.freelancer_id');
         // return $data;
         return view('admin.report.report_list',$data);
     }

@@ -55,7 +55,7 @@
                                             <td colspan="2" align="center" style="background: #ccc; color: white;">Order List {{$p->name}}</td>
                                         </tr>
                                         <tr>
-                                            <td>Prtuct Name</td>
+                                            <td>Product Name</td>
                                             <td>{{$p->jdl_Pdk}}</td>
                                         </tr>
                                         <tr>
@@ -68,6 +68,12 @@
                                             @if($p->kuantitas)
                                                 <td>kuantitas</td>
                                                 <td>{{$p->kuantitas}}</td>
+                                            @endif
+                                        </tr>
+                                        <tr>
+                                            @if($p->satuan)
+                                                <td>Satuan</td>
+                                                <td>{{$p->satuan}}</td>
                                             @endif
                                         </tr>
                                         <tr>
@@ -96,7 +102,7 @@
                                         </tr>
                                         <tr>
                                             @if($p->jenis_cetak)
-                                                <td>jenis cetak</td>
+                                                <td>jenis Finishing</td>
                                                 <td>{{$p->jenis_cetak}}</td>
                                             @endif
                                         </tr>
@@ -158,8 +164,8 @@
                                             @if($p->images)
                                                 <td>Gambar</td>
                                                 <td>
-                                                    <img src="{{asset('orders/'.$p->images)}}" width="200"><br>
-                                                    <a href="{{asset('orders/'.$p->images)}}" download="{{$p->images}}" class="btn btn-success"><i class="fa fa-download"></i> download</a>
+                                                    <img src="{{asset('messages/'.$p->images)}}" width="200"><br>
+                                                    <a href="{{asset('messages/'.$p->images)}}" download="{{$p->images}}" class="btn btn-success"><i class="fa fa-download"></i> download</a>
                                                 </td>
                                             @endif
                                         </tr>

@@ -38,10 +38,16 @@
                                         </tr>
                                         <tr>
                                             <th>Status Order</th>
-                                            @if($os->status == 1)
-                                                <td>Menunggu Konfimasi</td>
+                                              @if($os->status == 0)
+                                                <td>Menunggu Konfirmasi</td>
+                                                @elseif($os->status == 1)
+                                                    <td>Dalam Proses Pengerjaan</td>
                                                 @elseif($os->status == 2)
-                                                <td>Dalam Proses Pengerjaan</td>
+                                                    <td>Dalam Proses Pengeriman</td>
+                                                @elseif($os->status == 3)
+                                                    <td>Barang Sudah Diterima</td>
+                                                @elseif($os->status == 4)
+                                                    <td>Barang Sudah Diterima</td>
                                             @endif
                                         </tr>
                                         @endforeach
@@ -51,145 +57,145 @@
                             </div>
                             <div class="col col-md-12">
                                 <table id="datatable-buttons" class="table table-striped table-bordered">
-                                    @foreach($orderlist as $t)
+                                    @foreach($orderlist as $os)
                                     <tbody>
                                         <tr>
-                                            <td colspan="2" align="center" style="background: #ccc; color: white;">Order List {{$t->name}}</td>
+                                            <td colspan="2" align="center" style="background: #ccc; color: white;">Order List {{$os->name}}</td>
                                         </tr>
                                         <tr>
                                             <td>Prtuct Name</td>
-                                            <td>{{$t->jdl_Pdk}}</td>
+                                            <td>{{$os->jdl_Pdk}}</td>
                                         </tr>
                                         <tr>
-                                            @if($t->nama)
+                                            @if($os->nama)
                                                 <td>Nama</td>
-                                                <td>{{$t->name}}</td>
+                                                <td>{{$os->name}}</td>
                                             @endif
                                         </tr>
                                         <tr>
-                                            @if($t->jabatan)
+                                            @if($os->jabatan)
                                                 <td>jabatan</td>
-                                                <td>{{$t->jabatan}}</td>
+                                                <td>{{$os->jabatan}}</td>
                                             @endif
                                         </tr>
                                         <tr>
-                                            @if($t->nama_perusahaan)
+                                            @if($os->nama_perusahaan)
                                                 <td>Nama Prusahaan</td>
-                                                <td>{{$t->nama_perusahaan}}</td>
+                                                <td>{{$os->nama_perusahaan}}</td>
                                             @endif
                                         </tr>
                                         <tr>
-                                            @if($t->alamat)
+                                            @if($os->alamat)
                                                 <td>Alamat</td>
-                                                <td>{{$t->alamat}}</td>
+                                                <td>{{$os->alamat}}</td>
                                             @endif
                                         </tr>
                                         <tr>
-                                            @if($t->no_telpon)
+                                            @if($os->no_telpon)
                                                 <td>Nomor Telepon</td>
-                                                <td>{{$t->no_telpon}}</td>
+                                                <td>{{$os->no_telpon}}</td>
                                             @endif
                                         </tr>
                                         <tr>
-                                            @if($t->email)
+                                            @if($os->email)
                                                 <td>E-mail</td>
-                                                <td>{{$t->email}}</td>
+                                                <td>{{$os->email}}</td>
                                             @endif
                                         </tr>
                                         <tr>
-                                            @if($t->jenis_kertas)
+                                            @if($os->jenis_kertas)
                                                 <td>Jenis Kertas</td>
-                                                <td>{{$t->jenis_kertas}}</td>
+                                                <td>{{$os->jenis_kertas}}</td>
                                             @endif
                                         </tr>
                                         <tr>
-                                            @if($t->model)
+                                            @if($os->model)
                                                 <td>Mpdel</td>
-                                                <td>{{$t->model}}</td>
+                                                <td>{{$os->model}}</td>
                                             @endif
                                         </tr>
                                         <tr>
-                                            @if($t->kain)
+                                            @if($os->kain)
                                                 <td>Jenis Kain</td>
-                                                <td>{{$t->kain}}</td>
+                                                <td>{{$os->kain}}</td>
                                             @endif
                                         </tr>
                                         <tr>
-                                            @if($t->ukuran)
+                                            @if($os->ukuran)
                                                 <td>Ukuran</td>
-                                                <td>{{$t->ukuran}}</td>
+                                                <td>{{$os->ukuran}}</td>
                                             @endif
                                         </tr>
                                         <tr>
-                                            @if($t->warna)
+                                            @if($os->warna)
                                                 <td>Warna</td>
-                                                <td>{{$t->warna}}</td>
+                                                <td>{{$os->warna}}</td>
                                             @endif
                                         </tr>
                                         <tr>
-                                            @if($t->jenis_cetak)
+                                            @if($os->jenis_cetak)
                                                 <td>Jenis Finishing</td>
-                                                <td>{{$t->jenis_cetak}}</td>
+                                                <td>{{$os->jenis_cetak}}</td>
                                             @endif
                                         </tr>
                                         <tr>
-                                            @if($t->bahan)
+                                            @if($os->bahan)
                                                 <td>Jenis Bahan</td>
-                                                <td>{{$t->bahan}}</td>
+                                                <td>{{$os->bahan}}</td>
                                             @endif
                                         </tr>
                                         <tr>
-                                            @if($t->sisi)
+                                            @if($os->sisi)
                                                 <td>Sisi</td>
-                                                <td>{{$t->sisi}}</td>
+                                                <td>{{$os->sisi}}</td>
                                             @endif
                                         </tr>
                                         <tr>
-                                            @if($t->jilid)
+                                            @if($os->jilid)
                                                 <td>Jilid</td>
-                                                <td>{{$t->jilid}}</td>
+                                                <td>{{$os->jilid}}</td>
                                             @endif
                                         </tr>
                                         <tr>
-                                            @if($t->lembar)
+                                            @if($os->lembar)
                                                 <td>Cetak Depan</td>
-                                                <td>{{$t->lembar}}</td>
+                                                <td>{{$os->lembar}}</td>
                                             @endif
                                         </tr>
                                         <tr>
-                                            @if($t->cetak_belakang)
+                                            @if($os->cetak_belakang)
                                                 <td>Cetak Belakang</td>
-                                                <td>{{$t->cetak_belakang}}</td>
+                                                <td>{{$os->cetak_belakang}}</td>
                                             @endif
                                         </tr>
                                         <tr>
-                                            @if($t->cetak_lengan_kanan)
+                                            @if($os->cetak_lengan_kanan)
                                                 <td>Cetak Lengan Kanan</td>
-                                                <td>{{$t->cetak_lengan_kanan}}</td>
+                                                <td>{{$os->cetak_lengan_kanan}}</td>
                                             @endif
                                         </tr>
                                         <tr>
-                                            @if($t->cetak_lengan_kiri)
+                                            @if($os->cetak_lengan_kiri)
                                                 <td>Cetak Lengan Kiri</td>
-                                                <td>{{$t->cetak_lengan_kiri}}</td>
+                                                <td>{{$os->cetak_lengan_kiri}}</td>
                                             @endif
                                         </tr>
                                         <tr>
-                                            @if($t->kaos_metode)
+                                            @if($os->kaos_metode)
                                                 <td>Kaos Mette</td>
-                                                <td>{{$t->kaos_mette}}</td>
+                                                <td>{{$os->kaos_mette}}</td>
                                             @endif
                                         </tr>
                                         <tr>
-                                            @if($t->images)
+                                            @if($os->images)
                                                 <td>Gambar</td>
-                                                <td><img src="{{asset('orders/'.$t->images)}}" width="150"></td>
+                                                <td><img src="{{asset('orders/'.$os->images)}}" width="150"></td>
                                             @endif
                                         </tr>
                                         <tr>
-                                            @if($t->description)
+                                            @if($os->description)
                                                 <td>Description</td>
-                                                <td>{{$t->description}}</td>
+                                                <td>{{$os->description}}</td>
                                             @endif
                                         </tr>
                                     </tbody>

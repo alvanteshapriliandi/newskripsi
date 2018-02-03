@@ -36,18 +36,10 @@
                                 @foreach($transaction as $t)
                                 <tr>
                                     <td>{{$t->username}}</td>
-                                    @if($t->status == 0)
+                                    @if($t->status_transaksi == 0)
                                         <td>Order Pending</td>
-                                        @elseif($t->status == 1)
-                                        <td>Menunggu Konfirmasi</td>
-                                        @elseif($t->status == 2)
-                                        <td>Dalam Proses Pengerjaan</td>
-                                        @elseif($t->status == 3)
-                                        <td>Dalam Proses Pengiriman</td>
-                                        @elseif($t->status == 4)
-                                        <td>Barang sudah Diterima</td>
-                                        @else
-                                        <td>Barang sudah Diterima</td>
+                                        @elseif($t->status_transaksi == 1)
+                                        <td>Disetujui</td>
                                     @endif
                                     <td>{{ date('F d, Y', strtotime($t->created_at))}}</td>
                                     <td>{{ date('H:m:s', strtotime($t->created_at))}}</td>

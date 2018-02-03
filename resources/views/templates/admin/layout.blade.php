@@ -30,8 +30,13 @@
     <link href="{{asset('freelancer/css/fixedHeader.bootstrap.min.css')}}" rel="stylesheet">
     <link href="{{asset('freelancer/css/responsive.bootstrap.min.css')}}" rel="stylesheet">
     <link href="{{asset('freelancer/css/scroller.bootstrap.min.css')}}" rel="stylesheet">
+    <link href="css/blog.css" rel="stylesheet">
    
-
+    <style type="text/css">
+        .panel:hover{
+            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        }
+    </style>
 
 </head>
 <body class="nav-md">
@@ -68,24 +73,24 @@
                                 <li><a href="{{route('material.index')}}"><i class="fa fa-folder-open"></i> Material </a></li>
                                 <li><a href="{{route('products.index')}}"><i class="fa fa-product-hunt"></i> Product </a></li>
                                 <li><a href="{{url('admin/orderlist')}}"><i class="fa fa-shopping-basket"></i> Order List </a></li>
-                                <li><a href="{{url('admin/orderlist')}}"><i class="fa fa-envelope"></i> Pesan </a></li>
-                                <li><a href="{{url('admin/cetakpesanan')}}"><i class="fa fa-print"></i> Cetak </a></li>
+                                <!-- <li><a href="{{url('admin/orderlist')}}"><i class="fa fa-envelope"></i> Pesan </a></li> -->
+                                <li><a href="{{url('admin/cetakpesanan')}}"><i class="fa fa-print"></i> Print </a></li>
                                 <!-- <li><a href="{{url('admin/freelance-payment')}}"><i class="fa fa-credit-card-alt"></i> Pembayaran </a></li> -->
                                 <li>
                                     <a href="#">
-                                        <i class="fa fa-credit-card-alt"></i> Pembayaran
+                                        <i class="fa fa-credit-card-alt"></i> Payment
                                         <span class="fa fa-chevron-down"></span>
                                     </a>
 
                                     <ul class="nav child_menu">
                                         <li><a href="{{url('admin/freelance-payment')}}">Freelancer</a></li>
-                                        <li><a href="{{url('admin/freelance-payment')}}">Report</a></li>
-                                        <li><a href="{{url('admin/freelancelist')}}">Report-comment</a></li>
+                                        <li><a href="{{url('admin/report-list')}}">Report</a></li>
+                                        <li><a href="{{url('admin/report-comment')}}">Report-comment</a></li>
                                     </ul>
                                 </li>
                                 <li>
                                     <a href="#">
-                                        <i class="fa fa-users"></i> Data Pengguna
+                                        <i class="fa fa-users"></i> Data
                                         <span class="fa fa-chevron-down"></span>
                                     </a>
 

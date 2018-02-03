@@ -44,6 +44,7 @@
                                     <td>{{$p->username}}</td>
                                     <td>{{$p->jdl_Pdk}}</td>
                                     <td>{{$p->name}}</td>
+                                    <?php $p->harga_awal = number_format($p->harga_awal, 1, ",","."); ?>
                                     <td>{{$p->harga_awal}}</td>
                                     <td>{{ date('F d, Y', strtotime($p->updated_at))}}</td>
                                     <td>{{ date('H:m:s', strtotime($p->updated_at))}}</td>

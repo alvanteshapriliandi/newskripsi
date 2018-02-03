@@ -34,42 +34,25 @@
                         </tfoot>
                         <tbody>
                             @foreach($orderlist as $t)
-                            @if($t->status == 0)
-                                @else
+                            @if($t->status_transaksi == 1)
                                 <tr>
-                                   <th>{{$t->username}}</th>
-                                    @if($t->status == 1)
+                                    <th>{{$t->username}}</th>
+                                    @if($t->status == 0)
                                         <td>Menunggu Konfirmasi</td>
-                                        @elseif($t->status == 2)
+                                        @elseif($t->status == 1)
                                             <td>Dalam Proses Pengerjaan</td>
-                                        @elseif($t->status == 3)
+                                        @elseif($t->status == 2)
                                             <td>Dalam Proses Pengeriman</td>
-                                        @elseif($t->status == 4)
+                                        @elseif($t->status == 3)
                                             <td>Barang Sudah Diterima</td>
-                                        @elseif($t->status == 5)
+                                        @elseif($t->status == 4)
                                             <td>Barang Sudah Diterima</td>
                                     @endif
                                     <td>{{ date('F d, Y', strtotime($t->updated_at))}}</td>
                                     <td>{{ date('H:m:s', strtotime($t->updated_at))}}</td>
                                     <td>
-                                        @if($t->status == 4)
-                                            <button type="submit" disabled="true" class="btn btn-success"><i class="fa fa-pencil"></i></button>
-                                            <button type="submit" disabled="true" class="btn btn-info"><i class="fa fa-eye"></i></button>
-                                            @elseif($t->status == 2)
-                                                <button type="submit" disabled="true" class="btn btn-success"><i class="fa fa-pencil"></i></button>
-                                                <a href="{{route('order.show', ['id' => $t->id])}}" class="btn btn-info"><i class="fa fa-eye"></i></a>
-                                            @elseif($t->status == 3)
-                                                <button type="submit" disabled="true" class="btn btn-success"><i class="fa fa-pencil"></i></button>
-                                                <button type="submit" disabled="true" class="btn btn-info"><i class="fa fa-eye"></i></button>
-                                            @elseif($t->status == 5)
-                                                <button type="submit" disabled="true" class="btn btn-success"><i class="fa fa-pencil"></i></button>
-                                                <button type="submit" disabled="true" class="btn btn-info"><i class="fa fa-eye"></i></button>
-                                            @else
-                                                <a href="{{route('order.edit', ['id' => $t->id])}}" class="btn btn-success"><i class="fa fa-pencil"></i></a>
-                                                <a href="{{route('order.show', ['id' => $t->id])}}" class="btn btn-info"><i class="fa fa-eye"></i></a>
-                                        @endif
-
-                                        
+                                        <a href="{{route('order.edit', ['id' => $t->id])}}" class="btn btn-success"><i class="fa fa-pencil"></i></a>
+                                        <a href="{{route('order.show', ['id' => $t->id])}}" class="btn btn-info"><i class="fa fa-eye"></i></a>
                                     </td>
                                 </tr>
                             @endif

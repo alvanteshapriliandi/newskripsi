@@ -36,7 +36,6 @@
               <tbody>
                 @foreach($order_message as $om)
                 @if($om->status == 0)
-                  @elseif($om->status == 1)
                   @else
                   <tr>
                     <td>

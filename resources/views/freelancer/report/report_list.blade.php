@@ -17,7 +17,6 @@
 						<table id="datatable-buttons" class="table table-hover table-responsive">
 							<thead>
 								<tr>
-									<th>Username</th>
 									<th>Nama Product</th>
 									<th>Subcategory</th>
 									<th>Harga</th>
@@ -30,7 +29,6 @@
 							</thead>
 							<tfoot>
 								<tr>
-									<th>Username</th>
 									<th>Nama Product</th>
 									<th>Subcategory</th>
 									<th>Harga</th>
@@ -49,15 +47,15 @@
 										// $pendapatan = $r->total - $r->harga_awal;
 										// $pendapatan = $r->total - $pendapatan;
 									?>
-									<td>{{$r->username}}</td>
+									
 									<td>{{$r->jdl_Pdk}}</td>
 									<td>{{$r->name}}</td>
 									<?php 
-										// $r->total = number_format($r->total, 1, ",",".");
+										$r->harga_awal = number_format($r->harga_awal, 1, ",",".");
 										// $pendapatan = number_format($pendapatan, 1, ",",".");
 									?>
 									<td>{{$r->harga_awal}}</td>
-									<td>{{$pendapatan}}</td>
+									<td>{{$r->harga_awal}}</td>
 									@if($r->status_frpay == 1)
 										<td>Terkirim</td>
 										@else

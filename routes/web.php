@@ -81,6 +81,8 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => 'auth
     Route::resource('new-message', 'NewController');
     Route::resource('inbox-message', 'MasukController');
     Route::resource('material', 'MaterialController');
+    Route::resource('report-list', 'ReportController');
+    Route::resource('report-comment', 'ReportCommentController');
     Route::resource('submaterial', 'SubmaterialController');
     Route::resource('outbox-message', 'KeluarController');
     Route::post('material/findSubCategoryname/{id}', 'MaterialController@findSubCategoryname');

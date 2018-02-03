@@ -17,7 +17,8 @@
 						<table id="datatable-buttons" class="table table-hover table-responsive">
 							<thead>
 								<tr>
-									<th>Username</th>
+									<th>Kode Invoice</th>
+									<th>Freelance</th>
 									<th>Nama Product</th>
 									<th>Subcategory</th>
 									<th>Harga</th>
@@ -25,12 +26,12 @@
 									<th>Status</th>
 									<th>Date</th>
 									<th>Time</th>
-									<th>Action</th>
 								</tr>
 							</thead>
 							<tfoot>
 								<tr>
-									<th>Username</th>
+									<th>Kode Invoice</th>
+									<th>Freelancer</th>
 									<th>Nama Product</th>
 									<th>Subcategory</th>
 									<th>Harga</th>
@@ -38,26 +39,26 @@
 									<th>Status</th>
 									<th>Date</th>
 									<th>Time</th>
-									<th>Action</th>
 								</tr>
 							</tfoot>
 							<tbody>
 								@foreach($report as $r)
-								@if($r->status == 0)
+								@if($r->status == 4)
 								<tr>
 									<?php 
-										$pendapatan = $r->total - $r->harga_awal;
-										$pendapatan = $r->total - $pendapatan;
+										// $pendapatan = $r->total - $r->harga_awal;
+										// $pendapatan = $r->total - $pendapatan;
 									?>
+									<td>{{$r->kode_invoice}}</td>
 									<td>{{$r->username}}</td>
 									<td>{{$r->jdl_Pdk}}</td>
 									<td>{{$r->name}}</td>
 									<?php 
-										$r->total = number_format($r->total, 1, ",",".");
-										$pendapatan = number_format($pendapatan, 1, ",",".");
+										$r->harga_awal = number_format($r->harga_awal, 1, ",",".");
+										// $pendapatan = number_format($pendapatan, 1, ",",".");
 									?>
-									<td>{{$r->total}}</td>
-									<td>{{$pendapatan}}</td>
+									<td>{{$r->harga_awal}}</td>
+									<td>{{$r->harga_awal}}</td>
 									@if($r->status_frpay == 1)
 										<td>Terkirim</td>
 										@else
@@ -65,16 +66,6 @@
 									@endif
 									<td>{{ date('F d, Y', strtotime($r->created_at))}}</td>
                                     <td>{{ date('H:m:s', strtotime($r->created_at))}}</td>
-                                    @if($r->status_frpay == 0)
-                                    	<td>
-                                    		<a href="{{route('report.show',['id'=>$r->id])}}" class="btn btn-info">komentar</a>
-                                    	</td>
-                                    	@else
-                                    		<td>
-                                    			<input type="submit" disabled="true" class="btn btn-danger" name="" value="komentar">
-                                    		</td>
-
-                                    @endif
 								</tr>
 								@endif
 								@endforeach

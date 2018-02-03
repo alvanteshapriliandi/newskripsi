@@ -18,12 +18,12 @@ class FreelancePaymentController extends Controller
     public function index()
     {
         //
-        $data['pay'] = db::select('select u.username, p.jdl_Pdk, s.name, t.status, o.updated_at, o.id, p.harga_awal, o.status_frpay from orders o
+        // return 'hai';
+        $data['pay'] = db::select('select u.username, p.jdl_Pdk, s.name, o.status, o.updated_at, o.id, p.harga_awal, o.status_frpay from orders o
             join products p on p.id = o.product_id
-            join transaction t on t.id = o.transaction_id
             join subcategories s on s.id = p.subcategory_id
             join users u on u.id = p.freelancer_id
-            where t.status = 4');
+            where o.status = 4');
         // return $data;
         return view('admin.freelancepayment.freelancepayment_list',$data);
     }
@@ -49,7 +49,6 @@ class FreelancePaymentController extends Controller
         //
         $datas = array(
           'order_id'    => $request->input('order_id'),
-          'pendapatan'  => $request->input('total'),
         );
         // return $datas;
         FreelancePayment::create($datas);
