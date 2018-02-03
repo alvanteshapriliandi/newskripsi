@@ -71,7 +71,7 @@
                                     <select name="category" id="category" class="category form-control col-md-7 col-xs-12" data-token="{{ csrf_token()}}">
                                         <option value="0" disabled="true" selected="true">-Select Category-</option>
                                         @foreach($cat as $c)
-                                            <option value="{{$c->id}}">{{$c->name}}</option>
+                                            <option value="{{$c->id}}">{{$c->cat_name}}</option>
                                         @endforeach
                                     </select>
                                     @if ($errors->has('category'))

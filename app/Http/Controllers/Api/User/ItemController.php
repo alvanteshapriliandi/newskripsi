@@ -83,7 +83,7 @@ class ItemController extends Controller
                                       'material' => $request->material
                                     ]);
           $detail = DB::table('items')->join('products', 'items.product_id', '=', 'products.id')
-                                      ->select('items.*', 'products.freelancer_id', 'products.subcategory_id', 'products.jdl_Pdk', 'products.harga_awal', 'products.images')
+                                      ->select('items.*', 'products.freelancer_id', 'products.subcategory_id', 'products.jdl_Pdk', 'products.harga_awal')
                                       ->where('items.id', '=', $request->id)
                                       ->first();    
           return response()->json($detail);    
@@ -118,7 +118,7 @@ class ItemController extends Controller
           );
           $item = Item::create($data); 
           $detail = DB::table('items')->join('products', 'items.product_id', '=', 'products.id')
-                                      ->select('items.*', 'products.freelancer_id', 'products.subcategory_id', 'products.jdl_Pdk', 'products.harga_awal', 'products.images')
+                                      ->select('items.*', 'products.freelancer_id', 'products.subcategory_id', 'products.jdl_Pdk', 'products.harga_awal')
                                       ->where('items.id', '=', $item->id)
                                       ->first();
           return response()->json($detail);

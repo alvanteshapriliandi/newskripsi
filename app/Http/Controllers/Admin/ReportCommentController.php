@@ -17,8 +17,9 @@ class ReportCommentController extends Controller
     public function index()
     {
         //
-        $data['comment'] = db::select('select p.jdl_Pdk, u.username, c.comment, c.created_at from report_comments c
+        $data['comment'] = db::select('select t.kode_invoice, p.jdl_Pdk, u.username, c.comment, c.created_at from report_comments c
             join orders o on o.id = c.order_id
+            join transaction t on t.id = o.transaction_id
             join products p on p.id = o.product_id
             join users u on u.id = c.freelancer_id');
         // return $data;

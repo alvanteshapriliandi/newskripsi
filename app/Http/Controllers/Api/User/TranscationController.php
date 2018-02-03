@@ -27,7 +27,7 @@ class TranscationController extends Controller
 
       $fileName = str_random().'.'.$extension;
 
-      $path = public_path().'/uploads/'.$fileName;
+      $path = public_path().'/pembayaran/'.$fileName;
 
       file_put_contents($path, $decoded);
 

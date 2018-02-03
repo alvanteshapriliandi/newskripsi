@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use DB;
 use App\Models\Cetak;
-
+use App\Models\Orders;
 class CetakController extends Controller
 {
     /**
@@ -18,7 +18,7 @@ class CetakController extends Controller
     {
         //
         $data['print'] = db::select('select u.username, p.jdl_Pdk, s.name, c.status, c.created_at, c.id from cetaks c
-            join  messages m on m.id = c.message_id
+            join messages m on m.id = c.message_id
             join orders o on o.id = m.order_id
             join users u on u.id = m.to_user_id
             join products p on p.id = o.product_id
@@ -73,12 +73,14 @@ class CetakController extends Controller
             join messages m on m.id = c.message_id
             join users u on u.id = m.to_user_id
             where c.id = '.$id);
-        $data['print'] = db::select('select u.username, m.images, p.jdl_Pdk, s.name, o.jenis_kertas, o.kuantitas, o.model, o.kain, o.ukuran, o.warna, o.jenis_cetak, o.bahan, o.sisi, o.jilid, o.lembar, o.cetak_depan, o.cetak_belakang, o.cetak_lengan_kanan, o.cetak_lengan_kiri, o.kaos_metode from cetaks c
+        $data['print'] = db::select('select u.username, m.images, p.jdl_Pdk, s.name, o.jenis_kertas, o.kuantitas, o.model, o.kain, o.ukuran, o.warna, o.jenis_cetak, o.bahan, o.sisi, o.jilid, o.lembar, o.cetak_depan, o.cetak_belakang, o.cetak_lengan_kanan, o.cetak_lengan_kiri, o.kaos_metode, ma.satuan from cetaks c
             join orders o on o.id = c.order_id
             join messages m on m.id = c.message_id
             join users u on u.id = m.fr_user_id
             join products p on p.id = o.product_id
-            join subcategories s on s.id = p.subcategory_id');
+            join subcategories s on s.id = p.subcategory_id
+            join materials ma on ma.subcategory_id = s.id
+            where ma.id = 102');
         // return $data['print'];
         return view('admin.cetakfreelance.cetakfreelance_show',$data);
     }
@@ -99,6 +101,12 @@ class CetakController extends Controller
         // return $cetak;
         $cetak->save();
         $cetak -> update($data);
+        // return $cetak->order_id;
+        $order = Orders::find($cetak->order_id);
+        
+        $order->status=2;
+        // return $order;
+        $order->save();
         return redirect()->route('cetakpesanan.index')->with('success', "<strong>Print Product</strong> has successfully been updated.");
     }
 

@@ -30,11 +30,27 @@
                                 <tr>
                                     <th>Status</th>
                                     <td>
-                                        <input type="checkbox" name="status" value="2"> Dalam Proses Pengerjaan
+                                        @if($t->status == 0)
+                                            <input type="checkbox" name="status" value="1"> Dalam Proses Pengerjaan
+                                            @elseif($t->status == 1)
+                                                Dalam Proses Pengerjaan
+                                            @elseif($t->status == 2)
+                                                Dalam Proses Pengeriman
+                                            @elseif($t->status == 3)
+                                                Barang Sudah Diterima
+                                            @else
+                                                Pembayaran Telah selesai
+                                        @endif
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td><input type="submit" name="" value="Update Status"></td>
+                                    <td>
+                                        @if($t->status == 0)
+                                            <input type="submit" name="" value="Update Status" class="btn btn-success">
+                                            @else
+                                            <input type="submit" disabled="true" name="" value="Update Status" class="btn btn-success">
+                                        @endif
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>

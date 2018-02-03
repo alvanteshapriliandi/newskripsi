@@ -18,7 +18,7 @@
                             <tr>
                                 <th>Nama Produk</th>
                                 <th>Sub Category</th>
-                                <th>Harga Produk</th>
+                                <th>Harga Desain</th>
                                 <th>Pendapatan</th>
                                 <th>Date</th>
                                 <th>Time</th>
@@ -28,7 +28,7 @@
                             <tr>
                                 <th>Nama Produk</th>
                                 <th>Sub Category</th>
-                                <th>Harga Produk</th>
+                                <th>Harga Desain</th>
                                 <th>Pendapatan</th>
                                 <th>Date</th>
                                 <th>Time</th>
@@ -39,8 +39,9 @@
                               <tr>
                                 <td>{{$bayar->jdl_Pdk}}</td>
                                 <td>{{$bayar->name}}</td>
+                                <?php $bayar->harga_awal = number_format($bayar->harga_awal, 1, ",","."); ?>
                                 <td>{{$bayar->harga_awal}}</td>
-                                <td>{{$bayar->pendapatan}}</td>
+                                <td>{{$bayar->harga_awal}}</td>
                                 <td>{{ date('F d, Y', strtotime($bayar->updated_at))}}</td>
                                 <td>{{ date('H:m:s', strtotime($bayar->updated_at))}}</td>
                               </tr>

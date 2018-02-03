@@ -33,7 +33,7 @@ class OrderController extends Controller
         //     array_push($arr, $tmp2);
         // }
         // $data['transaction'] = $list;
-        $data['orderlist'] = db::select('select o.id, u.username, o.status, o.updated_at from orders o
+        $data['orderlist'] = db::select('select o.id, u.username, t.status_transaksi, o.status, o.updated_at from orders o
             join products p on p.id = o.product_id
             join transaction t on t.id = o.transaction_id
             join users u on u.id = t.user_id

@@ -14,7 +14,7 @@ class Transaction extends Model
         'bank_id',
         'kode_invoice',
         'images',
-        'status'
+        'status_transaksi'
     ];
     public $table = "transaction";
 }
