@@ -235,8 +235,14 @@ class ItemController extends Controller
      */
     public function destroy($id)
     {
-        $item = DB::table('items')->where('id', '=', $id)->delete();
-        $items = DB::table('items')->get();
-        return response()->json($items);
+      $cart = DB::table('carts')->where('user_id', '=', Auth::user()->id)->first();
+      $items = DB::table('items')->where('cart_id', '=', $cart->id)->get();
+        for($i = 0; $i < count($items); $i++) {
+          if($items[$i]->id == $id) {
+            $items[$i]->delete();
+          }
+        }
+        // $items = DB::table('items')->get();
+        return response()->json($cart);
     }
 }
