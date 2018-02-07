@@ -26,13 +26,18 @@ class MessageController extends Controller
     {
         //
         $id = Auth::user()->id;
-        $data['order_message'] = db::select('select o.id, t.status, o.created_at, p.images, u.username, p.jdl_Pdk from orders o
+        $data['order_message'] = db::select('select o.id, o.created_at, p.images, u.username, p.jdl_Pdk, p.id as product_id, p.freelancer_id, s.username as freelance from orders o
             join products p on p.id = o.product_id
+            join freelances f on p.freelancer_id = f.id
+            join users s on f.user_id = s.id
+            join images i on i.product_id = p.id
             join transaction t on t.id = o.transaction_id
-            join users u on u.id = t.user_id
-            where p.freelancer_id = '.$id);
+            join users u on t.user_id = u.id
+            
+            where t.user_id = '.$id);
         return response()->json($data);
     }
+
 
     /**
      * Show the form for creating a new resource.
@@ -88,21 +93,26 @@ class MessageController extends Controller
     public function show($id)
     {
         //
-        $messages_id = Auth::user()->id;
-        $data['message_in'] = db::select('select u.email, u.username, m.id, m.fr_user_id, m.images, m.message, m.created_at from messages m 
-            join users u on m.fr_user_id = u.id   
-            where m.to_user_id = '.$messages_id.'
-            order by m.created_at desc');
-        // return $data;
-        $data['message_out'] = db::select('select u.*, m.id, m.images, m.message, m.created_at, m.updated_at from messages m 
-            join users u on m.to_user_id = u.id
-            join orders o on o.id = m.order_id 
-            where m.fr_user_id = '.$messages_id.'
-            and o.id = '.$id);
-        $data['orders'] = db::select('select o.id, o.ket, t.user_id, u.username from orders o
-            join transaction t on t.id = o.transaction_id
-            join users u on u.id = t.user_id
-            where o.id = '.$id);
+        // $user_id = Auth::user()->id;
+        // $data['message_in'] = db::select('select u.email, u.username, m.id, m.fr_user_id, m.images, m.message, m.created_at from messages m 
+        //     join users u on m.fr_user_id = u.id   
+        //     where m.to_user_id = '.$user_id);
+        // // return $data;
+        // $data['message_out'] = db::select('select u.*, m.id, m.images, m.message, m.created_at, m.updated_at from messages m 
+        //     join users u on m.to_user_id = u.id
+        //     join orders o on o.id = m.order_id 
+        //     where m.fr_user_id = '.$user_id.'
+        //     and o.id = '.$id);
+        // $data['orders'] = db::select('select o.id, o.ket, t.user_id, u.username from orders o
+        //     join transaction t on t.id = o.transaction_id
+        //     join users u on u.id = t.user_id
+        // //     where o.id = '.$id);
+        $data = DB::table('messages')->join('orders', 'messages.order_id', '=', 'orders.id')
+                                      ->join('products', 'orders.product_id', '=', 'products.id')
+                                      ->join('freelances', 'products.freelancer_id', '=', 'freelances.id')
+                                      ->join('users', 'freelances.user_id', '=', 'users.id')
+                                      ->select('messages.*', 'users.username as freelance', 'freelances.id as freelances_id')
+                                      ->where('order_id', '=', $id)->get();
         return response()->json($data);
     }
 
@@ -138,5 +148,35 @@ class MessageController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function getOrder() {
+      
+    }
+
+    public function sendMessage(Request $request) {
+      $explode = explode(',' , $request->images);
+      $decoded = base64_decode($explode[1]);
+
+      if(str_contains($explode[0], 'jpg')) {
+        $extension = 'jpg';
+      } else {
+        $extension = 'png';
+      }
+
+      $fileName = str_random().'.'.$extension;
+
+      $path = public_path().'/messages/'.$fileName;
+
+      file_put_contents($path, $decoded);
+      $message = Message::create([
+        'fr_user_id' => Auth::user()->id,
+        'to_user_id' => $request->to_user_id,
+        'order_id' => $request->order_id,
+        'message' => $request->message,
+        'images' => $fileName
+      ]);
+      $data = DB::table('messages')->where('id','=', $message->id)->first();
+      return response()->json($data);
     }
 }

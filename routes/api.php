@@ -48,6 +48,7 @@ Route::post('kelamin', 'Api\ProfileController@changeKelamin');
 Route::resource('messages', 'Api\User\MessageController');
 Route::post('freelance', 'Api\RegFreelancer@store');
 Route::post('upload', 'Api\User\TranscationController@upload');
+Route::post('sendmessage', 'Api\User\MessageController@sendMessage');
 
 Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => 'auth'], function () {
   Route::resource('products', 'ProductController');

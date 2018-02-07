@@ -83,6 +83,7 @@ class OrdersController extends Controller
             'cetak_lengan_kiri' => $request->items[$i]['cetak_lengan_kiri'],
             'kaos_metode' => $request->items[$i]['kaos_metode']
           ]);
+          DB::table('items')->where('id', '=', $request->items[$i]['id'])->delete();
         }
         return response()->json($transaction->with('orders')->where('id', '=', $transaction->id)->first());
        

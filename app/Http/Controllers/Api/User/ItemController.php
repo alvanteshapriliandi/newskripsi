@@ -53,6 +53,25 @@ class ItemController extends Controller
       $cart = DB::table('carts')->where('user_id', '=', Auth::user()->id)->first();
       $items = DB::table('items')->where('product_id', '!=', $request->product_id);
 
+      $fileName = '';
+      if ($request->logo) {
+        $explode = explode(',' , $request->logo);
+        $decoded = base64_decode($explode[1]);
+
+        if(str_contains($explode[0], 'jpg')) {
+          $extension = 'jpg';
+        } else {
+          $extension = 'png';
+        }
+
+        $fileName = str_random().'.'.$extension;
+
+        $path = public_path().'/pembayaran/'.$fileName;
+
+        file_put_contents($path, $decoded);
+      }
+
+
       if(DB::table('carts')->where('user_id', '=', $user_id)->exists()){
         if(DB::table('items')->where('id', '=', $request->id)->exists()){
           $data = DB::table('items')->where('id', '=', $request->id)
@@ -79,7 +98,7 @@ class ItemController extends Controller
                                       'alamat'  => $request->alamat,
                                       'email' => $request->email,
                                       'jabatan' => $request->jabatan,
-                                      'logo' => $request->logo,
+                                      'logo' => $fileName,
                                       'material' => $request->material
                                     ]);
           $detail = DB::table('items')->join('products', 'items.product_id', '=', 'products.id')
@@ -113,12 +132,12 @@ class ItemController extends Controller
             'alamat'  => $request->alamat,
             'email' => $request->email,
             'jabatan' => $request->jabatan,
-            'logo' => $request->logo,
+            'logo' => $fileName,
             'material' => $request->material
           );
           $item = Item::create($data); 
           $detail = DB::table('items')->join('products', 'items.product_id', '=', 'products.id')
-                                      ->select('items.*', 'products.freelancer_id', 'products.subcategory_id', 'products.jdl_Pdk', 'products.harga_awal')
+                                      ->select('items.*', 'products.freelancer_id', 'products.subcategory_id', 'products.jdl_Pdk', 'products.harga_awal', 'products.images')
                                       ->where('items.id', '=', $item->id)
                                       ->first();
           return response()->json($detail);
@@ -153,7 +172,7 @@ class ItemController extends Controller
           'alamat'  => $request->alamat,
           'email' => $request->email,
           'jabatan' => $request->jabatan,
-          'logo' => $request->logo,
+          'logo' => $fileName,
           'material' => $request->material
         );
         $item = Item::create($data); 
@@ -235,14 +254,16 @@ class ItemController extends Controller
      */
     public function destroy($id)
     {
-      $cart = DB::table('carts')->where('user_id', '=', Auth::user()->id)->first();
-      $items = DB::table('items')->where('cart_id', '=', $cart->id)->get();
-        for($i = 0; $i < count($items); $i++) {
-          if($items[$i]->id == $id) {
-            $items[$i]->delete();
-          }
-        }
-        // $items = DB::table('items')->get();
-        return response()->json($cart);
+      // $cart = DB::table('carts')->where('user_id', '=', Auth::user()->id)->first();
+      // $items = DB::table('items')->where('cart_id', '=', $cart->id)->get();
+      //   for($i = 0; $i < count($items); $i++) {
+      //     if($items[$i]->id == $id) {
+      //       $items[$i]->delete();
+      //     }
+      //   }
+      //   // $items = DB::table('items')->get();
+      //   return response()->json($cart);
+      $item = DB::table('items')->where('id', '=', $id)->delete();
+      return response()->json(200);
     }
 }
