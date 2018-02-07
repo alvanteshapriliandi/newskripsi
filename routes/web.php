@@ -32,6 +32,7 @@ Route::group(['prefix' => 'freelance', 'namespace' => 'Freelancer', 'middleware'
     Route::resource('pengaturan', 'PengaturanController');
     Route::resource('message', 'MessagesController');
     Route::resource('report', 'ReportController');
+    Route::resource('perubahan', 'PerubahanController');
     Route::post('product/findSubCategoryname/{id}', 'ProductsController@findSubCategoryname');
 });
 Route::group(['namespace' => 'Freelancer', 'middleware' => 'auth'], function () {

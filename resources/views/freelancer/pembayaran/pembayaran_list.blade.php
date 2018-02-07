@@ -39,7 +39,7 @@
                               <tr>
                                 <td>{{$bayar->jdl_Pdk}}</td>
                                 <td>{{$bayar->name}}</td>
-                                <?php $bayar->harga_awal = number_format($bayar->harga_awal, 1, ",","."); ?>
+                                <?php $bayar->harga_awal = number_format($bayar->harga_awal, 0, ",","."); ?>
                                 <td>{{$bayar->harga_awal}}</td>
                                 <td>{{$bayar->harga_awal}}</td>
                                 <td>{{ date('F d, Y', strtotime($bayar->updated_at))}}</td>

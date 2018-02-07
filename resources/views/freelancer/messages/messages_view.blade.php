@@ -91,9 +91,9 @@
                                 <b>{{$mo->message}}</b><br>
                                 @if($mo->images)
                                   <img src="{{asset('messages/'.$mo->images)}}" width="150" style="margin-bottom: 5px;"><br>
-                                  @foreach($orders as $o)
-                                    <span class="btn btn-danger">Perubahan ({{$o->ket}})</span>
-                                  @endforeach
+                                    @foreach($orders as $o)
+                                      <button type="submit" class="btn btn-danger">Perubahan ({{$o->ket}})</button>
+                                    @endforeach
                                   <button class="btn btn-success">Setuju</button>
                                 @endif
                               </div>
@@ -142,7 +142,6 @@
                     <!-- /.panel .chat-panel -->
             </form>
           </div>
-          
 
         </div>
 

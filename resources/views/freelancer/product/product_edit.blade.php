@@ -42,24 +42,13 @@
 
                         <div class="col-md-5 form-row" style="border: 1px solid #ccc; padding: 10px;">
 
-                            <div class="form-group{{ $errors->has('harga_awal') ? ' has-error' : '' }} col-md-6">
+                            <div class="form-group{{ $errors->has('harga_awal') ? ' has-error' : '' }} col-md-12">
                                 <label class="col-xs-12" for="harga_awal">Harga Awal <span class="required">*</span>
                                 </label>
                                 <div class="col-xs-12">
                                     <input type="text" value="{{ $product->harga_awal }}" id="harga_awal" name="harga_awal" class="form-control col-md-7 col-xs-12">
                                     @if ($errors->has('harga_awal'))
                                     <span class="help-block">{{ $errors->first('harga_awal') }}</span>
-                                    @endif
-                                </div>
-                            </div>
-
-                            <div class="form-group{{ $errors->has('harga_promo') ? ' has-error' : '' }} col-md-6">
-                                <label class="col-xs-12" for="harga_promo">Harga Promo <span class="required">*</span>
-                                </label>
-                                <div class="col-xs-12">
-                                    <input type="text" value="{{ $product->harga_promo }}" id="harga_promo" name="harga_promo" class="form-control col-md-7 col-xs-12">
-                                    @if ($errors->has('harga_promo'))
-                                    <span class="help-block">{{ $errors->first('harga_promo') }}</span>
                                     @endif
                                 </div>
                             </div>

@@ -12,7 +12,7 @@
                     <div class="clearfix"></div>
                 </div>
                 <div class="x_content">
-                    <p>Are you sure you want to delete <strong>Product</strong></p>
+                    <p>Are you sure you want to delete <strong>{{$product->jdl_Pdk}}</strong></p>
 
                     <form method="POST" action="{{ route('product.destroy', ['id' => $product->id]) }}">
                         <input type="hidden" name="_token" value="{{ Session::token() }}">

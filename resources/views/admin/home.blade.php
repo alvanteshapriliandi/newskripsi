@@ -6,7 +6,7 @@
     <div class="col col-md-3">
       <div class="panel panel-default" style="background: #007bff; border-radius: 15px;">
         <div class="panel-body" style="color: white;">
-          <h3>Total User
+          <h3>Total Member
             <span class="badge" style="float: right; background: white; color: #007bff; font-size: 30px;">
               @if(count($user))
                     {{$user[0]->total}}
