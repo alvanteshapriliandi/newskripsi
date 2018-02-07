@@ -25,7 +25,10 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 
 Route::resource('productlist', 'Api\User\ProductController');
-Route::resource('orders', 'Api\User\OrdersController');
+Route::resource('perubahan', 'Api\User\PerubahanController');
+Route::resource('freelance-product', 'Api\User\ProductFreelacerController');
+Route::resource('perubahan', 'Api\User\PerubahanController');
+Route::resource('setuju', 'Api\User\SetujuController');
 // Route::get('productlist/{id}', 'Api\User\ProductController@show');
 Route::resource('cart', 'Api\User\CartController');
 Route::resource('item', 'Api\User\ItemController');

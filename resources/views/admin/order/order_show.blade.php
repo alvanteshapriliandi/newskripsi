@@ -96,9 +96,9 @@
                                         <td>{{$dl->satuan}}</td>
                                     </tr>
                                     <?php 
-                                        $dl->harga_awal = number_format($dl->harga_awal, 1, ",",".");
-                                        $subtotal = number_format($subtotal, 1, ",",".");
-                                        $total = number_format($total, 1, ",","."); 
+                                        $dl->harga_awal = number_format($dl->harga_awal, 0, ",",".");
+                                        $subtotal = number_format($subtotal, 0, ",",".");
+                                        $total = number_format($total, 0, ",","."); 
                                     ?>
                                     <tr>
                                         <th>Harga Desain <i>(Rp)</i> </th>

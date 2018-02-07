@@ -66,6 +66,7 @@
                         <div class="menu_section">
                             <h3>General</h3>
                             <ul class="nav side-menu">
+                                <li><a href="{{url('freelance')}}"><i class="fa fa-home"></i> Dashboard </a></li>
                                 <li><a href="{{url('freelance/product')}}"><i class="fa fa-product-hunt"></i> Product </a></li>
                                 <li><a href="{{url('freelance/order')}}"><i class="fa fa-shopping-cart"></i> Order List</a></li>
                                 <li><a href="{{url('freelance/message')}}"><i class="fa fa-envelope"></i> Messages</a></li>
