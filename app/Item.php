@@ -34,7 +34,9 @@ class Item extends Model
     'email',
     'jabatan',
     'logo',
-    'material'
+    'material',
+    'berat',
+    'harga'
   ];
 
   public $table = "items";
