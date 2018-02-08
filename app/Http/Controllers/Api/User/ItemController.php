@@ -99,7 +99,9 @@ class ItemController extends Controller
                                       'email' => $request->email,
                                       'jabatan' => $request->jabatan,
                                       'logo' => $fileName,
-                                      'material' => $request->material
+                                      'material' => $request->material,
+                                      'berat' => $request->berat,
+                                      'harga' => $request->harga
                                     ]);
           $detail = DB::table('items')->join('products', 'items.product_id', '=', 'products.id')
                                       ->select('items.*', 'products.freelancer_id', 'products.subcategory_id', 'products.jdl_Pdk', 'products.harga_awal')
@@ -133,7 +135,9 @@ class ItemController extends Controller
             'email' => $request->email,
             'jabatan' => $request->jabatan,
             'logo' => $fileName,
-            'material' => $request->material
+            'material' => $request->material,
+            'berat' => $request->berat,
+            'harga' => $request->harga
           );
           $item = Item::create($data); 
           $detail = DB::table('items')->join('products', 'items.product_id', '=', 'products.id')
@@ -173,7 +177,9 @@ class ItemController extends Controller
           'email' => $request->email,
           'jabatan' => $request->jabatan,
           'logo' => $fileName,
-          'material' => $request->material
+          'material' => $request->material,
+          'berat' => $request->berat,
+          'harga' => $request->harga
         );
         $item = Item::create($data); 
         $detail = DB::table('items')->join('products', 'items.product_id', '=', 'products.id')
