@@ -5,6 +5,7 @@ use App\Http\Controllers\Controller;
 use App\Transformers\UserTransformer;
 use App\User;
 use Auth;
+use DB;
 class AuthController extends Controller
 {
     public function doRegister(Request $request, User $user){
@@ -38,12 +39,9 @@ class AuthController extends Controller
       if(!Auth::attempt(['email' => $request->email, 'password' => $request->password])){
         return response()->json(['error' => 'Your credential is wrong'], 401);
       }
-      $user = $user->find(Auth::user()->id);
+      // $user = $user->find(Auth::user()->id);
+      $user = DB::table('users')->where('id', '=', Auth::user()->id)->first();
       return response()
-        ->json([
-          'authenticated' => true,
-          'user_id' => $user->id,
-          'api_token' => $user->api_token
-        ]);
+        ->json($user);
     }
 }

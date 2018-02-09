@@ -81,8 +81,11 @@ class OrdersController extends Controller
             'cetak_belakang' => $request->items[$i]['cetak_belakang'],
             'cetak_lengan_kanan' => $request->items[$i]['cetak_lengan_kanan'],
             'cetak_lengan_kiri' => $request->items[$i]['cetak_lengan_kiri'],
-            'kaos_metode' => $request->items[$i]['kaos_metode']
+            'kaos_metode' => $request->items[$i]['kaos_metode'],
+            'berat' => $request->items[$i]['berat'],
+            'harga' => $request->items[$i]['harga']
           ]);
+          DB::table('items')->where('id', '=', $request->items[$i]['id'])->delete();
         }
         return response()->json($transaction->with('orders')->where('id', '=', $transaction->id)->first());
        

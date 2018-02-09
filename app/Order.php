@@ -25,7 +25,9 @@ class Order extends Model
     'cetak_belakang',
     'cetak_lengan_kanan',
     'cetak_lengan_kiri',
-    'kaos_metode'
+    'kaos_metode',
+    'berat',
+    'harga'
   ];
 
   public $table = "orders";

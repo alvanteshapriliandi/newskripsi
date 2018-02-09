@@ -34,7 +34,7 @@ Route::resource('cart', 'Api\User\CartController');
 Route::resource('item', 'Api\User\ItemController');
 Route::get('provinsi', 'Api\User\OngkirController@provinsi');
 Route::get('city/{province}', 'Api\User\OngkirController@city');
-Route::get('cost/{kurir}', 'Api\User\OngkirController@cost');
+Route::get('cost/berat/{berat}/kurir/{kurir}', 'Api\User\OngkirController@cost');
 Route::post('user/alamat', 'Api\User\AlamatController@store');
 Route::get('user/alamat', 'Api\User\AlamatController@index');
 Route::get('categories', 'Api\CategoryController@index');
@@ -51,6 +51,10 @@ Route::post('kelamin', 'Api\ProfileController@changeKelamin');
 Route::resource('messages', 'Api\User\MessageController');
 Route::post('freelance', 'Api\RegFreelancer@store');
 Route::post('upload', 'Api\User\TranscationController@upload');
+Route::post('sendmessage', 'Api\User\MessageController@sendMessage');
+// Route::put('perubahan/{id}', 'Api\User\PerubahanController');
+Route::resource('material', 'Api\MaterialsController');
+Route::post('material', 'Api\MaterialsController@getValue');
 
 Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => 'auth'], function () {
   Route::resource('products', 'ProductController');

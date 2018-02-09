@@ -15,4 +15,8 @@ class Subcategory extends Model
   public function products () {
     return $this->hasMany(Product::class);
   }
+
+  public function materials() {
+    return $this->hasMany(Material::class);
+  }
 }
