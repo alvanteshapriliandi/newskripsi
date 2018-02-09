@@ -26,15 +26,26 @@ class MessageController extends Controller
     {
         //
         $id = Auth::user()->id;
-        $data['order_message'] = db::select('select o.id, o.created_at, p.images, u.username, p.jdl_Pdk, p.id as product_id, p.freelancer_id, s.username as freelance from orders o
-            join products p on p.id = o.product_id
-            join freelances f on p.freelancer_id = f.id
-            join users s on f.user_id = s.id
-            join images i on i.product_id = p.id
-            join transaction t on t.id = o.transaction_id
-            join users u on t.user_id = u.id
+        // $data['order_message'] = db::select('select o.id as, o.created_at, p.images, u.username, p.jdl_Pdk, p.id as product_id, p.freelancer_id, s.username as freelance from orders o
+        //     join products p on p.id = o.product_id
+        //     join freelances f on p.freelancer_id = f.id
+        //     join users s on f.user_id = s.id
+        //     join images i on i.product_id = p.id
+        //     join transaction t on t.id = o.transaction_id
+        //     join users u on t.user_id = u.id
             
-            where t.user_id = '.$id);
+        //     where t.user_id = '.$id);
+        $data = DB::table('orders')->join('messages', 'messages.order_id', '=', 'orders.id')
+                                  -> join('products', 'orders.product_id', '=', 'products.id')
+                                  ->join('freelances', 'products.freelancer_id', '=', 'freelances.id')
+                                  ->join('users', 'freelances.user_id', '=', 'users.id')
+                                  // ->join('images', 'products.id', '=', 'images.product_id')
+                                  ->join('transaction', 'orders.transaction_id', '=', 'transaction.id')
+                                  // ->join('users', 'transaction.user_id', '=', 'users.id')
+                                  ->where('transaction.user_id', '=', $id)
+                                  ->select('orders.id as id', 'orders.created_at', 'products.images', 'users.username', 'products.jdl_Pdk', 'products.id as product_id', 'products.freelancer_id', 'users.username as freelance')
+                                  ->distinct()
+                                  ->get();
         return response()->json($data);
     }
 
@@ -155,20 +166,28 @@ class MessageController extends Controller
     }
 
     public function sendMessage(Request $request) {
-      $explode = explode(',' , $request->images);
-      $decoded = base64_decode($explode[1]);
 
-      if(str_contains($explode[0], 'jpg')) {
-        $extension = 'jpg';
-      } else {
-        $extension = 'png';
+      $fileName= '';
+
+      if($request->images) {
+        $explode = explode(',' , $request->images);
+        $decoded = base64_decode($explode[1]);
+
+        if(str_contains($explode[0], 'jpg')) {
+          $extension = 'jpg';
+        } else {
+          $extension = 'png';
+        }
+  
+        $fileName = str_random().'.'.$extension;
+  
+        $path = public_path().'/messages/'.$fileName;
+  
+        file_put_contents($path, $decoded);
       }
 
-      $fileName = str_random().'.'.$extension;
-
-      $path = public_path().'/messages/'.$fileName;
-
-      file_put_contents($path, $decoded);
+      
+     
       $message = Message::create([
         'fr_user_id' => Auth::user()->id,
         'to_user_id' => $request->to_user_id,
