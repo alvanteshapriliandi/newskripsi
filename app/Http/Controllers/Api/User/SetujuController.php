@@ -42,7 +42,7 @@ class SetujuController extends Controller
           'message_id'     => $request->input('message_id')
         );
         // return $datas;
-        Product::create($datas);
+        Cetak::create($datas);
         return response()->json($datas);
     }
 

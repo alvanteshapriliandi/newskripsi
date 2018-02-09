@@ -229,7 +229,7 @@ class MaterialController extends Controller
     public function edit($id)
     {
         //
-        $data['material'] = db::select('select m.id, s.name, m.jlh_pesanan, m.satuan, .m.jns_finishing, m.harga from materials m
+        $data['material'] = db::select('select m.id, s.name, m.jlh_pesanan, m.satuan, .m.jns_finishing, m.jns_kertas, m.harga from materials m
             join subcategories s on s.id = m.subcategory_id
             where m.subcategory_id = '.$id);
         // return $data;
