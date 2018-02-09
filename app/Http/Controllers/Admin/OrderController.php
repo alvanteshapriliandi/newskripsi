@@ -86,14 +86,14 @@ class OrderController extends Controller
             join users u on u.id = t.user_id
             where t.id = '.$id);
         // return $data;
-        $data['order_list'] = db::select('SELECT u.username,s.id, p.jdl_Pdk, p.harga_awal, m.harga, m.satuan, s.name, o.kuantitas, o.status, t.status_transaksi from orders o
+        $data['order_list'] = db::select('SELECT u.username, s.id, p.jdl_Pdk, p.harga_awal, 
+            s.name, o.harga, o.kuantitas, o.status, t.* from orders o
             join products p on p.id = o.product_id
             join users u on u.id = p.freelancer_id
             join subcategories s on s.id = p.subcategory_id
             left join materials m on m.subcategory_id = s.id
             join transaction t on t.id = o.Transaction_id
-            where o.Transaction_id = '.$id.'
-            and m.id = 102 ');
+            where o.Transaction_id = '.$id);
 
         // return $data['order_list'];
         return view('admin.order.order_show',$data);

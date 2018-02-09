@@ -25,7 +25,7 @@ class MessagesController extends Controller
             join images i on i.product_id = p.id
             join transaction t on t.id = o.transaction_id
             join users u on u.id = t.user_id
-            where p.freelancer_id = '.$id.' limit 1');
+            where p.freelancer_id = '.$id);
         // return $data;
         // $data['message_in'] = db::select('select u.email, m.id,m.subject, m.message from messages m join users u on m.to_user_id = u.id where m.to_user_id = '.$id);
         // $data['message_out'] = db::select('select u.email, m.id,m.subject, m.message from messages m join users u on m.to_user_id = u.id where m.fr_user_id = '.$id);
