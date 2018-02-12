@@ -134,4 +134,10 @@ class ProductController extends Controller
 
       return response()->json($product);
     }
+
+    public function productsFreelancer($id) 
+    {
+      $product = Product::where('freelancer_id', '=', $id)->paginate(12);
+      return response()->json($product);
+    }
 }

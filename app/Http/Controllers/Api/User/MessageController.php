@@ -38,7 +38,7 @@ class MessageController extends Controller
         $data = DB::table('orders')->join('messages', 'messages.order_id', '=', 'orders.id')
                                   -> join('products', 'orders.product_id', '=', 'products.id')
                                   ->join('freelances', 'products.freelancer_id', '=', 'freelances.id')
-                                  ->join('users', 'freelances.user_id', '=', 'users.id')
+                                  ->join('users', 'freelances.id', '=', 'users.id')
                                   // ->join('images', 'products.id', '=', 'images.product_id')
                                   ->join('transaction', 'orders.transaction_id', '=', 'transaction.id')
                                   // ->join('users', 'transaction.user_id', '=', 'users.id')
