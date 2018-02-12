@@ -16,7 +16,7 @@ class ProductController extends Controller
      */
     public function index()
     {
-      $product = Product::with('images')->paginate(12);
+      $product = Product::with(['images', 'materials'])->paginate(12);
                 
       return response()->json($product);
     }
@@ -137,7 +137,7 @@ class ProductController extends Controller
 
     public function productsFreelancer($id) 
     {
-      $product = Product::where('freelancer_id', '=', $id)->paginate(12);
+      $product = Product::with(['images', 'materials'])->where('freelancer_id', '=', $id)->paginate(6);
       return response()->json($product);
     }
 }

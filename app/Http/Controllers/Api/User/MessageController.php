@@ -8,6 +8,8 @@ use Auth;
 use App\User;
 use DB;
 use App\Message;
+use App\Order;
+use App\Models\Cetak;
 
 class MessageController extends Controller
 {
@@ -122,7 +124,7 @@ class MessageController extends Controller
                                       ->join('products', 'orders.product_id', '=', 'products.id')
                                       ->join('freelances', 'products.freelancer_id', '=', 'freelances.id')
                                       ->join('users', 'freelances.user_id', '=', 'users.id')
-                                      ->select('messages.*', 'users.username as freelance', 'freelances.id as freelances_id')
+                                      ->select('messages.*', 'users.username as freelance', 'freelances.id as freelances_id', 'orders.ket')
                                       ->where('order_id', '=', $id)->get();
         return response()->json($data);
     }
@@ -197,5 +199,36 @@ class MessageController extends Controller
       ]);
       $data = DB::table('messages')->where('id','=', $message->id)->first();
       return response()->json($data);
+    }
+
+    public function perubahan(Request $request) {
+      $message = Message::create([
+        'fr_user_id' => Auth::user()->id,
+        'to_user_id' => $request->to_user_id,
+        'order_id' => $request->order_id,
+        'message' => $request->message,
+        'images' => $request->image
+      ]);
+      $order = Order::find($request->order_id);
+      $order->ket -= 1;
+      $order->save();
+
+      return response()->json($order);
+    }
+
+    public function setuju (Request $request) 
+    {
+      Cetak::create([
+        'order_id' => $request->order_id,
+        'message_id' => $request->message_id,
+      ]);
+      $message = Message::create([
+        'fr_user_id' => Auth::user()->id,
+        'to_user_id' => $request->to_user_id,
+        'order_id' => $request->order_id,
+        'message' => $request->message,
+        'images' => $request->image
+      ]);
+      return response()->json($message);
     }
 }
