@@ -21,7 +21,7 @@ class ProductController extends Controller
     {
         //
         if(!Helper::checkAdmin()){return view('error.403');}
-        $product = DB::select("select p.id, p.jdl_Pdk, p.status, p.created_at, p.updated_at, s.name, u.username
+        $product = DB::select("SELECT p.id, p.jdl_Pdk, p.status, p.created_at, p.updated_at, s.name, u.username
                               from products p inner join subcategories s on p.subcategory_id = s.id
                               inner join users u on p.freelancer_id = u.id");
         return view('admin.product.product_list', compact('product'));

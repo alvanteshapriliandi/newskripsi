@@ -17,12 +17,9 @@
           </h3>
         </div>
         <a href="{{url('/admin/userlist')}}">
-          <div class="panel-footer" style="background: #EEEEEE;">
-            View Detail 
-            <span class="badge" style="float: right; background: white; color: #007bff;">
-              <i class="fa fa-angle-right"></i>
-            </span>
-          </div>
+          <form method="GET" action="{{url('/admin/userlist')}}" class="panel-footer" style="background: #EEEEEE;">
+            <button class="btn btn-link" style="text-decoration:none;">View Detail</button>
+          </form>
         </a>
       </div>
     </div>
@@ -40,12 +37,9 @@
           </h3>
         </div>
         <a href="{{url('admin/freelancelist')}}">
-          <div class="panel-footer" style="background: #EEEEEE;">
-            View Detail 
-            <span class="badge" style="float: right; background: white; color: #007bff;">
-              <i class="fa fa-angle-right"></i>
-            </span>
-          </div>
+          <form method="GET" action="{{url('/admin/freelancelist')}}" class="panel-footer" style="background: #EEEEEE;">
+            <button class="btn btn-link" style="text-decoration:none;">View Detail</button>
+          </form>
         </a>
       </div>
     </div>
@@ -63,12 +57,9 @@
           </h3>
         </div>
         <a href="{{url('admin/products')}}">
-          <div class="panel-footer" style="background: #EEEEEE;">
-            View Detail 
-            <span class="badge" style="float: right; background: white; color: #007bff;">
-              <i class="fa fa-angle-right"></i>
-            </span>
-          </div>
+          <form method="GET" action="{{url('/admin/products')}}" class="panel-footer" style="background: #EEEEEE;">
+            <button class="btn btn-link" style="text-decoration:none;">View Detail</button>
+          </form>
         </a>
       </div>
     </div>
@@ -86,12 +77,9 @@
           </h3>
         </div>
         <a href="{{url('admin/orderlist')}}">
-          <div class="panel-footer" style="background: #EEEEEE;">
-            View Detail 
-            <span class="badge" style="float: right; background: white; color: #007bff;">
-              <i class="fa fa-angle-right"></i>
-            </span>
-          </div>
+          <form method="GET" action="{{url('/admin/orderlist')}}" class="panel-footer" style="background: #EEEEEE;">
+            <button class="btn btn-link" style="text-decoration:none;">View Detail</button>
+          </form>
         </a>
       </div>
     </div>
@@ -109,12 +97,9 @@
           </h3>
         </div>
         <a href="{{url('admin/cetakpesanan')}}">
-          <div class="panel-footer" style="background: #EEEEEE;">
-            View Detail 
-            <span class="badge" style="float: right; background: white; color: #007bff;">
-              <i class="fa fa-angle-right"></i>
-            </span>
-          </div>
+          <form method="GET" action="{{url('/admin/cetakpesanan')}}" class="panel-footer" style="background: #EEEEEE;">
+            <button class="btn btn-link" style="text-decoration:none;">View Detail</button>
+          </form>
         </a>
       </div>
     </div>
@@ -132,12 +117,9 @@
           </h3>
         </div>
         <a href="{{url('admin/freelance-payment')}}">
-          <div class="panel-footer" style="background: #EEEEEE;">
-            View Detail 
-            <span class="badge" style="float: right; background: white; color: #007bff;">
-              <i class="fa fa-angle-right"></i>
-            </span>
-          </div>
+          <form method="GET" action="{{url('/admin/freelance-payment')}}" class="panel-footer" style="background: #EEEEEE;">
+            <button class="btn btn-link" style="text-decoration:none;">View Detail</button>
+          </form>
         </a>
       </div>
     </div>
@@ -155,12 +137,10 @@
           </h3>
         </div>
         <a href="{{url('admin/report-comment')}}">
-          <div class="panel-footer" style="background: #EEEEEE;">
-            View Detail 
-            <span class="badge" style="float: right; background: white; color: #007bff;">
-              <i class="fa fa-angle-right"></i>
-            </span>
-          </div>
+          <form method="POST" action="{{route('report-comment.store')}}" class="panel-footer" style="background: #EEEEEE;">
+            {{ csrf_field() }}
+            <button class="btn btn-link" style="text-decoration:none;">View Detail</button>
+          </form>
         </a>
       </div>
     </div>

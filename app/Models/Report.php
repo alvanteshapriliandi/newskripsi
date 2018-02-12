@@ -10,7 +10,7 @@ class Report extends Model
     protected $fillable = [
     	'freelancer_id',
        	'order_id',
-       	'comment'
+       	'comment',
     ];
     public $table = "report_comments";
 }

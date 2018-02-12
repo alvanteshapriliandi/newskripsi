@@ -34,8 +34,8 @@
                                 <th>Action</th>
                             </tr>
                         </tfoot>
-                        @foreach($product as $p)
                         <tbody>
+                        @foreach($product as $p)
                             <tr>
                                 <td>{{ $p->jdl_Pdk }}</td>
                                 <td>{{ $p->name}}</td>
@@ -53,8 +53,8 @@
                                     <a href="{{ route('product.show', ['id' => $p->id]) }}" class="btn btn-danger btn-xs"><i class="fa fa-trash-o" title="Delete"></i> </a>
                                 </td>
                             </tr>
-                        </tbody>
                         @endforeach
+                        </tbody>
                     </table>
                 </div>
             </div>

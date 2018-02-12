@@ -23,6 +23,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::group(['prefix' => 'freelance', 'namespace' => 'Freelancer', 'middleware' => 'auth'], function () {
     Route::resource('upload-desain', 'CetakController');
     Route::resource('product', 'ProductsController');
+    Route::delete('deleteimages/{$id}', 'ProductsController@deleteImg');
     Route::resource('pembayaran', 'PembayaranController');
     Route::resource('order', 'OrderController');
     Route::resource('new-messages', 'NewController');
@@ -32,6 +33,7 @@ Route::group(['prefix' => 'freelance', 'namespace' => 'Freelancer', 'middleware'
     Route::resource('pengaturan', 'PengaturanController');
     Route::resource('message', 'MessagesController');
     Route::resource('report', 'ReportController');
+    Route::resource('ulasan', 'UlasanController');
     Route::resource('perubahan', 'PerubahanController');
     Route::post('product/findSubCategoryname/{id}', 'ProductsController@findSubCategoryname');
 });

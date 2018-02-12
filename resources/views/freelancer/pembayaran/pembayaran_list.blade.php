@@ -37,11 +37,18 @@
                         <tbody>
                             @foreach($pembayaran as $bayar)
                               <tr>
+                                <?php
+                                    $saldo = 0;
+                                    $saldo += $bayar->harga_awal;
+                                ?>
                                 <td>{{$bayar->jdl_Pdk}}</td>
                                 <td>{{$bayar->name}}</td>
-                                <?php $bayar->harga_awal = number_format($bayar->harga_awal, 0, ",","."); ?>
+                                <?php 
+                                    $bayar->harga_awal = number_format($bayar->harga_awal, 0, ",",".");
+                                    $saldo = number_format($saldo, 0, ",","."); 
+                                ?>
                                 <td>{{$bayar->harga_awal}}</td>
-                                <td>{{$bayar->harga_awal}}</td>
+                                <td>{{$saldo}}</td>
                                 <td>{{ date('F d, Y', strtotime($bayar->updated_at))}}</td>
                                 <td>{{ date('H:m:s', strtotime($bayar->updated_at))}}</td>
                               </tr>

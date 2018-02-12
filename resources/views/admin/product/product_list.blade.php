@@ -36,9 +36,11 @@
                                     <th>Action</th>
                                 </tr>
                             </tfoot>
-                            @foreach($product as $p)
+                            
                             <tbody>
+                                @foreach($product as $p)
                                 <tr>
+                                    
                                     <td>{{ $p->username}}</td>
                                     <th>{{ $p->jdl_Pdk }}</th>
                                     <th>{{ $p->name}}</th>
@@ -48,15 +50,15 @@
                                             <th>Accepted</th>
 
                                     @endif
-
                                     <th>{{ date('F d, Y', strtotime($p->created_at))}}</th>
                                     <th>{{ date('H:m:s', strtotime($p->updated_at))}}</th>
                                     <td>
                                         <a href="{{ route('products.edit', ['id' => $p->id]) }}" class="btn btn-info btn-xs"><i class="fa fa-pencil" title="Edit"></i> </a>
                                     </td>
                                 </tr>
+                                @endforeach
                             </tbody>
-                            @endforeach
+                            
                         </table>
                     </div>
                 </div>

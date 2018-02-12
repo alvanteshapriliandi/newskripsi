@@ -15,7 +15,6 @@
             <table id="datatable-buttons" class="table table-hover table-responsive">
               <thead>
                 <tr>
-                  <th>Images</th>
                   <th>Username</th>
                   <th>Product Name</th>
                   <th>Date</th>
@@ -25,7 +24,6 @@
               </thead>
               <tfoot>
                 <tr>
-                  <th>Images</th>
                   <th>Username</th>
                   <th>Product Name</th>
                   <th>Date</th>
@@ -38,9 +36,6 @@
                 @if($om->status == 0)
                   @else
                   <tr>
-                    <td>
-                      <img src="{{asset('uploads/'.$om->images)}}" width="150">
-                    </td>
                     <td>{{$om->username}}</td>
                     <td>{{$om->jdl_Pdk}}</td>
                     <td>{{ date('F d, Y', strtotime($om->created_at))}}</td>
