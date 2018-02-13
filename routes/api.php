@@ -55,6 +55,11 @@ Route::post('sendmessage', 'Api\User\MessageController@sendMessage');
 // Route::put('perubahan/{id}', 'Api\User\PerubahanController');
 Route::resource('material', 'Api\MaterialsController');
 Route::post('material', 'Api\MaterialsController@getValue');
+Route::resource('ulasan', 'Api\User\UlasanController');
+Route::get('products-freelancer/{id}', 'Api\User\ProductController@productsFreelancer');
+Route::get('order/{id}', 'Api\User\OrdersController@show');
+Route::post('message/perubahan', 'Api\User\MessageController@perubahan');
+Route::post('message/setuju', 'Api\User\MessageController@setuju');
 
 Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => 'auth'], function () {
   Route::resource('products', 'ProductController');

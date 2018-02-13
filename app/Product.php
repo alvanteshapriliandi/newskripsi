@@ -22,6 +22,10 @@ class Product extends Model
       return $this->hasMany(Image::class);
     } 
 
+    public function materials() {
+      return $this->hasMany(Material::class, 'subcategory_id', 'subcategory_id');
+    }
+
     // public function freelancer(){
     //     return $this->belongsTo(Freelancer::class);
     // }

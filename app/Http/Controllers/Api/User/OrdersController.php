@@ -103,7 +103,8 @@ class OrdersController extends Controller
      */
     public function show($id)
     {
-        //
+        $data = DB::table('orders')->where('id', '=', $id)->fiist();
+        return response()->json($data);
     }
 
     /**
