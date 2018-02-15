@@ -26,6 +26,9 @@ class Product extends Model
       return $this->hasMany(Material::class, 'subcategory_id', 'subcategory_id');
     }
 
+    public function ulasans(){
+      return $this->hasMany(Ulasan::class);
+    }
     // public function freelancer(){
     //     return $this->belongsTo(Freelancer::class);
     // }

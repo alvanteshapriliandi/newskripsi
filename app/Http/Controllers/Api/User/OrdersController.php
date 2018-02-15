@@ -103,7 +103,7 @@ class OrdersController extends Controller
      */
     public function show($id)
     {
-        $data = DB::table('orders')->where('id', '=', $id)->fiist();
+        $data = DB::table('orders')->where('id', '=', $id)->first();
         return response()->json($data);
     }
 
@@ -142,12 +142,26 @@ class OrdersController extends Controller
     }
 
     public static function generateRandomString($length = 10) {
-      $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+      $characters = '0123456789';
       $charactersLength = strlen($characters);
       $randomString = '';
       for ($i = 0; $i < $length; $i++) {
           $randomString .= $characters[rand(0, $charactersLength - 1)];
       }
       return $randomString;
-  }
+    }
+    
+    public function setDiterima ($id) {
+      $data = Order::where('id', '=', $id)->update([
+        'status' => 3
+      ]);
+
+      $transaction = Transaction::with('orders.product')
+                                  // ->join('products as item', 'orders.product_id', '=', 'products.id')
+                                  ->where('user_id', '=', Auth::user()->id)->get();
+      // $orders = Order::with('product')
+      //                                 ->crossJoin('transaction', 'orders.transaction_id', '=', 'transaction.id')
+      //                                 ->where('transaction.user_id', '=', Auth::user()->id);
+      return response()->json($transaction);
+    }
 }
