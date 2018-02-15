@@ -90,9 +90,11 @@ class ProductController extends Controller
       $product = Product::with('images')
                     ->join('users', 'products.freelancer_id', '=', 'users.id')
                     ->join('subcategories','subcategories.id', '=', 'products.subcategory_id')
-                    ->select('products.*', 'users.username', 'subcategories.name')  
+                    ->select('products.*', 'users.username', 'subcategories.name', 'users.photo')  
                     ->where('products.id', '=', $id)
                     ->first();
+      
+
       return response()->json($product);
     }
     /**
@@ -139,5 +141,21 @@ class ProductController extends Controller
     {
       $product = Product::with(['images', 'materials'])->where('freelancer_id', '=', $id)->paginate(6);
       return response()->json($product);
+    }
+
+    public function rating($id) {
+      $total = 0;
+      $datas = DB::table('ulasans')->join('products', 'ulasans.product_id', '=', 'products.id')
+                                  ->where('products.freelancer_id', '=', $id)
+                                  ->get();
+      foreach($datas as $data) {
+        $total += $data->rate;
+      }
+
+      $average = $total/count($datas);
+
+      return response()->json([
+        'rate'=> $average
+      ]);
     }
 }

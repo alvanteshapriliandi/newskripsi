@@ -14,4 +14,8 @@ class Ulasan extends Model
     'komen'
   ];
   public $table = 'ulasans';
+
+  public function product() {
+    return $this->hasOne(Product::class);
+  }
 }

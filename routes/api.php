@@ -60,6 +60,9 @@ Route::get('products-freelancer/{id}', 'Api\User\ProductController@productsFreel
 Route::get('order/{id}', 'Api\User\OrdersController@show');
 Route::post('message/perubahan', 'Api\User\MessageController@perubahan');
 Route::post('message/setuju', 'Api\User\MessageController@setuju');
+Route::get('message/cetak/{id}', 'Api\User\MessageController@cetak');
+Route::get('rate/{id}', 'Api\User\ProductController@rating');
+Route::get('order/diterima/{id}', 'Api\User\OrdersController@setDiterima');
 
 Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => 'auth'], function () {
   Route::resource('products', 'ProductController');

@@ -218,7 +218,7 @@ class MessageController extends Controller
 
     public function setuju (Request $request) 
     {
-      Cetak::create([
+      $cetak = Cetak::create([
         'order_id' => $request->order_id,
         'message_id' => $request->message_id,
       ]);
@@ -229,6 +229,13 @@ class MessageController extends Controller
         'message' => $request->message,
         'images' => $request->image
       ]);
+      $cetak = Cetak::join('messages', 'cetaks.message_id', '=', 'messages.id')->where('messages.order_id', '=', $request->order_id)->first();
       return response()->json($message);
+    }
+
+    public function cetak($id) {
+      $cetak = Cetak::join('messages', 'cetaks.message_id', '=', 'messages.id')->where('messages.order_id', '=', $id)->first();
+
+      return response()->json($cetak);
     }
 }
