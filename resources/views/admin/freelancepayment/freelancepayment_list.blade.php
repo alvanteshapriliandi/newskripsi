@@ -36,7 +36,7 @@
                         </tfoot>
                         <tbody>
                             @foreach($pay as $p)
-                              @if($p->status == 4)
+                              @if($p->status == 3)
                                 @if($p->status_frpay == 0)
                                   <tr>
                                     <form method="post" action="{{ route('freelance-payment.store') }}" data-parsley-validate class="form-horizontal form-label-left" enctype="multipart/form-data">

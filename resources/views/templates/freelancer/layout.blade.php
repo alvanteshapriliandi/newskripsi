@@ -85,7 +85,7 @@
                                 <li><a href="{{ url('freelance/cetak')}}"><i class="fa fa-print"></i> Cetak </a></li>
                                 <li><a href="{{ url('freelance/pembayaran')}}"><i class="fa fa-credit-card"></i> Pembayaran </a></li>
                                 <li><a href="{{ url('freelance/report')}}"><i class="fa fa-navicon"></i> Report </a></li>
-                                <li><a href="{{ url('freelance/pembayaran')}}"><i class="fa fa-star"></i> Ulasan </a></li>
+                                <li><a href="{{ url('freelance/ulasan')}}"><i class="fa fa-star"></i> Ulasan </a></li>
                                 <li><a href="{{ url('freelance/pengaturan')}}"><i class="fa fa-cog"></i> Pengaturan </a></li>
                                 <li><a href="{{url('http://localhost:8080/#/')}}"><i class="fa fa-paper-plane"></i> Lihat Web ya </a></li>
                             </ul>
@@ -93,22 +93,7 @@
                     </div>
                     <!-- /sidebar menu -->
 
-                    <!-- /menu footer buttons -->
-                    <div class="sidebar-footer hidden-small">
-                        <a data-toggle="tooltip" data-placement="top" title="Settings">
-                            <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
-                        </a>
-                        <a data-toggle="tooltip" data-placement="top" title="FullScreen">
-                            <span class="glyphicon glyphicon-fullscreen" aria-hidden="true"></span>
-                        </a>
-                        <a data-toggle="tooltip" data-placement="top" title="Lock">
-                            <span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>
-                        </a>
-                        <a data-toggle="tooltip" data-placement="top" title="Logout">
-                            <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
-                        </a>
-                    </div>
-                    <!-- /menu footer buttons -->
+                    
                 </div>
             </div>
 

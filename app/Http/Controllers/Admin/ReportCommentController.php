@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use DB;
 use App\Subcategory;
+use App\Models\Report;
 
 class ReportCommentController extends Controller
 {
@@ -45,6 +46,14 @@ class ReportCommentController extends Controller
     public function store(Request $request)
     {
         //
+        $status = Report::all();
+        foreach ($status as $s) {
+            if ($s->status == 0) {
+                $s->status = 1;
+                $s->save();
+            }
+        }
+        return redirect('admin/report-comment');
     }
 
     /**

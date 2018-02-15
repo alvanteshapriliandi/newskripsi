@@ -6,7 +6,7 @@
 	$product = DB::select('SELECT COUNT(p.id) total FROM products p where p.freelancer_id = '.$id);
 	$order = DB::select('SELECT COUNT(o.id) total, t.status_transaksi FROM orders o join products p on p.id = o.product_id join transaction t on t.id = o.transaction_id where p.freelancer_id = '.$id.' GROUP BY t.status_transaksi');
 	$bayar = DB::select('SELECT COUNT(o.id) total FROM orders o join products p on p.id = o.product_id where o.status = 4 and p.freelancer_id = '.$id);
-	$cetak = DB::select('SELECT COUNT(c.id) total FROM cetaks c join orders o on o.id = c.order_id join products p on p.id = o.product_id and  p.freelancer_id = '.$id );
+	$cetak = DB::select('SELECT COUNT(c.id) total FROM cetaks c join messages m on c.message_id = m.id join orders o on o.id = m.order_id join products p on p.id = o.product_id and  p.freelancer_id = '.$id );
 ?>
 	<div class="row">
 	    <div class="col col-md-4">

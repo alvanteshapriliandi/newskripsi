@@ -16,6 +16,7 @@ class ProductController extends Controller
      */
     public function index()
     {
+      $product = Product::where('status','=','1')->orderBy('created_at', 'asc')->with('images')->paginate(12);
       $product = Product::with(['images', 'materials'])->paginate(12);
                 
       return response()->json($product);

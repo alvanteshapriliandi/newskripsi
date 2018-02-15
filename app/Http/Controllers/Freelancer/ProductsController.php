@@ -111,6 +111,7 @@ class ProductsController extends Controller
     {
         //
         if(!Helper::checkFreelancer()){return view('error.403');}
+        // return 'hai';
         $data['cat'] = Category::all();
         $data['product'] = Product::find($id);
          // return $data['product'];
@@ -152,18 +153,7 @@ class ProductsController extends Controller
     {
         //
         if(!Helper::checkFreelancer()){return view('error.403');}
-        try{
-            $product = Product::find($id);
-            // return $product;
-            $product->delete();
-
-            return redirect()->route('product.index')->with('success', "The product <strong>Product</strong> has successfully been archived.");
-        }
-        catch(ModelNotFoundException $ex){
-            if ($ex instanceof  ModelNotFoundException) {
-                return response()->view('errors.'.'404');
-            }
-        }
+        return 'hai';
 
     }
 }

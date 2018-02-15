@@ -136,8 +136,13 @@ class ProductsController extends Controller
     {
         //
         if(!Helper::checkFreelancer()){return view('error.403');}
+        // return 'hai';
         $data['cat'] = Category::all();
-        $data['product'] = Product::find($id);
+        $data['products'] = db::select('select c.cat_name, s.id, s.name, p.* from products p
+            join subcategories s on s.id = p.subcategory_id
+            join categories c on c.id = s.category_id
+            where p.id = '.$id);
+        $data['images'] = db::select('select * from images i where i.product_id = '.$id);
          // return $data['product'];
         return view('freelancer.product.product_edit',$data);
     }
@@ -153,17 +158,41 @@ class ProductsController extends Controller
     {
         //
         if(!Helper::checkFreelancer()){return view('error.403');}
-        $file=$request->file('images');
-        $filename = $file->getClientOriginalName();
-       // return $filename;
+       //  $file=$request->file('images');
+       //  $filename = $file->getClientOriginalName();
+       // // return $filename;
 
-        $file->move(public_path().'/uploads/',$filename);
-        $data = $request-> all();
-        $data['images']= $filename;
-        //return $data;
-        $product = Product::find($id);
-        // return [$data, $product];
-        $product -> update($data);
+       //  $file->move(public_path().'/uploads/',$filename);
+       //  $data = $request-> all();
+       //  $data['images']= $filename;
+       //  //return $data;
+       //  $product = Product::find($id);
+       //  // return [$data, $product];
+       //  $product -> update($data);
+        $datas = $request-> all();
+        $datas = DB::table('products')
+                    ->where('id', '=', $id)
+                    ->update([
+          'freelancer_id'  => $id,
+          'jdl_Pdk'        => $request->input('jdl_Pdk'),
+          'harga_awal'     => $request->input('harga_awal'),
+          'subcategory_id' => $request->input('subcategory_id'),
+          'description'    => $request->input('description')
+        ]);
+        $images=array();
+        if($files=$request->file('images')){
+            foreach($files as $file){
+                $name=$file->getClientOriginalName();
+                $file->move(public_path().'/uploads/',$name);
+                $images[]=$name;
+                // return $images;
+                Image::insert( [
+                    'images'=>  $images[]=$name,
+                    'product_id' =>$datas->id,
+                    //you can put other insertion here
+                ]);
+            }
+        }
         return redirect()->route('product.index')->with('success', "The product <strong>Product</strong> has successfully been updated.");
     }
 
@@ -177,18 +206,18 @@ class ProductsController extends Controller
     {
         //
         if(!Helper::checkFreelancer()){return view('error.403');}
-        try{
-            $product = Product::find($id);
-            // return $product;
-            $product->delete();
+        return 'hai';
 
-            return redirect()->route('product.index')->with('success', "The product <strong>Product</strong> has successfully been archived.");
-        }
-        catch(ModelNotFoundException $ex){
-            if ($ex instanceof  ModelNotFoundException) {
-                return response()->view('errors.'.'404');
-            }
-        }
-
+    }
+    public function showImage($id)
+    {
+        $data['imageslist'] = db::select('select * from images i where i.product_id = '.$id);
+        return view('freelancer.product.product_create',$data);
+    }
+    public function deleteImg($id)
+    {
+        return 'hai';
+        $images = Image::find($id);
+        return $images;
     }
 }

@@ -43,7 +43,7 @@
 							</tfoot>
 							<tbody>
 								@foreach($report as $r)
-								@if($r->status == 4)
+								@if($r->status == 3)
 								<tr>
 									<?php 
 										// $pendapatan = $r->total - $r->harga_awal;

@@ -7,7 +7,7 @@
         <div class="col-md-12 col-sm-12 col-xs-12">
             <div class="x_panel">
                 <div class="x_title">
-                    <h2>Form Entry Product <a href="{{route('products.index')}}" class="btn btn-info btn-xs"><i class="fa fa-chevron-left"></i> Back </a></h2>
+                    <h2>Form Entry Product <a href="{{route('product.index')}}" class="btn btn-info btn-xs"><i class="fa fa-chevron-left"></i> Back </a></h2>
                     <div class="clearfix"></div>
                 </div>
                 <div class="x_content col-md-12">
@@ -78,6 +78,7 @@
                                     @endif
                                 </div>
                             </div>
+                            
                             <div class="form-content">
                                 <div class="row">
                                     <div class="col-md-12">
@@ -102,7 +103,7 @@
                                     </div>
                                 </div>
                             </div>
-
+                        
                         
                         <div class="col-md-5 form-row" style="padding: 10px;">
                             <div style="float: right; padding: 10px;">
