@@ -23,7 +23,7 @@ class FreelancePaymentController extends Controller
             join products p on p.id = o.product_id
             join subcategories s on s.id = p.subcategory_id
             join users u on u.id = p.freelancer_id
-            where o.status = 4');
+            where o.status = 3');
         // return $data;
         return view('admin.freelancepayment.freelancepayment_list',$data);
     }

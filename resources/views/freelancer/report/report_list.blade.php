@@ -19,11 +19,9 @@
 								<tr>
 									<th>Nama Product</th>
 									<th>Subcategory</th>
-									<th>Harga</th>
-									<th>Pendapatan</th>
+									<th>Harga Desain</th>
 									<th>Status</th>
-									<th>Date</th>
-									<th>Time</th>
+									<th>Date Time</th>
 									<th>Action</th>
 								</tr>
 							</thead>
@@ -31,17 +29,15 @@
 								<tr>
 									<th>Nama Product</th>
 									<th>Subcategory</th>
-									<th>Harga</th>
-									<th>Pendapatan</th>
+									<th>Harga Desain</th>
 									<th>Status</th>
-									<th>Date</th>
-									<th>Time</th>
+									<th>Date Time</th>
 									<th>Action</th>
 								</tr>
 							</tfoot>
 							<tbody>
 								@foreach($report as $r)
-								@if($r->status == 4)
+								@if($r->status == 3)
 								<tr>
 									<?php 
 										// $pendapatan = $r->total - $r->harga_awal;
@@ -55,14 +51,12 @@
 										// $pendapatan = number_format($pendapatan, 1, ",",".");
 									?>
 									<td>{{$r->harga_awal}}</td>
-									<td>{{$r->harga_awal}}</td>
 									@if($r->status_frpay == 1)
 										<td>Terkirim</td>
 										@else
 											<td>Belum Terkirim</td>
 									@endif
-									<td>{{ date('F d, Y', strtotime($r->created_at))}}</td>
-                                    <td>{{ date('H:m:s', strtotime($r->created_at))}}</td>
+									<td>{{ date('F d, Y', strtotime($r->created_at))}} {{ date('H:m:s', strtotime($r->created_at))}}</td>
                                     @if($r->status_frpay == 0)
                                     	<td>
                                     		<a href="{{route('report.show',['id'=>$r->id])}}" class="btn btn-info">komentar</a>

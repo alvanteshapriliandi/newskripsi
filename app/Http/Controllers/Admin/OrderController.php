@@ -91,7 +91,6 @@ class OrderController extends Controller
             join products p on p.id = o.product_id
             join users u on u.id = p.freelancer_id
             join subcategories s on s.id = p.subcategory_id
-            left join materials m on m.subcategory_id = s.id
             join transaction t on t.id = o.Transaction_id
             where o.Transaction_id = '.$id);
 

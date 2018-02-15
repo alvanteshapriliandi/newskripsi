@@ -91,10 +91,6 @@
                                         <th>Kuantitas</th>
                                         <td>{{$dl->kuantitas}}</td>
                                     </tr>
-                                    <tr>
-                                        <th>Satuan</th>
-                                        <td>{{$dl->satuan}}</td>
-                                    </tr>
                                     <?php 
                                         $dl->harga_awal = number_format($dl->harga_awal, 0, ",",".");
                                         $subtotal = number_format($subtotal, 0, ",",".");

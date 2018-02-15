@@ -71,12 +71,6 @@
                                             @endif
                                         </tr>
                                         <tr>
-                                            @if($p->satuan)
-                                                <td>Satuan</td>
-                                                <td>{{$p->satuan}}</td>
-                                            @endif
-                                        </tr>
-                                        <tr>
                                             @if($p->model)
                                                 <td>model</td>
                                                 <td>{{$p->model}}</td>

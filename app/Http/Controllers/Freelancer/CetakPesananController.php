@@ -23,7 +23,8 @@ class CetakPesananController extends Controller
         // return 'hai';
         $id = Auth::user()->id;
         $data['cetak'] = db::select('select u.username, p.jdl_Pdk, s.name, c.status, c.created_at from cetaks c
-            join orders o on  o.id = c.order_id
+            join messages m on c.message_id = m.id 
+            join orders o on  o.id = m.order_id
             join transaction t on o.transaction_id = t.id
             join users u on u.id = t.user_id
             join products p on p.id = o.product_id

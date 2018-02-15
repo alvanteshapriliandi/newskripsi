@@ -4,6 +4,10 @@ namespace App\Http\Controllers\Freelancer;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use DB;
+use App\Models\Ulasan;
+use App\User;
+use Auth;
 
 class UlasanController extends Controller
 {
@@ -15,7 +19,13 @@ class UlasanController extends Controller
     public function index()
     {
         //
-        return view('Freelancer.ulasan.ulasan_list');
+        $id = Auth::user()->id;
+        $data['ulasan'] = db::select('select u.username, p.jdl_Pdk, ul.rate, ul.judul, ul.komen, ul.created_at from ulasans ul
+            join users u on u.id = ul.user_id
+            join products p on p.id = ul.product_id
+            where p.Freelancer_id = '.$id);
+        // return $data;
+        return view('Freelancer.ulasan.ulasan_list',$data);
     }
 
     /**

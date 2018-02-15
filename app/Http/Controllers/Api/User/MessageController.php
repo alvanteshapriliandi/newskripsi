@@ -219,7 +219,6 @@ class MessageController extends Controller
     public function setuju (Request $request) 
     {
       Cetak::create([
-        'order_id' => $request->order_id,
         'message_id' => $request->message_id,
       ]);
       $message = Message::create([

@@ -18,8 +18,7 @@
                             <tr>
                                 <th>Nama Produk</th>
                                 <th>Sub Category</th>
-                                <th>Harga Desain</th>
-                                <th>Pendapatan</th>
+                                <th>Harga Desain <i>(Rp)</i></th>
                                 <th>Date</th>
                                 <th>Time</th>
                             </tr>
@@ -28,31 +27,29 @@
                             <tr>
                                 <th>Nama Produk</th>
                                 <th>Sub Category</th>
-                                <th>Harga Desain</th>
-                                <th>Pendapatan</th>
+                                <th>Harga Desain <i>(Rp)</i></th>
                                 <th>Date</th>
                                 <th>Time</th>
                             </tr>
                         </tfoot>
                         <tbody>
+                            <?php $saldo = 0; ?>
                             @foreach($pembayaran as $bayar)
                               <tr>
-                                <?php
-                                    $saldo = 0;
-                                    $saldo += $bayar->harga_awal;
-                                ?>
                                 <td>{{$bayar->jdl_Pdk}}</td>
                                 <td>{{$bayar->name}}</td>
                                 <?php 
-                                    $bayar->harga_awal = number_format($bayar->harga_awal, 0, ",",".");
-                                    $saldo = number_format($saldo, 0, ",","."); 
+                                    $saldo += $bayar->harga_awal;
                                 ?>
-                                <td>{{$bayar->harga_awal}}</td>
-                                <td>{{$saldo}}</td>
+                                <td>{{$bayar->harga_awal = number_format($bayar->harga_awal, 0, ",",".")}}</td>
                                 <td>{{ date('F d, Y', strtotime($bayar->updated_at))}}</td>
                                 <td>{{ date('H:m:s', strtotime($bayar->updated_at))}}</td>
                               </tr>
                             @endforeach
+                            <tr>
+                                <th colspan="2" style="font-size: 20px; background: #ccc;">Saldo Anda <i>(Rp)</i>: </th>
+                                <th colspan="3" style="font-size: 20px; background: #ccc;">{{$saldo = number_format($saldo, 0, ",",".")}}</th>
+                            </tr>
                         </tbody>
                     </table>
                 </div>
