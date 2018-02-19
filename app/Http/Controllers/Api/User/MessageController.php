@@ -123,7 +123,7 @@ class MessageController extends Controller
         $data = DB::table('messages')->join('orders', 'messages.order_id', '=', 'orders.id')
                                       ->join('products', 'orders.product_id', '=', 'products.id')
                                       ->join('freelances', 'products.freelancer_id', '=', 'freelances.id')
-                                      ->join('users', 'freelances.user_id', '=', 'users.id')
+                                      ->join('users', 'freelances.id', '=', 'users.id')
                                       ->select('messages.*', 'users.username as freelance', 'freelances.id as freelances_id', 'orders.ket')
                                       ->where('order_id', '=', $id)->get();
         return response()->json($data);

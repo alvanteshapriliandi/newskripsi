@@ -29,6 +29,10 @@ class Product extends Model
     public function ulasans(){
       return $this->hasMany(Ulasan::class);
     }
+
+    public function item(){
+      return $this->hasOne(Item::class);
+    }
     // public function freelancer(){
     //     return $this->belongsTo(Freelancer::class);
     // }

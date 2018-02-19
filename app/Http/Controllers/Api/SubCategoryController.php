@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use DB;
 use App\Subcategory;
+use App\Product;
 
 class SubCategoryController extends Controller
 {
@@ -16,7 +17,7 @@ class SubCategoryController extends Controller
      */
     public function index()
     {
-      $products = Subcategory::with('products')->get();
+      $products = Subcategory::with('products.images')->get();
       return response()->json($products);
     }
 
@@ -90,9 +91,12 @@ class SubCategoryController extends Controller
 
     public function subcategory($id)
     {
-      $products = Subcategory::with('products')->where('id', '=', $id)->first();
+      $products = Product::where([
+        ['status','=','1'],
+        ['subcategory_id', '=', $id]
+        ])->orderBy('created_at', 'asc')->with(['images', 'materials'])->paginate(12);
 
-        return response()->json($products);
+      return response()->json($products);
     }
     
 }

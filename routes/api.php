@@ -63,6 +63,7 @@ Route::post('message/setuju', 'Api\User\MessageController@setuju');
 Route::get('message/cetak/{id}', 'Api\User\MessageController@cetak');
 Route::get('rate/{id}', 'Api\User\ProductController@rating');
 Route::get('order/diterima/{id}', 'Api\User\OrdersController@setDiterima');
+Route::get('products-freelancer_/{id}', 'Api\User\ProductController@productsFreelancer_');
 
 Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => 'auth'], function () {
   Route::resource('products', 'ProductController');

@@ -24,8 +24,8 @@ class ItemController extends Controller
     {
         $cart = DB::table('carts')->where('user_id', '=', Auth::user()->id)->first();
         $item = DB::table('items')->where('cart_id', '=', $cart->id)->get();
-        $items = DB::table('items')->join('products', 'items.product_id', '=', 'products.id')
-                                    ->select('items.*', 'products.freelancer_id', 'products.subcategory_id', 'products.jdl_Pdk', 'products.harga_awal', 'products.images')
+        $items = Item::with('product.images')
+                                    // ->select('items.*', 'products.freelancer_id', 'products.subcategory_id', 'products.jdl_Pdk', 'products.harga_awal', 'products.images')
                                     ->where('items.cart_id', '=', $cart->id)
                                     ->get();
         return response()->json($items);
@@ -103,11 +103,10 @@ class ItemController extends Controller
                                       'berat' => $request->berat,
                                       'harga' => $request->harga
                                     ]);
-          $detail = DB::table('items')->join('products', 'items.product_id', '=', 'products.id')
-                                      ->select('items.*', 'products.freelancer_id', 'products.subcategory_id', 'products.jdl_Pdk', 'products.harga_awal')
-                                      ->where('items.id', '=', $request->id)
-                                      ->first();    
-          return response()->json($detail);    
+                                    $items = Item::with('product.images')
+                                    ->where('items.id', '=', $item->id)
+                                    ->first();
+        return response()->json($items);  
         } else {
           $data = array(
             'product_id' => $request->product_id,
@@ -140,11 +139,10 @@ class ItemController extends Controller
             'harga' => $request->harga
           );
           $item = Item::create($data); 
-          $detail = DB::table('items')->join('products', 'items.product_id', '=', 'products.id')
-                                      ->select('items.*', 'products.freelancer_id', 'products.subcategory_id', 'products.jdl_Pdk', 'products.harga_awal', 'products.images')
-                                      ->where('items.id', '=', $item->id)
-                                      ->first();
-          return response()->json($detail);
+          $items = Item::with('product.images')
+                                    ->where('items.id', '=', $item->id)
+                                    ->first();
+        return response()->json($items);
         }       
       } else {
         Cart::create([
@@ -182,11 +180,15 @@ class ItemController extends Controller
           'harga' => $request->harga
         );
         $item = Item::create($data); 
-        $detail = DB::table('items')->join('products', 'items.product_id', '=', 'products.id')
-                                    ->select('items.*', 'products.freelancer_id', 'products.subcategory_id', 'products.jdl_Pdk', 'products.harga_awal', 'products.images')
+        $items = Item::with('product.images')
                                     ->where('items.id', '=', $item->id)
                                     ->first();
-        return response()->json($detail);
+        return response()->json($items);
+        // $detail = DB::table('items')->join('products', 'items.product_id', '=', 'products.id')
+        //                             ->select('items.*', 'products.freelancer_id', 'products.subcategory_id', 'products.jdl_Pdk', 'products.harga_awal', 'products.images')
+        //                             ->where('items.id', '=', $item->id)
+        //                             ->first();
+        // return response()->json($detail);
       }
       
       

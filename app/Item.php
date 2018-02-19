@@ -42,6 +42,6 @@ class Item extends Model
   public $table = "items";
 
   public function product() {
-    return $this->hasOne(Product::class);
+    return $this->hasOne(Product::class, 'id', 'product_id');
   }
 }

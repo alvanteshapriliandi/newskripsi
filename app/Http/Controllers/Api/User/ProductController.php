@@ -16,8 +16,8 @@ class ProductController extends Controller
      */
     public function index()
     {
-      $product = Product::where('status','=','1')->orderBy('created_at', 'asc')->with('images')->paginate(12);
-      $product = Product::with(['images', 'materials'])->paginate(12);
+      $product = Product::where('status','=','1')->orderBy('created_at', 'asc')->with(['images', 'materials'])->paginate(12);
+      // $product = Product::with(['images', 'materials'])->paginate(12);
                 
       return response()->json($product);
     }
@@ -158,5 +158,11 @@ class ProductController extends Controller
       return response()->json([
         'rate'=> $average
       ]);
+    }
+
+    public function productsFreelancer_($id) 
+    {
+      $product = Product::with(['images', 'materials'])->where('freelancer_id', '=', $id)->get();
+      return response()->json($product);
     }
 }
