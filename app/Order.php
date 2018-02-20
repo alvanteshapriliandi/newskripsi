@@ -27,7 +27,14 @@ class Order extends Model
     'cetak_lengan_kiri',
     'kaos_metode',
     'berat',
-    'harga'
+    'harga',
+    'nama',
+    'nama_perusahaan',
+    'no_telpon',
+    'alamat',
+    'email',
+    'jabatan',
+    'logo'
   ];
 
   public $table = "orders";

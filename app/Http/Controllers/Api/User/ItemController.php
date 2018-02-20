@@ -66,7 +66,7 @@ class ItemController extends Controller
 
         $fileName = str_random().'.'.$extension;
 
-        $path = public_path().'/pembayaran/'.$fileName;
+        $path = public_path().'/orders/'.$fileName;
 
         file_put_contents($path, $decoded);
       }

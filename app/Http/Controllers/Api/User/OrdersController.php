@@ -62,6 +62,15 @@ class OrdersController extends Controller
           'service' => $request->service,
           'biaya_kurir' => $request->biaya_kurir
         ]);
+        
+        // $items = $request->items;
+        // foreach($items as $item){
+        //   $item['nama'] = "Azmi xyz";
+        //   $item['transaction_id'] = $transaction->id;
+        //   Order::create($item);
+        //   DB::table('items')->where('id', '=', $items['id'])->delete();
+        // }
+
         for($i = 0; $i < count($request->items); $i++){
           Order::create([
             'product_id' => $request->items[$i]['product_id'],
@@ -83,10 +92,19 @@ class OrdersController extends Controller
             'cetak_lengan_kiri' => $request->items[$i]['cetak_lengan_kiri'],
             'kaos_metode' => $request->items[$i]['kaos_metode'],
             'berat' => $request->items[$i]['berat'],
-            'harga' => $request->items[$i]['harga']
+            'harga' => $request->items[$i]['harga'],
+            'nama' => $request->items[$i]['nama'],
+            'nama_perusahaan' => $request->items[$i]['nama_perusahaan'],
+            'no_telpon' => $request->items[$i]['no_telpon'], 
+            'alamat'  => $request->items[$i]['alamat'],
+            'email' => $request->items[$i]['email'],
+            'jabatan' => $request->items[$i]['jabatan'],
+            'logo' => $request->items[$i]['logo']
+
           ]);
           DB::table('items')->where('id', '=', $request->items[$i]['id'])->delete();
         }
+        return response()->json($request->all());
         return response()->json($transaction->with('orders')->where('id', '=', $transaction->id)->first());
        
        
