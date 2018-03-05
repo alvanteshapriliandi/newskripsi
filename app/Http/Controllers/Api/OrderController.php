@@ -23,7 +23,7 @@ class OrderController extends Controller
 
     public function index()
     {
-      $transaction = Transaction::with('orders.product')
+      $transaction = Transaction::with('orders.product.images')
                                   // ->join('products as item', 'orders.product_id', '=', 'products.id')
                                   ->where('user_id', '=', Auth::user()->id)->get();
       // $orders = Order::with('product')

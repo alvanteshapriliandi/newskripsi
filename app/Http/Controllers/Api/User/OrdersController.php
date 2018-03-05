@@ -104,7 +104,7 @@ class OrdersController extends Controller
           ]);
           DB::table('items')->where('id', '=', $request->items[$i]['id'])->delete();
         }
-        return response()->json($request->all());
+        // return response()->json($request->all());
         return response()->json($transaction->with('orders')->where('id', '=', $transaction->id)->first());
        
        
@@ -171,7 +171,7 @@ class OrdersController extends Controller
     
     public function setDiterima ($id) {
       $data = Order::where('id', '=', $id)->update([
-        'status' => 3
+        'status' => 4
       ]);
 
       $transaction = Transaction::with('orders.product')

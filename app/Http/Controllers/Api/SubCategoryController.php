@@ -17,7 +17,7 @@ class SubCategoryController extends Controller
      */
     public function index()
     {
-      $products = Subcategory::with('products.images')->get();
+      $products = Subcategory::with(['products.images', 'products.materials'])->get();
       return response()->json($products);
     }
 
@@ -51,7 +51,7 @@ class SubCategoryController extends Controller
     public function show($id)
     {
         // $products = DB::table('products')->where('subcategory_id', '=', $id)->get();
-        $products = Subcategory::with('products')->where('id', '=', $id)->first();
+        $products = Subcategory::with(['products.images', 'products.materials'])->where('id', '=', $id)->first();
         return response()->json($products);
     }
 

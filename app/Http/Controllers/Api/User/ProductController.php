@@ -149,15 +149,22 @@ class ProductController extends Controller
       $datas = DB::table('ulasans')->join('products', 'ulasans.product_id', '=', 'products.id')
                                   ->where('products.freelancer_id', '=', $id)
                                   ->get();
-      foreach($datas as $data) {
-        $total += $data->rate;
+      if(count($datas)){
+        foreach($datas as $data) {
+          $total += $data->rate;
+        }
+  
+        $average = $total/count($datas);
+  
+        return response()->json([
+          'rate'=> $average
+        ]);
+      } else {
+        return response()->json([
+          'rate'=> 0
+        ]);
       }
-
-      $average = $total/count($datas);
-
-      return response()->json([
-        'rate'=> $average
-      ]);
+     
     }
 
     public function productsFreelancer_($id) 
